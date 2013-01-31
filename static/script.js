@@ -11,17 +11,19 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	var id = 0;
 	var entrada = 0.8566632541;
 	var fin = entrada*360+5;
+	var ctx = null;
 
 	var iniciar = function(){
 		
-		var elemento = $( 'canvas', win )[ 0 ];
-		ctx = elemento.getContext('2d');
+		ctx = $( 'canvas', win )[ 0 ];
+		ctx = ctx.getContext('2d');
 		ctx.strokeStyle = "#34a7ff";
 		ctx.lineWidth = 20;
 		ctx.lineCap = 'round';
 		
 		ctx.beginPath();
-		ctx.arc(110,109,98,(-Math.PI/2),(-Math.PI/2),false);
+		ctx.moveTo(110,11);
+		ctx.lineTo(111,11);
 		ctx.stroke();
 		
 		setTimeout(function(){
@@ -32,7 +34,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	
     var animacion = function(){
 		
-		ctx.clearRect(0,0,221,220);
+		if(grados){	ctx.clearRect(0,0,221,220); }
 		
 		ctx.beginPath();
 		var radians = Math.PI/180 * grados - Math.PI/2;
@@ -46,6 +48,14 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	}
 	
 	iniciar();
-	$( 'canvas', win ).animate({'opacity':1},500);
+	$( 'canvas', win ).fadeIn(500);
+	
+	$( win ).on( 'click', function( e ){
+		
+		if( $(this).is( e.target ) ){
+			wz.app.closeWindow( win );
+		}
+		
+	});
 	
 });
