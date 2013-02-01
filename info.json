@@ -32,6 +32,7 @@
             
             "template" : "main.html",
 
+            "animation" : false,
             "maxizable" : false,
             "resizable" : false,
 
