@@ -5,7 +5,9 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	win.height( $('#wz-desktop').height() );
 	var height = $('#wz-desktop').height()/2-193;
 	
-	$( '.preferences-top', win ).css('margin-top',height)
+	$( '.preferences-top', win ).css('margin-top',height);
+	
+	$( win ).animate({'opacity':'1'},250);
 	
 	var grados = 0;
 	var id = 0;
@@ -48,12 +50,15 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	}
 	
 	iniciar();
+	
 	$( 'canvas', win ).fadeIn(500);
 	
 	$( win ).on( 'click', function( e ){
 		
 		if( $(this).is( e.target ) ){
-			wz.app.closeWindow( win );
+			$( win ).animate({'opacity':'0'},250, function(){
+				wz.app.closeWindow( win );				
+			});
 		}
 		
 	});
