@@ -7,7 +7,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	
 	$( '.preferences-top', win ).css('margin-top',height);
 	
-	$( win ).animate({'opacity':'1'},250);
+	$( win ).transition({opacity:1},250);
 	
 	var grados = 0;
 	var id = 0;
@@ -51,12 +51,12 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	
 	iniciar();
 	
-	$( 'canvas', win ).fadeIn(500);
+	$( 'canvas', win ).transition({opacity:1},500);
 	
 	$( win ).on( 'click', function( e ){
 		
 		if( $(this).is( e.target ) ){
-			$( win ).animate({'opacity':'0'},250, function(){
+			$( win ).transition({opacity:0},250, function(){
 				wz.app.closeWindow( win );				
 			});
 		}
