@@ -99,14 +99,42 @@
 
 .wz-app-3 .preferences-button.disabled{
 	
-	
+	border-top: 1px solid #333334;
+	background: rgba(58,58,59,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.4);	
 	
 }
 
-.wz-app-3 .preferences-button :hover{
+.wz-app-3 .preferences-button:hover{
 	
+	border-top: 1px solid #5D5D60;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(75,75,77) 0%,rgb(55,55,56) 100%); 
+    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(75,75,77)),color-stop(1, rgb(55,55,56)));
+    background-image: -webkit-linear-gradient(-90deg,rgb(75,75,77) 0%,rgb(55,55,56) 100%);
+    background-image: -o-linear-gradient(-90deg,rgb(75,75,77) 0%,rgb(55,55,56) 100%);
+    background-image: linear-gradient(0deg,rgb(55,55,56) 0%,rgb(75,75,77) 100%);
+	
+}
 
+.wz-app-3 .preferences-button.active:hover{
 	
+	border-top: 1px solid #60CBFF;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%); 
+    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(77,197,255)),color-stop(1, rgb(56,175,255)));
+    background-image: -webkit-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
+    background-image: -o-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
+    background-image: linear-gradient(0deg,rgb(56,175,255) 0%,rgb(77,197,255) 100%);
+	
+}
+
+.wz-app-3 .preferences-button.disabled:hover{
+	
+	border-top: 1px solid #333334;
+	background: rgba(58,58,59,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.4);			
+		
 }
 
 .wz-app-3 .preferences-bottom-content article input{
@@ -138,7 +166,15 @@
 
 /* COMIENZO FRAGMENTO HDD */
 
-.wz-app-3 .preferences-bottom-cake{
+.wz-app-3 .preferences-hdd{
+	
+	width: 476px;
+	height: 240px;
+	margin: 0 auto;
+	
+}
+
+.wz-app-3 .preferences-hdd-cake{
 	
 	width: 221px;
 	height: 220px;
@@ -149,7 +185,7 @@
 	
 }
 
-.wz-app-3 .preferences-bottom-cake-total{
+.wz-app-3 .preferences-hdd-cake-total{
 	
 	font-size: 15px;
 	font-weight: bold;
@@ -161,7 +197,7 @@
 	
 }
 
-.wz-app-3 .preferences-bottom-cake-free{
+.wz-app-3 .preferences-hdd-cake-free{
 	
 	font-size: 13px;
 	color: #666667;
@@ -171,17 +207,17 @@
 	
 }
 
-.wz-app-3 .preferences-bottom-options{
+.wz-app-3 .preferences-hdd-options{
 	
 	width: 180px;
-	height: 300px;
+	height: 240px;
 	float: left;
 	margin-left: 75px;
 	text-align: left;
 	
 }
 	
-.wz-app-3 .preferences-bottom-options span{
+.wz-app-3 .preferences-hdd-options span{
 	
 	font-size: 13px;
 	font-weight: bold;
@@ -190,13 +226,13 @@
 	
 }
 
-.wz-app-3 .preferences-bottom-options article{
+.wz-app-3 .preferences-hdd-options article{
 	
 	margin-top: 10px;
 	
 }
 
-.wz-app-3 .preferences-bottom-options article .space{
+.wz-app-3 .preferences-hdd-options article .space{
 	
 	font-size: 15px;
 	font-weight: bold;
@@ -204,7 +240,7 @@
 	
 }
 
-.wz-app-3 .preferences-bottom-options article .price{
+.wz-app-3 .preferences-hdd-options article .price{
 	
 	font-size: 15px;
 	color: #34A7FF;
@@ -212,7 +248,7 @@
 	
 }
 
-.wz-app-3 .preferences-bottom-options article.active .price{
+.wz-app-3 .preferences-hdd-options article.active .price{
 	
 	color: #A8D8FD;
 	
@@ -302,8 +338,7 @@
 	width: 322px;
 	height: 44px;
 	border-radius: 2px 0px 0px 2px;
-	padding: 1px 0px 1px 1px;
-	padding-left: 18px;
+	padding: 1px 0px 1px 19px;
 	float: right;
 	
 }
@@ -311,7 +346,8 @@
 .wz-app-3 .preferences-account-middle article.active input{
 	
 	border-right: none;
-
+	padding: 0px 0px 0px 18px;
+	
 }
 
 .wz-app-3 .preferences-account-middle article figure{
@@ -346,20 +382,19 @@
 	display: block;
 	margin-top: 10px;
 	margin-left: 5px;
-	background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat;
 	
 }
 
 .wz-app-3 .preferences-account-middle article figure i.process{
-	background-position: 0px 0px;
+	background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat 0px 0px;
 }
 
 .wz-app-3 .preferences-account-middle article figure i.error{
-	background-position: -24px 0px;
+	background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -24px 0px;
 }
 
 .wz-app-3 .preferences-account-middle article figure i.tick{
-	background-position: -48px 0px;
+	background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -48px 0px;
 }
 
 .wz-app-3 .preferences-account-bottom{
@@ -383,60 +418,229 @@
 	
 }
 
+.wz-app-3 .preferences-account-bottom article.disabled span{
+	
+	color: #535354;
+	
+}
+
 /*FIN FRAGMENTO ACCOUNT */
+
+/* COMIENZO FRAGMENTO PASSWORD */
+
+.wz-app-3 .preferences-password-top{
+	
+	width: 300px;
+	height: 35px;
+	margin: 0 auto;
+	text-align: center;
+	
+}
+
+.wz-app-3 .preferences-password-top span{
+	
+	font-size: 13px;
+	color: #8F8F8F;
+	display: block;
+	
+}
+
+.wz-app-3 .preferences-password-top span:first-child{
+	
+	font-size: 14px;
+	color: #BEBEBE;
+	margin-bottom: 8px;
+	
+}
+
+.wz-app-3 .preferences-password-middle{
+	
+	width: 680px;
+	height: 152px;
+	margin: 0 auto;
+	margin-top: 28px;
+	
+}
+
+.wz-app-3 .preferences-password-middle article{
+	margin-top: 4px;
+	margin-right: 140px;
+	float: right;
+}
+
+.wz-app-3 .preferences-password-middle article span{
+	
+	text-align: right;
+	color: #676768;
+	margin-right: 13px;
+	font-size: 13px;
+	float: right;
+	margin-top: 17px;
+	
+}
+
+.wz-app-3 .preferences-password-middle article input{
+	
+	width: 220px;
+	height: 44px;
+	border-radius: 2px 0px 0px 2px;
+	padding: 1px 0px 1px 19px;
+	float: right;
+	
+}
+
+.wz-app-3 .preferences-password-middle article.active input{
+	
+	border-right: none;
+	padding: 0px 0px 0px 18px;
+
+}
+
+.wz-app-3 .preferences-password-middle article figure{
+	
+	width: 155px;
+	height: 44px;
+	border-radius: 0px 2px 2px 0px;
+	padding: 1px 1px 1px 0px;
+	float: right;
+	text-align: right;
+	font-size: 13px;
+	color: #34A7FF;
+	
+	box-shadow: 0px 1px 1px -1px #050506 inset, 0px 1px 0px #3A3A3B;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%); 
+    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(25,25,26)),color-stop(1, rgb(21,21,22)));
+    background-image: -webkit-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
+    background-image: -o-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
+    background-image: linear-gradient(0deg,rgb(21,21,22) 0%,rgb(25,25,26) 100%);
+	
+}
+
+.wz-app-3 .preferences-password-middle article.active figure{
+	
+	padding: 0px;
+	border: 1px solid #245276;
+	border-left: none;
+
+}
+
+.wz-app-3 .preferences-password-middle article figure i{
+	
+	width: 135px;
+	height: 15px;
+	display: block;
+	float: right;
+	margin-top: 15px;
+	margin-right: 10px;	
+	
+}
+
+.wz-app-3 .preferences-password-middle article figure i.process{
+	width: 24px;
+	height: 24px;
+	margin-top: 10px;
+	display: block;
+	background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat 0px 0px;
+}
+
+.wz-app-3 .preferences-password-middle article figure i.error{
+	width: 24px;
+	height: 24px;
+	margin-top: 10px;
+	display: block;
+	background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -24px 0px;
+}
+
+.wz-app-3 .preferences-password-middle article figure i.tick{
+	width: 24px;
+	height: 24px;
+	margin-top: 10px;
+	display: block;
+	background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -48px 0px;
+}
+
+.wz-app-3 .preferences-password-bottom{
+	width: 392px;
+	height: 60px;
+	margin: 0 auto;
+	margin-top: 25px;
+	padding-left: 4px;
+}
+
+.wz-app-3 .preferences-password-bottom article{
+	
+	margin: 0px 8px;
+	float: left;
+	
+}
+
+.wz-app-3 .preferences-password-bottom article span{
+	
+	font-size: 15px;
+	color: #FFF;
+	margin-bottom: 6px;
+
+}
+
+.wz-app-3 .preferences-password-bottom article.disabled span{
+	
+	color: #535354;
+	
+}
+
+/* FIN FRAGMENTO PASSWORD */
 
 .wz-app-3 .preferences-bottom-content.hdd{
 	
-	display: inline-block;
 	margin-top: 50px;
-	display: none;
 	
 }
 
 .wz-app-3 .preferences-bottom-content.account{
 	
-	display: inline-block;
 	margin-top: 25px;
 	display: none;
+	opacity: 0;
 	
 }
 
 .wz-app-3 .preferences-bottom-content.password{
 	
-	display: inline-block;
 	margin-top: 25px;
-	/*display: none;*/
+	display: none;
+	opacity: 0;
 	
 }
 
 .wz-app-3 .preferences-bottom-content.language{
 	
-	display: inline-block;
 	margin-top: 25px;
 	display: none;
+	opacity: 0;
 	
 }
 
 .wz-app-3 .preferences-bottom-content.date-time{
 	
-	display: inline-block;
 	margin-top: 25px;
 	display: none;
+	opacity: 0;
 	
 }
 
 .wz-app-3 .preferences-bottom-content.wallpaper{
 	
-	display: inline-block;
 	margin-top: 25px;
 	display: none;
+	opacity: 0;
 	
 }
 
 .wz-app-3 .preferences-bottom-content.about{
 	
-	display: inline-block;
 	margin-top: 25px;
 	display: none;
+	opacity: 0;
 	
 }

@@ -1,43 +1,47 @@
    
 <section class="preferences-top">
 	<nav>
-    <li class="active">HDD</li>
-    <li>Account</li>
-    <li>Language</li>
-    <li>Date & Time</li>
-    <li>Wallpaper</li>
-    <li>About</li>
+    <li id="hdd" class="active">HDD</li>
+    <li id="account">Account</li>
+    <li id="language">Language</li>
+    <li id="date-time">Date & Time</li>
+    <li id="wallpaper">Wallpaper</li>
+    <li id="about">About</li>
     </nav>
 </section>
 
 <section class="preferences-bottom">
 
 	<section class="preferences-bottom-content hdd">
+    
+    	<section class="preferences-hdd">
 
-        <figure class="preferences-bottom-cake">
-            <span class="preferences-bottom-cake-total">2 GB</span>
-            <span class="preferences-bottom-cake-free">746 MB FREE</span>
-            <canvas id="ctx" width="221" height="220"></canvas>
-        </figure>
-        
-        <section class="preferences-bottom-options">
-            <span>NEED MORE FEATURES?</span>
-            <article class="preferences-button">
-                <span class="space">STARTER</span>
-                <span class="price">FREE</span>
-            </article>
-            <article class="preferences-button active">
-                <span class="space">PRO</span>
-                <span class="price">4,99€</span>
-            </article>
-            <article class="preferences-button">
-                <span class="space">ADVANCE</span>
-                <span class="price">9,99€</span>
-            </article>
-            <article class="preferences-button">
-                <span class="space">ULTIMATE</span>
-                <span class="price">14,99€</span>
-            </article>
+            <figure class="preferences-hdd-cake">
+                <span class="preferences-hdd-cake-total">2 GB</span>
+                <span class="preferences-hdd-cake-free">746 MB FREE</span>
+                <canvas id="ctx" width="221" height="220"></canvas>
+            </figure>
+            
+            <section class="preferences-hdd-options">
+                <span>NEED MORE FEATURES?</span>
+                <article class="preferences-button">
+                    <span class="space">STARTER</span>
+                    <span class="price">FREE</span>
+                </article>
+                <article class="preferences-button active">
+                    <span class="space">PRO</span>
+                    <span class="price">4,99€</span>
+                </article>
+                <article class="preferences-button">
+                    <span class="space">ADVANCE</span>
+                    <span class="price">9,99€</span>
+                </article>
+                <article class="preferences-button">
+                    <span class="space">ULTIMATE</span>
+                    <span class="price">14,99€</span>
+                </article>
+            </section>
+                    
         </section>
         
     </section>
@@ -56,17 +60,17 @@
         
         <section class="preferences-account-middle">
 
-            <article class="active">
+            <article id="username">
                 <figure>
-                	<i class="process"></i>
+                	<i></i>
                 </figure>
                 <input />
                 <span>Username</span>
             </article>
             
-            <article>
+            <article id="email">
                 <figure>
-                	<i class="tick"></i>
+                	<i></i>
                 </figure>
                 <input />
                 <span>Email</span>
@@ -76,11 +80,11 @@
        
         <section class="preferences-account-bottom">
         
-        	<article class="preferences-button">
+        	<article id="change-password" class="preferences-button">
                 <span>Change Password</span>
             </article>
             
-            <article class="preferences-button active">
+            <article id="save-data" class="preferences-button disabled">
                 <span>Save Changes</span>
             </article>
         
@@ -89,6 +93,54 @@
     </section>
     
     <section class="preferences-bottom-content password">
+    
+    	<section class="preferences-password-top">
+            
+            <span>PASSWORD</span>
+            <span>Change your password or recover your current one</span>
+            
+        </section>
+        
+        <section class="preferences-password-middle">
+
+            <article id="old-password">
+                <figure>
+                	<i>Forgot your password?</i>
+                </figure>
+                <input type="password" />
+                <span>Old Password</span>
+            </article>
+            
+            <article id="new-password">
+                <figure>
+                	<i></i>
+                </figure>
+                <input type="password" />
+                <span>New Password</span>
+            </article>
+            
+            <article id="renew-password">
+                <figure>
+                	<i></i>
+                </figure>
+                <input type="password" />
+                <span>Repeat New Password</span>
+            </article>
+            
+        </section>
+       
+        <section class="preferences-password-bottom">
+        
+        	<article id="cancel-password" class="preferences-button">
+                <span>Cancel</span>
+            </article>
+            
+            <article id="save-password" class="preferences-button disabled">
+                <span>Save Changes</span>
+            </article>
+        
+        </section>
+        
     </section>
     
 </section>
