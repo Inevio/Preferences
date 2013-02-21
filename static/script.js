@@ -5,18 +5,37 @@ wz.app.addScript( 3, 'common', function( win, params ){
 	win.height( $('#wz-desktop').height() );
 	var height = $('#wz-desktop').height()/2-193;
 	var idInterval = 0;
+	var cakeTotal = $('.preferences-hdd-cake-total');
+	var cakeFree = $('.preferences-hdd-cake-free');
+	var cakeFreeNumber = 0;
+	var cakeMaxNumber = 0;
+	var grados = 0;
+	var id = 0;
+	var entrada = 0;
+	var fin = 0;
+	var ctx = null;
 	
 	$( '.preferences-top', win ).css('margin-top',height);
 	
-	$( win ).transition({opacity:1},250);
+	wz.config( function( error, config ) {
+		cakeTotal.text(wz.tool.bytesToUnit(config.quotaMax));
+		cakeFree.text(wz.tool.bytesToUnit(config.quotaFree) + ' FREE');
+		cakeFreeNumber = config.quota;
+		cakeMaxNumber = config.quotaMax;
+		console.log(cakeFreeNumber, cakeMaxNumber, cakeFreeNumber/cakeMaxNumber, cakeFreeNumber/cakeMaxNumber*100);
+		entrada = cakeFreeNumber/cakeMaxNumber;
+		console.log(entrada);
+		fin = entrada*360+5;
+		
+		iniciar();
 	
-	var grados = 0;
-	var id = 0;
-	var entrada = 0.8566632541;
-	var fin = entrada*360+5;
-	var ctx = null;
+	});
+	
+	$( win ).transition({opacity:1},250);
 
 	var iniciar = function(){
+		
+		$( 'canvas', win ).transition({opacity:1},500);
 		
 		ctx = $( 'canvas', win )[ 0 ];
 		ctx = ctx.getContext('2d');
@@ -49,10 +68,6 @@ wz.app.addScript( 3, 'common', function( win, params ){
 		if(grados >= fin){clearInterval(id)}
 	
 	}
-	
-	iniciar();
-	
-	$( 'canvas', win ).transition({opacity:1},500);
 	
 	$( win )
 	
