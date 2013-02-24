@@ -22,9 +22,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
 		cakeFree.text(wz.tool.bytesToUnit(config.quotaFree) + ' FREE');
 		cakeFreeNumber = config.quota;
 		cakeMaxNumber = config.quotaMax;
-		console.log(cakeFreeNumber, cakeMaxNumber, cakeFreeNumber/cakeMaxNumber, cakeFreeNumber/cakeMaxNumber*100);
 		entrada = cakeFreeNumber/cakeMaxNumber;
-		console.log(entrada);
 		fin = entrada*360+5;
 		
 		iniciar();
