@@ -45,12 +45,15 @@
 	color: #8D8D8D;
 	height: 24px;
 	margin: 0 20px;
+	cursor: pointer;
+	
 }
 
 .wz-app-3 .preferences-top li.active{
 	
 	color: #FFFFFF;
-	box-shadow: 0 5px 3px -3px #34A7FF;	
+	box-shadow: 0 5px 3px -3px #34A7FF;
+	cursor: default;	
 	
 }
 
@@ -76,6 +79,7 @@
 	text-align: center;
 	margin-top: 10px;
 	box-shadow: 0 1px 1px #111;
+	cursor: pointer;
 	
 	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(54,54,57) 0%,rgb(39,39,41) 100%); 
     background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(54,54,57)),color-stop(1, rgb(39,39,41)));
@@ -83,6 +87,10 @@
     background-image: -o-linear-gradient(-90deg,rgb(54,54,57) 0%,rgb(39,39,41) 100%);
     background-image: linear-gradient(0deg,rgb(39,39,41) 0%,rgb(54,54,57) 100%);
 	
+}
+
+.wz-app-3 .preferences-button span{
+	cursor: pointer;
 }
 
 .wz-app-3 .preferences-button.active{
@@ -102,7 +110,12 @@
 	border-top: 1px solid #333334;
 	background: rgba(58,58,59,0.2);
 	box-shadow: 0 1px 1px rgba(0,0,0,0.4);	
+	cursor: default;
 	
+}
+
+.wz-app-3 .preferences-button.disabled span{
+	cursor: default;
 }
 
 .wz-app-3 .preferences-button:hover{
@@ -357,6 +370,7 @@
 	border-radius: 0px 2px 2px 0px;
 	padding: 1px 1px 1px 0px;
 	float: right;
+	cursor: text;
 	
 	box-shadow: 0px 1px 1px -1px #050506 inset, 0px 1px 0px #3A3A3B;
 	
@@ -382,6 +396,7 @@
 	display: block;
 	margin-top: 10px;
 	margin-left: 5px;
+	cursor: text;
 	
 }
 
@@ -506,6 +521,7 @@
 	text-align: right;
 	font-size: 13px;
 	color: #34A7FF;
+	cursor: text;
 	
 	box-shadow: 0px 1px 1px -1px #050506 inset, 0px 1px 0px #3A3A3B;
 	
@@ -533,6 +549,7 @@
 	float: right;
 	margin-top: 15px;
 	margin-right: 10px;	
+	cursor: text;
 	
 }
 
@@ -588,6 +605,13 @@
 	color: #535354;
 	
 }
+
+.wz-app-3 #old-password figure i:hover{
+	
+	text-decoration: underline;
+	cursor: pointer;	
+	
+}	
 
 /* FIN FRAGMENTO PASSWORD */
 
