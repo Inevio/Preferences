@@ -178,9 +178,17 @@ wz.app.addScript( 3, 'common', function( win, params ){
         })
         
         .on('click', '#save-data', function(){
+			
+			if( usernameInput.val().match( ' ' ) !== null ){
+				alert( 'Your username cannot contain whitespaces' );
+			}else if( emailInput.val().match( ' ' ) !== null ){
+				alert( 'Your email cannot contain whitespaces' );
+			}else if( !usernameInput.val().length ){
+				alert( 'Your username cannot be empty' );
+			}else if( !emailInput.val().length ){
+				alert( 'Your email cannot be empty' );
+			}else if( usernameInput.val() !== username || emailInput.val() !== email ){
             
-            if( saveData.hasClass('active') ){
-                
                 wz.config( function( error, config ){
                     config.changeUsername( usernameInput.val(), function( error ){
 
@@ -206,7 +214,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
         
         .on('click', '#save-password', function(){
             
-            if( savePassword.hasClass('active') ){
+            if( $('#password').val() === $('#renew-password').val() ){
                 
                 wz.config( function( error, config ){
                     config.changePassword( oldPassword.val(), newPassword.val(), function( error ){
@@ -271,19 +279,20 @@ wz.app.addScript( 3, 'common', function( win, params ){
                     var userEqual = usernameInput.val() === username;
                     var mailEqual = emailInput.val() === mail;
                     
-                    if( usernameLength && !(userEqual) ){
+                    if( usernameLength && !userEqual && usernameInput.val().match( ' ' ) === null){
                         usernameInput.siblings('figure').children('i').addClass('process');
                     }else{
                         usernameInput.siblings('figure').children('i').removeClass('process');
                     }
                     
-                    if( emailLength && !(mailEqual) ){
+                    if( emailLength && !mailEqual && emailInput.val().match( ' ' ) === null){
                         emailInput.siblings('figure').children('i').addClass('process');
                     }else{
                         emailInput.siblings('figure').children('i').removeClass('process');
                     }
-                    
-                    if( !userEqual || !mailEqual ){
+
+                    if( ( !userEqual ||  !mailEqual ) && usernameLength && emailLength 
+						&& usernameInput.val().match( ' ' ) === null && emailInput.val().match( ' ' ) === null ){
                         saveData.removeClass('disabled').addClass('active');
                     }else{
                         saveData.removeClass('active').addClass('disabled');
@@ -335,7 +344,15 @@ wz.app.addScript( 3, 'common', function( win, params ){
 
             }, 500);
 
-        });
+        })
+		
+		.key( 'enter', function(e){
+			if( $(e.target).is( '.preferences-account-middle input' ) ){
+				$('#save-data').click();
+			}else if( $(e.target).is( '.preferences-password-middle input' ) ){
+				$('#save-password').click();
+			}
+		});
 
     // Start App
     win
