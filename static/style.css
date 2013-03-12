@@ -629,6 +629,63 @@
 
 /* FIN FRAGMENTO PASSWORD */
 
+
+/* INICIO FRAGMENTO SOCIAL NETWORKS */
+
+.wz-app-3 .preferences-social-top{
+	
+	margin: 0 auto;
+	font-size: 15px;
+	color: #FFF;
+	
+}
+
+.wz-app-3 .preferences-social-element{
+	margin: 0 auto;
+	margin-top: 15px;
+	height: 35px;
+	width: 300px;
+}
+
+.wz-app-3 .preferences-social-element:nth-child(2){
+	margin-top: 40px;
+}
+
+.wz-app-3 .preferences-social-element img{
+	float: left;
+}
+
+.wz-app-3 .preferences-social-element-info{
+	float: left;
+	margin-left: 25px;
+	margin-top: 11px;
+	font-size: 15px;
+	color: #FFF;
+}
+
+.wz-app-3 .preferences-social-element-name{
+	float: right;
+	margin-top: 7px;
+	font-size: 23px;
+	color: #FFF;
+}
+
+.wz-app-3 .preferences-social-element-name.exists{
+	margin-top: 11px;
+	margin-right: 0px;
+	font-size: 15px;
+}
+
+.wz-app-3 .preferences-social-bottom{
+	display: block;
+	margin: 0 auto;
+	margin-top: 40px;
+	font-size: 15px;
+	color: #FFF;
+}
+
+/* FIN FRAGMENTO SOCIAL NETWORKS */
+
 .wz-app-3 .preferences-bottom-content.hdd{
 	
 	margin-top: 50px;
@@ -646,6 +703,14 @@
 .wz-app-3 .preferences-bottom-content.password{
 	
 	margin-top: 25px;
+	display: none;
+	opacity: 0;
+	
+}
+
+.wz-app-3 .preferences-bottom-content.social{
+	
+	margin-top: 40px;
 	display: none;
 	opacity: 0;
 	
