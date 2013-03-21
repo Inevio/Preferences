@@ -52,21 +52,21 @@
 .wz-app-3 .preferences-top li.active{
     
     color: #FFFFFF;
-    box-shadow: 0 5px 3px -3px #34A7FF;
+    box-shadow: 0 5px 2px -3px #34A7FF;
     cursor: default;    
     
 }
 
 .wz-app-3 .preferences-top li:hover{
     
-    box-shadow: 0 5px 3px -3px #FFF;
+    box-shadow: 0 5px 2px -3px #FFF;
     
 }
 
 .wz-app-3 .preferences-top li.active:hover{
     
     color: #FFFFFF;
-    box-shadow: 0 5px 3px -3px #34A7FF;
+    box-shadow: 0 5px 2px -3px #34A7FF;
     cursor: default;    
     
 }
