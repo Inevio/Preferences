@@ -86,6 +86,26 @@ wz.app.addScript( 3, 'common', function( win, params ){
         });
 
     };
+	
+	var socialNetworks = function(){
+		
+		wz.social.getAccounts( function( error, accounts ){
+			
+			for( var i = 0 ; i < accounts.length ; i++ ){
+				
+				if( accounts[i].network === 'twitter' ){
+					$( '.preferences-social-element-name.twitter', win ).addClass('exists').text( 'Exists' );
+				}else if( accounts[i].network === 'facebook' ){
+					$( '.preferences-social-element-name.facebook', win ).addClass('exists').text( 'Exists' );
+				}else if( accounts[i].network === 'instagram' ){
+					$( '.preferences-social-element-name.instagram', win ).addClass('exists').text( 'Exists' );
+				}
+				
+			}
+			
+		});
+		
+    };
 
     // Events
     win
@@ -254,6 +274,22 @@ wz.app.addScript( 3, 'common', function( win, params ){
     .on('mousedown', '#new-password figure, #renew-password figure', function(){
         $(this).siblings('input').focus();
     })
+	
+	.on('mousedown', '.preferences-social-element-name', function(){
+		
+		if( !$(this).hasClass('exists') ){
+			
+			if( $(this).hasClass('twitter') ){
+				wz.social.addAccount('twitter', function(){});
+			}else if( $(this).hasClass('facebook') ){
+				wz.social.addAccount('facebook', function(){});
+			}else if( $(this).hasClass('instagram') ){
+				wz.social.addAccount('instagram', function(){});
+			}
+			
+		}
+		
+	})
     
     .on('focus', '.preferences-account-middle article, .preferences-password-middle article', function(){
 
@@ -373,5 +409,6 @@ wz.app.addScript( 3, 'common', function( win, params ){
     });
 
     data();
+	socialNetworks();
 
 });

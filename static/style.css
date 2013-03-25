@@ -668,6 +668,7 @@
     margin-top: 7px;
     font-size: 23px;
     color: #FFF;
+	cursor: pointer;
 }
 
 .wz-app-3 .preferences-social-element-name.exists{
