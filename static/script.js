@@ -94,11 +94,11 @@ wz.app.addScript( 3, 'common', function( win, params ){
 			for( var i = 0 ; i < accounts.length ; i++ ){
 				
 				if( accounts[i].network === 'twitter' ){
-					$( '.preferences-social-element-name.twitter', win ).addClass('exists').text( 'Exists' );
+					$( '.preferences-social-element-name.twitter', win ).addClass('exists').text( accounts[i].name );
 				}else if( accounts[i].network === 'facebook' ){
-					$( '.preferences-social-element-name.facebook', win ).addClass('exists').text( 'Exists' );
+					$( '.preferences-social-element-name.facebook', win ).addClass('exists').text( accounts[i].name );
 				}else if( accounts[i].network === 'instagram' ){
-					$( '.preferences-social-element-name.instagram', win ).addClass('exists').text( 'Exists' );
+					$( '.preferences-social-element-name.instagram', win ).addClass('exists').text( accounts[i].name );
 				}
 				
 			}
