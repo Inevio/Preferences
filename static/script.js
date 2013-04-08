@@ -1,17 +1,17 @@
 
-wz.app.addScript( 3, 'common', function( win, params ){
+wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 
     // Local variables
     var idInterval = 0;
     var cakeTotal = $('.preferences-hdd-cake-total', win);
     var cakeFree = $('.preferences-hdd-cake-free', win);
-    var oldPassword = $('#old-password', win).children('input');
-    var newPassword = $('#new-password', win).children('input');
-    var renewPassword = $('#renew-password', win).children('input');
-    var saveData = $('#save-data', win);
-    var usernameInput = $('#username', win).children('input');
-    var emailInput = $('#email', win).children('input');
-    var savePassword = $('#save-password', win);
+    var oldPassword = $('#old-password').children('input');
+    var newPassword = $('#new-password').children('input');
+    var renewPassword = $('#renew-password').children('input');
+    var saveData = $('#save-data');
+    var usernameInput = $('#username').children('input');
+    var emailInput = $('#email').children('input');
+    var savePassword = $('#save-password');
     var username = '';
     var mail = '';
 
@@ -201,13 +201,13 @@ wz.app.addScript( 3, 'common', function( win, params ){
     .on('mousedown', '#save-data', function(){
         
         if( usernameInput.val().match( ' ' ) !== null ){
-            alert( 'Your username cannot contain whitespaces' );
+            alert( lang.usernameWhitespaces );
         }else if( emailInput.val().match( ' ' ) !== null ){
-            alert( 'Your email cannot contain whitespaces' );
+            alert( lang.mailWhitespaces );
         }else if( !usernameInput.val().length ){
-            alert( 'Your username cannot be empty' );
+            alert( lang.usernameEmpty );
         }else if( !emailInput.val().length ){
-            alert( 'Your email cannot be empty' );
+            alert( lang.mailEmpty );
         }else if( usernameInput.val() !== username || emailInput.val() !== email ){
         
             wz.config( function( error, config ){
@@ -223,7 +223,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
                         emailInput.val( mail );
                     }else{
                         data();
-                        alert( 'Your data has been changed successfully' );
+                        alert( lang.dataChanged );
                     }
                     
                 });
@@ -251,7 +251,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
                         oldPassword.val('');
                         newPassword.val('');
                         $('#renew-password', win).children('input').val('');
-                        alert( 'Your password has been changed successfully' );
+                        alert( lang.passwordChanged );
                     }
                     
                 });
@@ -263,7 +263,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
     
     .on('mousedown', '#old-password figure i', function(){
         
-        alert( 'Please send us a mail to weezeel@weezeel.com asking us to retrieve your password. Thank you.' );
+        alert( lang.retrievePassword );
     
     })
     
@@ -402,7 +402,7 @@ wz.app.addScript( 3, 'common', function( win, params ){
     wz.config( function( error, config ){
 
         cakeTotal.text( wz.tool.bytesToUnit( config.quotaMax ) );
-        cakeFree.text( wz.tool.bytesToUnit( config.quotaFree, 2 ) + ' FREE' );
+        cakeFree.text( wz.tool.bytesToUnit( config.quotaFree, 2 ) + ' ' + lang.freeSpace );
 
         startCircleAnimation( config.quotaPercentage );
 
@@ -410,5 +410,39 @@ wz.app.addScript( 3, 'common', function( win, params ){
 
     data();
 	socialNetworks();
+
+    $( '#hdd' ).text( lang.hdd );
+    $( '#account' ).text( lang.account );
+    $( '#social' ).text( lang.socialNetworks );
+    $( '#language' ).text( lang.language );
+    $( '#date-time' ).text( lang.date );
+    $( '#wallpaper' ).text( lang.wallpaper );
+    $( '.more-features', win ).text( lang.moreFeatures );
+    $( '.starter', win ).text( lang.starter );
+    $( '.price-starter', win ).text( lang.priceStarter );
+    $( '.pro', win ).text( lang.pro );
+    $( '.price-pro', win ).text( lang.pricePro );
+    $( '.advance', win ).text( lang.advance );
+    $( '.price-advance', win ).text( lang.priceAdvance );
+    $( '.ultimate', win ).text( lang.ultimate );
+    $( '.price-ultimate', win ).text( lang.priceUltimate );
+    $( '.avatar-edit', win ).text( lang.avatarEdit );
+    $( '.username-name', '#username' ).text( lang.usernameName );
+    $( '.username-mail', '#email' ).text( lang.usernameMail );
+    $( 'span', '#change-password' ).text( lang.changePassword );
+    $( 'span', '#save-data' ).text( lang.saveData );
+    $( '.password-title', win ).text( lang.passwordTitle );
+    $( '.password-description', win ).text( lang.passwordDescription );
+    $( 'i', '#old-password' ).text( lang.forgotPassword );
+    $( 'span', "#old-password" ).text( lang.oldPassword );
+    $( 'span', "#new-password" ).text( lang.newPassword );
+    $( 'span', "#renew-password" ).text( lang.renewPassword );
+    $( 'span', "#cancel-password" ).text( lang.cancelPassword );
+    $( 'span', "#save-password" ).text( lang.savePassword );
+    $( '.preferences-social-top', win ).text( lang.socialDescription );
+    $( '.twitter-name', win ).text( lang.twitterName );
+    $( '.facebook-name', win ).text( lang.facebookName );
+    $( '.instagram-name', win ).text( lang.instagramName );
+    $( '.preferences-social-bottom', win ).text( lang.socialBottom );
 
 });
