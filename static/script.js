@@ -211,20 +211,29 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
         }else if( usernameInput.val() !== username || emailInput.val() !== email ){
         
             wz.config( function( error, config ){
+
                 config.changeUsername( usernameInput.val(), function( error ){
+
+                    if( error ){
+
+                        if( error === 'USER ABORT' ){
+                            return false;
+                        }
+
+                        alert( error );
+                        usernameInput.val( username );
+                        emailInput.val( mail );
+
+                    }else{
+
+                        data();
+                        alert( lang.dataChanged );
+                        
+                    }
 
                     saveData.removeClass('active').addClass('disabled');
                     $('#username', win).find('i').removeClass();
                     $('#email', win).find('i').removeClass();
-                    
-                    if( error ){
-                        alert( error );
-                        usernameInput.val( username );
-                        emailInput.val( mail );
-                    }else{
-                        data();
-                        alert( lang.dataChanged );
-                    }
                     
                 });
             });
@@ -239,20 +248,28 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
             
             wz.config( function( error, config ){
                 config.changePassword( oldPassword.val(), newPassword.val(), function( error ){
-
-                    savePassword.removeClass('active').addClass('disabled');
-                    $('#renew-password', win).find('i').removeClass();
                     
                     if( error ){
+
+                        if( error === 'USER ABORT' ){
+                            return false;
+                        }
+
                         oldPassword.val('');
                         oldPassword.focus();
                         alert( error );
+
                     }else{
+
                         oldPassword.val('');
                         newPassword.val('');
                         $('#renew-password', win).children('input').val('');
                         alert( lang.passwordChanged );
+
                     }
+
+                    savePassword.removeClass('active').addClass('disabled');
+                    $('#renew-password', win).find('i').removeClass();
                     
                 });
             });
