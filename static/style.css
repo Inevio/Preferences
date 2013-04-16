@@ -202,7 +202,8 @@
     float:left;
     position: relative;
     margin-top: 20px;
-    background: url('https://static.weezeel.com/app/3/settings.png') no-repeat;
+    background: url('https://staticbeta.weezeel.com/app/3/settings.png') no-repeat;
+    background-size: 221px 220px;
     
 }
 
@@ -405,19 +406,21 @@
     margin-top: 10px;
     margin-left: 5px;
     cursor: text;
+    background: url('https://staticbeta.weezeel.com/app/3/sprite_account.png') no-repeat;
+    background-size: 72px 24px;
     
 }
 
 .wz-app-3 .preferences-account-middle article figure i.process{
-    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat 0px 0px;
+    background-position: 0px 0px;
 }
 
 .wz-app-3 .preferences-account-middle article figure i.error{
-    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -24px 0px;
+    background-position: -24px 0px;
 }
 
 .wz-app-3 .preferences-account-middle article figure i.tick{
-    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -48px 0px;
+    background-position: -48px 0px;
 }
 
 .wz-app-3 .preferences-account-bottom{
@@ -558,6 +561,8 @@
     margin-top: 15px;
     margin-right: 10px; 
     cursor: text;
+    background: url('https://staticbeta.weezeel.com/app/3/sprite_account.png') no-repeat;
+    background-size: 72px 74px;
     
 }
 
@@ -566,7 +571,7 @@
     height: 24px;
     margin-top: 10px;
     display: block;
-    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat 0px 0px;
+    background-position: 0px 0px;
 }
 
 .wz-app-3 .preferences-password-middle article figure i.error{
@@ -574,7 +579,7 @@
     height: 24px;
     margin-top: 10px;
     display: block;
-    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -24px 0px;
+    background-position: -24px 0px;
 }
 
 .wz-app-3 .preferences-password-middle article figure i.tick{
@@ -582,7 +587,7 @@
     height: 24px;
     margin-top: 10px;
     display: block;
-    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -48px 0px;
+    background-position: -48px 0px;
 }
 
 .wz-app-3 .preferences-password-bottom{
