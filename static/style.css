@@ -5,6 +5,7 @@
     border-radius: 0;
     background: rgba(0,0,0,0.15);
     opacity: 0;
+
 }
 
 .wz-app-3 canvas{
@@ -24,7 +25,6 @@
     border-top: 1px solid #3B3B3B;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(37,37,37) 0%,rgb(19,19,19) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(37,37,37)),color-stop(1, rgb(19,19,19)));
     background-image: -webkit-linear-gradient(-90deg,rgb(37,37,37) 0%,rgb(19,19,19) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(37,37,37) 0%,rgb(19,19,19) 100%);
     background-image: linear-gradient(0deg,rgb(19,19,19) 0%,rgb(37,37,37) 100%);
@@ -95,7 +95,6 @@
     cursor: pointer;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(54,54,57) 0%,rgb(39,39,41) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(54,54,57)),color-stop(1, rgb(39,39,41)));
     background-image: -webkit-linear-gradient(-90deg,rgb(54,54,57) 0%,rgb(39,39,41) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(54,54,57) 0%,rgb(39,39,41) 100%);
     background-image: linear-gradient(0deg,rgb(39,39,41) 0%,rgb(54,54,57) 100%);
@@ -111,7 +110,6 @@
     border-top: 1px solid #50BDFF;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(60,181,255)),color-stop(1, rgb(44,153,255)));
     background-image: -webkit-linear-gradient(-90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%);
     background-image: linear-gradient(0deg,rgb(44,153,255) 0%,rgb(60,181,255) 100%);
@@ -136,7 +134,6 @@
     border-top: 1px solid #5D5D60;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(75,75,77) 0%,rgb(55,55,56) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(75,75,77)),color-stop(1, rgb(55,55,56)));
     background-image: -webkit-linear-gradient(-90deg,rgb(75,75,77) 0%,rgb(55,55,56) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(75,75,77) 0%,rgb(55,55,56) 100%);
     background-image: linear-gradient(0deg,rgb(55,55,56) 0%,rgb(75,75,77) 100%);
@@ -148,7 +145,6 @@
     border-top: 1px solid #60CBFF;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(77,197,255)),color-stop(1, rgb(56,175,255)));
     background-image: -webkit-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
     background-image: linear-gradient(0deg,rgb(56,175,255) 0%,rgb(77,197,255) 100%);
@@ -175,7 +171,6 @@
     box-shadow: 0px 1px 1px -1px #050506 inset, 0px 1px 0px #3A3A3B;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(25,25,26)),color-stop(1, rgb(21,21,22)));
     background-image: -webkit-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
     background-image: linear-gradient(0deg,rgb(21,21,22) 0%,rgb(25,25,26) 100%);
