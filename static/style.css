@@ -202,7 +202,7 @@
     float:left;
     position: relative;
     margin-top: 20px;
-    background: url('https://staticbeta.weezeel.com/app/3/settings.png') no-repeat;
+    background: url('https://static.weezeel.com/app/3/settings.png') no-repeat;
     background-size: 221px 220px;
     
 }
@@ -406,7 +406,7 @@
     margin-top: 10px;
     margin-left: 5px;
     cursor: text;
-    background: url('https://staticbeta.weezeel.com/app/3/sprite_account.png') no-repeat;
+    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat;
     background-size: 72px 24px;
     
 }
@@ -561,7 +561,7 @@
     margin-top: 15px;
     margin-right: 10px; 
     cursor: text;
-    background: url('https://staticbeta.weezeel.com/app/3/sprite_account.png') no-repeat;
+    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat;
     background-size: 72px 74px;
     
 }
