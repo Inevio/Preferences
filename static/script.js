@@ -399,6 +399,18 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
         }, 500);
 
     })
+
+    .on( 'social-twitterAccountAdded', function( e, socialUsername ){
+        $( '.preferences-social-element-name.twitter', win ).addClass('exists').text( socialUsername );
+    })
+
+    .on( 'social-facebookAccountAdded', function( e, socialUsername ){
+        $( '.preferences-social-element-name.facebook', win ).addClass('exists').text( socialUsername );
+    })
+
+    .on( 'social-instagramAccountAdded', function( e, socialUsername ){
+        $( '.preferences-social-element-name.instagram', win ).addClass('exists').text( socialUsername );
+    })
     
     .key( 'enter', function(e){
         if( $(e.target).is( '.preferences-account-middle input' ) ){
