@@ -643,7 +643,7 @@
     margin: 0 auto;
     margin-top: 15px;
     height: 35px;
-    width: 300px;
+    width: 400px;
 }
 
 .wz-app-3 .preferences-social-element:nth-child(2){
@@ -663,10 +663,16 @@
 }
 
 .wz-app-3 .preferences-social-element-name{
+    width: 150px;
+    height: 16px;
     float: right;
     margin-top: 7px;
     font-size: 23px;
     color: #FFF;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 	cursor: pointer;
 }
 
@@ -674,6 +680,7 @@
     margin-top: 11px;
     margin-right: 0px;
     font-size: 15px;
+    cursor: default;
 }
 
 .wz-app-3 .preferences-social-bottom{
