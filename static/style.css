@@ -561,8 +561,6 @@
     margin-top: 15px;
     margin-right: 10px; 
     cursor: text;
-    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat;
-    background-size: 72px 74px;
     
 }
 
@@ -571,7 +569,8 @@
     height: 24px;
     margin-top: 10px;
     display: block;
-    background-position: 0px 0px;
+    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat;
+    background-size: 72px 24px;
 }
 
 .wz-app-3 .preferences-password-middle article figure i.error{
@@ -579,7 +578,8 @@
     height: 24px;
     margin-top: 10px;
     display: block;
-    background-position: -24px 0px;
+    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -24px 0px;
+    background-size: 72px 24px;
 }
 
 .wz-app-3 .preferences-password-middle article figure i.tick{
@@ -587,7 +587,8 @@
     height: 24px;
     margin-top: 10px;
     display: block;
-    background-position: -48px 0px;
+    background: url('https://static.weezeel.com/app/3/sprite_account.png') no-repeat -48px 0px;
+    background-size: 72px 24px;
 }
 
 .wz-app-3 .preferences-password-bottom{
