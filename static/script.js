@@ -97,8 +97,6 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 					$( '.preferences-social-element-name.twitter', win ).addClass('exists').text( accounts[i].name );
 				}else if( accounts[i].network === 'facebook' ){
 					$( '.preferences-social-element-name.facebook', win ).addClass('exists').text( accounts[i].name );
-				}else if( accounts[i].network === 'instagram' ){
-					$( '.preferences-social-element-name.instagram', win ).addClass('exists').text( accounts[i].name );
 				}
 				
 			}
@@ -300,8 +298,6 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 				wz.social.addAccount('twitter', function(){});
 			}else if( $(this).hasClass('facebook') ){
 				wz.social.addAccount('facebook', function(){});
-			}else if( $(this).hasClass('instagram') ){
-				wz.social.addAccount('instagram', function(){});
 			}
 			
 		}
@@ -407,10 +403,6 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     .on( 'social-facebookAccountAdded', function( e, socialUsername ){
         $( '.preferences-social-element-name.facebook', win ).addClass('exists').text( socialUsername );
     })
-
-    .on( 'social-instagramAccountAdded', function( e, socialUsername ){
-        $( '.preferences-social-element-name.instagram', win ).addClass('exists').text( socialUsername );
-    })
     
     .key( 'enter', function(e){
         if( $(e.target).is( '.preferences-account-middle input' ) ){
@@ -471,7 +463,6 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     $( '.preferences-social-top', win ).text( lang.socialDescription );
     $( '.twitter-name', win ).text( lang.twitterName );
     $( '.facebook-name', win ).text( lang.facebookName );
-    $( '.instagram-name', win ).text( lang.instagramName );
     $( '.preferences-social-bottom', win ).text( lang.socialBottom );
 
 });
