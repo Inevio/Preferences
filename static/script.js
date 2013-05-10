@@ -438,6 +438,8 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     $( '#language' ).text( lang.language );
     $( '#date-time' ).text( lang.date );
     $( '#wallpaper' ).text( lang.wallpaper );
+    $( '#invite' ).text( lang.invite );
+    $( '#about' ).text( lang.about );
     $( '.more-features', win ).text( lang.moreFeatures );
     $( '.starter', win ).text( lang.starter );
     $( '.price-starter', win ).text( lang.priceStarter );

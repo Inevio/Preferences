@@ -39,6 +39,7 @@
 
 .wz-app-3 .preferences-top li{
     
+    padding-top: 12px;
     display: inline-block;
     font-size: 15px;
     color: #8D8D8D;
@@ -300,7 +301,6 @@
     box-shadow: 0px 1px 1px #4B4B4D inset, 0px 1px 1px #181819;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(55,55,57) 0%,rgb(39,39,41) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(55,55,57)),color-stop(1, rgb(39,39,41)));
     background-image: -webkit-linear-gradient(-90deg,rgb(55,55,57) 0%,rgb(39,39,41) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(55,55,57) 0%,rgb(39,39,41) 100%);
     background-image: linear-gradient(0deg,rgb(39,39,41) 0%,rgb(55,55,57) 100%);
@@ -384,7 +384,6 @@
     box-shadow: 0px 1px 1px -1px #050506 inset, 0px 1px 0px #3A3A3B;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(25,25,26)),color-stop(1, rgb(21,21,22)));
     background-image: -webkit-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
     background-image: linear-gradient(0deg,rgb(21,21,22) 0%,rgb(25,25,26) 100%);
@@ -537,7 +536,6 @@
     box-shadow: 0px 1px 1px -1px #050506 inset, 0px 1px 0px #3A3A3B;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%); 
-    background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(25,25,26)),color-stop(1, rgb(21,21,22)));
     background-image: -webkit-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(25,25,26) 0%,rgb(21,21,22) 100%);
     background-image: linear-gradient(0deg,rgb(21,21,22) 0%,rgb(25,25,26) 100%);
@@ -741,6 +739,14 @@
 }
 
 .wz-app-3 .preferences-bottom-content.wallpaper{
+    
+    margin-top: 25px;
+    display: none;
+    opacity: 0;
+    
+}
+
+.wz-app-3 .preferences-bottom-content.invite{
     
     margin-top: 25px;
     display: none;
