@@ -396,6 +396,12 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 
     })
 
+    .on( 'click', '.preferences-button.invite', function(){
+
+        $( '.preferences-invite-weekey input' ).val( 'W3GT95VT' );
+
+    })
+
     .on( 'social-twitterAccountAdded', function( e, socialUsername ){
         $( '.preferences-social-element-name.twitter', win ).addClass('exists').text( socialUsername );
     })

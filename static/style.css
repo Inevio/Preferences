@@ -692,6 +692,70 @@
 
 /* FIN FRAGMENTO SOCIAL NETWORKS */
 
+/* INICIO FRAGMENTO INVITE */
+
+.wz-app-3 .preferences-invite-title{
+
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 17px;
+    color: #FFF;
+    
+}
+
+.wz-app-3 .preferences-invite-explanation{
+
+    width: 40%;
+    display: inline-block;
+    margin-top: 30px;
+    text-align: left;
+    font-size: 15px;
+    color: #999;
+
+}
+
+.wz-app-3 .preferences-invite-weekey{
+    
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+    
+}
+
+.wz-app-3 .preferences-invite-weekey input{
+    
+    margin-top: 25px;
+    padding: 1px 1px 1px 1px !important;
+    border: 1px solid transparent;
+    text-align: center;
+    
+}
+
+.wz-app-3 .preferences-invite-weekey input.active{
+    
+    border: 1px solid #245276;
+
+}
+
+.wz-app-3 .preferences-button.invite{
+    
+    display: inline-block;
+    margin-top: 30px;
+    
+}
+
+.wz-app-3 .preferences-invite-button{
+    
+    display: inline-block;
+    font-size: 18px;
+    color: #FFF;
+    
+}
+
+/* FIN FRAGMENTO INVITE */
+
 .wz-app-3 .preferences-bottom-content.hdd{
     
     margin-top: 50px;
@@ -748,7 +812,8 @@
 
 .wz-app-3 .preferences-bottom-content.invite{
     
-    margin-top: 25px;
+    margin-top: 50px;
+    text-align: center;
     display: none;
     opacity: 0;
     
