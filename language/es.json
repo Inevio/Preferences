@@ -42,6 +42,9 @@
 	"dataChanged" : "Tus datos han sido cambiados",
 	"passwordChanged" : "Tu contraseña ha sido cambiada",
 	"retrievePassword" : "Por favor mándanos un correo a weezeel@weezeel.com pidiéndonos que te cambiemos la contraseña. Muchas gracias.",
-	"freeSpace" : "LIBRES"
+	"freeSpace" : "LIBRES",
+	"inviteTitle" : "Genera una weeKey para que un amigo pruebe weeZeel",
+	"inviteExplanation" : "Piensa bien a quién invitas, sólo dispones de 1 invitación para usar. Ten cuidado con quién usa tu weeeKey porque si tu amigo es baneado tu también serás responsable.",
+	"inviteButton" : "¡Generar!"
 
 }

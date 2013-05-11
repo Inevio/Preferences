@@ -42,6 +42,9 @@
 	"dataChanged" : "Your data has been changed successfully",
 	"passwordChanged" : "Your password has been changed successfully",
 	"retrievePassword" : "Please send us a mail to weezeel@weezeel.com asking us to retrieve your password. Thank you.",
-	"freeSpace" : "FREE"
+	"freeSpace" : "FREE",
+	"inviteTitle" : "Generate a weeKey for a friend to try out weeZeel",
+	"inviteExplanation" : "Be sure who you invite, you only have 1 invitation to use. Beware who uses your weeKey because if your friend gets banned you will also be responsible.",
+	"inviteButton" : "Generate!"
 
 }

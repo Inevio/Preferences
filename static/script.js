@@ -396,6 +396,10 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 
     })
 
+    /*.on( 'mousedown', '#invite', function(){
+
+    })*/
+
     .on( 'click', '.preferences-button.invite', function(){
 
         $( '.preferences-invite-weekey input' ).val( 'W3GT95VT' );
@@ -472,5 +476,8 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     $( '.twitter-name', win ).text( lang.twitterName );
     $( '.facebook-name', win ).text( lang.facebookName );
     $( '.preferences-social-bottom', win ).text( lang.socialBottom );
+    $( '.preferences-invite-title', win ).text( lang.inviteTitle );
+    $( '.preferences-invite-explanation', win ).text( lang.inviteExplanation );
+    $( '.preferences-invite-button', win ).text( lang.inviteButton );
 
 });
