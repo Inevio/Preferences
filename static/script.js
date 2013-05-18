@@ -206,7 +206,7 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
             alert( lang.usernameEmpty );
         }else if( !emailInput.val().length ){
             alert( lang.mailEmpty );
-        }else if( usernameInput.val() !== username || emailInput.val() !== email ){
+        }else if( usernameInput.val() !== username || emailInput.val() !== mail ){
         
             wz.config( function( error, config ){
 
