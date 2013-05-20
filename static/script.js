@@ -303,6 +303,12 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 		}
 		
 	})
+
+    .on('mousedown', '.hdd-options-starter, .hdd-options-pro, .hdd-options-advance, .hdd-options-ultimate', function(){
+        
+        alert( lang.upgradePlans );
+    
+    })
     
     .on('focus', '.preferences-account-middle article, .preferences-password-middle article', function(){
 
@@ -479,5 +485,12 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     $( '.preferences-invite-title', win ).text( lang.inviteTitle );
     $( '.preferences-invite-explanation', win ).text( lang.inviteExplanation );
     $( '.preferences-invite-button', win ).text( lang.inviteButton );
+
+    // En el futuro eliminar estas lineas:
+    $( '.preferences-bottom-content.language span' ).text( lang.changeLanguage );
+    $( '.preferences-bottom-content.date-time span' ).text( lang.changeDate );
+    $( '.preferences-bottom-content.wallpaper span' ).text( lang.changeWallpaper );
+    $( '.preferences-bottom-content.about span' ).text( lang.aboutError );
+
 
 });

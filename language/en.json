@@ -45,6 +45,11 @@
 	"freeSpace" : "FREE",
 	"inviteTitle" : "Generate a weeKey for a friend to try out weeZeel",
 	"inviteExplanation" : "Be sure who you invite, you only have 1 invitation to use. Beware who uses your weeKey because if your friend gets banned you will also be responsible.",
-	"inviteButton" : "Generate!"
+	"inviteButton" : "Generate!",
+	"upgradePlans" : "In the future you'll be able to upgrade your account.",
+	"changeLanguage" : "Here you'll be able to change your account language.",
+	"changeDate" : "On this tab you will modify the date & hour you want to use.",
+	"changeWallpaper" : "Many wallpapers so you can decorate weeZeel as you like. You can also upload photos or use those which are on weeXplorer.",
+	"aboutError" : "weeZeel Team, who is weeZeel and what do we want."
 
 }
