@@ -419,6 +419,10 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     .on( 'social-facebookAccountAdded', function( e, socialUsername ){
         $( '.preferences-social-element-name.facebook', win ).addClass('exists').text( socialUsername );
     })
+
+    .on( 'avatar-upload-progress', function( e, percentage ){
+        console.log( 'avatar upload progress', percentage );
+    })
     
     .key( 'enter', function(e){
         if( $(e.target).is( '.preferences-account-middle input' ) ){
