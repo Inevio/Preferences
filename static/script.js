@@ -445,6 +445,8 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
         cakeTotal.text( wz.tool.bytesToUnit( config.quotaMax ) );
         cakeFree.text( wz.tool.bytesToUnit( config.quotaFree, 2 ) + ' ' + lang.freeSpace );
 
+        $( '.preferences-account-top img', win ).attr( 'src', config.user.avatar.normal );
+
         startCircleAnimation( config.quotaPercentage );
 
     });
