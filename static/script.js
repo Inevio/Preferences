@@ -423,6 +423,10 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     .on( 'avatar-upload-progress', function( e, percentage ){
         console.log( 'avatar upload progress', percentage );
     })
+
+    .on( 'avatar', function( e, links ){
+        $( '.preferences-account-top img', win ).attr( 'src', links.normal + '?' + Math.random() );
+    })
     
     .key( 'enter', function(e){
         if( $(e.target).is( '.preferences-account-middle input' ) ){
@@ -445,7 +449,7 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
         cakeTotal.text( wz.tool.bytesToUnit( config.quotaMax ) );
         cakeFree.text( wz.tool.bytesToUnit( config.quotaFree, 2 ) + ' ' + lang.freeSpace );
 
-        $( '.preferences-account-top img', win ).attr( 'src', config.user.avatar.normal );
+        $( '.preferences-account-top img', win ).attr( 'src', config.user.avatar.normal + '?' + Math.random() );
 
         startCircleAnimation( config.quotaPercentage );
 
