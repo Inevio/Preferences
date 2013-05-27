@@ -50,6 +50,7 @@
 	"changeLanguage" : "Aquí vas a poder cambiar el idioma que tienes asociado a tu cuenta.",
 	"changeDate" : "En esta pestaña podrás modificar la fecha y hora que se te mostrará por defecto.",
 	"changeWallpaper" : "Una gran cartelera de fondos de escritorio para que decores weeZeel a tu gusto. Además podrás subir fotos tuyas o usar las que estén en weeXplorer.",
-	"aboutError" : "El equipo de weeZeel, quién compone el proyecto e ideales que perseguimos."
+	"aboutError" : "El equipo de weeZeel, quién compone el proyecto e ideales que perseguimos.",
+	"usedweeKey" : "Tu weeKey ya ha sido utilizada"
 
 }

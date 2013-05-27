@@ -408,7 +408,17 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 
     .on( 'click', '.preferences-button.invite', function(){
 
-        $( '.preferences-invite-weekey input' ).val( 'W3GT95VT' );
+        wz.weekey( function( error, key ){
+
+            if( error ){
+                alert( error );
+            }else if( key.used ){
+                alert( lang.usedweeKey );
+            }else{
+                $( '.preferences-invite-weekey input' ).val( key.id );
+            }
+
+        }); 
 
     })
 
