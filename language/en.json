@@ -40,6 +40,7 @@
 	"usernameLength" : "Your username has to be 3 characters long or more",
 	"mailEmpty" : "Please introduce an email address",
 	"dataChanged" : "Your data has been changed successfully",
+	"passwordLength" : "Your password must be more than 6 characters long",
 	"passwordChanged" : "Your password has been changed successfully",
 	"retrievePassword" : "Please send us a mail to weezeel@weezeel.com asking us to retrieve your password. Thank you.",
 	"freeSpace" : "FREE",

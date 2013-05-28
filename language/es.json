@@ -40,6 +40,7 @@
 	"usernameLength" : "Tu nombre de usuario debe tener mínimo 3 carácteres",
 	"mailEmpty" : "No puedes dejar el campo de correo electrónico vacío",
 	"dataChanged" : "Tus datos han sido cambiados",
+	"passwordLength" : "Tu contraseña debe ser de 6 carácteres como mínimo",
 	"passwordChanged" : "Tu contraseña ha sido cambiada",
 	"retrievePassword" : "Por favor mándanos un correo a weezeel@weezeel.com pidiéndonos que te cambiemos la contraseña. Muchas gracias.",
 	"freeSpace" : "LIBRES",

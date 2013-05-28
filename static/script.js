@@ -252,7 +252,7 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     
     .on('mousedown', '#save-password', function(){
         
-        if( newPassword.val() === renewPassword.val() && newPassword.val() && renewPassword.val() && oldPassword.val() ){
+        if( newPassword.val() === renewPassword.val() && newPassword.val().length > 5 && oldPassword.val() ){
             
             wz.config( function( error, config ){
                 config.changePassword( oldPassword.val(), newPassword.val(), function( error ){
@@ -282,6 +282,8 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
                 });
             });
             
+        }else if( newPassword.val().length < 6 ){
+            alert( lang.passwordLength );
         }
         
     })
