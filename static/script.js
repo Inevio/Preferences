@@ -14,6 +14,8 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     var savePassword = $('#save-password');
     var username = '';
     var mail = '';
+    var mailExpresion = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var usernameExpresion = /^[a-zA-Z0-9._]+$/;
 
     var ctx         = null;
     var ctxInterval = 0;
@@ -198,43 +200,51 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     
     .on('mousedown', '#save-data', function(){
         
-        if( usernameInput.val().match( ' ' ) !== null ){
-            alert( lang.usernameWhitespaces );
-        }else if( emailInput.val().match( ' ' ) !== null ){
-            alert( lang.mailWhitespaces );
-        }else if( !usernameInput.val().length ){
-            alert( lang.usernameEmpty );
+        if( usernameInput.val().length < 3 ){
+            alert( lang.usernameLength );
         }else if( !emailInput.val().length ){
             alert( lang.mailEmpty );
+        }else if( !usernameExpresion.test( usernameInput.val() ) ){
+            alert( lang.usernameError );
+        }else if( !mailExpresion.test( emailInput.val() ) ){
+            alert( lang.mailError );
         }else if( usernameInput.val() !== username || emailInput.val() !== mail ){
-        
-            wz.config( function( error, config ){
 
-                config.changeUsername( usernameInput.val(), function( error ){
+            if( usernameInput.val() !== username ){
 
-                    if( error ){
+                wz.config( function( error, config ){
 
-                        if( error === 'USER ABORT' ){
-                            return false;
+                    config.changeUsername( usernameInput.val(), function( error ){
+
+                        if( error ){
+
+                            if( error === 'USER ABORT' ){
+                                return false;
+                            }
+
+                            alert( error );
+                            usernameInput.val( username );
+                            emailInput.val( mail );
+
+                        }else{
+
+                            data();
+                            alert( lang.dataChanged );
+                            
                         }
 
-                        alert( error );
-                        usernameInput.val( username );
-                        emailInput.val( mail );
-
-                    }else{
-
-                        data();
-                        alert( lang.dataChanged );
+                        saveData.removeClass('active').addClass('disabled');
+                        $('#username', win).find('i').removeClass();
+                        $('#email', win).find('i').removeClass();
                         
-                    }
-
-                    saveData.removeClass('active').addClass('disabled');
-                    $('#username', win).find('i').removeClass();
-                    $('#email', win).find('i').removeClass();
-                    
+                    });
                 });
-            });
+
+            }
+
+            if( emailInput.val() !== mail ){
+                alert( 'Lo siento pero en estos momentos no se puede cambiar el correo electrónico' );
+            }            
             
         }
         
