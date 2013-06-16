@@ -1,5 +1,5 @@
 
-.wz-app-3{
+.wz-win{
     
     left: 0;
     border-radius: 0;
@@ -8,7 +8,7 @@
 
 }
 
-.wz-app-3 canvas{
+canvas{
     
     position: absolute;
     top: 0;
@@ -17,7 +17,7 @@
     
 }
 
-.wz-app-3 .preferences-top{
+.preferences-top{
     
     width: 100%;
     height: 39px;
@@ -31,13 +31,13 @@
     
 }
 
-.wz-app-3 .preferences-top nav{
+.preferences-top nav{
     
     text-align: center;
     
 }
 
-.wz-app-3 .preferences-top li{
+.preferences-top li{
     
     padding-top: 12px;
     display: inline-block;
@@ -49,7 +49,7 @@
     
 }
 
-.wz-app-3 .preferences-top li.active{
+.preferences-top li.active{
     
     color: #FFFFFF;
     box-shadow: 0 5px 2px -3px #34A7FF;
@@ -57,13 +57,13 @@
     
 }
 
-.wz-app-3 .preferences-top li:hover{
+.preferences-top li:hover{
     
     box-shadow: 0 5px 2px -3px #FFF;
     
 }
 
-.wz-app-3 .preferences-top li.active:hover{
+.preferences-top li.active:hover{
     
     color: #FFFFFF;
     box-shadow: 0 5px 2px -3px #34A7FF;
@@ -71,7 +71,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom{
+.preferences-bottom{
     
     width: 100%;
     height: 350px;
@@ -83,7 +83,7 @@
     
 }
 
-.wz-app-3 .preferences-button{
+.preferences-button{
     
     width: 180px;
     height: 30px;
@@ -102,11 +102,11 @@
     
 }
 
-.wz-app-3 .preferences-button span{
+.preferences-button span{
     cursor: pointer;
 }
 
-.wz-app-3 .preferences-button.active{
+.preferences-button.active{
     
     border-top: 1px solid #50BDFF;
     
@@ -117,7 +117,7 @@
     
 }
 
-.wz-app-3 .preferences-button.disabled{
+.preferences-button.disabled{
     
     border-top: 1px solid #333334;
     background: rgba(58,58,59,0.2);
@@ -126,11 +126,11 @@
     
 }
 
-.wz-app-3 .preferences-button.disabled span{
+.preferences-button.disabled span{
     cursor: default;
 }
 
-.wz-app-3 .preferences-button:hover{
+.preferences-button:hover{
     
     border-top: 1px solid #5D5D60;
     
@@ -141,7 +141,7 @@
     
 }
 
-.wz-app-3 .preferences-button.active:hover{
+.preferences-button.active:hover{
     
     border-top: 1px solid #60CBFF;
     
@@ -152,7 +152,7 @@
     
 }
 
-.wz-app-3 .preferences-button.disabled:hover{
+.preferences-button.disabled:hover{
     
     border-top: 1px solid #333334;
     background: rgba(58,58,59,0.2);
@@ -160,7 +160,7 @@
         
 }
 
-.wz-app-3 .preferences-bottom-content article input{
+.preferences-bottom-content article input{
     
     width: 322px;
     height: 44px;
@@ -178,7 +178,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content article.active input{
+.preferences-bottom-content article.active input{
     
     padding: 0px;
     padding-left: 18px;
@@ -188,7 +188,7 @@
 
 /* COMIENZO FRAGMENTO HDD */
 
-.wz-app-3 .preferences-hdd{
+.preferences-hdd{
     
     width: 476px;
     height: 240px;
@@ -196,7 +196,7 @@
     
 }
 
-.wz-app-3 .preferences-hdd-cake{
+.preferences-hdd-cake{
     
     width: 221px;
     height: 220px;
@@ -208,7 +208,7 @@
     
 }
 
-.wz-app-3 .preferences-hdd-cake-total{
+.preferences-hdd-cake-total{
     
     font-size: 15px;
     font-weight: bold;
@@ -220,7 +220,7 @@
     
 }
 
-.wz-app-3 .preferences-hdd-cake-free{
+.preferences-hdd-cake-free{
     
     font-size: 13px;
     color: #666667;
@@ -230,7 +230,7 @@
     
 }
 
-.wz-app-3 .preferences-hdd-options{
+.preferences-hdd-options{
     
     width: 180px;
     height: 240px;
@@ -240,7 +240,7 @@
     
 }
     
-.wz-app-3 .preferences-hdd-options span{
+.preferences-hdd-options span{
     
     font-size: 13px;
     font-weight: bold;
@@ -249,13 +249,13 @@
     
 }
 
-.wz-app-3 .preferences-hdd-options article{
+.preferences-hdd-options article{
     
     margin-top: 10px;
     
 }
 
-.wz-app-3 .preferences-hdd-options article .space{
+.preferences-hdd-options article .space{
     
     font-size: 15px;
     font-weight: bold;
@@ -263,7 +263,7 @@
     
 }
 
-.wz-app-3 .preferences-hdd-options article .price{
+.preferences-hdd-options article .price{
     
     font-size: 15px;
     color: #34A7FF;
@@ -271,7 +271,7 @@
     
 }
 
-.wz-app-3 .preferences-hdd-options article.active .price{
+.preferences-hdd-options article.active .price{
     
     color: #A8D8FD;
     
@@ -281,7 +281,7 @@
 
 /* COMIENZO FRAGMENTO ACCOUNT */
 
-.wz-app-3 .preferences-account-top{
+.preferences-account-top{
     
     width: 200px;
     height: 105px;
@@ -289,7 +289,7 @@
     
 }
 
-.wz-app-3 .preferences-account-top figure{
+.preferences-account-top figure{
     
     width: 81px;
     height: 81px;
@@ -307,7 +307,7 @@
     
 }
 
-.wz-app-3 .preferences-account-top img{
+.preferences-account-top img{
     
     width: 81px;
     height: 81px;
@@ -316,7 +316,7 @@
     
 }
 
-.wz-app-3 .preferences-account-top span{
+.preferences-account-top span{
     
     width: 53px;
     height: 19px;
@@ -333,19 +333,19 @@
     
 }
 
-.wz-app-3 .preferences-account-middle{
+.preferences-account-middle{
     width: 540px;
     height: 115px;
     margin: 0 auto;
 }
 
-.wz-app-3 .preferences-account-middle article{
+.preferences-account-middle article{
     margin-top: 4px;
     margin-right: 90px;
     float: right;
 }
 
-.wz-app-3 .preferences-account-middle article span{
+.preferences-account-middle article span{
     
     text-align: right;
     color: #676768;
@@ -356,7 +356,7 @@
     
 }
 
-.wz-app-3 .preferences-account-middle article input{
+.preferences-account-middle article input{
     
     width: 322px;
     height: 44px;
@@ -366,14 +366,14 @@
     
 }
 
-.wz-app-3 .preferences-account-middle article.active input{
+.preferences-account-middle article.active input{
     
     border-right: none;
     padding: 0px 0px 0px 18px;
     
 }
 
-.wz-app-3 .preferences-account-middle article figure{
+.preferences-account-middle article figure{
     
     width: 35px;
     height: 44px;
@@ -390,7 +390,7 @@
     background-image: linear-gradient(0deg,rgb(21,21,22) 0%,rgb(25,25,26) 100%);
     
 }
-.wz-app-3 .preferences-account-middle article.active figure{
+.preferences-account-middle article.active figure{
     
     padding: 0px;
     border: 1px solid #245276;
@@ -398,7 +398,7 @@
 
 }
 
-.wz-app-3 .preferences-account-middle article figure i{
+.preferences-account-middle article figure i{
     
     width: 24px;
     height: 24px;
@@ -411,32 +411,32 @@
     
 }
 
-.wz-app-3 .preferences-account-middle article figure i.process{
+.preferences-account-middle article figure i.process{
     background-position: 0px 0px;
 }
 
-.wz-app-3 .preferences-account-middle article figure i.error{
+.preferences-account-middle article figure i.error{
     background-position: -24px 0px;
 }
 
-.wz-app-3 .preferences-account-middle article figure i.tick{
+.preferences-account-middle article figure i.tick{
     background-position: -48px 0px;
 }
 
-.wz-app-3 .preferences-account-bottom{
+.preferences-account-bottom{
     width: 409px;
     height: 60px;
     margin: 0 auto;
 }
 
-.wz-app-3 .preferences-account-bottom article{
+.preferences-account-bottom article{
     
     margin: 0px 8px;
     float: left;
     
 }
 
-.wz-app-3 .preferences-account-bottom article span{
+.preferences-account-bottom article span{
     
     font-size: 15px;
     color: #FFF;
@@ -444,7 +444,7 @@
     
 }
 
-.wz-app-3 .preferences-account-bottom article.disabled span{
+.preferences-account-bottom article.disabled span{
     
     color: #535354;
     
@@ -454,7 +454,7 @@
 
 /* COMIENZO FRAGMENTO PASSWORD */
 
-.wz-app-3 .preferences-password-top{
+.preferences-password-top{
     
     width: 300px;
     height: 35px;
@@ -463,7 +463,7 @@
     
 }
 
-.wz-app-3 .preferences-password-top span{
+.preferences-password-top span{
     
     font-size: 13px;
     color: #8F8F8F;
@@ -471,7 +471,7 @@
     
 }
 
-.wz-app-3 .preferences-password-top span:first-child{
+.preferences-password-top span:first-child{
     
     font-size: 14px;
     color: #BEBEBE;
@@ -479,7 +479,7 @@
     
 }
 
-.wz-app-3 .preferences-password-middle{
+.preferences-password-middle{
     
     width: 680px;
     height: 152px;
@@ -488,13 +488,13 @@
     
 }
 
-.wz-app-3 .preferences-password-middle article{
+.preferences-password-middle article{
     margin-top: 4px;
     margin-right: 140px;
     float: right;
 }
 
-.wz-app-3 .preferences-password-middle article span{
+.preferences-password-middle article span{
     
     text-align: right;
     color: #676768;
@@ -505,7 +505,7 @@
     
 }
 
-.wz-app-3 .preferences-password-middle article input{
+.preferences-password-middle article input{
     
     width: 220px;
     height: 44px;
@@ -515,14 +515,14 @@
     
 }
 
-.wz-app-3 .preferences-password-middle article.active input{
+.preferences-password-middle article.active input{
     
     border-right: none;
     padding: 0px 0px 0px 18px;
 
 }
 
-.wz-app-3 .preferences-password-middle article figure{
+.preferences-password-middle article figure{
     
     width: 155px;
     height: 44px;
@@ -543,7 +543,7 @@
     
 }
 
-.wz-app-3 .preferences-password-middle article.active figure{
+.preferences-password-middle article.active figure{
     
     padding: 0px;
     border: 1px solid #245276;
@@ -551,7 +551,7 @@
 
 }
 
-.wz-app-3 .preferences-password-middle article figure i{
+.preferences-password-middle article figure i{
     
     width: 135px;
     height: 15px;
@@ -563,7 +563,7 @@
     
 }
 
-.wz-app-3 .preferences-password-middle article figure i.process{
+.preferences-password-middle article figure i.process{
     width: 24px;
     height: 24px;
     margin-top: 10px;
@@ -572,7 +572,7 @@
     background-size: 72px 24px;
 }
 
-.wz-app-3 .preferences-password-middle article figure i.error{
+.preferences-password-middle article figure i.error{
     width: 24px;
     height: 24px;
     margin-top: 10px;
@@ -581,7 +581,7 @@
     background-size: 72px 24px;
 }
 
-.wz-app-3 .preferences-password-middle article figure i.tick{
+.preferences-password-middle article figure i.tick{
     width: 24px;
     height: 24px;
     margin-top: 10px;
@@ -590,7 +590,7 @@
     background-size: 72px 24px;
 }
 
-.wz-app-3 .preferences-password-bottom{
+.preferences-password-bottom{
     width: 392px;
     height: 60px;
     margin: 0 auto;
@@ -598,14 +598,14 @@
     padding-left: 4px;
 }
 
-.wz-app-3 .preferences-password-bottom article{
+.preferences-password-bottom article{
     
     margin: 0px 8px;
     float: left;
     
 }
 
-.wz-app-3 .preferences-password-bottom article span{
+.preferences-password-bottom article span{
     
     font-size: 15px;
     color: #FFF;
@@ -613,13 +613,13 @@
 
 }
 
-.wz-app-3 .preferences-password-bottom article.disabled span{
+.preferences-password-bottom article.disabled span{
     
     color: #535354;
     
 }
 
-.wz-app-3 #old-password figure i:hover{
+#old-password figure i:hover{
     
     text-decoration: underline;
     cursor: pointer;    
@@ -631,7 +631,7 @@
 
 /* INICIO FRAGMENTO SOCIAL NETWORKS */
 
-.wz-app-3 .preferences-social-top{
+.preferences-social-top{
     
     margin: 0 auto;
     font-size: 15px;
@@ -639,22 +639,22 @@
     
 }
 
-.wz-app-3 .preferences-social-element{
+.preferences-social-element{
     margin: 0 auto;
     margin-top: 15px;
     height: 35px;
     width: 400px;
 }
 
-.wz-app-3 .preferences-social-element:nth-child(2){
+.preferences-social-element:nth-child(2){
     margin-top: 40px;
 }
 
-.wz-app-3 .preferences-social-element img{
+.preferences-social-element img{
     float: left;
 }
 
-.wz-app-3 .preferences-social-element-info{
+.preferences-social-element-info{
     float: left;
     margin-left: 25px;
     margin-top: 11px;
@@ -662,7 +662,7 @@
     color: #FFF;
 }
 
-.wz-app-3 .preferences-social-element-name{
+.preferences-social-element-name{
     width: 150px;
     height: 16px;
     float: right;
@@ -676,14 +676,14 @@
 	cursor: pointer;
 }
 
-.wz-app-3 .preferences-social-element-name.exists{
+.preferences-social-element-name.exists{
     margin-top: 11px;
     margin-right: 0px;
     font-size: 15px;
     cursor: default;
 }
 
-.wz-app-3 .preferences-social-bottom{
+.preferences-social-bottom{
     display: block;
     margin: 0 auto;
     margin-top: 40px;
@@ -695,7 +695,7 @@
 
 /* INICIO FRAGMENTO INVITE */
 
-.wz-app-3 .preferences-invite-title{
+.preferences-invite-title{
 
     width: 100%;
     display: inline-block;
@@ -705,7 +705,7 @@
     
 }
 
-.wz-app-3 .preferences-invite-explanation{
+.preferences-invite-explanation{
 
     width: 40%;
     display: inline-block;
@@ -716,7 +716,7 @@
 
 }
 
-.wz-app-3 .preferences-invite-weekey{
+.preferences-invite-weekey{
     
     width: 100%;
     display: inline-block;
@@ -725,7 +725,7 @@
     
 }
 
-.wz-app-3 .preferences-invite-weekey input{
+.preferences-invite-weekey input{
     
     margin-top: 25px;
     padding: 1px 1px 1px 1px !important;
@@ -734,20 +734,20 @@
     
 }
 
-.wz-app-3 .preferences-invite-weekey input.active{
+.preferences-invite-weekey input.active{
     
     border: 1px solid #245276;
 
 }
 
-.wz-app-3 .preferences-button.invite{
+.preferences-button.invite{
     
     display: inline-block;
     margin-top: 30px;
     
 }
 
-.wz-app-3 .preferences-invite-button{
+.preferences-invite-button{
     
     display: inline-block;
     font-size: 18px;
@@ -757,13 +757,13 @@
 
 /* FIN FRAGMENTO INVITE */
 
-.wz-app-3 .preferences-bottom-content.hdd{
+.preferences-bottom-content.hdd{
     
     margin-top: 50px;
     
 }
 
-.wz-app-3 .preferences-bottom-content.account{
+.preferences-bottom-content.account{
     
     margin-top: 25px;
     display: none;
@@ -771,7 +771,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content.password{
+.preferences-bottom-content.password{
     
     margin-top: 25px;
     display: none;
@@ -779,7 +779,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content.social{
+.preferences-bottom-content.social{
     
     margin-top: 40px;
     display: none;
@@ -787,7 +787,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content.language{
+.preferences-bottom-content.language{
     
     margin-top: 40px;
     display: none;
@@ -795,7 +795,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content.date-time{
+.preferences-bottom-content.date-time{
     
     margin-top: 40px;
     display: none;
@@ -803,7 +803,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content.wallpaper{
+.preferences-bottom-content.wallpaper{
     
     margin-top: 40px;
     display: none;
@@ -811,7 +811,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content.invite{
+.preferences-bottom-content.invite{
     
     margin-top: 50px;
     text-align: center;
@@ -820,7 +820,7 @@
     
 }
 
-.wz-app-3 .preferences-bottom-content.about{
+.preferences-bottom-content.about{
     
     margin-top: 40px;
     display: none;
@@ -830,6 +830,6 @@
 
 /* En el futuro borrar esta clase */
 
-.wz-app-3 .preferences-error{
+.preferences-error{
     color: #FFF;
 }
