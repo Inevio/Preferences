@@ -201,13 +201,13 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     .on('mousedown', '#save-data', function(){
         
         if( usernameInput.val().length < 3 ){
-            alert( lang.usernameLength );
+            alert( lang.usernameLength, null, win.data().win );
         }else if( !emailInput.val().length ){
-            alert( lang.mailEmpty );
+            alert( lang.mailEmpty, null, win.data().win );
         }else if( !usernameExpresion.test( usernameInput.val() ) ){
-            alert( lang.usernameError );
+            alert( lang.usernameError, null, win.data().win );
         }else if( !mailExpresion.test( emailInput.val() ) ){
-            alert( lang.mailError );
+            alert( lang.mailError, null, win.data().win );
         }else if( usernameInput.val() !== username || emailInput.val() !== mail ){
 
             if( usernameInput.val() !== username ){
@@ -222,14 +222,14 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
                                 return false;
                             }
 
-                            alert( error );
+                            alert( error, null, win.data().win );
                             usernameInput.val( username );
                             emailInput.val( mail );
 
                         }else{
 
                             data();
-                            alert( lang.dataChanged );
+                            alert( lang.dataChanged, null, win.data().win );
                             
                         }
 
@@ -243,7 +243,7 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
             }
 
             if( emailInput.val() !== mail ){
-                alert( 'Lo siento pero en estos momentos no se puede cambiar el correo electrónico' );
+                alert( 'Lo siento pero en estos momentos no se puede cambiar el correo electrónico', null, win.data().win );
             }            
             
         }
@@ -265,14 +265,14 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 
                         oldPassword.val('');
                         oldPassword.focus();
-                        alert( error );
+                        alert( error, null, win.data().win );
 
                     }else{
 
                         oldPassword.val('');
                         newPassword.val('');
                         $('#renew-password', win).children('input').val('');
-                        alert( lang.passwordChanged );
+                        alert( lang.passwordChanged, null, win.data().win );
 
                     }
 
@@ -283,14 +283,14 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
             });
             
         }else if( newPassword.val().length < 6 ){
-            alert( lang.passwordLength );
+            alert( lang.passwordLength, null, win.data().win );
         }
         
     })
     
     .on('mousedown', '#old-password figure i', function(){
         
-        alert( lang.retrievePassword );
+        alert( lang.retrievePassword, null, win.data().win );
     
     })
     
@@ -318,7 +318,7 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 
     .on('mousedown', '.hdd-options-starter, .hdd-options-pro, .hdd-options-advance, .hdd-options-ultimate', function(){
         
-        alert( lang.upgradePlans );
+        alert( lang.upgradePlans, null, win.data().win );
     
     })
     
@@ -423,9 +423,9 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
         wz.weekey( function( error, key ){
 
             if( error ){
-                alert( error );
+                alert( error, null, win.data().win );
             }else if( key.used ){
-                alert( lang.usedweeKey );
+                alert( lang.usedweeKey, null, win.data().win );
             }else{
                 $( '.preferences-invite-weekey input' ).val( key.id );
             }
