@@ -462,7 +462,8 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     win
         .width( $( document.body ).width() )
         .height( $('#wz-desktop').height() )
-        .transition( { opacity : 1 }, 250 );
+        .transition( { opacity : 1 }, 250 )
+        .deskitemX( 0, true );
 
     $( '.preferences-top', win ).css( 'margin-top', ( $('#wz-desktop').height() / 2 ) - 193 );
 
