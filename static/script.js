@@ -422,7 +422,9 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
 
         wz.weekey( function( error, key ){
 
-            if( error ){
+            if( error === 'DEMO CAN NOT CREATE A WEEKEY' ){
+                alert( lang.demoweeKey, null, win.data().win );
+            }else if( error ){
                 alert( error, null, win.data().win );
             }else if( key.used ){
                 alert( lang.usedweeKey, null, win.data().win );

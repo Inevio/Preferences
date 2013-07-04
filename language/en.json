@@ -52,6 +52,7 @@
 	"changeDate" : "On this tab you will modify the date & hour you want to use.",
 	"changeWallpaper" : "Many wallpapers so you can decorate weeZeel as you like. You can also upload photos or use those which are on weeXplorer.",
 	"aboutError" : "weeZeel Team, who is weeZeel and what do we want.",
-	"usedweeKey" : "Your weeKey has already been used"
+	"usedweeKey" : "Your weeKey has already been used",
+	"demoweeKey" : "Demo accounts can't create weeKeys"
 
 }
