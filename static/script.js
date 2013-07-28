@@ -1,6 +1,4 @@
 
-wz.app.addScript( 3, 'common', function( win, app, lang, params ){
-
     // Local variables
     var idInterval = 0;
     var cakeTotal = $('.preferences-hdd-cake-total', win);
@@ -526,6 +524,3 @@ wz.app.addScript( 3, 'common', function( win, app, lang, params ){
     $( '.preferences-bottom-content.date-time span' ).text( lang.changeDate );
     $( '.preferences-bottom-content.wallpaper span' ).text( lang.changeWallpaper );
     $( '.preferences-bottom-content.about span' ).text( lang.aboutError );
-
-
-});
