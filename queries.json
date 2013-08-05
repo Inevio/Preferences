@@ -1,62 +1,8 @@
 
 {
 
-    "name"    : "Preferences",
-    "version" : "1.0",
-    "state"   : "beta",
-
-    "developer" : "wz",
-    "authKey"   : "wz",
-
-    "language" : {
-
-        "default" : "en-en",
-        "list"    : [ "en-en" ]
-
-    },
-
-    "common" : {
-
-        "css"    : ["style.css"],
-        "script" : ["script.js"]
-
-    },
-
-    "primary" : "main",
-
-    "window" : {
-
-        "main" : {
-
-            "description" : "",
-            
-            "template" : "main.html",
-
-            "animation" : false,
-            "maxizable" : false,
-            "resizable" : false,
-
-            "width"  : {
-
-                "default" : 0,
-                "min"     : 0,
-                "max"     : 0
-
-            },
-
-            "height" : {
-
-                "default" : 0,
-                "min"     : 0,
-                "max"     : 0
-
-            },
-
-            "css"    : [],
-            "script" : []
-
-        }
-
-    }
-
+	"insertConfig" : "INSERT INTO config SET user = @userId",
+    "getConfig"    : "SELECT * FROM config WHERE user = @userId LIMIT 1",
+    "changeSize"   : "UPDATE config SET width = ?, height = ? WHERE user = @userId LIMIT 1"
+    
 }

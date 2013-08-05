@@ -1,222 +1,493 @@
    
-<section class="preferences-top">
-    <nav>
-    <li id="hdd" class="active"></li>
-    <li id="account"></li>
-    <li id="social"></li>
-    <li id="language"></li>
-    <li id="date-time"></li>
-    <li id="wallpaper"></li>
-    <li id="invite"></li>
-    <li id="about"></li>
+<section class="preferences-top wz-win-menu dark wz-dragger">
+
+    <nav class="wz-dragger">
+        <li class="hdd active wz-dragger"></li>
+        <li class="account wz-dragger"></li>
+        <li class="social wz-dragger"></li>
+        <li class="config wz-dragger"></li>
+        <li class="custom wz-dragger"></li>
+        <li class="invite wz-dragger"></li>
+        <li class="about wz-dragger"></li>
     </nav>
+
+    <article class="wz-win-menu-group right wz-dragger">
+        <figure class="wz-win-minimize">
+            <i></i>
+        </figure>
+        <figure class="wz-win-close">
+            <i></i>
+        </figure>
+    </article>
+
 </section>
 
-<section class="preferences-bottom">
+<section class="preferences-bottom wz-scroll">
 
     <!-- HDD ZONE START -->
 
     <section class="preferences-bottom-content hdd">
-    
-        <section class="preferences-hdd">
+
+        <span class="preferences-bottom-title hdd"></span>
+        <span class="preferences-bottom-description hdd"></span>
+
+        <article class="preferences-hdd-quota">
+
+            <span class="preferences-hdd-usage"></span>
 
             <figure class="preferences-hdd-cake">
+
                 <span class="preferences-hdd-cake-total"></span>
                 <span class="preferences-hdd-cake-free"></span>
-                <canvas id="ctx" width="221" height="220"></canvas>
+
+                <canvas class="preferences-hdd-canvas" width="220" height="221"></canvas>
+
             </figure>
-            
-            <section class="preferences-hdd-options">
-                <span class="more-features"></span>
-                <article class="preferences-button hdd-options-starter">
-                    <span class="space starter"></span>
-                    <span class="price price-starter"></span>
+
+        </article>
+
+        <section class="preferences-hdd-account">
+
+            <section class="preferences-hdd-plans">
+
+                <span class="preferences-plans-title"></span>
+
+                <article class="preferences-button hdd-plans-starter">
+                    <span class="hdd-plan-space starter"></span>
+                    <span class="hdd-plan-price starter"></span>
                 </article>
-                <article class="preferences-button hdd-options-pro active">
-                    <span class="space pro"></span>
-                    <span class="price price-pro"></span>
+
+                <article class="preferences-button hdd-plans-pro">
+                    <span class="hdd-plan-space pro"></span>
+                    <span class="hdd-plan-price pro"></span>
                 </article>
-                <article class="preferences-button hdd-options-advance">
-                    <span class="space advance"></span>
-                    <span class="price price-advance"></span>
+
+                <article class="preferences-button hdd-plans-advance">
+                    <span class="hdd-plan-space advance"></span>
+                    <span class="hdd-plan-price advance"></span>
                 </article>
-                <article class="preferences-button hdd-options-ultimate">
-                    <span class="space ultimate"></span>
-                    <span class="price price-ultimate"></span>
+
+                <article class="preferences-button hdd-plans-ultimate">
+                    <span class="hdd-plan-space ultimate"></span>
+                    <span class="hdd-plan-price ultimate"></span>
                 </article>
+
             </section>
-                    
+
+            <section class="preferences-hdd-card">
+
+                <article class="preferences-card-top">
+                    <i class="preferences-card-close"></i>
+                    <span class="preferences-card-title"></span>
+                    <span class="preferences-card-price"></span>
+                </article>
+
+                <article class="preferences-card-bottom">
+
+                    <span class="preferences-card-description-one"></span>
+                    <span class="preferences-card-description-two"></span>
+                    <span class="preferences-card-description-three"></span>
+                    <span class="preferences-card-description-four"></span>
+
+                    <article class="preferences-button active preferences-card-subscribe">
+                        <span class="preferences-card-subscribe-text"></span>
+                    </article>
+
+                </article>
+
+            </section>
+
+            <i class="preferences-card-prev"></i>
+            <i class="preferences-card-next"></i>
+
         </section>
-        
+
     </section>
 
     <!-- HDD ZONE FINISH -->
 
     <!-- ACCOUNT ZONE START -->
-    
+
     <section class="preferences-bottom-content account">
 
-        <section class="preferences-account-top">
+        <span class="preferences-bottom-title account"></span>
+        <span class="preferences-bottom-description account"></span>
+
+        <article class="preferences-account-top">
         
-            <figure>
-                <img />
+            <figure class="preferences-avatar-container">
+                <canvas class="preferences-account-avatar" width="148px" height="148px"></canvas>
+                <figure class="preferences-account-image"></figure>
             </figure>
-            
+
             <span class="avatar-edit wz-avatar-uploader-start"></span>
             
-        </section>
-        
-        <section class="preferences-account-middle">
+        </article>
 
-            <article id="username">
-                <figure>
-                    <i></i>
-                </figure>
-                <input />
-                <span class="username-name"></span>
-            </article>
-            
-            <article id="email">
-                <figure>
-                    <i></i>
-                </figure>
-                <input />
-                <span class="username-mail"></span>
-            </article>
-            
-        </section>
-       
-        <section class="preferences-account-bottom">
-        
-            <article id="change-password" class="preferences-button">
-                <span></span>
-            </article>
-            
-            <article id="save-data" class="preferences-button disabled">
-                <span></span>
-            </article>
-        
-        </section>
-        
-    </section>
-    
-    <section class="preferences-bottom-content password">
-    
-        <section class="preferences-password-top">
-            
-            <span class="password-title"></span>
-            <span class="password-description"></span>
-            
-        </section>
-        
-        <section class="preferences-password-middle">
+        <article class="preferences-bottom-input top account-username">
+            <i></i>
+            <input type="text" />
+            <i class="preferences-input-status"></i>
+        </article>  
 
-            <article id="old-password">
-                <figure>
-                    <i></i>
-                </figure>
-                <input type="password" />
-                <span></span>
+        <article class="preferences-bottom-input bottom account-mail">
+            <i></i>
+            <input type="text" />
+            <i class="preferences-input-status"></i>
+        </article>
+
+        <section class="preferences-account-buttons">
+
+            <article class="preferences-button account change-password">
+                <span class="preferences-account-button"></span>
             </article>
-            
-            <article id="new-password">
-                <figure>
-                    <i></i>
-                </figure>
-                <input type="password" />
-                <span></span>
-            </article>
-            
-            <article id="renew-password">
-                <figure>
-                    <i></i>
-                </figure>
-                <input type="password" />
-                <span></span>
-            </article>
-            
-        </section>
-       
-        <section class="preferences-password-bottom">
-        
-            <article id="cancel-password" class="preferences-button">
-                <span></span>
-            </article>
-            
-            <article id="save-password" class="preferences-button disabled">
-                <span></span>
-            </article>
-        
-        </section>
-        
+
+            <article class="preferences-button account unactive save-info">
+                <span class="preferences-account-button"></span>
+            </article> 
+
+        </section>       
+
     </section>
 
     <!-- ACCOUNT ZONE FINISH -->
 
+    <!-- PASSWORD ZONE START -->
+
+    <section class="preferences-bottom-content password">
+
+        <span class="preferences-bottom-title password"></span>
+        <span class="preferences-bottom-description password"></span>
+
+        <article class="preferences-bottom-input top password-current">
+            <i></i>
+            <input type="password" />
+            <i class="preferences-input-status"></i>
+        </article>
+
+        <article class="preferences-bottom-input middle password-new">
+            <i></i>
+            <input type="password" />
+            <i class="preferences-input-status"></i>
+        </article> 
+
+        <article class="preferences-bottom-input bottom password-confirm">
+            <i></i>
+            <input type="password" />
+            <i class="preferences-input-status"></i>
+        </article>
+
+        <section class="preferences-account-buttons">
+
+            <article class="preferences-button account cancel-password">
+                <span class="preferences-account-button"></span>
+            </article>
+
+            <article class="preferences-button account unactive save-password">
+                <span class="preferences-account-button"></span>
+            </article> 
+
+        </section>       
+
+    </section>
+
+    <!-- PASSWORD ZONE FINISH -->
+
     <!-- SOCIAL NETWORKS ZONE START -->
-    
+
     <section class="preferences-bottom-content social">
-        <span class="preferences-social-top"></span>
-        <article class="preferences-social-element">
-            <img src="https://static.weezeel.com/app/3/twitter.png" width="35px" height="35px" />
-            <span class="preferences-social-element-info twitter-name"></span>
-            <span class="preferences-social-element-name twitter">+</span>
-        </article>
-        <article class="preferences-social-element">
-            <img src="https://static.weezeel.com/app/3/facebook.png" width="35px" height="35px" />
-            <span class="preferences-social-element-info facebook-name"></span>
-            <span class="preferences-social-element-name facebook">+</span>
-        </article>
-        <span class="preferences-social-bottom"></span>
+
+        <span class="preferences-bottom-title social"></span>
+        <span class="preferences-bottom-description social"></span>
+
+        <section class="preferences-social-zone">
+
+            <section class="preferences-social-card">
+
+                <article class="preferences-social-title">
+                    <img class="preferences-social-network" src="https://staticbeta.weezeel.com/app/3/facebook.png" />
+                    <span class="preferences-social-name facebook"></span>
+                    <img class="preferences-social-icon plus wz-win-option" src="https://staticbeta.weezeel.com/app/3/plus.png" data-social-network="facebook" />
+                </article>
+
+                <article class="preferences-social-account">
+                    <img class="preferences-social-avatar" />
+                    <span class="ellipsis preferences-social-name dark">Debora Meltrozo</span>
+                    <img class="preferences-social-icon settings wz-win-option" src="https://staticbeta.weezeel.com/app/3/gear.png" />
+                </article>
+
+                <article class="preferences-social-account">
+                    <img class="preferences-social-avatar" />
+                    <span class="ellipsis preferences-social-name dark">Ana Lisa Melchoto</span>
+                    <img class="preferences-social-icon settings wz-win-option" src="https://staticbeta.weezeel.com/app/3/gear.png" />
+                </article>
+
+            </section>
+
+            <section class="preferences-social-card">
+
+                <article class="preferences-social-title">
+                    <img class="preferences-social-network" src="https://staticbeta.weezeel.com/app/3/twitter.png" />
+                    <span class="preferences-social-name twitter"></span>
+                    <img class="preferences-social-icon plus wz-win-option" src="https://staticbeta.weezeel.com/app/3/plus.png" data-social-network="twitter" />
+                </article>
+
+                <article class="preferences-social-account">
+                    <img class="preferences-social-avatar" />
+                    <span class="ellipsis preferences-social-name dark">Debora Meltrozo</span>
+                    <img class="preferences-social-icon settings wz-win-option" src="https://staticbeta.weezeel.com/app/3/gear.png" />
+                </article>
+
+            </section>
+
+        </section>
+
     </section>
 
     <!-- SOCIAL NETWORKS ZONE FINISH -->
 
-    <!-- LANGUAGE ZONE START -->
-    
-    <section class="preferences-bottom-content language">
-        <span class="preferences-error"></span>
+    <!-- CONFIGURATION ZONE START -->
+
+    <section class="preferences-bottom-content config">
+
+        <span class="preferences-bottom-title date"></span>
+        <span class="preferences-bottom-description date"></span>
+
+        <article class="preferences-bottom-checkbox preferences-config-auto checked">
+
+            <figure>
+                <i></i>
+            </figure>
+
+            <span></span>
+
+        </article>
+
+        <article class="preferences-config-hour">
+
+            <figure class="preferences-config-now">
+                <span></span>
+            </figure>
+
+            <span></span>
+
+            <figure class="preferences-config-up"></figure>
+
+            <figure class="preferences-config-down"></figure>
+
+        </article>
+
+        <article class="preferences-config-clock">
+
+            <figure>
+                <i class="preferences-clock-hour"></i>
+                <i class="preferences-clock-minute"></i>
+                <i class="preferences-clock-second"></i>
+                <i class="preferences-clock-center"></i>
+            </figure>
+
+        </article>
+
+        <section class="preferences-bottom-selectable time-format">
+
+            <span class="time-format-title"></span>
+
+            <article class="preferences-bottom-checkbox checked">
+
+                <figure>
+                    <i></i>
+                </figure>
+
+                <span class="time-format-24"></span>
+
+            </article>
+
+            <article class="preferences-bottom-checkbox">
+
+                <figure>
+                    <i></i>
+                </figure>
+
+                <span class="time-format-12"></span>
+
+            </article>
+
+        </section>
+
+        <section class="preferences-bottom-selectable date-format">
+
+            <span class="date-format-title"></span>
+
+            <article class="preferences-bottom-checkbox checked" data-date-format-short="d m y" data-date-format-long="d m Y">
+
+                <figure>
+                    <i></i>
+                </figure>
+
+                <span class="date-format-ddmmyy"></span>
+
+            </article>
+
+            <article class="preferences-bottom-checkbox" data-date-format-short="m d y" data-date-format-long="m d Y">
+
+                <figure>
+                    <i></i>
+                </figure>
+
+                <span class="date-format-mmddyy"></span>
+
+            </article>
+
+            <article class="preferences-bottom-checkbox" data-date-format-short="y m d" data-date-format-long="Y m d">
+
+                <figure>
+                    <i></i>
+                </figure>
+
+                <span class="date-format-yymmdd"></span>
+
+            </article>
+
+        </section>
+
+        <span class="preferences-bottom-title language"></span>
+        <span class="preferences-bottom-description language"></span>
+
+        <section class="preferences-bottom-zone">
+
+            <article class="preferences-language-element english-uk">
+
+                <figure></figure>
+                <span>English UK</span>
+
+            </article>
+
+            <article class="preferences-language-element active english-usa">
+
+                <figure></figure>
+                <span>English US</span>
+
+            </article>
+
+            <article class="preferences-language-element spanish">
+
+                <figure></figure>
+                <span>Español</span>
+
+            </article>
+
+        </section>
+
     </section>
 
-    <!-- LANGUAGE ZONE FINISH -->
+    <!-- CONFIGURATION ZONE FINISH -->
 
-    <!-- DATE & HOUR ZONE START -->
-    
-    <section class="preferences-bottom-content date-time">
-        <span class="preferences-error"></span>
+    <!-- CUSTOMIZE ZONE START -->
+
+    <section class="preferences-bottom-content custom">
+
+        <span class="preferences-bottom-title custom"></span>
+        <span class="preferences-bottom-description custom"></span>
+
+        <section class="preferences-bottom-zone wz-scroll">
+
+            <span class="preferences-wallpaper-title"></span>
+
+            <article class="preferences-wallpaper-upload wz-wallpaper-uploader-start">
+
+                <figure class="preferences-upload-background"></figure>
+                <figure class="preferences-upload-uploading"></figure>
+                <figure class="preferences-upload-icon"></figure>
+
+                <span></span>
+
+            </article>
+
+            <figure class="preferences-wallpaper-image one" data-id="1"></figure>
+            <figure class="preferences-wallpaper-image two" data-id="2"></figure>
+            <figure class="preferences-wallpaper-image three" data-id="3"></figure>
+            <figure class="preferences-wallpaper-image four" data-id="4"></figure>
+            <figure class="preferences-wallpaper-image five" data-id="5"></figure>
+            <figure class="preferences-wallpaper-image six" data-id="6"></figure>
+            <figure class="preferences-wallpaper-image seven" data-id="7"></figure>
+            <figure class="preferences-wallpaper-image eight" data-id="8"></figure>
+            <figure class="preferences-wallpaper-image nine" data-id="9"></figure>
+            <figure class="preferences-wallpaper-image ten" data-id="10"></figure>
+            <figure class="preferences-wallpaper-image eleven" data-id="11"></figure>
+            <figure class="preferences-wallpaper-image twelve" data-id="12"></figure>
+            <figure class="preferences-wallpaper-image thirteen" data-id="13"></figure>
+            <figure class="preferences-wallpaper-image fourteen" data-id="14"></figure>
+            <figure class="preferences-wallpaper-image fifteen" data-id="15"></figure>
+
+        </section>
+
     </section>
 
-    <!-- DATE & HOUR ZONE FINISH -->
-
-    <!-- WALLPAPER ZONE START -->
-    
-    <section class="preferences-bottom-content wallpaper">
-        <span class="preferences-error"></span>
-    </section>
-
-    <!-- WALLPAPER ZONE FINISH -->
+    <!-- CUSTOMIZE ZONE FINISH -->
 
     <!-- INVITE ZONE START -->
-    
+
     <section class="preferences-bottom-content invite">
-        <span class="preferences-invite-title"></span>
-        <span class="preferences-invite-explanation"></span>
-        <article class="preferences-invite-weekey">
-            <input readonly />
+
+        <span class="preferences-bottom-title invite"></span>
+        <span class="preferences-bottom-description invite"></span>
+
+        <article class="preferences-invite-ticket">
+            <img src="https://staticbeta.weezeel.com/app/3/ticket.png" />
         </article>
-        <article class="preferences-button invite active">
-            <span class="preferences-invite-button"></span>
+
+        <article class="preferences-bottom-input invite">
+            <span class="wz-selectable">Y6HG84BC</span>
         </article>
+
+        <section class="preferences-account-buttons invite">
+
+            <article class="preferences-button active invite">
+                <span class="preferences-account-button invite"></span>
+            </article>
+
+        </section>
+
+        <span class="preferences-invite-left"></span>
+        <span class="preferences-invite-beware"></span>
+
+        <figure class="preferences-invite-invited">
+            <i></i>
+        </figure>
+
+        <section class="preferences-invite-friends">
+
+            <article>
+                <img />
+                <span class="ellipsis">Devora Meltrozo</span>
+            </article>
+
+            <article>
+                <img />
+                <span class="ellipsis">Ana Lisa Melchoto</span>
+            </article>
+
+        </section>
+
     </section>
 
     <!-- INVITE ZONE FINISH -->
 
     <!-- ABOUT ZONE START -->
-    
+
     <section class="preferences-bottom-content about">
-        <span class="preferences-error"></span>
+
+        <img src="https://staticbeta.weezeel.com/app/3/logo.png" />
+        <span class="preferences-about-version"></span>
+        <p class="preferences-about-text first wz-selectable">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non neque tincidunt, ullamcorper mi nec, eleifend ligula. Aliquam interdum augue mauris, viverra cursus dui imperdiet vitae. Fusce porttitor non libero ac tempor. In hac habitasse platea dictumst. Curabitur gravida feugiat adipiscing. Aliquam porta mi in mollis interdum. Curabitur eget fermentum mauris.</p>
+        <p class="preferences-about-text second wz-selectable">Cras et eros vitae diam sagittis consectetur in varius tellus. Nam sed lacinia justo. Mauris nunc quam, imperdiet pellentesque imperdiet at, vulputate nec felis. Ut cursus augue at dapibus pharetra. Fusce pretium porta lacus pellentesque scelerisque. Nulla aliquet nisl eget rutrum tincidunt. Cras lacinia rhoncus sapien, quis ultricies metus tristique quis. Nunc faucibus sit amet urna vel convallis. Proin eu ligula rhoncus, rhoncus mi sit amet, eleifend neque. Aenean a justo risus. Suspendisse ultrices sem mauris, sed interdum nibh tempor nec.</p>
+        <article class="preferences-about-footer">
+            <span class="preferences-about-link legal"></span>
+            <span class="preferences-about-link privacy"></span>
+        </article>
+
     </section>
 
     <!-- ABOUT ZONE FINISH -->
-    
+
 </section>
