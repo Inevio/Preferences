@@ -56,6 +56,8 @@
 	"currentPassword"     : "Current Password",
 	"newPassword"		  : "New Password",
 	"confirmPassword"     : "Confirm New Password",
+	"passwordChanged"	  : "Password changed",
+	"passwordChanged2"    : "Your password has been changed",
 
 	"socialTitle" 		: "SOCIAL NETWORKS",
 	"socialDescription" : "Here you can link all your social networks with your weeZeel account",

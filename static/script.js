@@ -7,13 +7,17 @@
     var clockSecond   = $( '.preferences-clock-second', win );
     var configNow     = $( '.preferences-config-now', win );
     var configHour    = $( '.preferences-config-hour span', win );
+    var timeZone      = 0;
 
     // Account data
     var username             = null;
     var mail                 = null;
     var mailExpresion        = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/;
     var usernameExpresion    = /^[a-zA-Z0-9._]+$/;
-    var idInterval           = 0;
+    var userInterval         = 0;
+    var oldPwdInterval       = 0;
+    var newPwdInterval       = 0;
+    var renewPwdInterval     = 0;
     var accountUsername      = $( '.account-username', win );
     var accountUsernameInput = $( 'input', accountUsername );
     var accountMail          = $( '.account-mail', win );
@@ -52,6 +56,11 @@
     var avatarUrl       = '';
 
     var degrees = 0;
+    var configObject = null;
+
+    wz.config( function( error, config ){
+        configObject = config;
+    });
 
     // Quota circle functions
     var startCircleAnimation = function( end ){
@@ -145,14 +154,14 @@
 
     var changeCake = function( space ){
 
-        wz.config( function( error, config ){
+        configObject.update( function(){
 
             if( space ){
-                startCircleAnimation( config.quota / space );
-                cakeFree.text( wz.tool.bytesToUnit( space - config.quota, 2 ) + ' ' + 'Free' );
+                startCircleAnimation( configObject.quota / space );
+                cakeFree.text( wz.tool.bytesToUnit( space - configObject.quota, 2 ) + ' ' + 'Free' );
             }else{
-                startCircleAnimation( config.quotaPercentage );
-                cakeFree.text( wz.tool.bytesToUnit( config.quotaFree, 2 ) + ' ' + 'Free' );
+                startCircleAnimation( configObject.quotaPercentage );
+                cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
             }
 
         });
@@ -299,11 +308,14 @@
         if( seconds < 10 ){ seconds = '0' + seconds; }
 
         if( minutes === '00' & seconds === '00' ){ 
-            configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) ); 
+            configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
+            clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
         }
 
-        clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
-        clockMinute.css( 'transform', 'rotate(' + minutes / 60 * 360 + 'deg)' );
+        if( seconds === '00' ){
+            clockMinute.css( 'transform', 'rotate(' + minutes / 60 * 360 + 'deg)' );
+        }
+
         clockSecond.css( 'transform', 'rotate(' + seconds / 60 * 360 + 'deg)' );
         configHour.text( ': ' + minutes + ' : ' + seconds );
         
@@ -426,7 +438,7 @@
             var usernameOk = false;
             var mailOk = false;
 
-            clearInterval( idInterval );
+            clearInterval( userInterval );
 
             if( $( this ).is( accountUsernameInput ) && accountUsernameInput.val() !== username ){
                 accountUsername.removeClass( 'error' ).addClass( ' correct pending' );
@@ -436,7 +448,7 @@
                 accountMail.removeClass( 'error' ).addClass( 'correct pending' );
             }
 
-            idInterval = setTimeout( function(){
+            userInterval = setTimeout( function(){
 
                 if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) ){
                     accountUsername.removeClass( 'pending error correct' );
@@ -482,28 +494,25 @@
 
             if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) && accountUsernameInput.val() !== username ){
 
-                wz.config( function( error, config ){
+                configObject.changeUsername( accountUsernameInput.val(), function( error ){
 
-                    config.changeUsername( accountUsernameInput.val(), function( error ){
+                    if( error ){
 
-                        if( error ){
+                        alert( error, null, win.data( 'win' ) );
+                        accountUsernameInput.val( username );
 
-                            alert( error, null, win.data( 'win' ) );
-                            accountUsernameInput.val( username );
-                            accountMailInput.val( mail );
+                    }else{
 
-                        }else{
+                        username = accountUsernameInput.val();
 
-                            username = accountUsernameInput.val();
+                        wz.banner()
+                            .title( lang.usernameChanged )
+                            .text( lang.usernameChanged2 + ' ' + username )
+                            .render();
 
-                            wz.banner()
-                                .title( lang.usernameChanged )
-                                .text( lang.usernameChanged2 + ' ' + username )
-                                .render();
+                    }
 
-                        }
-
-                    });
+                    accountUsername.removeClass( 'correct' );
 
                 });
 
@@ -511,28 +520,25 @@
 
             if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) && accountMailInput.val() !== mail ){
 
-                wz.config( function( error, config ){
+                configObject.changeMail( accountMailInput.val(), function( error ){
 
-                    config.changeMail( accountMailInput.val(), function( error ){
+                    if( error ){
 
-                        if( error ){
+                        alert( error, null, win.data( 'win' ) );
+                        accountMailInput.val( mail );
 
-                            alert( error, null, win.data( 'win' ) );
-                            accountUsernameInput.val( username );
-                            accountMailInput.val( mail );
+                    }else{
 
-                        }else{
+                        mail = accountMailInput.val();
 
-                            mail = accountMailInput.val();
+                        wz.banner()
+                            .title( lang.mailChanged )
+                            .text( lang.mailChanged2 + ' ' + mail )
+                            .render();
 
-                            wz.banner()
-                                .title( lang.mailChanged )
-                                .text( lang.mailChanged2 + ' ' + mail )
-                                .render();
+                    }
 
-                        }
-
-                    });
+                    accountMail.removeClass( 'correct' );
 
                 });
 
@@ -542,11 +548,11 @@
 
         .on( 'keyup', '.password-current input', function(){
 
-            clearInterval( idInterval );
+            clearInterval( oldPwdInterval );
 
             currentPassword.removeClass( 'error' ).addClass( 'correct pending' );
 
-            idInterval = setTimeout( function(){
+            oldPwdInterval = setTimeout( function(){
 
                 if( currentPasswordInput.val().length > 5 ){
                     currentPassword.removeClass( 'pending error' ).addClass( 'correct' );
@@ -562,11 +568,11 @@
 
         .on( 'keyup', '.password-new input', function(){
 
-            clearInterval( idInterval );
+            clearInterval( newPwdInterval );
 
             newPassword.removeClass( 'error' ).addClass( 'correct pending' );
 
-            idInterval = setTimeout( function(){
+            newPwdInterval = setTimeout( function(){
 
                 if( newPasswordInput.val().length > 5 ){
                     newPassword.removeClass( 'pending error' ).addClass( 'correct' );
@@ -582,11 +588,11 @@
 
         .on( 'keyup', '.password-confirm input', function(){
 
-            clearInterval( idInterval );
+            clearInterval( renewPwdInterval );
 
             confirmPassword.removeClass( 'error' ).addClass( 'correct pending' );
 
-            idInterval = setTimeout( function(){
+            renewPwdInterval = setTimeout( function(){
 
                 if( confirmPasswordInput.val().length === 0 ){
                     confirmPassword.removeClass( 'pending error correct' );
@@ -616,6 +622,7 @@
         .on( 'click', '.change-password', function(){
 
             $( 'input', win ).val( '' );
+            $( '.preferences-bottom-input', win ).removeClass( 'correct error pending' );
 
             $( '.preferences-bottom-content.account', win )
                 .css( 'display', 'none' )
@@ -624,6 +631,39 @@
             $( '.preferences-bottom-content.password', win )
                 .css( 'display', 'block' )
                 .transition( { opacity : 1 }, 250 );
+
+        })
+
+        // Changes user's password
+        .on( 'click', '.save-password', function(){
+
+            if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
+
+                configObject.changePassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
+
+                    if( error ){
+
+                        alert( error, null, win.data( 'win' ) );
+
+                    }else{
+
+                        wz.banner()
+                            .title( lang.passwordChanged )
+                            .text( lang.passwordChanged2 )
+                            .render();
+
+                    }
+
+                    currentPassword.removeClass( 'correct' );
+                    currentPasswordInput.val( '' );
+                    newPassword.removeClass( 'correct' );
+                    newPasswordInput.val( '' );
+                    confirmPassword.removeClass( 'correct' );
+                    confirmPasswordInput.val( '' );
+
+                });
+
+            }
 
         })
 
@@ -673,13 +713,7 @@
 
                 var id = $( this ).attr( 'data-id' );
 
-                wz.config( function( e, o ){
-
-                    if( !e ){
-                        o.changeWallpaper( id );
-                    }
-
-                });
+                configObject.changeWallpaper( id );
 
             }
 
@@ -833,38 +867,121 @@
             $( '.preferences-card-prev', win ).css( 'display', 'none' );
             $( '.preferences-card-next', win ).css( 'display', 'none' );
 
-            wz.config( function( error, config ){
+            configObject.update( function(){
 
                 cakeTitle.text( lang.currentUsage );
-                cakeTotal.text( wz.tool.bytesToUnit( config.quotaMax ) );
-                cakeFree.text( wz.tool.bytesToUnit( config.quotaFree, 2 ) + ' ' + 'Free' );
+                cakeTotal.text( wz.tool.bytesToUnit( configObject.quotaMax ) );
+                cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
+
+                changeCake( 0 );
 
             });
-
-            changeCake( 0 );
 
         })
 
         // Adds +1 hour to the clock
         .on( 'click', '.preferences-config-up', function(){
-            $( '.preferences-clock-hour', win ).css( 'transform', 'rotate(' + hourDegree( date.getHours() + 1, date.getMinutes() ) + 'deg)' );
-            $( '.preferences-config-now', win ).text( coolHour( parseInt( $( '.preferences-config-now', win ).text(), 10 ) + 1 ) );
+
+            clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) + 1, date.getMinutes() ) + 'deg)' );
+            configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
+            $( '.preferences-config-auto', win ).removeClass( 'checked' );
+
+            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+            configObject.changeTimeZone( timeZone, function( error ){
+
+                if( error ){
+
+                    alert( error, null, win.data( 'win' ) );
+
+                }
+
+            });
+
         })
 
         // Substracts -1 hour to the clock
         .on( 'click', '.preferences-config-down', function(){
-            $( '.preferences-clock-hour', win ).css( 'transform', 'rotate(' + hourDegree( date.getHours() - 1, date.getMinutes() ) + 'deg)' );
-            $( '.preferences-config-now', win ).text( coolHour( parseInt( $( '.preferences-config-now', win ).text(), 10 ) - 1 ) );
+
+            clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) - 1, date.getMinutes() ) + 'deg)' );
+            configNow.text( coolHour( parseInt( configNow.text(), 10 ) - 1 ) );
+            $( '.preferences-config-auto', win ).removeClass( 'checked' );
+
+            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+            configObject.changeTimeZone( timeZone, function( error ){
+
+                if( error ){
+
+                    alert( error, null, win.data( 'win' ) );
+
+                }
+
+            });
+
         })
 
-        // Launches browser windoe to add an account
+        .on( 'click', '.preferences-config-auto', function(){
+
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            
+            if( hour < 10 ){ hour = '0' + hour; }
+            if( minutes < 10 ){ minutes = '0' + minutes; }
+
+            configNow.text( hour );
+            clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
+
+            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+            configObject.changeTimeZone( timeZone, function( error ){
+
+                if( error ){
+
+                    alert( error, null, win.data( 'win' ) );
+
+                }
+
+            });
+
+        })
+
+        .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
+
+            var button = $( this );
+
+            configObject.changeDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+
+                if( error ){
+                    alert( error );
+                }
+                
+            });
+
+        })
+
+        .on( 'click', '.preferences-language-element', function(){
+
+            $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
+
+            if( $( this ).hasClass( 'english-uk' ) ){
+                configObject.changeLanguage( 'en-en' );
+            }else if( $( this ).hasClass( 'english-us' ) ){
+                configObject.changeLanguage( 'en-us' );
+            }else if( $( this ).hasClass( 'spanish' ) ){
+                configObject.changeLanguage( 'es-es' );
+            }
+
+        })
+
+        // Launches browser window to add an account
         .on( 'click', '.preferences-social-icon.plus', function(){
             wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
         })
 
         // Launches settings window of social networks ( Social Networks Tab )
         .on( 'click', '.preferences-social-icon.settings', function(){
-            wz.app.createWindow( 69, null/*$( this ).parent( '.preferences-social-account' ).data( 'id' )*/, 'social' );
+            wz.app.createWindow( 3, null/*$( this ).parent( '.preferences-social-account' ).data( 'id' )*/, 'social' );
         })
 
         // Capturing the avatar uploading progress
@@ -911,24 +1028,6 @@
 
         })
 
-        .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
-
-            var button = $( this );
-
-            wz.config( function( e, config ){
-
-                config.changeDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
-
-                    if( error ){
-                        alert( error );
-                    }
-                    
-                });
-
-            });
-
-        })
-
         // Capturing the walppaper uploading progress
         .on( 'wallpaper-upload-progress', function( event, percent ){
             $( '.preferences-upload-uploading', win ).css({ height: 35 * percent + 'px', top: 35 * ( 1 - percent ) + 10 + 'px' });
@@ -937,6 +1036,28 @@
         // Capturing the wallpaper uploading end
         .on( 'wallpaper-upload-end', function(){
             $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
+        })
+
+        .on( 'click', '.preferences-button.invite', function(){
+            console.log(1);
+            wz.weekey.create( function( error, weekey ){
+
+                if( error === 'DEMO CAN NOT CREATE A WEEKEY' ){
+                    alert( 'Demo accounts can\'t create weeKeys', null, win.data( 'win' ) );
+                }else if( error === 'CAN NOT CREATE MORE WEEKEYS' ){
+                    alert( 'You can\'t create more weeKeys', null, win.data( 'win' ) );
+                }else{
+
+                    console.log( error, weekey );
+                    $( '.preferences-bottom-input.invite span' ).text( weekey );
+                    wz.weekey.getList( function( error, list ){
+                        $( '.preferences-invite-left', win ).text( lang.invitesLeft + ':' + ' ' + ( 3 - list.length ) );
+                    });
+
+                }
+                
+            });
+
         });
 
     // This function fills certain gaps with user's info
@@ -952,6 +1073,42 @@
 
         username = config.user.user;
         mail = config.user.mail;
+
+        wz.config.getLanguages( function( error, languages, used ){
+
+            if( used.code === "es" || used.code === "es-es" ){
+                $( '.preferences-language-element.spanish', win ).addClass( 'active' );
+            }else if( used.code === "en" || used.code === "en-us" ){
+                $( '.preferences-language-element.english-us', win ).addClass( 'active' );
+            }else if( used.code === "en-uk" ){
+                $( '.preferences-language-element.english-uk', win ).addClass( 'active' );
+            }
+
+        });
+
+        wz.config.getWallpaper( function( error, wallpapers, used ){
+            console.log( used );
+        });
+
+        wz.weekey.getList( function( error, list ){
+            console.log( 'List: ', list );
+            $( '.preferences-invite-left', win ).text( lang.invitesLeft + ':' + ' ' + ( 3 - list.length ) );
+
+            if( list.length ){
+
+                $( '.preferences-invite-invited', win ).addClass( 'display' );
+
+                for( var i = 0; i < list.length; i++ ){
+
+                    var invitedFriend = $( '.preferences-invite-friends .wz-prototype', win ).clone();
+                    invitedFriend.find( 'img' );
+                    invitedFriend.find( 'span' ).text();
+
+                }
+
+            }
+
+        });
 
     });
 
@@ -1018,7 +1175,6 @@
     $( '.preferences-bottom-title.invite', win ).text( lang.inviteTitle );
     $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
     $( '.preferences-account-button.invite', win ).text( lang.generate );
-    $( '.preferences-invite-left', win ).text( lang.invitesLeft + ':' + ' ' + '2' );
     $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + '2.3.17' );

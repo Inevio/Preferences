@@ -56,6 +56,8 @@
 	"currentPassword"     : "Contraseña Actual",
 	"newPassword"		  : "Nueva Contraseña",
 	"confirmPassword"     : "Confirma Nueva Contraseña",
+	"passwordChanged"	  : "Contraseña cambiada",
+	"passwordChanged2"    : "Tu contraseña ha sido cambiada correctamente",
 
 	"socialTitle" 		: "REDES SOCIALES",
 	"socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de weeZeel",

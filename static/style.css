@@ -57,7 +57,6 @@
     height: 28px;
     margin: 0 11px;
     border-bottom: 2px solid transparent;
-    cursor: pointer;
     
 }
 
@@ -65,7 +64,6 @@
     
     color: #FFFFFF;
     border-bottom: 2px solid #7EBE30;
-    cursor: default;    
     
 }
 
@@ -79,7 +77,6 @@
     
     color: #FFFFFF;
     border-bottom: 2px solid #7EBE30;
-    cursor: default;    
     
 }
 
@@ -106,7 +103,6 @@
     box-shadow: inset 0 1px rgba( 255, 255, 255, 0.2 );
     border: 1px solid #2F2F2F;
     text-align: center;
-    cursor: pointer;
 
     background-image: -moz-linear-gradient( bottom, #414141, #656565 ); 
     background-image: -webkit-linear-gradient( bottom, #414141, #656565 );
@@ -117,7 +113,6 @@
 
 .preferences-button span{
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
 }
 
 .preferences-button:hover{
@@ -209,7 +204,6 @@
     background: #404040;
     border: 1px solid #333;
     box-shadow: inset 0 1px #464646;
-    cursor: default;
 
 }
 
@@ -217,7 +211,6 @@
 
     color: rgba( 141, 141, 141, 0.6 );
     text-shadow: 0 1px 1px rgba( 0, 0, 0, 0.4 );
-    cursor: default;
 
 }
 
@@ -790,7 +783,6 @@ span.preferences-card-subscribe-text{
     font-size: 15px;
     font-weight: bold;
     color: #7EBE30;
-
     cursor: pointer;
     
 }
