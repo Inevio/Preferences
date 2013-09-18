@@ -51,6 +51,8 @@
     var avatarUploading = false;
     var avatarUrl       = '';
 
+    var degrees = 0;
+
     // Quota circle functions
     var startCircleAnimation = function( end ){
 
@@ -730,12 +732,19 @@
         // Shows prev card when clicked ( Disk Tab )
         .on( 'click', '.preferences-card-prev', function(){
 
-            card.transition({
+            degrees -= 90;
 
-                perspective: '400px',
-                rotateY: '-90deg'
+            card
+            .css( 'perspective', '500px' )
+            .transition({
 
-            }, function(){
+                rotateY: degrees + 'deg'
+
+            }, 250, function(){
+
+                degrees -= 180;
+
+                card.css( 'rotateY', degrees + 'deg' ); 
 
                 var cardType = '';
 
@@ -752,11 +761,13 @@
                 cardInfo( cardType );
                 cardArrows();
 
+                degrees -= 90;
+
                 card.transition({
 
-                    rotateY: '0deg'
+                    rotateY: degrees + 'deg'
 
-                });
+                }, 250 );
 
             });
 
@@ -765,12 +776,19 @@
         // Shows next card when clicked ( Disk Tab )
         .on( 'click', '.preferences-card-next', function(){
 
-            card.transition({
+            degrees += 90;
 
-                perspective: '400px',
-                rotateY: '90deg',
+            card
+            .css( 'perspective', '500px' )
+            .transition({
 
-            }, function(){
+                rotateY: degrees + 'deg',
+
+            }, 250, function(){
+
+                degrees += 180;
+
+                card.css( 'rotateY', degrees + 'deg' );
 
                 var cardType = '';
 
@@ -787,11 +805,13 @@
                 cardInfo( cardType );
                 cardArrows();
 
+                degrees += 90;
+
                 card.transition({
 
-                    rotateY: '0deg'
+                    rotateY: degrees + 'deg',
 
-                });
+                }, 250 );
 
             });
 
