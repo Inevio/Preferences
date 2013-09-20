@@ -1,7 +1,14 @@
 
 {
 
-    "name"    : "Preferences",
+    "name"    : {
+
+        "main" : "Preferences",
+        "en"   : "Preferences",
+        "es"   : "Preferencias"
+
+    },
+
     "version" : "1.0",
     "state"   : "beta",
 
