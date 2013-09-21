@@ -351,714 +351,714 @@
 
     win
 
-        // This function changes the content when a tab is clicked
-        .on( 'mouseup', 'li', function(){
+    // This function changes the content when a tab is clicked
+    .on( 'mouseup', 'li', function(){
 
-            clearInterval( clockInterval );
+        clearInterval( clockInterval );
 
-            //if( !$( win ).parent( '.wz-win-container' ).hasClass( 'wz-drag-active' ) ){
+        //if( !$( win ).parent( '.wz-win-container' ).hasClass( 'wz-drag-active' ) ){
 
-                var oldActive = $( 'li.active', win );
-                var newActive = $( this );
+            var oldActive = $( 'li.active', win );
+            var newActive = $( this );
 
-                if( !oldActive.is( newActive ) ){
+            if( !oldActive.is( newActive ) ){
 
-                    $( 'input', win ).val('');
+                $( 'input', win ).val('');
 
-                    oldActive.removeClass('active');
-                    newActive.addClass('active');
+                oldActive.removeClass('active');
+                newActive.addClass('active');
 
-                    $( '.preferences-bottom-content.' + oldActive.data( 'type' ), win )
+                $( '.preferences-bottom-content.' + oldActive.data( 'type' ), win )
+                    .css( 'display', 'none' )
+                    .transition( { opacity : 0 }, 250 );
+
+                $( '.preferences-bottom-content.' + newActive.data( 'type' ), win )
+                    .css( 'display', 'block' )
+                    .transition( { opacity : 1 }, 250);
+
+                if( $( '.preferences-bottom-content.password', win ).css('display') === 'block' ){
+
+                    $( '.preferences-bottom-content.password', win )
                         .css( 'display', 'none' )
                         .transition( { opacity : 0 }, 250 );
 
-                    $( '.preferences-bottom-content.' + newActive.data( 'type' ), win )
-                        .css( 'display', 'block' )
-                        .transition( { opacity : 1 }, 250);
-
-                    if( $( '.preferences-bottom-content.password', win ).css('display') === 'block' ){
-
-                        $( '.preferences-bottom-content.password', win )
-                            .css( 'display', 'none' )
-                            .transition( { opacity : 0 }, 250 );
-
-                    }
-
                 }
 
-            //}
-
-        })
-
-        // Shows hour when config tab clicked
-        .on( 'mouseup', 'li.config', function(){
-
-            date = new Date();
-            var hour = date.getHours();
-            var minutes = date.getMinutes();
-            var seconds = date.getSeconds();
-            
-            if( hour < 10 ){ hour = '0' + hour; }
-            if( minutes < 10 ){ minutes = '0' + minutes; }
-            if( seconds < 10 ){ seconds = '0' + seconds; }
-
-            clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
-            configNow.text( hour );
-            clockMinute.css( 'transform', 'rotate(' + minutes / 60 * 360 + 'deg)' );
-            clockSecond.css( 'transform', 'rotate(' + seconds / 60 * 360 + 'deg)' );
-            configHour.text( ': ' + minutes + ' : ' + seconds );
-
-            clockInterval = setInterval( function(){
-                clock();
-            }, 1000);
-
-        })
-
-        // Shows info when Invite tab clicked
-        .on( 'mouseup', 'li.invite', function(){
-            
-            wz.weekey.getList( function( error, list ){
-
-                console.log( list );
-
-            });
-
-        })
-
-        // Shows info when Account tab clicked
-        .on( 'mouseup', 'li.account', function(){
-
-            $( '.account-username input', win ).val( username );
-            $( '.account-mail input', win ).val( mail );
-
-        })
-
-        .on( 'keyup', '.account-username input, .account-mail input', function(){
-
-            var usernameOk = false;
-            var mailOk = false;
-
-            clearInterval( userInterval );
-
-            if( $( this ).is( accountUsernameInput ) && accountUsernameInput.val() !== username ){
-                accountUsername.removeClass( 'error' ).addClass( ' correct pending' );
             }
 
-            if( $( this ).is( accountMailInput ) && accountMailInput.val() !== mail ){
-                accountMail.removeClass( 'error' ).addClass( 'correct pending' );
+        //}
+
+    })
+
+    // Shows hour when config tab clicked
+    .on( 'mouseup', 'li.config', function(){
+
+        date = new Date();
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        
+        if( hour < 10 ){ hour = '0' + hour; }
+        if( minutes < 10 ){ minutes = '0' + minutes; }
+        if( seconds < 10 ){ seconds = '0' + seconds; }
+
+        clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
+        configNow.text( hour );
+        clockMinute.css( 'transform', 'rotate(' + minutes / 60 * 360 + 'deg)' );
+        clockSecond.css( 'transform', 'rotate(' + seconds / 60 * 360 + 'deg)' );
+        configHour.text( ': ' + minutes + ' : ' + seconds );
+
+        clockInterval = setInterval( function(){
+            clock();
+        }, 1000);
+
+    })
+
+    // Shows info when Invite tab clicked
+    .on( 'mouseup', 'li.invite', function(){
+        
+        wz.weekey.getList( function( error, list ){
+
+            console.log( list );
+
+        });
+
+    })
+
+    // Shows info when Account tab clicked
+    .on( 'mouseup', 'li.account', function(){
+
+        $( '.account-username input', win ).val( username );
+        $( '.account-mail input', win ).val( mail );
+
+    })
+
+    .on( 'keyup', '.account-username input, .account-mail input', function(){
+
+        var usernameOk = false;
+        var mailOk = false;
+
+        clearInterval( userInterval );
+
+        if( $( this ).is( accountUsernameInput ) && accountUsernameInput.val() !== username ){
+            accountUsername.removeClass( 'error' ).addClass( ' correct pending' );
+        }
+
+        if( $( this ).is( accountMailInput ) && accountMailInput.val() !== mail ){
+            accountMail.removeClass( 'error' ).addClass( 'correct pending' );
+        }
+
+        userInterval = setTimeout( function(){
+
+            if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) ){
+                accountUsername.removeClass( 'pending error correct' );
+            }else if( !accountUsernameInput.val().length ){
+                accountUsername.removeClass( 'pending error correct' ).find( 'input' ).val( username );
+            }else{
+                accountUsername.removeClass( 'pending' ).addClass( 'correct error' );
             }
 
-            userInterval = setTimeout( function(){
-
-                if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) ){
-                    accountUsername.removeClass( 'pending error correct' );
-                }else if( !accountUsernameInput.val().length ){
-                    accountUsername.removeClass( 'pending error correct' ).find( 'input' ).val( username );
-                }else{
-                    accountUsername.removeClass( 'pending' ).addClass( 'correct error' );
-                }
-
-                if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) ){
-                    accountMail.removeClass( 'pending error correct' );
-                }else if( !accountMailInput.val().length ){
-                    accountMail.removeClass( 'pending error correct' ).find( 'input' ).val( mail );
-                }else{
-                    accountMail.removeClass( 'pending' ).addClass( 'correct error' );
-                }
-
-                if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) && accountUsernameInput.val() !== username ){
-                    accountUsername.removeClass( 'pending error' ).addClass( 'correct' );
-                    usernameOk = true;
-                }else{
-                    usernameOk = false;
-                }
-
-                if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) && accountMailInput.val() !== mail ){
-                    accountMail.removeClass( 'pending error' ).addClass( 'correct' );
-                    mailOk = true;
-                }else{
-                    mailOk = false;
-                }
-
-                if( usernameOk || mailOk ){
-                    $( '.save-info', win ).removeClass( 'unactive' ).addClass( 'active' );
-                }else{
-                    $( '.save-info', win ).removeClass( 'active' ).addClass( 'unactive' );
-                }
-
-            }, 500 );
-
-        })
-
-        .on( 'click', '.save-info', function(){
+            if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) ){
+                accountMail.removeClass( 'pending error correct' );
+            }else if( !accountMailInput.val().length ){
+                accountMail.removeClass( 'pending error correct' ).find( 'input' ).val( mail );
+            }else{
+                accountMail.removeClass( 'pending' ).addClass( 'correct error' );
+            }
 
             if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) && accountUsernameInput.val() !== username ){
-
-                configObject.changeUsername( accountUsernameInput.val(), function( error ){
-
-                    if( error ){
-
-                        alert( error, null, win.data( 'win' ) );
-                        accountUsernameInput.val( username );
-
-                    }else{
-
-                        username = accountUsernameInput.val();
-
-                        wz.banner()
-                            .title( lang.usernameChanged )
-                            .text( lang.usernameChanged2 + ' ' + username )
-                            .render();
-
-                    }
-
-                    accountUsername.removeClass( 'correct' );
-
-                });
-
+                accountUsername.removeClass( 'pending error' ).addClass( 'correct' );
+                usernameOk = true;
+            }else{
+                usernameOk = false;
             }
 
             if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) && accountMailInput.val() !== mail ){
-
-                configObject.changeMail( accountMailInput.val(), function( error ){
-
-                    if( error ){
-
-                        alert( error, null, win.data( 'win' ) );
-                        accountMailInput.val( mail );
-
-                    }else{
-
-                        mail = accountMailInput.val();
-
-                        wz.banner()
-                            .title( lang.mailChanged )
-                            .text( lang.mailChanged2 + ' ' + mail )
-                            .render();
-
-                    }
-
-                    accountMail.removeClass( 'correct' );
-
-                });
-
+                accountMail.removeClass( 'pending error' ).addClass( 'correct' );
+                mailOk = true;
+            }else{
+                mailOk = false;
             }
 
-        })
+            if( usernameOk || mailOk ){
+                $( '.save-info', win ).removeClass( 'unactive' ).addClass( 'active' );
+            }else{
+                $( '.save-info', win ).removeClass( 'active' ).addClass( 'unactive' );
+            }
 
-        .on( 'keyup', '.password-current input', function(){
+        }, 500 );
 
-            clearInterval( oldPwdInterval );
+    })
 
-            currentPassword.removeClass( 'error' ).addClass( 'correct pending' );
+    .on( 'click', '.save-info', function(){
 
-            oldPwdInterval = setTimeout( function(){
+        if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) && accountUsernameInput.val() !== username ){
 
-                if( currentPasswordInput.val().length > 5 ){
-                    currentPassword.removeClass( 'pending error' ).addClass( 'correct' );
-                }else if( currentPasswordInput.val().length === 0 ){
-                    currentPassword.removeClass( 'pending error correct' );
+            configObject.changeUsername( accountUsernameInput.val(), function( error ){
+
+                if( error ){
+
+                    alert( error, null, win.data( 'win' ) );
+                    accountUsernameInput.val( username );
+
                 }else{
-                    currentPassword.removeClass( 'pending' ).addClass( 'correct error' );
+
+                    username = accountUsernameInput.val();
+
+                    wz.banner()
+                        .title( lang.usernameChanged )
+                        .text( lang.usernameChanged2 + ' ' + username )
+                        .render();
+
                 }
 
-            }, 500 );
+                accountUsername.removeClass( 'correct' );
 
-        })
+            });
 
-        .on( 'keyup', '.password-new input', function(){
+        }
 
-            clearInterval( newPwdInterval );
+        if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) && accountMailInput.val() !== mail ){
 
-            newPassword.removeClass( 'error' ).addClass( 'correct pending' );
+            configObject.changeMail( accountMailInput.val(), function( error ){
 
-            newPwdInterval = setTimeout( function(){
+                if( error ){
 
-                if( newPasswordInput.val().length > 5 ){
-                    newPassword.removeClass( 'pending error' ).addClass( 'correct' );
-                }else if( newPasswordInput.val().length === 0 ){
-                    newPassword.removeClass( 'pending error correct' );
+                    alert( error, null, win.data( 'win' ) );
+                    accountMailInput.val( mail );
+
                 }else{
-                    newPassword.removeClass( 'pending' ).addClass( 'correct error' );
+
+                    mail = accountMailInput.val();
+
+                    wz.banner()
+                        .title( lang.mailChanged )
+                        .text( lang.mailChanged2 + ' ' + mail )
+                        .render();
+
                 }
 
-            }, 500 );
+                accountMail.removeClass( 'correct' );
 
-        })
+            });
 
-        .on( 'keyup', '.password-confirm input', function(){
+        }
 
-            clearInterval( renewPwdInterval );
+    })
 
-            confirmPassword.removeClass( 'error' ).addClass( 'correct pending' );
+    .on( 'keyup', '.password-current input', function(){
 
-            renewPwdInterval = setTimeout( function(){
+        clearInterval( oldPwdInterval );
 
-                if( confirmPasswordInput.val().length === 0 ){
-                    confirmPassword.removeClass( 'pending error correct' );
+        currentPassword.removeClass( 'error' ).addClass( 'correct pending' );
+
+        oldPwdInterval = setTimeout( function(){
+
+            if( currentPasswordInput.val().length > 5 ){
+                currentPassword.removeClass( 'pending error' ).addClass( 'correct' );
+            }else if( currentPasswordInput.val().length === 0 ){
+                currentPassword.removeClass( 'pending error correct' );
+            }else{
+                currentPassword.removeClass( 'pending' ).addClass( 'correct error' );
+            }
+
+        }, 500 );
+
+    })
+
+    .on( 'keyup', '.password-new input', function(){
+
+        clearInterval( newPwdInterval );
+
+        newPassword.removeClass( 'error' ).addClass( 'correct pending' );
+
+        newPwdInterval = setTimeout( function(){
+
+            if( newPasswordInput.val().length > 5 ){
+                newPassword.removeClass( 'pending error' ).addClass( 'correct' );
+            }else if( newPasswordInput.val().length === 0 ){
+                newPassword.removeClass( 'pending error correct' );
+            }else{
+                newPassword.removeClass( 'pending' ).addClass( 'correct error' );
+            }
+
+        }, 500 );
+
+    })
+
+    .on( 'keyup', '.password-confirm input', function(){
+
+        clearInterval( renewPwdInterval );
+
+        confirmPassword.removeClass( 'error' ).addClass( 'correct pending' );
+
+        renewPwdInterval = setTimeout( function(){
+
+            if( confirmPasswordInput.val().length === 0 ){
+                confirmPassword.removeClass( 'pending error correct' );
+            }
+
+        }, 500 );
+
+    })
+
+    .on( 'keyup', '.password-current input, .password-new input, .password-confirm input', function(){
+
+        if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
+            $( '.save-password', win ).removeClass( 'unactive' ).addClass( 'active' );
+        }else{
+            $( '.save-password', win ).removeClass( 'active' ).addClass( 'unactive' );
+        }
+
+        if( confirmPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
+            confirmPassword.removeClass( 'pending error' ).addClass( 'correct' );
+        }else if( !confirmPassword.hasClass( 'pending' ) && confirmPasswordInput.val().length ){
+            confirmPassword.removeClass( 'pending' ).addClass( 'correct error' );
+        }
+
+    })
+
+    // Shows password content and hides account content when clicked ( Account Tab )
+    .on( 'click', '.change-password', function(){
+
+        $( 'input', win ).val( '' );
+        $( '.preferences-bottom-input', win ).removeClass( 'correct error pending' );
+
+        $( '.preferences-bottom-content.account', win )
+            .css( 'display', 'none' )
+            .transition( { opacity : 0 }, 250 );
+
+        $( '.preferences-bottom-content.password', win )
+            .css( 'display', 'block' )
+            .transition( { opacity : 1 }, 250 );
+
+    })
+
+    // Changes user's password
+    .on( 'click', '.save-password', function(){
+
+        if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
+
+            configObject.changePassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
+
+                if( error ){
+
+                    alert( error, null, win.data( 'win' ) );
+
+                }else{
+
+                    wz.banner()
+                        .title( lang.passwordChanged )
+                        .text( lang.passwordChanged2 )
+                        .render();
+
                 }
 
-            }, 500 );
+                currentPassword.removeClass( 'correct' );
+                currentPasswordInput.val( '' );
+                newPassword.removeClass( 'correct' );
+                newPasswordInput.val( '' );
+                confirmPassword.removeClass( 'correct' );
+                confirmPasswordInput.val( '' );
 
-        })
+            });
 
-        .on( 'keyup', '.password-current input, .password-new input, .password-confirm input', function(){
+        }
 
-            if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
-                $( '.save-password', win ).removeClass( 'unactive' ).addClass( 'active' );
-            }else{
-                $( '.save-password', win ).removeClass( 'active' ).addClass( 'unactive' );
+    })
+
+    // Shows account content and hides password content when clicked ( Account Tab )
+    .on( 'click', '.cancel-password', function(){
+
+        $( 'input', win ).val( '' );
+
+        $( '.preferences-bottom-content.password', win )
+            .css( 'display', 'none' )
+            .transition( { opacity : 0 }, 250 );
+
+        $( '.preferences-bottom-content.account', win )
+            .css( 'display', 'block' )
+            .transition( { opacity : 1 }, 250 );
+
+        $( '.account-username input', win ).val( username );
+        $( '.account-mail input', win ).val( mail );
+
+    })
+
+    // Shows or hides a tick on a checkbox when clicked
+    .on( 'click', '.preferences-bottom-checkbox', function(){
+
+        if( $( this ).hasClass( 'checked' ) ){
+
+            $( this ).removeClass( 'checked' );
+
+        }else{
+
+            if( !$( this ).parent( '.preferences-bottom-selectable' ).hasClass( 'multiple' ) ){
+                $( this ).siblings( '.preferences-bottom-checkbox.checked' ).removeClass( 'checked' );
             }
 
-            if( confirmPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
-                confirmPassword.removeClass( 'pending error' ).addClass( 'correct' );
-            }else if( !confirmPassword.hasClass( 'pending' ) && confirmPasswordInput.val().length ){
-                confirmPassword.removeClass( 'pending' ).addClass( 'correct error' );
-            }
+            $( this ).addClass( 'checked' );
 
-        })
+        }
 
-        // Shows password content and hides account content when clicked ( Account Tab )
-        .on( 'click', '.change-password', function(){
+    })
 
-            $( 'input', win ).val( '' );
-            $( '.preferences-bottom-input', win ).removeClass( 'correct error pending' );
+    // Shows white border when wallpaper is clicked ( Customize Tab )
+    .on( 'click', '.preferences-wallpaper-image', function(){
 
-            $( '.preferences-bottom-content.account', win )
-                .css( 'display', 'none' )
-                .transition( { opacity : 0 }, 250 );
+        if( !$( this ).hasClass( 'active' ) ){
 
-            $( '.preferences-bottom-content.password', win )
-                .css( 'display', 'block' )
-                .transition( { opacity : 1 }, 250 );
+            $( this ).addClass( 'active' ).siblings( '.preferences-wallpaper-image.active' ).removeClass( 'active' );
 
-        })
+            var id = $( this ).attr( 'data-id' );
 
-        // Changes user's password
-        .on( 'click', '.save-password', function(){
+            configObject.changeWallpaper( id );
 
-            if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
+        }
 
-                configObject.changePassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
+    })
 
-                    if( error ){
+    // Shows or hides invited friends when clicked ( Invite Tab )
+    .on( 'click', '.preferences-invite-invited', function( e ){
 
-                        alert( error, null, win.data( 'win' ) );
-
-                    }else{
-
-                        wz.banner()
-                            .title( lang.passwordChanged )
-                            .text( lang.passwordChanged2 )
-                            .render();
-
-                    }
-
-                    currentPassword.removeClass( 'correct' );
-                    currentPasswordInput.val( '' );
-                    newPassword.removeClass( 'correct' );
-                    newPasswordInput.val( '' );
-                    confirmPassword.removeClass( 'correct' );
-                    confirmPasswordInput.val( '' );
-
-                });
-
-            }
-
-        })
-
-        // Shows account content and hides password content when clicked ( Account Tab )
-        .on( 'click', '.cancel-password', function(){
-
-            $( 'input', win ).val( '' );
-
-            $( '.preferences-bottom-content.password', win )
-                .css( 'display', 'none' )
-                .transition( { opacity : 0 }, 250 );
-
-            $( '.preferences-bottom-content.account', win )
-                .css( 'display', 'block' )
-                .transition( { opacity : 1 }, 250 );
-
-            $( '.account-username input', win ).val( username );
-            $( '.account-mail input', win ).val( mail );
-
-        })
-
-        // Shows or hides a tick on a checkbox when clicked
-        .on( 'click', '.preferences-bottom-checkbox', function(){
-
-            if( $( this ).hasClass( 'checked' ) ){
-
-                $( this ).removeClass( 'checked' );
-
-            }else{
-
-                if( !$( this ).parent( '.preferences-bottom-selectable' ).hasClass( 'multiple' ) ){
-                    $( this ).siblings( '.preferences-bottom-checkbox.checked' ).removeClass( 'checked' );
-                }
-
-                $( this ).addClass( 'checked' );
-
-            }
-
-        })
-
-        // Shows white border when wallpaper is clicked ( Customize Tab )
-        .on( 'click', '.preferences-wallpaper-image', function(){
-
-            if( !$( this ).hasClass( 'active' ) ){
-
-                $( this ).addClass( 'active' ).siblings( '.preferences-wallpaper-image.active' ).removeClass( 'active' );
-
-                var id = $( this ).attr( 'data-id' );
-
-                configObject.changeWallpaper( id );
-
-            }
-
-        })
-
-        // Shows or hides invited friends when clicked ( Invite Tab )
-        .on( 'click', '.preferences-invite-invited', function( e ){
-
-            if( $( '.preferences-bottom-content.invite', win ).hasClass( 'invited-friends' ) ){
-                $( '.preferences-bottom-content.invite', win ).removeClass( 'invited-friends' );
-            }else{
-                $( '.preferences-bottom-content.invite', win ).addClass( 'invited-friends' );
-            }
-
-            e.stopPropagation();
-            
-        })
-
-        .on( 'click', '.preferences-invite-friends', function( e ){
-            e.stopPropagation();
-        })
-
-        .on( 'click', function(){
+        if( $( '.preferences-bottom-content.invite', win ).hasClass( 'invited-friends' ) ){
             $( '.preferences-bottom-content.invite', win ).removeClass( 'invited-friends' );
+        }else{
+            $( '.preferences-bottom-content.invite', win ).addClass( 'invited-friends' );
+        }
 
+        e.stopPropagation();
+        
+    })
+
+    .on( 'click', '.preferences-invite-friends', function( e ){
+        e.stopPropagation();
+    })
+
+    .on( 'click', function(){
+        $( '.preferences-bottom-content.invite', win ).removeClass( 'invited-friends' );
+
+    })
+
+    // Shows plan card when clicked ( Disk Tab )
+    .on( 'click', '.preferences-hdd-plans .preferences-button', function(){
+
+        if( $( this ).hasClass( 'hdd-plans-starter' ) ){
+            cardInfo( 'starter' );
+        }else if( $( this ).hasClass( 'hdd-plans-pro' ) ){
+            cardInfo( 'pro' );
+        }else if( $( this ).hasClass( 'hdd-plans-advance' ) ){
+            cardInfo( 'advance' );
+        }else if( $( this ).hasClass( 'hdd-plans-ultimate' ) ){
+            cardInfo( 'ultimate' );
+        }
+
+        card.css({ display : 'block', scale : 0 }).transition({
+            opacity : 1,
+            scale : 1
+        }, 400, function(){
+            cardArrows();
         })
 
-        // Shows plan card when clicked ( Disk Tab )
-        .on( 'click', '.preferences-hdd-plans .preferences-button', function(){
+    })
 
-            if( $( this ).hasClass( 'hdd-plans-starter' ) ){
-                cardInfo( 'starter' );
-            }else if( $( this ).hasClass( 'hdd-plans-pro' ) ){
-                cardInfo( 'pro' );
-            }else if( $( this ).hasClass( 'hdd-plans-advance' ) ){
-                cardInfo( 'advance' );
-            }else if( $( this ).hasClass( 'hdd-plans-ultimate' ) ){
-                cardInfo( 'ultimate' );
+    // Shows prev card when clicked ( Disk Tab )
+    .on( 'click', '.preferences-card-prev', function(){
+
+        degrees -= 90;
+
+        card
+        .css( 'perspective', '500px' )
+        .transition({
+
+            rotateY: degrees + 'deg'
+
+        }, 250, function(){
+
+            degrees -= 180;
+
+            card.css( 'rotateY', degrees + 'deg' ); 
+
+            var cardType = '';
+
+            if( card.hasClass( 'pro' ) ){
+                cardType = 'starter';
+            }else if( card.hasClass( 'advance' ) ){
+                cardType = 'pro';
+            }else if( card.hasClass( 'ultimate' ) ){
+                cardType = 'advance';
             }
 
-            card.css({ display : 'block', scale : 0 }).transition({
-                opacity : 1,
-                scale : 1
-            }, 400, function(){
-                cardArrows();
-            })
+            card.removeClass().addClass( 'preferences-hdd-card' );
 
-        })
-
-        // Shows prev card when clicked ( Disk Tab )
-        .on( 'click', '.preferences-card-prev', function(){
+            cardInfo( cardType );
+            cardArrows();
 
             degrees -= 90;
 
-            card
-            .css( 'perspective', '500px' )
-            .transition({
+            card.transition({
 
                 rotateY: degrees + 'deg'
 
-            }, 250, function(){
+            }, 250 );
 
-                degrees -= 180;
+        });
 
-                card.css( 'rotateY', degrees + 'deg' ); 
+    })
 
-                var cardType = '';
+    // Shows next card when clicked ( Disk Tab )
+    .on( 'click', '.preferences-card-next', function(){
 
-                if( card.hasClass( 'pro' ) ){
-                    cardType = 'starter';
-                }else if( card.hasClass( 'advance' ) ){
-                    cardType = 'pro';
-                }else if( card.hasClass( 'ultimate' ) ){
-                    cardType = 'advance';
-                }
+        degrees += 90;
 
-                card.removeClass().addClass( 'preferences-hdd-card' );
+        card
+        .css( 'perspective', '500px' )
+        .transition({
 
-                cardInfo( cardType );
-                cardArrows();
+            rotateY: degrees + 'deg',
 
-                degrees -= 90;
+        }, 250, function(){
 
-                card.transition({
+            degrees += 180;
 
-                    rotateY: degrees + 'deg'
+            card.css( 'rotateY', degrees + 'deg' );
 
-                }, 250 );
+            var cardType = '';
 
-            });
+            if( card.hasClass( 'starter' ) ){
+                cardType = 'pro';
+            }else if( card.hasClass( 'pro' ) ){
+                cardType = 'advance';
+            }else if( card.hasClass( 'advance' ) ){
+                cardType = 'ultimate';
+            }
 
-        })
+            card.removeClass().addClass( 'preferences-hdd-card' );
 
-        // Shows next card when clicked ( Disk Tab )
-        .on( 'click', '.preferences-card-next', function(){
+            cardInfo( cardType );
+            cardArrows();
 
             degrees += 90;
 
-            card
-            .css( 'perspective', '500px' )
-            .transition({
+            card.transition({
 
                 rotateY: degrees + 'deg',
 
-            }, 250, function(){
+            }, 250 );
 
-                degrees += 180;
+        });
 
-                card.css( 'rotateY', degrees + 'deg' );
+    })
 
-                var cardType = '';
+    // Closes card plan ( Disk Tab )
+    .on( 'click', '.preferences-card-close', function(){
 
-                if( card.hasClass( 'starter' ) ){
-                    cardType = 'pro';
-                }else if( card.hasClass( 'pro' ) ){
-                    cardType = 'advance';
-                }else if( card.hasClass( 'advance' ) ){
-                    cardType = 'ultimate';
-                }
+        $( '.preferences-hdd-plans', win ).css( 'display', 'block' );
 
-                card.removeClass().addClass( 'preferences-hdd-card' );
-
-                cardInfo( cardType );
-                cardArrows();
-
-                degrees += 90;
-
-                card.transition({
-
-                    rotateY: degrees + 'deg',
-
-                }, 250 );
-
-            });
-
+        card.transition({
+            opacity : 0,
+            scale : 0
+        }, 400, function(){
+            $( this ).css( 'display', 'none' );
         })
 
-        // Closes card plan ( Disk Tab )
-        .on( 'click', '.preferences-card-close', function(){
+        card.removeClass().addClass( 'preferences-hdd-card' );
+        $( '.preferences-card-prev', win ).css( 'display', 'none' );
+        $( '.preferences-card-next', win ).css( 'display', 'none' );
 
-            $( '.preferences-hdd-plans', win ).css( 'display', 'block' );
+        configObject.update( function(){
 
-            card.transition({
-                opacity : 0,
-                scale : 0
-            }, 400, function(){
-                $( this ).css( 'display', 'none' );
-            })
+            cakeTitle.text( lang.currentUsage );
+            cakeTotal.text( wz.tool.bytesToUnit( configObject.quotaMax ) );
+            cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
 
-            card.removeClass().addClass( 'preferences-hdd-card' );
-            $( '.preferences-card-prev', win ).css( 'display', 'none' );
-            $( '.preferences-card-next', win ).css( 'display', 'none' );
+            changeCake( 0 );
 
-            configObject.update( function(){
+        });
 
-                cakeTitle.text( lang.currentUsage );
-                cakeTotal.text( wz.tool.bytesToUnit( configObject.quotaMax ) );
-                cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
+    })
 
-                changeCake( 0 );
+    // Adds +1 hour to the clock
+    .on( 'click', '.preferences-config-up', function(){
 
-            });
+        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) + 1, date.getMinutes() ) + 'deg)' );
+        configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
+        $( '.preferences-config-auto', win ).removeClass( 'checked' );
 
-        })
+        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        // Adds +1 hour to the clock
-        .on( 'click', '.preferences-config-up', function(){
+        configObject.changeTimeZone( timeZone, function( error ){
 
-            clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) + 1, date.getMinutes() ) + 'deg)' );
-            configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
-            $( '.preferences-config-auto', win ).removeClass( 'checked' );
+            if( error ){
 
-            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+                alert( error, null, win.data( 'win' ) );
 
-            configObject.changeTimeZone( timeZone, function( error ){
+            }
 
-                if( error ){
+        });
 
-                    alert( error, null, win.data( 'win' ) );
+    })
 
-                }
+    // Substracts -1 hour to the clock
+    .on( 'click', '.preferences-config-down', function(){
 
-            });
+        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) - 1, date.getMinutes() ) + 'deg)' );
+        configNow.text( coolHour( parseInt( configNow.text(), 10 ) - 1 ) );
+        $( '.preferences-config-auto', win ).removeClass( 'checked' );
 
-        })
+        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        // Substracts -1 hour to the clock
-        .on( 'click', '.preferences-config-down', function(){
+        configObject.changeTimeZone( timeZone, function( error ){
 
-            clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) - 1, date.getMinutes() ) + 'deg)' );
-            configNow.text( coolHour( parseInt( configNow.text(), 10 ) - 1 ) );
-            $( '.preferences-config-auto', win ).removeClass( 'checked' );
+            if( error ){
 
-            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+                alert( error, null, win.data( 'win' ) );
 
-            configObject.changeTimeZone( timeZone, function( error ){
+            }
 
-                if( error ){
+        });
 
-                    alert( error, null, win.data( 'win' ) );
+    })
 
-                }
+    .on( 'click', '.preferences-config-auto', function(){
 
-            });
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+        
+        if( hour < 10 ){ hour = '0' + hour; }
+        if( minutes < 10 ){ minutes = '0' + minutes; }
 
-        })
+        configNow.text( hour );
+        clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
 
-        .on( 'click', '.preferences-config-auto', function(){
+        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-            var hour = date.getHours();
-            var minutes = date.getMinutes();
+        configObject.changeTimeZone( timeZone, function( error ){
+
+            if( error ){
+
+                alert( error, null, win.data( 'win' ) );
+
+            }
+
+        });
+
+    })
+
+    .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
+
+        var button = $( this );
+
+        configObject.changeDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+
+            if( error ){
+                alert( error );
+            }
             
-            if( hour < 10 ){ hour = '0' + hour; }
-            if( minutes < 10 ){ minutes = '0' + minutes; }
+        });
 
-            configNow.text( hour );
-            clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
+    })
 
-            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+    .on( 'click', '.preferences-language-element', function(){
 
-            configObject.changeTimeZone( timeZone, function( error ){
+        $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
 
-                if( error ){
+        if( $( this ).hasClass( 'english-uk' ) ){
+            configObject.changeLanguage( 'en-en' );
+        }else if( $( this ).hasClass( 'english-us' ) ){
+            configObject.changeLanguage( 'en-us' );
+        }else if( $( this ).hasClass( 'spanish' ) ){
+            configObject.changeLanguage( 'es-es' );
+        }
 
-                    alert( error, null, win.data( 'win' ) );
+    })
 
-                }
+    // Launches browser window to add an account
+    .on( 'click', '.preferences-social-icon.plus', function(){
+        wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
+    })
 
-            });
+    // Launches settings window of social networks ( Social Networks Tab )
+    .on( 'click', '.preferences-social-icon.settings', function(){
+        wz.app.createWindow( 3, null/*$( this ).parent( '.preferences-social-account' ).data( 'id' )*/, 'social' );
+    })
 
-        })
+    // Capturing the avatar uploading progress
+    .on( 'avatar-upload-progress', function( event, percent ){
 
-        .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
+        if( !avatarUploading ){
 
-            var button = $( this );
+            $( '.preferences-account-avatar', win )[ 0 ].getContext('2d').clearRect( 0, 0, 148, 148 );
+            $( '.preferences-account-avatar', win ).css( 'opacity', 1 )
+            avatarGrads = 0;
 
-            configObject.changeDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+            avatarUploading = true;
+            $( '.avatar-edit', win ).text( '' ).transition({ width : '1px', 'margin-right' : '84px' }, 500, function(){ $( this ).css( 'opacity', 0 ); } );
 
-                if( error ){
-                    alert( error );
-                }
-                
-            });
+        }
 
-        })
+        uploadingAvatar( percent );
 
-        .on( 'click', '.preferences-language-element', function(){
+    })
 
-            $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
+    // Capturing the avatar uploading end
+    .on( 'avatar-upload-end', function(){
 
-            if( $( this ).hasClass( 'english-uk' ) ){
-                configObject.changeLanguage( 'en-en' );
-            }else if( $( this ).hasClass( 'english-us' ) ){
-                configObject.changeLanguage( 'en-us' );
-            }else if( $( this ).hasClass( 'spanish' ) ){
-                configObject.changeLanguage( 'es-es' );
-            }
+        $( '.preferences-account-image', win ).transition({ opacity: 0.3 }, 100, function(){
 
-        })
+            $( this ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' ).transition({ opacity : 1 }, 100, function(){
 
-        // Launches browser window to add an account
-        .on( 'click', '.preferences-social-icon.plus', function(){
-            wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
-        })
+                $( '.preferences-account-avatar', win ).transition({ opacity : 0 }, function(){
 
-        // Launches settings window of social networks ( Social Networks Tab )
-        .on( 'click', '.preferences-social-icon.settings', function(){
-            wz.app.createWindow( 3, null/*$( this ).parent( '.preferences-social-account' ).data( 'id' )*/, 'social' );
-        })
+                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #7EBE30' }, function(){
+                        $( this ).transition({ 'box-shadow' : 'none' });
+                    });
 
-        // Capturing the avatar uploading progress
-        .on( 'avatar-upload-progress', function( event, percent ){
-
-            if( !avatarUploading ){
-
-                $( '.preferences-account-avatar', win )[ 0 ].getContext('2d').clearRect( 0, 0, 148, 148 );
-                $( '.preferences-account-avatar', win ).css( 'opacity', 1 )
-                avatarGrads = 0;
-
-                avatarUploading = true;
-                $( '.avatar-edit', win ).text( '' ).transition({ width : '1px', 'margin-right' : '84px' }, 500, function(){ $( this ).css( 'opacity', 0 ); } );
-
-            }
-
-            uploadingAvatar( percent );
-
-        })
-
-        // Capturing the avatar uploading end
-        .on( 'avatar-upload-end', function(){
-
-            $( '.preferences-account-image', win ).transition({ opacity: 0.3 }, 100, function(){
-
-                $( this ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' ).transition({ opacity : 1 }, 100, function(){
-
-                    $( '.preferences-account-avatar', win ).transition({ opacity : 0 }, function(){
-
-                        $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #7EBE30' }, function(){
-                            $( this ).transition({ 'box-shadow' : 'none' });
-                        });
-
-                        $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
-                            $( this ).text( lang.avatarEdit );
-                            avatarUploading = false;
-                        });
-
+                    $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
+                        $( this ).text( lang.avatarEdit );
+                        avatarUploading = false;
                     });
 
                 });
 
             });
 
-        })
-
-        // Capturing the walppaper uploading progress
-        .on( 'wallpaper-upload-progress', function( event, percent ){
-            $( '.preferences-upload-uploading', win ).css({ height: 35 * percent + 'px', top: 35 * ( 1 - percent ) + 10 + 'px' });
-        })
-
-        // Capturing the wallpaper uploading end
-        .on( 'wallpaper-upload-end', function(){
-            $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
-        })
-
-        .on( 'click', '.preferences-button.invite', function(){
-            console.log(1);
-            wz.weekey.create( function( error, weekey ){
-
-                if( error === 'DEMO CAN NOT CREATE A WEEKEY' ){
-                    alert( 'Demo accounts can\'t create weeKeys', null, win.data( 'win' ) );
-                }else if( error === 'CAN NOT CREATE MORE WEEKEYS' ){
-                    alert( 'You can\'t create more weeKeys', null, win.data( 'win' ) );
-                }else{
-
-                    console.log( error, weekey );
-                    $( '.preferences-bottom-input.invite span' ).text( weekey );
-                    wz.weekey.getList( function( error, list ){
-                        $( '.preferences-invite-left', win ).text( lang.invitesLeft + ':' + ' ' + ( 3 - list.length ) );
-                    });
-
-                }
-                
-            });
-
         });
+
+    })
+
+    // Capturing the walppaper uploading progress
+    .on( 'wallpaper-upload-progress', function( event, percent ){
+        $( '.preferences-upload-uploading', win ).css({ height: 35 * percent + 'px', top: 35 * ( 1 - percent ) + 10 + 'px' });
+    })
+
+    // Capturing the wallpaper uploading end
+    .on( 'wallpaper-upload-end', function(){
+        $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
+    })
+
+    .on( 'click', '.preferences-button.invite', function(){
+        console.log(1);
+        wz.weekey.create( function( error, weekey ){
+
+            if( error === 'DEMO CAN NOT CREATE A WEEKEY' ){
+                alert( 'Demo accounts can\'t create weeKeys', null, win.data( 'win' ) );
+            }else if( error === 'CAN NOT CREATE MORE WEEKEYS' ){
+                alert( 'You can\'t create more weeKeys', null, win.data( 'win' ) );
+            }else{
+
+                console.log( error, weekey );
+                $( '.preferences-bottom-input.invite span' ).text( weekey );
+                wz.weekey.getList( function( error, list ){
+                    $( '.preferences-invite-left', win ).text( lang.invitesLeft + ':' + ' ' + ( 3 - list.length ) );
+                });
+
+            }
+            
+        });
+
+    });
 
     // This function fills certain gaps with user's info
     wz.config( function( error, config ){
