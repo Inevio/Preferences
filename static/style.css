@@ -73,6 +73,12 @@
     
 }
 
+.wz-win.wz-win-dragging .preferences-top li:hover{
+    
+    border-bottom: 2px solid transparent;
+    
+}
+
 .preferences-top li.active:hover{
     
     color: #FFFFFF;

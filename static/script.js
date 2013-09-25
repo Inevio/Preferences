@@ -389,7 +389,7 @@
 
         clearInterval( clockInterval );
 
-        //if( !$( win ).parent( '.wz-win-container' ).hasClass( 'wz-drag-active' ) ){
+        if( !$( win ).hasClass( 'wz-win-dragging' ) ){
 
             var oldActive = $( 'li.active', win );
             var newActive = $( this );
@@ -419,7 +419,7 @@
 
             }
 
-        //}
+        }
 
     })
 
