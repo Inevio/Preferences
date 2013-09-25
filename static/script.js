@@ -1061,7 +1061,8 @@
     })
 
     // Capturing the wallpaper uploading end
-    .on( 'wallpaper-upload-end', function(){
+    .on( 'wallpaper-upload-end', function( event, caca, culo ){
+        console.log( event, caca, culo );
         $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
     })
 
@@ -1075,7 +1076,6 @@
                 alert( 'You can\'t create more weeKeys', null, win.data( 'win' ) );
             }else{
 
-                console.log( error, weekey );
                 $( '.preferences-bottom-input.invite span' ).text( weekey );
                 invitationInfo()
 
