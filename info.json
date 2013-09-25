@@ -25,7 +25,7 @@
     "common" : {
 
         "css"    : ["style.css"],
-        "script" : ["script.js"]
+        "script" : []
 
     },
 
@@ -59,7 +59,7 @@
             },
 
             "css"    : [],
-            "script" : []
+            "script" : ["script.js"]
 
         },
 

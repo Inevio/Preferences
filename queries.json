@@ -1,4 +1,7 @@
 
 {
     
+	"insertAccount" : "INSERT INTO social VALUES ( @userId, ?, ? )",
+	"removeAccount" : "DELETE FROM social WHERE "
+
 }
