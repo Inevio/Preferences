@@ -353,25 +353,26 @@
 
         wz.weekey.getList( function( error, list, left ){
 
-            console.log( error, list, left );
-
             $( '.preferences-invite-left', win ).text( lang.invitesLeft + ': ' + left );
 
             if( list.length ){
 
                 $( '.preferences-invite-invited', win ).addClass( 'display' );
+                $( '.preferences-invite-friends', win ).children().not( '.wz-prototype' ).remove();
 
                 for( var i = 0; i < list.length; i++ ){
 
-                    var invitedFriend = $( '.preferences-invite-friends .wz-prototype', win ).clone();
+                    var invitedFriend = $( '.preferences-invite-friends .wz-prototype', win ).clone().removeClass( 'wz-prototype' );
 
                     if( list[ i ].user ){
                         invitedFriend.find( 'img' ).attr( 'src', list[ i ].user.avatar.tiny );
-                        invitedFriend.find( 'span' ).text( list[ i ].user.fullname );
+                        invitedFriend.find( 'span' ).text( list[ i ].user.fullName );
                     }else{
-                        invitedFriend.find( 'img' ).attr( 'src', 'https://staticbeta.weezeel.com/app/3/ticket.png' );
+                        invitedFriend.find( 'img' ).attr( 'src', 'https://staticbeta.weezeel.com/app/3/weekey.png' );
                         invitedFriend.find( 'span' ).text( list[ i ].id );
                     }
+
+                    invitedFriend.appendTo( $( '.preferences-invite-friends', win ) );
 
                 }
 
