@@ -448,9 +448,7 @@
 
     // Shows info when Invite tab clicked
     .on( 'mouseup', 'li.invite', function(){
-        
-        
-
+        invitationInfo();
     })
 
     // Shows info when Account tab clicked
@@ -1215,7 +1213,7 @@
 
     */
 
-    .on( 'socialTwitterTweet', function( tweet ){
+    /*.on( 'socialTwitterTweet', function( tweet ){
 
         if( tweet.retweeted_status ){
 
@@ -1510,4 +1508,4 @@
             .icon( 'https://static.weezeel.com/app/3/facebook.png' )
             .render();
 
-    })
+    })*/
