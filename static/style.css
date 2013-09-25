@@ -1316,7 +1316,7 @@ span.preferences-card-subscribe-text{
     height: 80px;
     display: inline-block;
     background: url('https://staticbeta.weezeel.com/app/3/wallpapers.jpg') no-repeat;
-    background-size: 640px 240px;
+    background-size: 640px 320px;
     margin: 5px;
 
 }
@@ -1325,60 +1325,68 @@ span.preferences-card-subscribe-text{
     box-shadow: 0 0 0 4px #FFF inset;
 }
 
-.preferences-wallpaper-image.two{
+.wallpaper-2{
     background-position: -128px 0;
 }
 
-.preferences-wallpaper-image.three{
+.wallpaper-3{
     background-position: -256px 0;
 }
 
-.preferences-wallpaper-image.four{
+.wallpaper-4{
     background-position: -384px 0;
 }
 
-.preferences-wallpaper-image.five{
+.wallpaper-5{
     background-position: -512px 0;
 }
 
-.preferences-wallpaper-image.six{
+.wallpaper-6{
     background-position: 0 -80px;
 }
 
-.preferences-wallpaper-image.seven{
+.wallpaper-7{
     background-position: -128px -80px;
 }
 
-.preferences-wallpaper-image.eight{
+.wallpaper-8{
     background-position: -256px -80px;
 }
 
-.preferences-wallpaper-image.nine{
+.wallpaper-9{
     background-position: -384px -80px;
 }
 
-.preferences-wallpaper-image.ten{
+.wallpaper-10{
     background-position: -512px -80px;
 }
 
-.preferences-wallpaper-image.eleven{
+.wallpaper-11{
     background-position: 0 -160px;
 }
 
-.preferences-wallpaper-image.twelve{
+.wallpaper-12{
     background-position: -128px -160px;
 }
 
-.preferences-wallpaper-image.thirteen{
+.wallpaper-13{
     background-position: -256px -160px;
 }
 
-.preferences-wallpaper-image.fourteen{
+.wallpaper-14{
     background-position: -384px -160px;
 }
 
-.preferences-wallpaper-image.fifteen{
+.wallpaper-15{
     background-position: -512px -160px;
+}
+
+.wallpaper-16{
+    background-position: 0 -240px;
+}
+
+.wallpaper-17{
+    background-position: -128px -240px;
 }
 
 /* CUSTOMIZE ZONE FINISH */

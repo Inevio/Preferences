@@ -1112,7 +1112,11 @@
         });
 
         wz.config.getWallpaper( function( error, wallpapers, used ){
-            console.log( used );
+
+            console.log( wallpapers, used );
+
+            $( '.wallpaper-' + used.id, win ).addClass( 'active' );
+
         });
 
     });
