@@ -1327,6 +1327,10 @@ span.preferences-card-subscribe-text{
 
 }
 
+.preferences-wallpaper-image.custom{
+    background-size: cover;
+}
+
 .preferences-wallpaper-image.active{
     box-shadow: 0 0 0 4px #FFF inset;
 }

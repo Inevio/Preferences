@@ -1113,9 +1113,11 @@
 
         wz.config.getWallpaper( function( error, wallpapers, used ){
 
-            console.log( wallpapers, used );
-
-            $( '.wallpaper-' + used.id, win ).addClass( 'active' );
+            if( used.custom ){
+                $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
+            }else{
+                $( '.wallpaper-' + used.id, win ).addClass( 'active' );
+            }
 
         });
 
