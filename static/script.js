@@ -1005,7 +1005,8 @@
 
     // Launches browser window to add an account
     .on( 'click', '.preferences-social-icon.plus', function(){
-        wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
+        alert( 'Demo accounts can\'t add social networks', null, win.data( 'win' ) );
+        //wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
     })
 
     // Launches settings window of social networks ( Social Networks Tab )
