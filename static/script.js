@@ -736,7 +736,9 @@
 
         if( !$( this ).hasClass( 'active' ) ){
 
-            $( this ).addClass( 'active' ).siblings( '.preferences-wallpaper-image.active' ).removeClass( 'active' );
+            $( '.preferences-wallpaper-image.active', win ).removeClass( 'active' );
+            $( this ).addClass( 'active' );
+            $( '.preferences-wallpaper-image.custom', win ).addClass( 'wz-prototype' );
 
             var id = $( this ).attr( 'data-id' );
 
@@ -1061,9 +1063,13 @@
     })
 
     // Capturing the wallpaper uploading end
-    .on( 'wallpaper-upload-end', function( event, caca, culo ){
-        console.log( event, caca, culo );
+    .on( 'wallpaper-upload-end', function( event, wallpaper ){
+
         $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
+
+        $( '.preferences-wallpaper-image.active', win ).removeClass( 'active' );
+        $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + wallpaper[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
+
     })
 
     .on( 'click', '.preferences-button.invite', function(){
