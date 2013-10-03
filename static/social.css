@@ -66,12 +66,23 @@
 .preferences-content{
 
     width: 252px;
-    height: 158px;
+    height: 268px;
     padding: 20px 15px;
     float: left;
     background: #3A3A3A;
     border: 1px solid #252525;
     border-top: none;
+
+}
+
+span.preferences-content-title{
+
+    width: 100% !important;
+    text-align: left !important;
+    font-size: 13px;
+    color: #FFF;
+    float: left;
+    margin-bottom: 15px;
 
 }
 

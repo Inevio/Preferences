@@ -41,6 +41,9 @@
     var cardDescriptionThree = $( '.preferences-card-description-three', win );
     var cardDescriptionFour  = $( '.preferences-card-description-four', win );
 
+    // Social Accounts
+    var accountPrototype = $( '.preferences-social-account.wz-prototype', win );
+
     // Quota circle variables
     var cakeCanvas   = null;
     var cakeInterval = 0;
@@ -1017,13 +1020,23 @@
 
     // Launches browser window to add an account
     .on( 'click', '.preferences-social-icon.plus', function(){
-        alert( 'Demo accounts can\'t add social networks', null, win.data( 'win' ) );
-        //wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
+        //alert( 'Demo accounts can\'t add social networks', null, win.data( 'win' ) );
+        wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
     })
 
     // Launches settings window of social networks ( Social Networks Tab )
     .on( 'click', '.preferences-social-icon.settings', function(){
-        wz.app.createWindow( 3, null/*$( this ).parent( '.preferences-social-account' ).data( 'id' )*/, 'social' );
+
+        var socialNetwork = $( this ).parent( '.preferences-social-account' )
+
+        wz.app.createWindow( 3, { 
+
+            type: socialNetwork.data( 'social-network' ), 
+            id: socialNetwork.data( 'id' ),
+            name: socialNetwork.data( 'name' )
+
+        }, 'social' );
+
     })
 
     // Capturing the avatar uploading progress
@@ -1117,6 +1130,24 @@
 
         username = config.user.user;
         mail = config.user.mail;
+
+        wz.social.getAccounts( function( error, list ){
+
+            for( var i = 0; i < list.accounts.length; i++ ){
+
+                accountPrototype
+                    .clone()
+                    .removeClass( 'wz-prototype' )
+                    .data( 'id', list.accounts[i].id )
+                    .data( 'social-network', list.accounts[i].network )
+                    .data( 'name', list.accounts[i].name)
+                    .appendTo( $( '.preferences-social-card.' + list.accounts[i].network, win ) )
+                    .find( '.preferences-social-name' )
+                    .text( list.accounts[i].name );
+
+            }
+
+        });
 
         wz.config.getLanguages( function( error, languages, used ){
 
@@ -1212,32 +1243,6 @@
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
     // SOCIAL NETWORKS CODE
-
-    /* STUFF TO ASK 
-
-    - Twitter:
-
-        · Notify all tweets
-        · Notify when message received
-        · Notify when someone replies my tweets
-        · Notify when someone mentions me
-        · Notify when someone retweets me
-        · Notify when someone favorites my tweets
-        · Notify when someone unfavorites my tweets
-        · Notify when I have new followers
-
-    - Facebook:
-
-        · Notify when tagged in a photo
-        · Notify when message received
-        · Notify about friend requests
-        · Notify about friend's new status
-        · Notify when friends post a new photo
-        · Notify group posts or requests
-        · Notify when events created
-        · Notify when notes, links or videos posted
-
-    */
 
     /*.on( 'socialTwitterTweet', function( tweet ){
 
