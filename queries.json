@@ -1,7 +1,10 @@
 
 {
     
-	"insertAccount" : "INSERT INTO social VALUES ( @userId, ?, ? )",
-	"removeAccount" : "DELETE FROM social WHERE "
+    "getAccount"    : "SELECT * FROM social WHERE account = ?",
+    "removeAccount" : "DELETE FROM social WHERE account = ?",
+    "getType"       : "SELECT * FROM social WHERE account = ? AND type = ?",
+	"insertType"    : "INSERT INTO social VALUES ( ?, ? )",
+	"removeType"    : "DELETE FROM social WHERE account = ? AND type = ?"
 
 }

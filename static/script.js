@@ -1244,7 +1244,37 @@
 
     // SOCIAL NETWORKS CODE
 
-    /*.on( 'socialTwitterTweet', function( tweet ){
+    win
+
+    .on( 'social-twitterAccountAdded', function( error, caca, culo ){
+
+        /*
+        error = evento
+        caca  = nick en twitter
+        culo  = null
+        */
+
+        console.log( error, caca, culo );
+
+        /*for( var i = 0; i < 8; i++ ){
+            wql.insertType( [ accountId, i ] );
+        }*/
+
+    })
+
+    .on( 'social-twitterAccountRemoved', function( error, caca, culo ){
+        console.log( error, caca, culo );
+    })
+
+    .on( 'social-facebookAccountAdded', function( error, caca, culo ){
+        console.log( error, caca, culo );
+    })
+
+    .on( 'social-facebookAccountRemoved', function( error, caca, culo ){
+        console.log( error, caca, culo );
+    })
+
+    /*.on( 'social-twitterTweet', function( tweet ){
 
         if( tweet.retweeted_status ){
 
@@ -1345,7 +1375,7 @@
 
     })
 
-    .on( 'socialFacebookGroupPost', function( data ){
+    .on( 'social-facebookGroupPost', function( data ){
 
         wz.banner()
             .title( data.group.name )
