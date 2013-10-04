@@ -33,15 +33,18 @@
 
 			if( $( this ).hasClass( 'checked' ) ){
 
-				wql.insertType( [ params.id, $( this ).data( 'type' ) ] );
+				wql.insertType( [ params.id, $( this ).data( 'type' ) ], function(){ return false });
 
 			}else{
 
-				wql.removeType( [ params.id, $( this ).data( 'type' ) ] );
+				wql.removeType( [ params.id, $( this ).data( 'type' ) ], function(){ return false });
 
 			}
 
 		});
+
+		service.trigger( 'config-changed' );
+		wz.app.closeWindow( win );
 
 	};
 
@@ -55,22 +58,14 @@
 		wz.app.closeWindow( win );
 	})
 
-	.on( 'click', '.preferences-button.accept', function(){
-
-		saveChanges( function(){
-
-			service.trigger( 'config-changed' );
-			wz.app.closeWindow( win );
-
-		});
-
+	.on( 'click', '.preferences-button.save', function(){
+		saveChanges();
 
 	})
 
 	.on( 'click', '.preferences-account-remove', function(){
-
 		wz.social.removeAccount( params.id );
-
+		wz.app.closeWindow( win );
 	});
 
 	if( params.type === 'facebook' ){
@@ -80,24 +75,16 @@
 
 		for( var i = 0; i < facebookOptions.length; i++ ){
 
+			checkboxPrototype
+				.clone().removeClass( 'wz-prototype' ).addClass( 'type-' + i )
+				.appendTo( $( '.preferences-content', win ) )
+				.data( 'type', i )
+				.find( 'span' ).text( facebookOptions[i] );
+
 			wql.getType( [ params.id, i ], function( error, result ){
 
 				if( result.length ){
-
-					checkboxPrototype
-						.clone().removeClass( 'wz-prototype' ).addClass( 'checked' )
-						.appendTo( $( '.preferences-content', win ) )
-						.data( 'type', i )
-						.find( 'span' ).text( facebookOptions[i] );
-
-				}else{
-
-					checkboxPrototype
-						.clone().removeClass( 'wz-prototype' )
-						.appendTo( $( '.preferences-content', win ) )
-						.data( 'type', i )
-						.find( 'span' ).text( facebookOptions[i] );
-
+					$( '.preferences-bottom-checkbox.type-' + result[0].type ).addClass( 'checked' );
 				}
 
 			});
@@ -113,24 +100,16 @@
 
 		for( var i = 0; i < twitterOptions.length; i++ ){
 
+			checkboxPrototype
+				.clone().removeClass( 'wz-prototype' ).addClass( 'type-' + i )
+				.appendTo( $( '.preferences-content', win ) )
+				.data( 'type', i )
+				.find( 'span' ).text( twitterOptions[i] );
+
 			wql.getType( [ params.id, i ], function( error, result ){
 
 				if( result.length ){
-
-					checkboxPrototype
-						.clone().removeClass( 'wz-prototype' ).addClass( 'checked' )
-						.appendTo( $( '.preferences-content', win ) )
-						.data( 'type', i )
-						.find( 'span' ).text( facebookOptions[i] );
-
-				}else{
-
-					checkboxPrototype
-						.clone().removeClass( 'wz-prototype' )
-						.appendTo( $( '.preferences-content', win ) )
-						.data( 'type', i )
-						.find( 'span' ).text( facebookOptions[i] );
-
+					$( '.preferences-bottom-checkbox.type-' + result[0].type ).addClass( 'checked' );
 				}
 
 			});

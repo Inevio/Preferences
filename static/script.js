@@ -385,6 +385,30 @@
 
     };
 
+    var socialNetworks = function(){
+
+        $( '.preferences-social-card', win ).children().not( '.preferences-social-title' ).remove();
+
+        wz.social.getAccounts( function( error, list ){
+
+            for( var i = 0; i < list.accounts.length; i++ ){
+
+                accountPrototype
+                    .clone()
+                    .removeClass( 'wz-prototype' )
+                    .data( 'id', list.accounts[i].id )
+                    .data( 'social-network', list.accounts[i].network )
+                    .data( 'name', list.accounts[i].name)
+                    .appendTo( $( '.preferences-social-card.' + list.accounts[i].network, win ) )
+                    .find( '.preferences-social-name' )
+                    .text( list.accounts[i].name );
+
+            }
+
+        });
+
+    };
+
     win
 
     // This function changes the content when a tab is clicked
@@ -1131,23 +1155,7 @@
         username = config.user.user;
         mail = config.user.mail;
 
-        wz.social.getAccounts( function( error, list ){
-
-            for( var i = 0; i < list.accounts.length; i++ ){
-
-                accountPrototype
-                    .clone()
-                    .removeClass( 'wz-prototype' )
-                    .data( 'id', list.accounts[i].id )
-                    .data( 'social-network', list.accounts[i].network )
-                    .data( 'name', list.accounts[i].name)
-                    .appendTo( $( '.preferences-social-card.' + list.accounts[i].network, win ) )
-                    .find( '.preferences-social-name' )
-                    .text( list.accounts[i].name );
-
-            }
-
-        });
+        socialNetworks();
 
         wz.config.getLanguages( function( error, languages, used ){
 
@@ -1246,327 +1254,158 @@
 
     win
 
-    .on( 'social-twitterAccountAdded', function( error, caca, culo ){
-
-        /*
-        error = evento
-        caca  = nick en twitter
-        culo  = null
-        */
-
-        console.log( error, caca, culo );
-
-        /*for( var i = 0; i < 8; i++ ){
-            wql.insertType( [ accountId, i ] );
-        }*/
-
-    })
-
-    .on( 'social-twitterAccountRemoved', function( error, caca, culo ){
-        console.log( error, caca, culo );
-    })
-
-    .on( 'social-facebookAccountAdded', function( error, caca, culo ){
-        console.log( error, caca, culo );
-    })
-
-    .on( 'social-facebookAccountRemoved', function( error, caca, culo ){
-        console.log( error, caca, culo );
-    })
-
-    /*.on( 'social-twitterTweet', function( tweet ){
-
-        if( tweet.retweeted_status ){
-
-            wz.banner()
-                .title( tweet.user.name )
-                .text( tweet.retweeted_status.text )
-                .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                .popup( tweet.url, 600, 500 )
-                .render();
-
-        }else{
-
-            wz.banner()
-                .title( tweet.user.name )
-                .text( tweet.text )
-                .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                .popup( tweet.url, 600, 500 )
-                .render();
-
-        }            
-
-    })
-
-    .on( 'socialTwitterMessage', function( message ){
-
-        wz.banner()
-            .title( wzLang.twitter.message + ' ' + message.direct_message.sender_screen_name )
-            .text( message.direct_message.text )
-            .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-            //.popup( tweet.url, 600, 500 )
-            .render();
-
-    })
-
-    .on( 'socialTwitterReply', function( reply ){
-
-        wz.banner()
-            .title( reply.user.name + ' ' + wzLang.twitter.reply )
-            .text( reply.text )
-            .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-            .popup( reply.url, 600, 500 )
-            .render();
-
-    })
-
-    .on( 'socialTwitterMention', function( mention ){
-
-        wz.banner()
-            .title( mention.user.name + ' ' + wzLang.twitter.mention )
-            .text( mention.text )
-            .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-            .popup( mention.url, 600, 500 )
-            .render();
-
-    })
-
-    .on( 'socialTwitterRetweet', function( retweet ){
-
-        wz.banner()
-            .title( retweet.user.name + ' ' + wzLang.twitter.retweet )
-            .text( retweet.retweeted_status.text )
-            .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-            .popup( retweet.url, 600, 500 )
-            .render();
-
-    })
-
-    .on( 'socialTwitterFavorite', function( fav ){
-
-        wz.banner()
-            .title( fav.source.name + ' ' + wzLang.twitter.fav )
-            .text( fav.target_object.text )
-            .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-            .popup( fav.url, 600, 500 )
-            .render();
-
-    })
-
-    .on( 'socialTwitterUnfavorite', function( unfav ){
-
-        wz.banner()
-            .title( unfav.source.name + ' ' + wzLang.twitter.unfav )
-            .text( unfav.target_object.text )
-            .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-            .popup( unfav.url, 600, 500 )
-            .render();
-
-    })
-
-    .on( 'socialTwitterFollow', function( follow ){
-
-        wz.banner()
-            .title( wzLang.twitter.follow )
-            .text( follow.source.name + ' ' + wzLang.twitter.followMessage )
-            .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-            .popup( follow.url, 600, 500 )
-            .render();
-
-    })
-
-    .on( 'social-facebookGroupPost', function( data ){
-
-        wz.banner()
-            .title( data.group.name )
-            .text( data.user.name + ': ' + data.message )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
-
-    })
-
-    .on( 'socialFacebookEventCreated', function( data ){
-
-        wz.banner()
-            .title( wzLang.facebook.eventCreated )
-            .text( data.user.name + ' ' + wzLang.facebook.eventCreated + ' ' + data.event.name )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
-
-    })
-
-    .on( 'socialFacebookStatusUpdated', function( data ){
-
-        var name = '';
-
-        if( data.user ){
-            name = data.user.name;
-            debug.log( 'user' );
-        }else if( data.page ){
-            name = data.page.name;
-            debug.log( 'page' );
-        }else if( data.group ){
-            name = data.group.name;
-            debug.log( 'group' );
-        }else if( data.event ){
-            name = data.event.name;
-            debug.log( 'event' );
-        }else{
-            debug.log( 'Sin tipo' );
+    .on( 'social-twitterAccountAdded', function( event, account ){
+        
+        for( var i = 0; i < 8; i++ ){
+            wql.insertType( [ account.id, i ] );
         }
 
-        wz.banner()
-            .title( name + ' ' + wzLang.facebook.statusUpdated )
-            .text( data.message )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        socialNetworks();
 
     })
 
-    .on( 'socialFacebookPhotoPosted', function( data ){
+    .on( 'social-twitterAccountRemoved', function( event, accountId ){
+        wql.removeAccount( accountId );
+        socialNetworks();
+    })
 
-        if( data.message ){
-            var photoPostedText = wzLang.facebook.photoPostedText1 + ' ' + data.message;
-        }else{
-            var photoPostedText = wzLang.facebook.photoPostedText2;
+    .on( 'social-facebookAccountAdded', function( event, account ){
+        
+        for( var i = 0; i < 8; i++ ){
+            wql.insertType( [ account.id, i ] );
         }
 
-        var name = '';
-
-        if( data.user ){
-            name = data.user.name;
-            debug.log( 'user' );
-        }else if( data.page ){
-            name = data.page.name;
-            debug.log( 'page' );
-        }else if( data.group ){
-            name = data.group.name;
-            debug.log( 'group' );
-        }else if( data.event ){
-            name = data.event.name;
-            debug.log( 'event' );
-        }else{
-            debug.log( 'Sin tipo' );
-        }
-
-        wz.banner()
-            .title( wzLang.facebook.photoPosted + ' ' + name )
-            .text( data.user.name + ' ' + photoPostedText )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        socialNetworks();
 
     })
 
-    .on( 'socialFacebookNoteCreated', function( data ){
+    .on( 'social-facebookAccountRemoved', function( event, accountId ){
+        wql.removeAccount( accountId );
+        socialNetworks();
+    })
 
-        wz.banner()
-            .title( data.user.name + ' ' + wzLang.facebook.noteCreated )
-            .text( data.user.name + ' ' + wzLang.facebook.noteCreatedText + ' ' + data.attachment.name )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+    .on( 'social-twitterTweet', function( event, account, tweet ){
+
+        service.trigger( 'social-twitterTweet', [ account, tweet ] );           
 
     })
 
-    .on( 'socialFacebookLinkPosted', function( data ){
+    .on( 'social-twitterMessage', function( event, account, message ){
 
-        var name = '';
-
-        if( data.user ){
-            name = data.user.name;
-            debug.log( 'user' );
-        }else if( data.page ){
-            name = data.page.name;
-            debug.log( 'page' );
-        }else if( data.group ){
-            name = data.group.name;
-            debug.log( 'group' );
-        }else if( data.event ){
-            name = data.event.name;
-            debug.log( 'event' );
-        }else{
-            debug.log( 'Sin tipo' );
-        }
-
-        wz.banner()
-            .title( wzLang.facebook.linkPosted + ' ' + name )
-            .text( data.attachment.description )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-twitterMessage', [ account, message ] ); 
 
     })
 
-    .on( 'socialFacebookVideoPosted', function( data ){
+    .on( 'social-twitterReply', function( event, account, reply ){
 
-        if( data.message ){
-            var videoPostedText = wzLang.facebook.videoPostedText1 + ' ' + data.message;
-        }else{
-            var videoPostedText = wzLang.facebook.videoPostedText2;
-        }
-
-        wz.banner()
-            .title( data.user.name + ' ' + wzLang.facebook.videoPosted )
-            .text( videoPostedText )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-twitterReply', [ account, reply ] );
 
     })
 
-    .on( 'socialFacebookMessage', function( data ){
+    .on( 'social-twitterMention', function( event, account, mention ){
 
-        wz.banner()
-            .title( wzLang.facebook.message + ' ' + data.user.name )
-            .text( data.body )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-twitterMention', [ account, mention ] );
 
     })
 
-    .on( 'socialFacebookFriendRequest', function( data ){
+    .on( 'social-twitterRetweet', function( event, account, retweet ){
 
-        wz.banner()
-            .title( wzLang.facebook.request + ' ' + data.user.name )
-            .text( data.body )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-twitterRetweet', [ account, retweet ] );
 
     })
 
-    .on( 'socialFacebookNotificationEvent', function( data ){
+    .on( 'social-twitterFavorite', function( event, account, fav ){
 
-        wz.banner()
-            .title( wzLang.facebook.eventCreated )
-            .text( data.user.name + ' ' + wzLang.facebook.eventCreated + ' ' + data.event.name )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-twitterFavorite', [ account, fav ] );
 
     })
 
-    .on( 'socialFacebookNotificationFriend', function( data ){
+    .on( 'social-twitterUnfavorite', function( event, account, unfav ){
 
-        wz.banner()
-            .title( wzLang.core.requestAccepted )
-            .text( data.user.name + ' ' + wzLang.core.requestAcceptedExplain )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-twitterUnfavorite', [ account, unfav ] );
 
     })
 
-    .on( 'socialFacebookNotificationGroup', function( data ){
+    .on( 'social-twitterFollow', function( event, account, follow ){
 
-        wz.banner()
-            .title( wzLang.core.groupRequest )
-            .text( wzLang.core.groupRequestOne + data.group.name + ' ' + wzLang.core.groupRequestTwo )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-twitterFollow', [ account, follow ] );
 
     })
 
-    .on( 'socialFacebookNotificationPhoto', function( data ){
+    .on( 'social-facebookGroupPost', function( event, account, data ){
 
-        wz.banner()
-            .title( wzLang.core.userTagged )
-            .text( data.user.name + ' ' + wzLang.core.beenTagged )
-            .icon( 'https://static.weezeel.com/app/3/facebook.png' )
-            .render();
+        service.trigger( 'social-facebookGroupPost', [ account, data ] );
 
-    })*/
+    })
+
+    .on( 'social-facebookEventCreated', function( event, account, data ){
+
+        service.trigger( 'social-facebookEventCreated', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookStatusUpdated', function( event, account, data ){
+
+        service.trigger( 'social-facebookStatusUpdated', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookPhotoPosted', function( event, account, data ){
+
+        service.trigger( 'social-facebookPhotoPosted', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookNoteCreated', function( event, account, data ){
+
+        service.trigger( 'social-facebookNoteCreated', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookLinkPosted', function( event, account, data ){
+
+        service.trigger( 'social-facebookLinkPosted', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookVideoPosted', function( event, account, data ){
+
+        service.trigger( 'social-facebookVideoPosted', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookMessage', function( event, account, data ){
+
+        service.trigger( 'social-facebookMessage', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookFriendRequest', function( event, account, data ){
+
+        service.trigger( 'social-facebookFriendRequest', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookNotificationEvent', function( event, account, data ){
+
+        service.trigger( 'social-facebookNotificationEvent', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookNotificationFriend', function( event, account, data ){
+
+        service.trigger( 'social-facebookNotificationFriend', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookNotificationGroup', function( event, account, data ){
+
+        service.trigger( 'social-facebookNotificationGroup', [ account, data ] );
+
+    })
+
+    .on( 'social-facebookNotificationPhoto', function( event, account, data ){
+
+        service.trigger( 'social-facebookNotificationPhoto', [ account, data ] );
+
+    });

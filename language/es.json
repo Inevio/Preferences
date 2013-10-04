@@ -111,20 +111,27 @@
 
     "facebook" : {
 
-        "message"          : "Nuevo mensaje de",
-        "request"          : "Nueva solicitud de",
-        "photoPosted"      : "ha posteado una foto",
-        "photoPostedText1" : "ha subido",
-        "photoPostedText2" : "ha subido una nueva foto",
-        "linkPosted"       : "Nuevo enlace de",
-        "statusUpdated"    : "ha actualizado su estado",
-        "noteCreated"      : "ha publicado una nota",
-        "noteCreatedText"  : "ha creado",
-        "videoPosted"      : "ha posteado un video",
-        "videoPostedText1" : "ha subido",
-        "videoPostedText2" : "ha subido un nuevo video",
-        "eventCreated"     : "Te han invitado a un evento",
-        "eventCreatedText" : "te ha invitado a"
+        "message"                : "Nuevo mensaje de",
+        "request"                : "Nueva solicitud de",
+        "photoPosted"            : "ha posteado una foto",
+        "photoPostedText1"       : "ha subido",
+        "photoPostedText2"       : "ha subido una nueva foto",
+        "linkPosted"             : "Nuevo enlace de",
+        "statusUpdated"          : "ha actualizado su estado",
+        "noteCreated"            : "ha publicado una nota",
+        "noteCreatedText"        : "ha creado",
+        "videoPosted"            : "ha posteado un video",
+        "videoPostedText1"       : "ha subido",
+        "videoPostedText2"       : "ha subido un nuevo video",
+        "eventCreated"           : "Te han invitado a un evento",
+        "eventCreatedText"       : "te ha invitado a",
+        "requestAccepted"        : "Solicitud de amistad aceptada",
+        "requestAcceptedExplain" : "ha aceptado tu solicitud de amistad",
+        "groupRequest"           : "Invitación a grupo",
+        "groupRequestOne"        : "El grupo",
+        "groupRequestTwo"        : "the ha invitado a unirte a ellos",
+        "userTagged"             : "Te han etiquetado",
+        "beenTagged"             : "te ha etiquetado en una foto"
 
     }
 

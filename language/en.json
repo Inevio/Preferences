@@ -111,20 +111,27 @@
 
     "facebook" : {
 
-        "message"          : "New message from",
-        "request"          : "New friend request from",
-        "photoPosted"      : "has posted a photo",
-        "photoPostedText1" : "has uploaded",
-        "photoPostedText2" : "has uploaded a new photo",
-        "linkPosted"       : "New link posted by",
-        "statusUpdated"    : "updated his status",
-        "noteCreated"      : "published a note",
-        "noteCreatedText"  : "has created",
-        "videoPosted"      : "posted a video",
-        "videoPostedText1" : "has uploaded",
-        "videoPostedText2" : "has uploaded a new video",
-        "eventCreated"     : "You've been invited to an event",
-        "eventCreatedText" : "has invited you to"
+        "message"                : "New message from",
+        "request"                : "New friend request from",
+        "photoPosted"            : "has posted a photo",
+        "photoPostedText1"       : "has uploaded",
+        "photoPostedText2"       : "has uploaded a new photo",
+        "linkPosted"             : "New link posted by",
+        "statusUpdated"          : "updated his status",
+        "noteCreated"            : "published a note",
+        "noteCreatedText"        : "has created",
+        "videoPosted"            : "posted a video",
+        "videoPostedText1"       : "has uploaded",
+        "videoPostedText2"       : "has uploaded a new video",
+        "eventCreated"           : "You've been invited to an event",
+        "eventCreatedText"       : "has invited you to",
+        "requestAccepted"        : "Friend request Accepted",
+        "requestAcceptedExplain" : "has accepted your friend request",
+        "groupRequest"           : "Group invitation",
+        "groupRequestOne"        : "The group",
+        "groupRequestTwo"        : "has invited you to join them",
+        "userTagged"             : "You've been tagged",
+        "beenTagged"             : "has tagged you on a photo"
 
     }
 

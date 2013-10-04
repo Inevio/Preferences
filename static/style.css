@@ -960,6 +960,7 @@ span.preferences-card-subscribe-text{
     height: 32px;
     border-radius: 2px;
     background: #F00;
+    display: none;
 
 }
 
