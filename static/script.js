@@ -371,7 +371,7 @@
                         invitedFriend.find( 'img' ).attr( 'src', list[ i ].user.avatar.tiny );
                         invitedFriend.find( 'span' ).text( list[ i ].user.fullName );
                     }else{
-                        invitedFriend.find( 'img' ).attr( 'src', 'https://staticbeta.weezeel.com/app/3/weekey.png' );
+                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.weezeel.com/app/3/weekey.png' );
                         invitedFriend.find( 'span' ).text( list[ i ].id );
                     }
 
