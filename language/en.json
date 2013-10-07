@@ -93,6 +93,8 @@
     "privacyPolicies"   : "Privacy Policies",
 
     "facebookSettings" : "Facebook Settings",
+    "twitterSettings"  : "Twitter Settings",
+    "notify"           : "Notify me when",
     "remove"           : "Remove",
     "save"             : "Save",
 
@@ -108,6 +110,19 @@
         "followMessage" : "now follows you"
 
     },
+
+    "twitterOptions" : [
+
+        "Followed people send tweets",
+        "Message received",
+        "Tweet sent is replied",
+        "Someone mentions me",
+        "Tweet sent is retweeted",
+        "Tweet sent is favorited",
+        "Tweet sent is unfavorited",
+        "New followers"
+
+    ],
 
     "facebook" : {
 
@@ -133,6 +148,19 @@
         "userTagged"             : "You've been tagged",
         "beenTagged"             : "has tagged you on a photo"
 
-    }
+    },
+
+    "facebookOptions" : [
+
+        "Tagged on a photo",
+        "Message received",
+        "Friend requests",
+        "Friend's new status",
+        "Friend posts a new photo",
+        "Group activity",
+        "Events created",
+        "Notes, links or videos posted"
+
+    ]
 
 }

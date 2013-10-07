@@ -1,32 +1,6 @@
 
 	var checkboxPrototype = $( '.preferences-bottom-checkbox.wz-prototype', win );
 
-	var facebookOptions = [
-
-		'Tagged on a photo',
-		'Message received',
-		'Friend requests',
-		'Friend\'s new status',
-		'Friend posts a new photo',
-		'Group activity',
-		'Events created',
-		'Notes, links or videos posted'
-
-	];
-
-	var twitterOptions = [
-
-		'Followed people send tweets',
-		'Message received',
-		'Tweet sent is replied',
-		'Someone mentions me',
-		'Tweet sent is retweeted',
-		'Tweet sent is favorited',
-		'Tweet sent is unfavorited',
-		'New followers'
-
-	];
-
 	var saveChanges = function(){
 
 		$( '.preferences-bottom-checkbox', win ).not( '.wz-prototype' ).each( function(){
@@ -70,16 +44,16 @@
 
 	if( params.type === 'facebook' ){
 
-		$( '.preferences-top span', win ).text( 'Facebook Settings' );
+		$( '.preferences-top span', win ).text( lang.facebookSettings );
 		$( '.preferences-account-name', win ).text( params.name );
 
-		for( var i = 0; i < facebookOptions.length; i++ ){
+		for( var i = 0; i < lang.facebookOptions.length; i++ ){
 
 			checkboxPrototype
 				.clone().removeClass( 'wz-prototype' ).addClass( 'type-' + i )
 				.appendTo( $( '.preferences-content', win ) )
 				.data( 'type', i )
-				.find( 'span' ).text( facebookOptions[i] );
+				.find( 'span' ).text( lang.facebookOptions[i] );
 
 			wql.getType( [ params.id, i ], function( error, result ){
 
@@ -95,16 +69,16 @@
 
 	}else if( params.type === 'twitter' ){
 
-		$( '.preferences-top span', win ).text( 'Twitter Settings' );
+		$( '.preferences-top span', win ).text( lang.twitterSettings );
 		$( '.preferences-account-name', win ).text( params.name );
 
-		for( var i = 0; i < twitterOptions.length; i++ ){
+		for( var i = 0; i < lang.twitterOptions.length; i++ ){
 
 			checkboxPrototype
 				.clone().removeClass( 'wz-prototype' ).addClass( 'type-' + i )
 				.appendTo( $( '.preferences-content', win ) )
 				.data( 'type', i )
-				.find( 'span' ).text( twitterOptions[i] );
+				.find( 'span' ).text( lang.twitterOptions[i] );
 
 			wql.getType( [ params.id, i ], function( error, result ){
 
@@ -120,6 +94,7 @@
 
 	}
 
-	$( '.preferences-account-remove', win ).text( lang.remove )
+	$( '.preferences-account-remove', win ).text( lang.remove );
+	$( '.preferences-content-title', win ).text( lang.notify + ':' );
 	$( '.preferences-button.cancel .preferences-account-button', win ).text( lang.cancel );
 	$( '.preferences-button.save .preferences-account-button', win ).text( lang.save );

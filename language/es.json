@@ -93,6 +93,8 @@
     "privacyPolicies"   : "Política de Privacidad",
 
     "facebookSettings" : "Ajustes de Facebook",
+    "twitterSettings"  : "Ajustes de Twitter",
+    "notify"           : "Notificarme cuando",
     "remove"           : "Eliminar",
     "save"             : "Guardar",
 
@@ -108,6 +110,19 @@
         "followMessage" : "ahora te sigue"
 
     },
+
+    "twitterOptions" : [
+
+        "Gente a la que sigo envie tweets",
+        "Mensaje recibido",
+        "Tweet enviado ha sido respondido",
+        "Alguien me menciona",
+        "Tweet enviado es retweeteado",
+        "Tweet enviado es favoriteado",
+        "Tweet enviado es desfavoriteado",
+        "Nuevos seguidores"
+
+    ],
 
     "facebook" : {
 
@@ -133,6 +148,19 @@
         "userTagged"             : "Te han etiquetado",
         "beenTagged"             : "te ha etiquetado en una foto"
 
-    }
+    },
+
+    "facebookOptions" : [
+
+        "Etiquetado en una foto",
+        "Mensaje recibido",
+        "Solicitudes de amistad",
+        "Nuevos estados de amigos",
+        "Amigos suben nuevas fotos",
+        "Notificaciones en grupos",
+        "Eventos creados",
+        "Notas, links o videos posteados"
+
+    ]
 
 }
