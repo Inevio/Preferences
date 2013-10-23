@@ -1246,7 +1246,7 @@
     $( '.preferences-account-button.invite', win ).text( lang.generate );
     $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
 
-    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + '1.0 Beta 3' );
+    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + wz.info.version() );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
