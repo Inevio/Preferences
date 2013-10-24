@@ -296,7 +296,7 @@
     height: 18px;
     float: left;
     margin: 16px;
-    background: url('https://static.weezeel.com/app/3/icons.png') no-repeat;
+    background: url('@static/icons.png') no-repeat;
     background-size: 90px 18px;
 
 }
@@ -318,7 +318,7 @@
     height: 22px;
     float: left;
     margin: 14px 10px;
-    background: url('https://static.weezeel.com/app/3/input.png') no-repeat;
+    background: url('@static/input.png') no-repeat;
     background-size: 66px 22px;
     opacity: 0;
 
@@ -434,7 +434,7 @@
 
     width: 7px;
     height: 7px;
-    background: url('https://static.weezeel.com/app/3/check.png') no-repeat;
+    background: url('@static/check.png') no-repeat;
     background-size: 7px 7px;
     display: none;
 
@@ -501,7 +501,7 @@
     width: 220px;
     height: 221px;
     display: inline-block;
-    background: url('https://static.weezeel.com/app/3/quota.png') no-repeat;
+    background: url('@static/quota.png') no-repeat;
     background-size: 220px 221px;
     position: relative;
 
@@ -612,7 +612,7 @@
     width: 15px;
     height: 15px;
     display: block;
-    background: url('https://static.weezeel.com/app/3/close.png') no-repeat 0 0;
+    background: url('@static/close.png') no-repeat 0 0;
     background-size: 30px 15px;
     position: absolute;
     top: 4px;
@@ -696,7 +696,7 @@ span.preferences-card-subscribe-text{
     left: -27px;
     display: none;
 
-    background: url('https://static.weezeel.com/app/3/arrows.png') no-repeat;
+    background: url('@static/arrows.png') no-repeat;
     background-size: 30px 52px;
 
 }
@@ -714,7 +714,7 @@ span.preferences-card-subscribe-text{
     right: -27px;
     display: none;
 
-    background: url('https://static.weezeel.com/app/3/arrows.png') no-repeat -15px 0;
+    background: url('@static/arrows.png') no-repeat -15px 0;
     background-size: 30px 52px;
 
 }
@@ -1071,7 +1071,7 @@ span.preferences-card-subscribe-text{
 
 .preferences-config-clock *{
 
-    background: url('https://static.weezeel.com/app/3/clock.png') no-repeat;
+    background: url('@static/clock.png') no-repeat;
     background-size: 138px 132px;
 
 }
@@ -1183,7 +1183,7 @@ span.preferences-card-subscribe-text{
     display: inline-block;
     margin-top: 20px;
 
-    background: url('https://static.weezeel.com/app/3/flags.png') no-repeat;
+    background: url('@static/flags.png') no-repeat;
     background-size: 198px 42px;
 
 }
@@ -1284,7 +1284,7 @@ span.preferences-card-subscribe-text{
     width: 49px;
     height: 35px;
     position: absolute;
-    background: url('https://static.weezeel.com/app/3/cloud.png') no-repeat;
+    background: url('@static/cloud.png') no-repeat;
     background-size: 98px 35px;
     position: absolute;
     top: 10px;
@@ -1322,7 +1322,7 @@ span.preferences-card-subscribe-text{
     width: 128px;
     height: 80px;
     display: inline-block;
-    background: url('https://static.weezeel.com/app/3/wallpapers.jpg') no-repeat;
+    background: url('@static/wallpapers.jpg') no-repeat;
     background-size: 640px 320px;
     margin: 5px;
 
@@ -1524,7 +1524,7 @@ span.preferences-card-subscribe-text{
     width: 25px;
     height: 25px;
     display: inline-block;
-    background: url('https://static.weezeel.com/app/3/invite.png') no-repeat;
+    background: url('@static/invite.png') no-repeat;
     background-size: 50px 25px;
     margin-top: 2px;
 
