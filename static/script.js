@@ -1,3 +1,5 @@
+    
+    var win = $( this );
 
     // Clock variable
     var date          = new Date(0);
@@ -1053,7 +1055,7 @@
 
         var socialNetwork = $( this ).parent( '.preferences-social-account' )
 
-        wz.app.createWindow( 3, { 
+        wz.app.createWindow( { 
 
             type: socialNetwork.data( 'social-network' ), 
             id: socialNetwork.data( 'id' ),

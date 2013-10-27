@@ -1,4 +1,5 @@
-
+	
+	var win               = $( this );
 	var checkboxPrototype = $( '.preferences-bottom-checkbox.wz-prototype', win );
 
 	var saveChanges = function(){

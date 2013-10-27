@@ -1,7 +1,7 @@
 
 {
 
-    "name"    : {
+    "name" : {
 
         "main" : "Preferences",
         "en"   : "Preferences",
@@ -10,10 +10,8 @@
     },
 
     "version" : "1.0",
-    "state"   : "beta",
-
-    "developer" : "wz",
-    "authKey"   : "wz",
+    "stage"   : "beta",
+    "api"     : "a100d2",
 
     "language" : {
 
@@ -22,81 +20,89 @@
 
     },
 
-    "common" : {
+    "device" : {
 
-        "css"    : ["style.css"],
-        "script" : []
+        "desktop" : {
 
-    },
+            "primary" : "main",
+            "service" : [ "networks.js" ],
+            "common"  : {
 
-    "service" : [ "networks.js" ],
-    "primary" : "main",
-
-    "window" : {
-
-        "main" : {
-
-            "description" : "",
-            
-            "template" : "main.html",
-
-            "maxizable" : false,
-            "resizable" : false,
-
-            "width"  : {
-
-                "default" : 750,
-                "min"     : 0,
-                "max"     : 0
+                "css"    : [],
+                "script" : [],
+                "start"  : []
 
             },
 
-            "height" : {
+            "view" : {
 
-                "default" : 550,
-                "min"     : 0,
-                "max"     : 0
+                "main" : {
 
-            },
+                    "description" : "",
+                    
+                    "template" : "main.html",
 
-            "css"    : [],
-            "script" : ["script.js"]
+                    "maxizable" : false,
+                    "resizable" : false,
 
-        },
+                    "width"  : {
 
-        "social" : {
+                        "default" : 750,
+                        "min"     : 0,
+                        "max"     : 0
 
-            "description" : "",
-            
-            "template" : "social.html",
+                    },
 
-            "maxizable" : false,
-            "resizable" : false,
+                    "height" : {
 
-            "width"  : {
+                        "default" : 550,
+                        "min"     : 0,
+                        "max"     : 0
 
-                "default" : 284,
-                "min"     : 0,
-                "max"     : 0
+                    },
 
-            },
+                    "css"    : ["style.css"],
+                    "script" : ["script.js"]
 
-            "height" : {
+                },
 
-                "default" : 411,
-                "min"     : 0,
-                "max"     : 0
+                "social" : {
 
-            },
+                    "description" : "",
+                    
+                    "template" : "social.html",
 
-            "css"    : ["social.css"],
-            "script" : ["social.js"]
+                    "maxizable" : false,
+                    "resizable" : false,
+
+                    "width"  : {
+
+                        "default" : 284,
+                        "min"     : 0,
+                        "max"     : 0
+
+                    },
+
+                    "height" : {
+
+                        "default" : 411,
+                        "min"     : 0,
+                        "max"     : 0
+
+                    },
+
+                    "css"    : ["style.css", "social.css"],
+                    "script" : ["social.js"]
+
+                }
+
+            }
 
         }
 
     },
 
-    "permissions" : {
+    "permission" : {
 
         "config" : {
 
