@@ -111,6 +111,8 @@
             
         },
 
+        "popup" : true,
+
         "social" : {
 
             "add"      : true,
