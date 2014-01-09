@@ -61,11 +61,6 @@
     var avatarUrl       = '';
 
     var degrees = 0;
-    var configObject = null;
-
-    wz.config( function( error, config ){
-        configObject = config;
-    });
 
     // Quota circle functions
     var startCircleAnimation = function( end ){
@@ -159,14 +154,14 @@
 
     var changeCake = function( space ){
 
-        configObject.update( function(){
+        wz.info.updateQuota( function(){
 
             if( space ){
-                startCircleAnimation( configObject.quota / space );
-                cakeFree.text( wz.tool.bytesToUnit( space - configObject.quota, 2 ) + ' ' + 'Free' );
+                startCircleAnimation( wz.info.quota().used / space );
+                cakeFree.text( wz.tool.bytesToUnit( space - wz.info.quota().used, 2 ) + ' ' + 'Free' );
             }else{
-                startCircleAnimation( configObject.quotaPercentage );
-                cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
+                startCircleAnimation( wz.info.quota().used / wz.info.quota().total );
+                cakeFree.text( wz.tool.bytesToUnit( wz.info.quota().free, 2 ) + ' ' + 'Free' );
             }
 
         });
@@ -271,7 +266,7 @@
             cardPrice.text( lang.ultimatePrice + ' ' + lang.monthly );
             cardDescriptionOne.css( 'display', 'block' ).html( '<b>' + '100 GB' + '</b>' + ' ' + lang.storage );
             cardDescriptionTwo.html( '<b>' + lang.safeFolders + '</b>' + ' ' + lang.withPassword );
-            cardDescriptionThree.css( 'display', 'block' ).html( '<b>' + lang.support + '</b>' + ' ' + lang.supportMail1 )
+            cardDescriptionThree.css( 'display', 'block' ).html( '<b>' + lang.support + '</b>' + ' ' + lang.supportMail1 );
             cardDescriptionFour.html( '<b>' + lang.support + '</b>' + ' ' + lang.supportTelephone );
 
             changeCake( 100 * 1024 * 1024 * 1024 );
@@ -550,7 +545,7 @@
 
         if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) && accountUsernameInput.val() !== username ){
 
-            configObject.changeUsername( accountUsernameInput.val(), function( error ){
+            wz.config.changeUsername( accountUsernameInput.val(), function( error ){
 
                 if( error ){
 
@@ -576,7 +571,7 @@
 
         if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) && accountMailInput.val() !== mail ){
 
-            configObject.changeMail( accountMailInput.val(), function( error ){
+            wz.config.changeMail( accountMailInput.val(), function( error ){
 
                 if( error ){
 
@@ -695,7 +690,7 @@
 
         if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
 
-            configObject.changePassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
+            wz.config.changePassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
 
                 if( error ){
 
@@ -771,7 +766,7 @@
 
             var id = $( this ).attr( 'data-id' );
 
-            configObject.changeWallpaper( id );
+            wz.config.changeWallpaper( id );
 
         }
 
@@ -914,22 +909,24 @@
 
         $( '.preferences-hdd-plans', win ).css( 'display', 'block' );
 
-        card.transition({
+        card.transition( {
+
             opacity : 0,
-            scale : 0
+            scale   : 0
+
         }, 400, function(){
             $( this ).css( 'display', 'none' );
-        })
+        });
 
         card.removeClass().addClass( 'preferences-hdd-card' );
         $( '.preferences-card-prev', win ).css( 'display', 'none' );
         $( '.preferences-card-next', win ).css( 'display', 'none' );
 
-        configObject.update( function(){
+        wz.info.updateQuota( function( error, quota ){
 
             cakeTitle.text( lang.currentUsage );
-            cakeTotal.text( wz.tool.bytesToUnit( configObject.quotaMax ) );
-            cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
+            cakeTotal.text( wz.tool.bytesToUnit( quota.total ) );
+            cakeFree.text( wz.tool.bytesToUnit( quota.free, 2 ) + ' ' + 'Free' );
 
             changeCake( 0 );
 
@@ -946,7 +943,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        configObject.changeTimeZone( timeZone, function( error ){
+        wz.config.changeTimeZone( timeZone, function( error ){
 
             if( error ){
 
@@ -967,12 +964,10 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        configObject.changeTimeZone( timeZone, function( error ){
+        wz.config.changeTimeZone( timeZone, function( error ){
 
             if( error ){
-
                 alert( error, null, win.data( 'win' ) );
-
             }
 
         });
@@ -992,7 +987,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        configObject.changeTimeZone( timeZone, function( error ){
+        wz.config.changeTimeZone( timeZone, function( error ){
 
             if( error ){
 
@@ -1006,7 +1001,7 @@
 
     .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
 
-        configObject.changeTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
+        wz.config.changeTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
 
             if( error ){
                 alert( error );
@@ -1020,7 +1015,7 @@
 
         var button = $( this );
 
-        configObject.changeDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+        wz.config.changeDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
 
             if( error ){
                 alert( error );
@@ -1035,11 +1030,11 @@
         $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
 
         if( $( this ).hasClass( 'english-uk' ) ){
-            configObject.changeLanguage( 'en-en' );
+            wz.config.changeLanguage( 'en-en' );
         }else if( $( this ).hasClass( 'english-us' ) ){
-            configObject.changeLanguage( 'en-us' );
+            wz.config.changeLanguage( 'en-us' );
         }else if( $( this ).hasClass( 'spanish' ) ){
-            configObject.changeLanguage( 'es-es' );
+            wz.config.changeLanguage( 'es-es' );
         }
 
     })
@@ -1135,7 +1130,7 @@
             }else{
 
                 $( '.preferences-bottom-input.invite span' ).text( weekey );
-                invitationInfo()
+                invitationInfo();
 
             }
             
@@ -1144,42 +1139,44 @@
     });
 
     // This function fills certain gaps with user's info
-    wz.config( function( error, config ){
+    wz.info.updateQuota( function( error, quota ){
 
-        cakeTotal.text( wz.tool.bytesToUnit( config.quotaMax ) );
-        cakeFree.text( wz.tool.bytesToUnit( config.quotaFree, 2 ) + ' ' + lang.freeSpace );
+        cakeTotal.text( wz.tool.bytesToUnit( wz.info.quota().total ) );
+        cakeFree.text( wz.tool.bytesToUnit( wz.info.quota().free, 2 ) + ' ' + lang.freeSpace );
 
-        avatarUrl = config.user.avatar.normal;
-        $( '.preferences-account-image', win ).css( 'background-image', 'url(' + config.user.avatar.normal + '?' + Math.random() + ')' );
+        startCircleAnimation( wz.info.quota().used / wz.info.quota().total );
 
-        startCircleAnimation( config.quotaPercentage );
+    });
 
-        username = config.user.user;
-        mail = config.user.mail;
+    avatarUrl = wz.info.user().avatar.normal;
+    mail      = wz.info.user().mail;
+    username  = wz.info.user().user;
 
-        socialNetworks();
+    console.log( wz.info.user() );
 
-        wz.config.getLanguages( function( error, languages, used ){
+    $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
 
-            if( used.code === "es" || used.code === "es-es" ){
-                $( '.preferences-language-element.spanish', win ).addClass( 'active' );
-            }else if( used.code === "en" || used.code === "en-us" ){
-                $( '.preferences-language-element.english-us', win ).addClass( 'active' );
-            }else if( used.code === "en-uk" ){
-                $( '.preferences-language-element.english-uk', win ).addClass( 'active' );
-            }
+    socialNetworks();
 
-        });
+    wz.config.getLanguages( function( error, languages, used ){
 
-        wz.config.getWallpaper( function( error, wallpapers, used ){
+        if( used.code === "es" || used.code === "es-es" ){
+            $( '.preferences-language-element.spanish', win ).addClass( 'active' );
+        }else if( used.code === "en" || used.code === "en-us" ){
+            $( '.preferences-language-element.english-us', win ).addClass( 'active' );
+        }else if( used.code === "en-uk" ){
+            $( '.preferences-language-element.english-uk', win ).addClass( 'active' );
+        }
 
-            if( used.custom ){
-                $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
-            }else{
-                $( '.wallpaper-' + used.id, win ).addClass( 'active' );
-            }
+    });
 
-        });
+    wz.config.getWallpapers( function( error, wallpapers, used ){
+
+        if( used.custom ){
+            $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
+        }else{
+            $( '.wallpaper-' + used.id, win ).addClass( 'active' );
+        }
 
     });
 
@@ -1253,7 +1250,7 @@
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
     // SOCIAL NETWORKS CODE
-
+    // To Do -> Quitar los triggers al service cuando haya implementada una escucha perpetua
     win
 
     .on( 'social-twitterAccountAdded', function( event, account ){
