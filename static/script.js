@@ -1050,7 +1050,7 @@
 
         var socialNetwork = $( this ).parent( '.preferences-social-account' )
 
-        wz.app.createWindow( { 
+        wz.app.createView( { 
 
             type: socialNetwork.data( 'social-network' ), 
             id: socialNetwork.data( 'id' ),
