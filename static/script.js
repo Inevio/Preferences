@@ -161,10 +161,10 @@
 
             if( space ){
                 startCircleAnimation( configObject.quota / space );
-                cakeFree.text( wz.tool.bytesToUnit( space - configObject.quota, 2 ) + ' ' + 'Free' );
+                cakeFree.text( wz.tool.bytesToUnit( space - configObject.quota, 2 ) + ' ' + lang.freeSpace );
             }else{
                 startCircleAnimation( configObject.quotaPercentage );
-                cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
+                cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
             }
 
         });
@@ -215,16 +215,16 @@
             card.addClass( 'starter' );
 
             cakeTitle.text( lang.starterUsage );
-            cakeTotal.text( '3 GB' );
+            cakeTotal.text( '5 GB' );
 
             cardTitle.text( lang.starter );
             cardPrice.text( lang.FREE + ' ' + lang.forever );
             cardDescriptionOne.css( 'display', 'none' );
-            cardDescriptionTwo.html( '<b>' + '3 GB' + '</b>' + ' ' + lang.storage );
+            cardDescriptionTwo.html( '<b>' + '5 GB' + '</b>' + ' ' + lang.storage );
             cardDescriptionThree.css( 'display', 'none' );
             cardDescriptionFour.html( '<b>' + lang.support + '</b>' + ' ' + lang.supportForum );
 
-            changeCake( 3 * 1024 * 1024 * 1024 );
+            changeCake( 5 * 1024 * 1024 * 1024 );
 
         }else if( type === 'pro' ){
 
@@ -910,6 +910,8 @@
     // Closes card plan ( Disk Tab )
     .on( 'click', '.preferences-card-close', function(){
 
+        // To Do -> Cuando se cierra una card se modifican dos veces el texto de cakeFree
+
         $( '.preferences-hdd-plans', win ).css( 'display', 'block' );
 
         card.transition({
@@ -927,7 +929,7 @@
 
             cakeTitle.text( lang.currentUsage );
             cakeTotal.text( wz.tool.bytesToUnit( configObject.quotaMax ) );
-            cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + 'Free' );
+            cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
 
             changeCake( 0 );
 
