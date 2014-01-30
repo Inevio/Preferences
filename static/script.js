@@ -154,7 +154,7 @@
 
     var changeCake = function( space ){
 
-        wz.info.updateQuota( function(){
+        wz.system.updateQuota( function(){
 
             if( space ){
                 startCircleAnimation( configObject.quota / space );
@@ -924,7 +924,7 @@
         $( '.preferences-card-prev', win ).css( 'display', 'none' );
         $( '.preferences-card-next', win ).css( 'display', 'none' );
 
-        wz.info.updateQuota( function( error, quota ){
+        wz.system.updateQuota( function( error, quota ){
 
             cakeTitle.text( lang.currentUsage );
             cakeTotal.text( wz.tool.bytesToUnit( configObject.quotaMax ) );
@@ -1141,20 +1141,20 @@
     });
 
     // This function fills certain gaps with user's info
-    wz.info.updateQuota( function( error, quota ){
+    wz.system.updateQuota( function( error, quota ){
 
-        cakeTotal.text( wz.tool.bytesToUnit( wz.info.quota().total ) );
-        cakeFree.text( wz.tool.bytesToUnit( wz.info.quota().free, 2 ) + ' ' + lang.freeSpace );
+        cakeTotal.text( wz.tool.bytesToUnit( wz.system.quota().total ) );
+        cakeFree.text( wz.tool.bytesToUnit( wz.system.quota().free, 2 ) + ' ' + lang.freeSpace );
 
-        startCircleAnimation( wz.info.quota().used / wz.info.quota().total );
+        startCircleAnimation( wz.system.quota().used / wz.system.quota().total );
 
     });
 
-    avatarUrl = wz.info.user().avatar.normal;
-    mail      = wz.info.user().mail;
-    username  = wz.info.user().user;
+    avatarUrl = wz.system.user().avatar.normal;
+    mail      = wz.system.user().mail;
+    username  = wz.system.user().user;
 
-    console.log( wz.info.user() );
+    console.log( wz.system.user() );
 
     $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
 
@@ -1247,7 +1247,7 @@
     $( '.preferences-account-button.invite', win ).text( lang.generate );
     $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
 
-    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + wz.info.version() );
+    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + wz.system.version() );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
