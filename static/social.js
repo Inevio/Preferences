@@ -7,19 +7,15 @@
         $( '.preferences-bottom-checkbox', win ).not( '.wz-prototype' ).each( function(){
 
             if( $( this ).hasClass( 'checked' ) ){
-
-                wql.insertType( [ params.id, $( this ).data( 'type' ) ], function(){ return false });
-
+                wql.insertType( [ params.id, $( this ).data( 'type' ) ], function(){});
             }else{
-
-                wql.removeType( [ params.id, $( this ).data( 'type' ) ], function(){ return false });
-
+                wql.removeType( [ params.id, $( this ).data( 'type' ) ], function(){});
             }
 
         });
 
         service.trigger( 'config-changed' );
-        wz.app.closeWindow( win );
+        wz.app.removeView( win );
 
     };
 
@@ -30,7 +26,7 @@
     })
 
     .on( 'click', '.preferences-button.cancel', function(){
-        wz.app.closeWindow( win );
+        wz.app.removeView( win );
     })
 
     .on( 'click', '.preferences-button.save', function(){
@@ -40,7 +36,7 @@
 
     .on( 'click', '.preferences-account-remove', function(){
         wz.social.removeAccount( params.id );
-        wz.app.closeWindow( win );
+        wz.app.removeView( win );
     });
 
     if( params.type === 'facebook' ){

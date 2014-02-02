@@ -122,6 +122,13 @@
             
         },
 
+        "upload" : {
+
+            "avatar"    : true,
+            "wallpaper" : true
+            
+        },
+
         "weekey" : {
 
             "create" : true,
