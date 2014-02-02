@@ -307,7 +307,7 @@
         if( minutes < 10 ){ minutes = '0' + minutes; }
         if( seconds < 10 ){ seconds = '0' + seconds; }
 
-        if( minutes === '00' & seconds === '00' ){ 
+        if( minutes === '00' & seconds === '00' ){
             configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
             clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
         }
@@ -406,6 +406,69 @@
 
     };
 
+    // WZ Events
+    wz.upload
+
+    // Capturing the avatar uploading progress
+    .on( 'avatarProgress', function( percent ){
+
+        if( !avatarUploading ){
+
+            $( '.preferences-account-avatar', win )[ 0 ].getContext('2d').clearRect( 0, 0, 148, 148 );
+            $( '.preferences-account-avatar', win ).css( 'opacity', 1 );
+            avatarGrads = 0;
+
+            avatarUploading = true;
+            $( '.avatar-edit', win ).text( '' ).transition({ width : '1px', 'margin-right' : '84px' }, 500, function(){ $( this ).css( 'opacity', 0 ); } );
+
+        }
+
+        uploadingAvatar( percent );
+
+    })
+
+    // Capturing the avatar uploading end
+    .on( 'avatarEnd', function(){
+
+        $( '.preferences-account-image', win ).transition({ opacity: 0.3 }, 100, function(){
+
+            $( this ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' ).transition({ opacity : 1 }, 100, function(){
+
+                $( '.preferences-account-avatar', win ).transition({ opacity : 0 }, function(){
+
+                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #7EBE30' }, function(){
+                        $( this ).transition({ 'box-shadow' : 'none' });
+                    });
+
+                    $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
+                        $( this ).text( lang.avatarEdit );
+                        avatarUploading = false;
+                    });
+
+                });
+
+            });
+
+        });
+
+    })
+
+    // Capturing the walppaper uploading progress
+    .on( 'wallpaperProgress', function( percent ){
+        $( '.preferences-upload-uploading', win ).css({ height: 35 * percent + 'px', top: 35 * ( 1 - percent ) + 10 + 'px' });
+    })
+
+    // Capturing the wallpaper uploading end
+    .on( 'wallpaperEnd', function( wallpaper ){
+
+        $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
+
+        $( '.preferences-wallpaper-image.active', win ).removeClass( 'active' );
+        $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + wallpaper[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
+
+    });
+
+    // DOM Events
     win
 
     // This function changes the content when a tab is clicked
@@ -812,7 +875,7 @@
             scale : 1
         }, 400, function(){
             cardArrows();
-        })
+        });
 
     })
 
@@ -831,7 +894,7 @@
 
             degrees -= 180;
 
-            card.css( 'rotateY', degrees + 'deg' ); 
+            card.css( 'rotateY', degrees + 'deg' );
 
             var cardType = '';
 
@@ -1059,65 +1122,6 @@
             name: socialNetwork.data( 'name' )
 
         }, 'social' );
-
-    })
-
-    // Capturing the avatar uploading progress
-    .on( 'avatar-upload-progress', function( event, percent ){
-
-        if( !avatarUploading ){
-
-            $( '.preferences-account-avatar', win )[ 0 ].getContext('2d').clearRect( 0, 0, 148, 148 );
-            $( '.preferences-account-avatar', win ).css( 'opacity', 1 )
-            avatarGrads = 0;
-
-            avatarUploading = true;
-            $( '.avatar-edit', win ).text( '' ).transition({ width : '1px', 'margin-right' : '84px' }, 500, function(){ $( this ).css( 'opacity', 0 ); } );
-
-        }
-
-        uploadingAvatar( percent );
-
-    })
-
-    // Capturing the avatar uploading end
-    .on( 'avatar-upload-end', function(){
-
-        $( '.preferences-account-image', win ).transition({ opacity: 0.3 }, 100, function(){
-
-            $( this ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' ).transition({ opacity : 1 }, 100, function(){
-
-                $( '.preferences-account-avatar', win ).transition({ opacity : 0 }, function(){
-
-                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #7EBE30' }, function(){
-                        $( this ).transition({ 'box-shadow' : 'none' });
-                    });
-
-                    $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
-                        $( this ).text( lang.avatarEdit );
-                        avatarUploading = false;
-                    });
-
-                });
-
-            });
-
-        });
-
-    })
-
-    // Capturing the walppaper uploading progress
-    .on( 'wallpaper-upload-progress', function( event, percent ){
-        $( '.preferences-upload-uploading', win ).css({ height: 35 * percent + 'px', top: 35 * ( 1 - percent ) + 10 + 'px' });
-    })
-
-    // Capturing the wallpaper uploading end
-    .on( 'wallpaper-upload-end', function( event, wallpaper ){
-
-        $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
-
-        $( '.preferences-wallpaper-image.active', win ).removeClass( 'active' );
-        $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + wallpaper[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
 
     })
 
