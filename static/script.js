@@ -608,7 +608,7 @@
 
         if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) && accountUsernameInput.val() !== username ){
 
-            wz.config.changeUsername( accountUsernameInput.val(), function( error ){
+            wz.config.setUsername( accountUsernameInput.val(), function( error ){
 
                 if( error ){
 
@@ -634,7 +634,7 @@
 
         if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) && accountMailInput.val() !== mail ){
 
-            wz.config.changeMail( accountMailInput.val(), function( error ){
+            wz.config.setMail( accountMailInput.val(), function( error ){
 
                 if( error ){
 
@@ -753,7 +753,7 @@
 
         if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
 
-            wz.config.changePassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
+            wz.config.setPassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
 
                 if( error ){
 
@@ -829,7 +829,7 @@
 
             var id = $( this ).attr( 'data-id' );
 
-            wz.config.changeWallpaper( id );
+            wz.config.setWallpaper( id );
 
         }
 
@@ -1008,7 +1008,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        wz.config.changeTimeZone( timeZone, function( error ){
+        wz.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
 
@@ -1029,7 +1029,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        wz.config.changeTimeZone( timeZone, function( error ){
+        wz.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
                 alert( error, null, win.data( 'win' ) );
@@ -1052,7 +1052,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        wz.config.changeTimeZone( timeZone, function( error ){
+        wz.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
 
@@ -1066,7 +1066,7 @@
 
     .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
 
-        wz.config.changeTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
+        wz.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
 
             if( error ){
                 alert( error );
@@ -1080,7 +1080,7 @@
 
         var button = $( this );
 
-        wz.config.changeDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+        wz.config.setDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
 
             if( error ){
                 alert( error );
@@ -1095,11 +1095,11 @@
         $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
 
         if( $( this ).hasClass( 'english-uk' ) ){
-            wz.config.changeLanguage( 'en-en' );
+            wz.config.setLanguage( 'en-en' );
         }else if( $( this ).hasClass( 'english-us' ) ){
-            wz.config.changeLanguage( 'en-us' );
+            wz.config.setLanguage( 'en-us' );
         }else if( $( this ).hasClass( 'spanish' ) ){
-            wz.config.changeLanguage( 'es-es' );
+            wz.config.setLanguage( 'es-es' );
         }
 
     })
@@ -1211,7 +1211,7 @@
     $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
     $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
     $( '.avatar-edit', win ).text( lang.avatarEdit );
-    $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
+    $( '.change-password .preferences-account-button', win ).text( lang.setPassword );
     $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
 
     $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
