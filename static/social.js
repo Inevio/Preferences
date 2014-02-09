@@ -15,7 +15,7 @@
         });
 
         service.trigger( 'config-changed' );
-        wz.app.removeView( win );
+        wz.view.remove();
 
     };
 
@@ -26,7 +26,7 @@
     })
 
     .on( 'click', '.preferences-button.cancel', function(){
-        wz.app.removeView( win );
+        wz.view.remove();
     })
 
     .on( 'click', '.preferences-button.save', function(){
@@ -36,7 +36,7 @@
 
     .on( 'click', '.preferences-account-remove', function(){
         wz.social.removeAccount( params.id );
-        wz.app.removeView( win );
+        wz.view.remove();
     });
 
     if( params.type === 'facebook' ){
