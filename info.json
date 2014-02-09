@@ -28,7 +28,7 @@
             "service" : [ "networks.js" ],
             "common"  : {
 
-                "css"    : [],
+                "css"    : ["style.css"],
                 "script" : [],
                 "start"  : []
 
@@ -61,7 +61,7 @@
 
                     },
 
-                    "css"    : ["style.css"],
+                    "css"    : [],
                     "script" : ["script.js"]
 
                 },
@@ -91,7 +91,7 @@
 
                     },
 
-                    "css"    : ["style.css", "social.css"],
+                    "css"    : ["social.css"],
                     "script" : ["social.js"]
 
                 }

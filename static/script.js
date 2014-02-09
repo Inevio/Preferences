@@ -1211,7 +1211,7 @@
     $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
     $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
     $( '.avatar-edit', win ).text( lang.avatarEdit );
-    $( '.change-password .preferences-account-button', win ).text( lang.setPassword );
+    $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
     $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
 
     $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
