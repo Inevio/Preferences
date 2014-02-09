@@ -1,5 +1,5 @@
 
-.wz-win-menu-group{
+.wz-view-menu-group{
 
     padding: 14px 20px 9px;
     margin-top: 1px;
@@ -73,7 +73,7 @@
     
 }
 
-.wz-win.wz-win-dragging .preferences-top li:hover{
+.wz-view.wz-view-dragging .preferences-top li:hover{
     
     border-bottom: 2px solid transparent;
     

@@ -476,7 +476,7 @@
 
         clearInterval( clockInterval );
 
-        if( !$( win ).hasClass( 'wz-win-dragging' ) ){
+        if( !$( win ).hasClass( 'wz-view-dragging' ) ){
 
             var oldActive = $( 'li.active', win );
             var newActive = $( this );
