@@ -20,7 +20,6 @@
     };
 
     win
-
     .on( 'click', '.preferences-bottom-checkbox', function(){
         $( this ).toggleClass( 'checked' );
     })

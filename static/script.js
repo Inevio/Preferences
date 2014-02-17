@@ -1256,10 +1256,8 @@
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
     // SOCIAL NETWORKS CODE
-    // To Do -> Quitar los triggers al service cuando haya implementada una escucha perpetua
-    win
-
-    .on( 'social-twitterAccountAdded', function( event, account ){
+    wz.social
+    .on( 'facebookAccountAdded', function( account ){
         
         for( var i = 0; i < 8; i++ ){
             wql.insertType( [ account.id, i ] );
@@ -1269,12 +1267,14 @@
 
     })
 
-    .on( 'social-twitterAccountRemoved', function( event, accountId ){
+    .on( 'facebookAccountRemoved', function( accountId ){
+
         wql.removeAccount( accountId );
         socialNetworks();
+
     })
 
-    .on( 'social-facebookAccountAdded', function( event, account ){
+    .on( 'twitterAccountAdded', function( account ){
         
         for( var i = 0; i < 8; i++ ){
             wql.insertType( [ account.id, i ] );
@@ -1284,133 +1284,9 @@
 
     })
 
-    .on( 'social-facebookAccountRemoved', function( event, accountId ){
+    .on( 'twitterAccountRemoved', function( accountId ){
+
         wql.removeAccount( accountId );
         socialNetworks();
-    })
-
-    .on( 'social-twitterTweet', function( event, account, tweet ){
-
-        service.trigger( 'social-twitterTweet', [ account, tweet ] );           
-
-    })
-
-    .on( 'social-twitterMessage', function( event, account, message ){
-
-        service.trigger( 'social-twitterMessage', [ account, message ] ); 
-
-    })
-
-    .on( 'social-twitterReply', function( event, account, reply ){
-
-        service.trigger( 'social-twitterReply', [ account, reply ] );
-
-    })
-
-    .on( 'social-twitterMention', function( event, account, mention ){
-
-        service.trigger( 'social-twitterMention', [ account, mention ] );
-
-    })
-
-    .on( 'social-twitterRetweet', function( event, account, retweet ){
-
-        service.trigger( 'social-twitterRetweet', [ account, retweet ] );
-
-    })
-
-    .on( 'social-twitterFavorite', function( event, account, fav ){
-
-        service.trigger( 'social-twitterFavorite', [ account, fav ] );
-
-    })
-
-    .on( 'social-twitterUnfavorite', function( event, account, unfav ){
-
-        service.trigger( 'social-twitterUnfavorite', [ account, unfav ] );
-
-    })
-
-    .on( 'social-twitterFollow', function( event, account, follow ){
-
-        service.trigger( 'social-twitterFollow', [ account, follow ] );
-
-    })
-
-    .on( 'social-facebookGroupPost', function( event, account, data ){
-
-        service.trigger( 'social-facebookGroupPost', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookEventCreated', function( event, account, data ){
-
-        service.trigger( 'social-facebookEventCreated', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookStatusUpdated', function( event, account, data ){
-
-        service.trigger( 'social-facebookStatusUpdated', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookPhotoPosted', function( event, account, data ){
-
-        service.trigger( 'social-facebookPhotoPosted', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookNoteCreated', function( event, account, data ){
-
-        service.trigger( 'social-facebookNoteCreated', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookLinkPosted', function( event, account, data ){
-
-        service.trigger( 'social-facebookLinkPosted', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookVideoPosted', function( event, account, data ){
-
-        service.trigger( 'social-facebookVideoPosted', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookMessage', function( event, account, data ){
-
-        service.trigger( 'social-facebookMessage', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookFriendRequest', function( event, account, data ){
-
-        service.trigger( 'social-facebookFriendRequest', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookNotificationEvent', function( event, account, data ){
-
-        service.trigger( 'social-facebookNotificationEvent', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookNotificationFriend', function( event, account, data ){
-
-        service.trigger( 'social-facebookNotificationFriend', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookNotificationGroup', function( event, account, data ){
-
-        service.trigger( 'social-facebookNotificationGroup', [ account, data ] );
-
-    })
-
-    .on( 'social-facebookNotificationPhoto', function( event, account, data ){
-
-        service.trigger( 'social-facebookNotificationPhoto', [ account, data ] );
 
     });

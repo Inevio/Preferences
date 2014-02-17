@@ -1,21 +1,8 @@
 
-    /*wz.social.getAccounts( function( error, list ){
-
-        for( var i = 0; i < list.accounts.length; i++ ){
-
-            wql.getAccount( list.accounts[i].id, function( error, result ){
-
-                console.log( error, result );
-
-            });
-
-        }
-
-    });*/
+    // To Do -> No se pueden cachear los permisos?
 
     notification
-
-    .on( 'social-twitterTweet', function( event, account, tweet ){
+    .on( 'twitterTweet', function( account, tweet ){
 
         wql.getType( [ account.id, 0 ], function( error, result ){
 
@@ -51,7 +38,7 @@
 
     })
 
-    .on( 'social-twitterMessage', function( event, account, message ){
+    .on( 'twitterMessage', function( account, message ){
 
         wql.getType( [ account.id, 1 ], function( error, result ){
 
@@ -72,7 +59,7 @@
 
     })
 
-    .on( 'social-twitterReply', function( event, account, reply ){
+    .on( 'twitterReply', function( account, reply ){
 
         wql.getType( [ account.id, 2 ], function( error, result ){
 
@@ -93,7 +80,7 @@
 
     })
 
-    .on( 'social-twitterMention', function( event, account, mention ){
+    .on( 'twitterMention', function( account, mention ){
 
         wql.getType( [ account.id, 3 ], function( error, result ){
 
@@ -114,7 +101,7 @@
 
     })
 
-    .on( 'social-twitterRetweet', function( event, account, retweet ){
+    .on( 'twitterRetweet', function( account, retweet ){
 
         wql.getType( [ account.id, 4 ], function( error, result ){
 
@@ -135,7 +122,7 @@
 
     })
 
-    .on( 'social-twitterFavorite', function( event, account, fav ){
+    .on( 'twitterFavorite', function( account, fav ){
 
         wql.getType( [ account.id, 5 ], function( error, result ){
 
@@ -156,7 +143,7 @@
 
     })
 
-    .on( 'social-twitterUnfavorite', function( event, account, unfav ){
+    .on( 'twitterUnfavorite', function( account, unfav ){
 
         wql.getType( [ account.id, 6 ], function( error, result ){
 
@@ -177,7 +164,7 @@
 
     })
 
-    .on( 'social-twitterFollow', function( event, account, follow ){
+    .on( 'twitterFollow', function( account, follow ){
 
         wql.getType( [ account.id, 7 ], function( error, result ){
 
@@ -198,7 +185,7 @@
 
     })
 
-    .on( 'social-facebookGroupPost', function( event, account, data ){
+    .on( 'facebookGroupPost', function( account, data ){
 
         wql.getType( [ account.id, 5 ], function( error, result ){
 
@@ -216,7 +203,7 @@
 
     })
 
-    .on( 'social-facebookEventCreated', function( event, account, data ){
+    .on( 'facebookEventCreated', function( account, data ){
 
         wql.getType( [ account.id, 6 ], function( error, result ){
 
@@ -234,7 +221,7 @@
 
     })
 
-    .on( 'social-facebookStatusUpdated', function( event, account, data ){
+    .on( 'facebookStatusUpdated', function( account, data ){
 
         wql.getType( [ account.id, 3 ], function( error, result ){
 
@@ -264,7 +251,7 @@
 
     })
 
-    .on( 'social-facebookPhotoPosted', function( event, account, data ){
+    .on( 'facebookPhotoPosted', function( account, data ){
 
         wql.getType( [ account.id, 4 ], function( error, result ){
 
@@ -301,7 +288,7 @@
 
     })
 
-    .on( 'social-facebookNoteCreated', function( event, account, data ){
+    .on( 'facebookNoteCreated', function( account, data ){
 
         wql.getType( [ account.id, 7 ], function( error, result ){
 
@@ -319,7 +306,7 @@
 
     })
 
-    .on( 'social-facebookLinkPosted', function( event, account, data ){
+    .on( 'facebookLinkPosted', function( account, data ){
 
         wql.getType( [ account.id, 7 ], function( error, result ){
 
@@ -349,7 +336,7 @@
 
     })
 
-    .on( 'social-facebookVideoPosted', function( event, account, data ){
+    .on( 'facebookVideoPosted', function( account, data ){
 
         wql.getType( [ account.id, 7 ], function( error, result ){
 
@@ -375,7 +362,7 @@
 
     })
 
-    .on( 'social-facebookMessage', function( event, account, data ){
+    .on( 'facebookMessage', function( account, data ){
 
         wql.getType( [ account.id, 1 ], function( error, result ){
 
@@ -393,7 +380,7 @@
 
     })
 
-    .on( 'social-facebookFriendRequest', function( event, account, data ){
+    .on( 'facebookFriendRequest', function( account, data ){
 
         wql.getType( [ account.id, 2 ], function( error, result ){
 
@@ -411,7 +398,7 @@
 
     })
 
-    .on( 'social-facebookNotificationEvent', function( event, account, data ){
+    .on( 'facebookNotificationEvent', function( account, data ){
 
         wql.getType( [ account.id, 6 ], function( error, result ){
 
@@ -429,7 +416,7 @@
 
     })
 
-    .on( 'social-facebookNotificationFriend', function( event, account, data ){
+    .on( 'facebookNotificationFriend', function( account, data ){
 
         wql.getType( [ account.id, 2 ], function( error, result ){
 
@@ -447,7 +434,7 @@
 
     })
 
-    .on( 'social-facebookNotificationGroup', function( event, account, data ){
+    .on( 'facebookNotificationGroup', function( account, data ){
 
         wql.getType( [ account.id, 5 ], function( error, result ){
 
@@ -465,7 +452,7 @@
 
     })
 
-    .on( 'social-facebookNotificationPhoto', function( event, account, data ){
+    .on( 'facebookNotificationPhoto', function( account, data ){
 
         wql.getType( [ account.id, 0 ], function( error, result ){
 
