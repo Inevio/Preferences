@@ -1,7 +1,7 @@
 
     // To Do -> No se pueden cachear los permisos?
 
-    notification
+    wz.social
     .on( 'twitterTweet', function( account, tweet ){
 
         wql.getType( [ account.id, 0 ], function( error, result ){
