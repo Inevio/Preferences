@@ -612,7 +612,7 @@
 
                 if( error ){
 
-                    alert( error, null, win.data( 'win' ) );
+                    alert( error );
                     accountUsernameInput.val( username );
 
                 }else{
@@ -638,7 +638,7 @@
 
                 if( error ){
 
-                    alert( error, null, win.data( 'win' ) );
+                    alert( error );
                     accountMailInput.val( mail );
 
                 }else{
@@ -757,7 +757,7 @@
 
                 if( error ){
 
-                    alert( error, null, win.data( 'win' ) );
+                    alert( error );
 
                 }else{
 
@@ -1011,9 +1011,7 @@
         wz.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
-
-                alert( error, null, win.data( 'win' ) );
-
+                alert( error );
             }
 
         });
@@ -1032,7 +1030,7 @@
         wz.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
-                alert( error, null, win.data( 'win' ) );
+                alert( error );
             }
 
         });
@@ -1056,7 +1054,7 @@
 
             if( error ){
 
-                alert( error, null, win.data( 'win' ) );
+                alert( error );
 
             }
 
@@ -1106,7 +1104,7 @@
 
     // Launches browser window to add an account
     .on( 'click', '.preferences-social-icon.plus', function(){
-        //alert( 'Demo accounts can\'t add social networks', null, win.data( 'win' ) );
+        //alert( 'Demo accounts can\'t add social networks' );
         wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
     })
 
@@ -1130,9 +1128,9 @@
         wz.weekey.create( function( error, weekey ){
 
             if( error === 'DEMO CAN NOT CREATE A WEEKEY' ){
-                alert( 'Demo accounts can\'t create weeKeys', null, win.data( 'win' ) );
+                alert( 'Demo accounts can\'t create weeKeys' );
             }else if( error === 'CAN NOT CREATE MORE WEEKEYS' ){
-                alert( 'You can\'t create more weeKeys', null, win.data( 'win' ) );
+                alert( 'You can\'t create more weeKeys' );
             }else{
 
                 $( '.preferences-bottom-input.invite span' ).text( weekey );
