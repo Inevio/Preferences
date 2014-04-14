@@ -11,10 +11,10 @@
                 if( tweet.retweeted_status ){
 
                     wz.banner()
-                        .title( tweet.user.name )
-                        .text( tweet.retweeted_status.text )
-                        .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                        .action( function(){
+                        .setTitle( tweet.user.name )
+                        .setText( tweet.retweeted_status.text )
+                        .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                        .on( 'click', function(){
                             wz.popup( tweet.url, 600, 500 );
                         })
                         .render();
@@ -22,10 +22,10 @@
                 }else{
 
                     wz.banner()
-                        .title( tweet.user.name )
-                        .text( tweet.text )
-                        .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                        .action( function(){
+                        .setTitle( tweet.user.name )
+                        .setText( tweet.text )
+                        .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                        .on( 'click', function(){
                             wz.popup( tweet.url, 600, 500 );
                         })
                         .render();
@@ -45,10 +45,10 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.twitter.message + ' ' + message.direct_message.sender_screen_name )
-                    .text( message.direct_message.text )
-                    .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                    /*.action( function(){
+                    .setTitle( lang.twitter.message + ' ' + message.direct_message.sender_screen_name )
+                    .setText( message.direct_message.text )
+                    .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                    /*.on( 'click', function(){
                         wz.popup( tweet.url, 600, 500 ); // To Do -> Debería abrirse algo
                     })*/
                     .render();
@@ -66,10 +66,10 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( reply.user.name + ' ' + lang.twitter.reply )
-                    .text( reply.text )
-                    .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                    .action( function(){
+                    .setTitle( reply.user.name + ' ' + lang.twitter.reply )
+                    .setText( reply.text )
+                    .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                    .on( 'click', function(){
                         wz.popup( reply.url, 600, 500 );
                     })
                     .render();
@@ -87,10 +87,10 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( mention.user.name + ' ' + lang.twitter.mention )
-                    .text( mention.text )
-                    .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                    .action( function(){
+                    .setTitle( mention.user.name + ' ' + lang.twitter.mention )
+                    .setText( mention.text )
+                    .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                    .on( 'click', function(){
                         wz.popup( mention.url, 600, 500 );
                     })
                     .render();
@@ -108,10 +108,10 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( retweet.user.name + ' ' + lang.twitter.retweet )
-                    .text( retweet.retweeted_status.text )
-                    .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                    .action( function(){
+                    .setTitle( retweet.user.name + ' ' + lang.twitter.retweet )
+                    .setText( retweet.retweeted_status.text )
+                    .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                    .on( 'click', function(){
                         wz.popup( retweet.url, 600, 500 );
                     })
                     .render();
@@ -129,10 +129,10 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( fav.source.name + ' ' + lang.twitter.fav )
-                    .text( fav.target_object.text )
-                    .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                    .action( function(){
+                    .setTitle( fav.source.name + ' ' + lang.twitter.fav )
+                    .setText( fav.target_object.text )
+                    .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                    .on( 'click', function(){
                         wz.popup( fav.url, 600, 500 );
                     })
                     .render();
@@ -150,10 +150,10 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( unfav.source.name + ' ' + lang.twitter.unfav )
-                    .text( unfav.target_object.text )
-                    .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                    .action( function(){
+                    .setTitle( unfav.source.name + ' ' + lang.twitter.unfav )
+                    .setText( unfav.target_object.text )
+                    .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                    .on( 'click', function(){
                         wz.popup( unfav.url, 600, 500 );
                     })
                     .render();
@@ -171,10 +171,10 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.twitter.follow )
-                    .text( follow.source.name + ' ' + lang.twitter.followMessage )
-                    .icon( 'https://static.weezeel.com/app/3/twitter.png' )
-                    .action( function(){
+                    .setTitle( lang.twitter.follow )
+                    .setText( follow.source.name + ' ' + lang.twitter.followMessage )
+                    .setIcon( 'https://static.weezeel.com/app/3/twitter.png' )
+                    .on( 'click', function(){
                         wz.popup( follow.url, 600, 500 );
                     })
                     .render();
@@ -192,9 +192,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( data.group.name )
-                    .text( data.user.name + ': ' + data.message )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( data.group.name )
+                    .setText( data.user.name + ': ' + data.message )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -210,9 +210,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.facebook.eventCreated )
-                    .text( data.user.name + ' ' + lang.facebook.eventCreated + ' ' + data.event.name )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.eventCreated )
+                    .setText( data.user.name + ' ' + lang.facebook.eventCreated + ' ' + data.event.name )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -240,9 +240,9 @@
                 }
 
                 wz.banner()
-                    .title( name + ' ' + lang.facebook.statusUpdated )
-                    .text( data.message )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( name + ' ' + lang.facebook.statusUpdated )
+                    .setText( data.message )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -277,9 +277,9 @@
                 }
 
                 wz.banner()
-                    .title( lang.facebook.photoPosted + ' ' + name )
-                    .text( data.user.name + ' ' + photoPostedText )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.photoPosted + ' ' + name )
+                    .setText( data.user.name + ' ' + photoPostedText )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -295,9 +295,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( data.user.name + ' ' + lang.facebook.noteCreated )
-                    .text( data.user.name + ' ' + lang.facebook.noteCreatedText + ' ' + data.attachment.name )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( data.user.name + ' ' + lang.facebook.noteCreated )
+                    .setText( data.user.name + ' ' + lang.facebook.noteCreatedText + ' ' + data.attachment.name )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -325,9 +325,9 @@
                 }
 
                 wz.banner()
-                    .title( lang.facebook.linkPosted + ' ' + name )
-                    .text( data.attachment.description )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.linkPosted + ' ' + name )
+                    .setText( data.attachment.description )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
                 
             }
@@ -351,9 +351,9 @@
                 }
 
                 wz.banner()
-                    .title( data.user.name + ' ' + lang.facebook.videoPosted )
-                    .text( videoPostedText )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( data.user.name + ' ' + lang.facebook.videoPosted )
+                    .setText( videoPostedText )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -369,9 +369,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.facebook.message + ' ' + data.user.name )
-                    .text( data.body )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.message + ' ' + data.user.name )
+                    .setText( data.body )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -387,9 +387,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.facebook.request + ' ' + data.user.name )
-                    .text( data.body )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.request + ' ' + data.user.name )
+                    .setText( data.body )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -405,9 +405,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.facebook.eventCreated )
-                    .text( data.user.name + ' ' + lang.facebook.eventCreated + ' ' + data.event.name )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.eventCreated )
+                    .setText( data.user.name + ' ' + lang.facebook.eventCreated + ' ' + data.event.name )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -423,9 +423,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.facebook.requestAccepted )
-                    .text( data.user.name + ' ' + lang.facebook.requestAcceptedExplain )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.requestAccepted )
+                    .setText( data.user.name + ' ' + lang.facebook.requestAcceptedExplain )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -441,9 +441,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.facebook.groupRequest )
-                    .text( lang.facebook.groupRequestOne + data.group.name + ' ' + lang.facebook.groupRequestTwo )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.groupRequest )
+                    .setText( lang.facebook.groupRequestOne + data.group.name + ' ' + lang.facebook.groupRequestTwo )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
@@ -459,9 +459,9 @@
             if( result.length ){
 
                 wz.banner()
-                    .title( lang.facebook.userTagged )
-                    .text( data.user.name + ' ' + lang.facebook.beenTagged )
-                    .icon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setTitle( lang.facebook.userTagged )
+                    .setText( data.user.name + ' ' + lang.facebook.beenTagged )
+                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
                     .render();
 
             }
