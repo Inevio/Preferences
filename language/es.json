@@ -60,7 +60,7 @@
     "passwordChanged2"    : "Tu contraseña ha sido cambiada correctamente",
 
     "socialTitle"       : "REDES SOCIALES",
-    "socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de weeZeel",
+    "socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de Inevio",
     "facebookAccount"   : "Cuentas de Facebook",
     "twitterAccount"    : "Cuentas de Twitter",
 
@@ -75,15 +75,15 @@
     "yymmdd"          : "AA MM DD",
     
     "languageTitle"       : "IDIOMA",
-    "languageDescription" : "Por favor selecciona el idioma de tu weeZeel",
+    "languageDescription" : "Por favor selecciona el idioma de tu Inevio",
 
     "customTitle"       : "PERSONALIZAR",
-    "customDescription" : "Aquí puedes cambiar el aspecto de tu weeZeel",
+    "customDescription" : "Aquí puedes cambiar el aspecto de tu Inevio",
     "wallpaper"         : "Fondo de escritorio",
     "upload"            : "Subir",
 
     "inviteTitle"       : "INVITAR",
-    "inviteDescription" : "Aquí puedes generar weekeys para que tus amigos entren en weeZeel",
+    "inviteDescription" : "Aquí puedes generar weekeys para que tus amigos entren en Inevio",
     "generate"          : "Generar",
     "invitesLeft"       : "Invitaciones restantes",
     "inviteBeware"      : "Ten cuidado de quién usa tu weeKey porque si tu amigo es baneado tu también serás responsable",

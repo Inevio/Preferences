@@ -60,7 +60,7 @@
     "passwordChanged2"    : "Your password has been changed",
 
     "socialTitle"       : "SOCIAL NETWORKS",
-    "socialDescription" : "Here you can link all your social networks with your weeZeel account",
+    "socialDescription" : "Here you can link all your social networks with your Inevio account",
     "facebookAccount"   : "Your Facebook account",
     "twitterAccount"    : "Your Twitter account",
 
@@ -75,15 +75,15 @@
     "yymmdd"          : "YY MM DD",
 
     "languageTitle"       : "LANGUAGE",
-    "languageDescription" : "Please select the language of your weeZeel",
+    "languageDescription" : "Please select the language of your Inevio",
 
     "customTitle"       : "CUSTOMIZE",
-    "customDescription" : "Here you can change the look of your weeZeel",
+    "customDescription" : "Here you can change the look of your Inevio",
     "wallpaper"         : "Wallpaper",
     "upload"            : "Upload",
 
     "inviteTitle"       : "INVITE",
-    "inviteDescription" : "Here you can generate weeKeys to get your friends inside weeZeel",
+    "inviteDescription" : "Here you can generate weeKeys to get your friends inside Inevio",
     "generate"          : "Generate",
     "invitesLeft"       : "Invites left",
     "inviteBeware"      : "Beware who uses your weeKey because if your friend gets banned you will also be responsible",
