@@ -620,8 +620,8 @@
                     username = accountUsernameInput.val();
 
                     wz.banner()
-                        .title( lang.usernameChanged )
-                        .text( lang.usernameChanged2 + ' ' + username )
+                        .setTitle( lang.usernameChanged )
+                        .setText( lang.usernameChanged2 + ' ' + username )
                         .render();
 
                 }
@@ -646,8 +646,8 @@
                     mail = accountMailInput.val();
 
                     wz.banner()
-                        .title( lang.mailChanged )
-                        .text( lang.mailChanged2 + ' ' + mail )
+                        .setTitle( lang.mailChanged )
+                        .setText( lang.mailChanged2 + ' ' + mail )
                         .render();
 
                 }
@@ -762,8 +762,8 @@
                 }else{
 
                     wz.banner()
-                        .title( lang.passwordChanged )
-                        .text( lang.passwordChanged2 )
+                        .setTitle( lang.passwordChanged )
+                        .setText( lang.passwordChanged2 )
                         .render();
 
                 }
