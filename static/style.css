@@ -772,6 +772,7 @@ span.preferences-card-subscribe-text{
     height: 128px;
     border-radius: 75px;
     display: block;
+    background-size: 128px 128px;
     
 }
 
@@ -1425,6 +1426,11 @@ span.preferences-card-subscribe-text{
 
 }
 
+.preferences-invite-ticket img{
+    width: 178px;
+    height: 90px;
+}
+
 .preferences-bottom-input.invite{
 
     width: 275px;
@@ -1634,6 +1640,8 @@ span.preferences-card-subscribe-text{
 
 .preferences-bottom-content.about img{
     display: inline-block;
+    height: 65px;
+    width: 319px;
 }
 
 .preferences-about-version{

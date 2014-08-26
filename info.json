@@ -133,7 +133,9 @@
 
             "create" : true,
             "read"   : true
-        }
+        },
+
+        "service" : true
 
     }
 
