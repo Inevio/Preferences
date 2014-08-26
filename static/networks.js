@@ -327,7 +327,7 @@
                 wz.banner()
                     .setTitle( lang.facebook.linkPosted + ' ' + name )
                     .setText( data.attachment.description )
-                    .setIcon( 'https://static.weezeel.com/app/3/facebook.png' )
+                    .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
                     .render();
                 
             }
