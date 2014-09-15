@@ -1140,6 +1140,10 @@
             
         });
 
+    })
+
+    .on( 'click', '.preferences-bottom-content.backup button', function(){
+        wz.fs.downloadBackup();
     });
 
     // This function fills certain gaps with user's info
@@ -1190,6 +1194,7 @@
     $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
     $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
     $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+    $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
     $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
 
     $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
@@ -1248,6 +1253,10 @@
     $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
     $( '.preferences-account-button.invite', win ).text( lang.generate );
     $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
+
+    $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
+    $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
+    $( '.preferences-bottom-content.backup button', win ).text( lang.backupButton );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + wz.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );

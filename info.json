@@ -111,6 +111,14 @@
             
         },
 
+        "fs" : {
+
+            "create" : true,
+            "modify" : true,
+            "read"   : true
+
+        },
+
         "popup" : true,
 
         "social" : {

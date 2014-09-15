@@ -7,6 +7,7 @@
     "config"  : "Configuration",
     "custom"  : "Customize",
     "invite"  : "Invite",
+    "backup"  : "Backup",
     "about"   : "About",
     
     "hddTitle"         : "YOUR HARD DRIVE",
@@ -87,6 +88,10 @@
     "generate"          : "Generate",
     "invitesLeft"       : "Invites left",
     "inviteBeware"      : "Beware who uses your weeKey because if your friend gets banned you will also be responsible",
+
+    "backupTitle"       : "BACKUP YOUR FILES",
+    "backupDescription" : "Here you can save a security copy of all your files in your computer",
+    "backupButton"      : "DOWNLOAD YOUR FILES",
 
     "version"           : "Version",
     "legalNotices"      : "Legal Notices",

@@ -1624,8 +1624,33 @@ span.preferences-card-subscribe-text{
 
 }
 
-
 /* INVITE ZONE FINISH */
+
+/* BACKUP ZONE START */
+
+.preferences-bottom-content.backup{
+    
+    display: none;
+    opacity: 0;
+    text-align: center;
+    position: relative;
+    
+}
+
+.preferences-bottom-content.backup img{
+    display: inline-block;
+    height: 92px;
+    width: 222px;
+    margin: 65px 0 70px;
+}
+
+.preferences-bottom-content.backup button{
+    height: 75px;
+    width: auto;
+    padding: 0 36px;
+}
+
+/* BACKUP ZONE FINISH */
 
 /* ABOUT ZONE START */
 

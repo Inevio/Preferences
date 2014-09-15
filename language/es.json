@@ -7,6 +7,7 @@
     "config"  : "Configuración",
     "custom"  : "Apariencia",
     "invite"  : "Invitar",
+    "backup"  : "Backup",
     "about"   : "Acerca",
     
     "hddTitle"         : "TU DISCO DURO",
@@ -87,6 +88,10 @@
     "generate"          : "Generar",
     "invitesLeft"       : "Invitaciones restantes",
     "inviteBeware"      : "Ten cuidado de quién usa tu weeKey porque si tu amigo es baneado tu también serás responsable",
+
+    "backupTitle"       : "HACER UN BACKUP DE LOS FICHEROS",
+    "backupDescription" : "Aquí puedes salvar una copia de seguridad de todos tus ficheros en tu ordenador",
+    "backupButton"      : "DESCARGAR TUS FICHEROS",
 
     "version"           : "Versión",
     "legalNotices"      : "Notas Legales",
