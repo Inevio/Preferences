@@ -47,20 +47,24 @@
     var accountPrototype = $( '.preferences-social-account.wz-prototype', win );
 
     // Quota circle variables
-    var cakeCanvas   = null;
-    var cakeInterval = 0;
-    var cakeGrads    = 0;
-    var cakeEnd      = 0;
+    var cakeCanvas    = null;
+    var cakeCanvasObj = null;
+    var cakeInterval  = 0;
+    var cakeGrads     = 0;
+    var cakeEnd       = 0;
 
     // Avatar uploading variables
     var avatarCanvas    = null;
+    var avatarCanvasObj = null;
     var avatarInterval  = 0;
     var avatarGrads     = 0;
     var avatarEnd       = 0;
     var avatarUploading = false;
     var avatarUrl       = '';
 
-    var degrees = 0;
+    var degrees           = 0;
+    var backingStoreRatio = 1;
+    var pixelRatio        = 1;
 
     // Quota circle functions
     var startCircleAnimation = function( end ){
@@ -68,8 +72,25 @@
         cakeEnd = ( end * 360 ) + 5;
 
         // Define cakeCanvas Object
-        cakeCanvas = $( '.preferences-hdd-canvas', win ).transition( { opacity : 1 }, 500 );
-        cakeCanvas = cakeCanvas[ 0 ].getContext('2d');
+        cakeCanvasObj     = $( '.preferences-hdd-canvas', win ).transition( { opacity : 1 }, 500 );
+        cakeCanvas        = cakeCanvasObj[ 0 ].getContext('2d');
+        backingStoreRatio = cakeCanvas.webkitBackingStorePixelRatio ||
+                            cakeCanvas.mozBackingStorePixelRatio ||
+                            cakeCanvas.msBackingStorePixelRatio ||
+                            cakeCanvas.oBackingStorePixelRatio ||
+                            cakeCanvas.backingStorePixelRatio || 1;
+        pixelRatio        = wz.tool.devicePixelRatio() / backingStoreRatio;
+
+        var oldWidth  = cakeCanvasObj.width();
+        var oldHeight = cakeCanvasObj.height();
+
+        cakeCanvasObj[ 0 ].width  = oldWidth * pixelRatio;
+        cakeCanvasObj[ 0 ].height = oldHeight * pixelRatio;
+
+        cakeCanvasObj[ 0 ].style.width  = oldWidth + 'px';
+        cakeCanvasObj[ 0 ].style.height = oldHeight + 'px';
+
+        cakeCanvas.scale( pixelRatio, pixelRatio );
 
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
@@ -107,11 +128,23 @@
     // Makes cake circle bigger
     var nextCircleAnimation = function(){
 
-        if( cakeGrads ){
-            cakeCanvas.clearRect( 0, 0, 220, 221 );
-        }
+        var oldWidth  = cakeCanvasObj.width();
+        var oldHeight = cakeCanvasObj.height();
+
+        cakeCanvasObj[ 0 ].width        = oldWidth * pixelRatio;
+        cakeCanvasObj[ 0 ].height       = oldHeight * pixelRatio;
+        cakeCanvasObj[ 0 ].style.width  = oldWidth + 'px';
+        cakeCanvasObj[ 0 ].style.height = oldHeight + 'px';
+
+        cakeCanvas.scale( pixelRatio, pixelRatio );
 
         cakeCanvas.beginPath();
+
+        // cakeCanvas Style
+        cakeCanvas.lineWidth   = 22;
+        cakeCanvas.lineCap     = 'round';
+        cakeCanvas.strokeStyle = "#7EBE30";
+
         cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radians( cakeGrads ), false );
 
         if( ( cakeGrads / cakeEnd ) < 0.5 ){
@@ -131,11 +164,23 @@
     // Makes cake circle shorter
     var prevCircleAnimation = function(){
 
-        if( cakeGrads ){
-            cakeCanvas.clearRect( 0, 0, 220, 221 );
-        }
+        var oldWidth  = cakeCanvasObj.width();
+        var oldHeight = cakeCanvasObj.height();
+
+        cakeCanvasObj[ 0 ].width        = oldWidth * pixelRatio;
+        cakeCanvasObj[ 0 ].height       = oldHeight * pixelRatio;
+        cakeCanvasObj[ 0 ].style.width  = oldWidth + 'px';
+        cakeCanvasObj[ 0 ].style.height = oldHeight + 'px';
+
+        cakeCanvas.scale( pixelRatio, pixelRatio );
 
         cakeCanvas.beginPath();
+
+        // cakeCanvas Style
+        cakeCanvas.lineWidth   = 22;
+        cakeCanvas.lineCap     = 'round';
+        cakeCanvas.strokeStyle = "#7EBE30";
+
         cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radians( cakeGrads ), false );
 
         if( ( cakeEnd / cakeGrads ) < 0.5 ){
@@ -173,8 +218,18 @@
         avatarEnd = ( percent * 360 ) + 5;
 
         // Define avatarCanvas Object
-        avatarCanvas = $( '.preferences-account-avatar', win ).css( 'opacity', 1 );
-        avatarCanvas = avatarCanvas[ 0 ].getContext('2d');
+        avatarCanvasObj = $( '.preferences-account-avatar', win ).css( 'opacity', 1 );
+        avatarCanvas    = avatarCanvasObj[ 0 ].getContext('2d');
+
+        var oldWidth  = avatarCanvasObj.width();
+        var oldHeight = avatarCanvasObj.height();
+
+        avatarCanvasObj[ 0 ].width        = oldWidth * pixelRatio;
+        avatarCanvasObj[ 0 ].height       = oldHeight * pixelRatio;
+        avatarCanvasObj[ 0 ].style.width  = oldWidth + 'px';
+        avatarCanvasObj[ 0 ].style.height = oldHeight + 'px';
+
+        avatarCanvas.scale( pixelRatio, pixelRatio );
 
         // avatarCanvas Style
         avatarCanvas.lineWidth   = 2;
@@ -190,9 +245,22 @@
     // Makes avatar circle bigger
     var avatarAnimation = function(){
 
-        avatarCanvas.clearRect( 0, 0, 148, 148 );
+        var oldWidth  = avatarCanvasObj.width();
+        var oldHeight = avatarCanvasObj.height();
+
+        avatarCanvasObj[ 0 ].width        = oldWidth * pixelRatio;
+        avatarCanvasObj[ 0 ].height       = oldHeight * pixelRatio;
+        avatarCanvasObj[ 0 ].style.width  = oldWidth + 'px';
+        avatarCanvasObj[ 0 ].style.height = oldHeight + 'px';
+
+        avatarCanvas.scale( pixelRatio, pixelRatio );
 
         avatarCanvas.beginPath();
+
+        // avatarCanvas Style
+        avatarCanvas.lineWidth   = 2;
+        avatarCanvas.strokeStyle = "#7EBE30";
+
         avatarCanvas.arc( 74, 74, 73, -Math.PI / 140, ( Math.PI / 180 ) * avatarGrads, false );
 
         avatarGrads += ( 10 - ( ( avatarGrads / avatarEnd ) * 10 ) );
