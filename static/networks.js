@@ -15,7 +15,7 @@
                         .setText( tweet.retweeted_status.text )
                         .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                         .on( 'click', function(){
-                            wz.popup( tweet.url, 600, 500 );
+                            wz.popup( tweet.url, 600, 500 ).render();
                         })
                         .render();
 
@@ -26,7 +26,7 @@
                         .setText( tweet.text )
                         .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                         .on( 'click', function(){
-                            wz.popup( tweet.url, 600, 500 );
+                            wz.popup( tweet.url, 600, 500 ).render();
                         })
                         .render();
 
@@ -70,7 +70,7 @@
                     .setText( reply.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( reply.url, 600, 500 );
+                        wz.popup( reply.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -91,7 +91,7 @@
                     .setText( mention.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( mention.url, 600, 500 );
+                        wz.popup( mention.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -112,7 +112,7 @@
                     .setText( retweet.retweeted_status.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( retweet.url, 600, 500 );
+                        wz.popup( retweet.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -133,7 +133,7 @@
                     .setText( fav.target_object.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( fav.url, 600, 500 );
+                        wz.popup( fav.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -154,7 +154,7 @@
                     .setText( unfav.target_object.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( unfav.url, 600, 500 );
+                        wz.popup( unfav.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -175,7 +175,7 @@
                     .setText( follow.source.name + ' ' + lang.twitter.followMessage )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( follow.url, 600, 500 );
+                        wz.popup( follow.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -185,6 +185,7 @@
 
     })
 
+    /*
     .on( 'facebookGroupPost', function( account, data ){
 
         wql.getType( [ account.id, 5 ], function( error, result ){
@@ -468,4 +469,4 @@
 
         });
 
-    });
+    })*/;
