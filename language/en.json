@@ -78,6 +78,9 @@
     "languageTitle"       : "LANGUAGE",
     "languageDescription" : "Please select the language of your Inevio",
 
+    "extensionsTitle"   : "EXTENSIONS",
+    "displayExtensions" : "Display the extension at the end of the filenames",
+
     "customTitle"       : "CUSTOMIZE",
     "customDescription" : "Here you can change the look of your Inevio",
     "wallpaper"         : "Wallpaper",

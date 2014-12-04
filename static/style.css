@@ -1214,6 +1214,36 @@ span.preferences-card-subscribe-text{
     color: #FFF;
 }
 
+.preferences-bottom-title.extensions{
+    margin-top: 35px;
+}
+
+.preferences-extensions-display{
+
+    display: inline-block;
+    float: none;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+
+}
+
+.preferences-extensions-display figure{
+
+    display: inline-block;
+    float: none;
+
+}
+
+.preferences-extensions-display span{
+
+    display: inline-block;
+    float: none;
+    margin-top: 2px;
+    vertical-align: top;
+    
+}
+
 /* CONFIGURATION ZONE FINISH */
 
 /* CUSTOMIZE ZONE START */
