@@ -1142,6 +1142,18 @@
 
     })
 
+    .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
+
+        wz.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
+
+            if( error ){
+                alert( error );
+            }
+            
+        });
+
+    })
+
     .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
 
         var button = $( this );
@@ -1234,6 +1246,16 @@
 
     socialNetworks();
 
+    wz.config.getConfiguration( function( error, config ){
+
+        if( config.displayExtensions ){
+            $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
+        }else{
+            $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
+        }
+        
+    });
+
     wz.config.getLanguages( function( error, languages, used ){
 
         if( used.code === "es" || used.code === "es-es" ){
@@ -1311,6 +1333,9 @@
 
     $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
     $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
+
+    $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
+    $('.preferences-extensions-display span').text( lang.displayExtensions );
 
     $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
     $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );

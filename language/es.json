@@ -78,6 +78,9 @@
     "languageTitle"       : "IDIOMA",
     "languageDescription" : "Por favor selecciona el idioma de tu Inevio",
 
+    "extensionsTitle"   : "EXTENSIONES",
+    "displayExtensions" : "Mostrar la extensión al final de los nombres de ficheros",
+
     "customTitle"       : "PERSONALIZAR",
     "customDescription" : "Aquí puedes cambiar el aspecto de tu Inevio",
     "wallpaper"         : "Fondo de escritorio",
