@@ -1,4 +1,4 @@
-    
+
     var win               = $( this );
     var checkboxPrototype = $( '.preferences-bottom-checkbox.wz-prototype', win );
 
@@ -15,7 +15,7 @@
         });
 
         service.trigger( 'config-changed' );
-        wz.view.remove();
+        api.view.remove();
 
     };
 
@@ -25,7 +25,7 @@
     })
 
     .on( 'click', '.preferences-button.cancel', function(){
-        wz.view.remove();
+        api.view.remove();
     })
 
     .on( 'click', '.preferences-button.save', function(){
@@ -34,8 +34,8 @@
     })
 
     .on( 'click', '.preferences-account-remove', function(){
-        wz.social.removeAccount( params.id );
-        wz.view.remove();
+        api.social.removeAccount( params.id );
+        api.view.remove();
     });
 
     if( params.type === 'facebook' ){

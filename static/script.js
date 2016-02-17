@@ -1,4 +1,4 @@
-    
+
     var win = $( this );
 
     // Clock variable
@@ -79,7 +79,7 @@
                             cakeCanvas.msBackingStorePixelRatio ||
                             cakeCanvas.oBackingStorePixelRatio ||
                             cakeCanvas.backingStorePixelRatio || 1;
-        pixelRatio        = wz.tool.devicePixelRatio() / backingStoreRatio;
+        pixelRatio        = api.tool.devicePixelRatio() / backingStoreRatio;
 
         var oldWidth  = cakeCanvasObj.width();
         var oldHeight = cakeCanvasObj.height();
@@ -199,14 +199,14 @@
 
     var changeCake = function( space ){
 
-        wz.system.updateQuota( function(){
+        api.system.updateQuota( function(){
 
             if( space ){
                 startCircleAnimation( configObject.quota / space );
-                cakeFree.text( wz.tool.bytesToUnit( space - configObject.quota, 2 ) + ' ' + lang.freeSpace );
+                cakeFree.text( api.tool.bytesToUnit( space - configObject.quota, 2 ) + ' ' + lang.freeSpace );
             }else{
                 startCircleAnimation( configObject.quotaPercentage );
-                cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
+                cakeFree.text( api.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
             }
 
         });
@@ -363,14 +363,14 @@
         }
 
     };
-    
+
     var clock = function(){
-         
+
         date = new Date();
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var seconds = date.getSeconds();
-        
+
         if( hour < 10 ){ hour = '0' + hour; }
         if( minutes < 10 ){ minutes = '0' + minutes; }
         if( seconds < 10 ){ seconds = '0' + seconds; }
@@ -386,7 +386,7 @@
 
         clockSecond.css( 'transform', 'rotate(' + seconds / 60 * 360 + 'deg)' );
         configHour.text( ': ' + minutes + ' : ' + seconds );
-        
+
     };
 
     var coolHour = function( hour ){
@@ -419,7 +419,7 @@
 
     var invitationInfo = function(){
 
-        wz.weekey.getList( function( error, list, left ){
+        api.weekey.getList( function( error, list, left ){
 
             $( '.preferences-invite-left', win ).text( lang.invitesLeft + ': ' + left );
 
@@ -454,7 +454,7 @@
 
         $( '.preferences-social-card', win ).children().not( '.preferences-social-title' ).remove();
 
-        wz.social.getAccounts( function( error, list ){
+        api.social.getAccounts( function( error, list ){
 
             for( var i = 0; i < list.accounts.length; i++ ){
 
@@ -475,7 +475,7 @@
     };
 
     // WZ Events
-    wz.upload
+    api.upload
 
     // Capturing the avatar uploading progress
     .on( 'avatarProgress', function( percent ){
@@ -585,7 +585,7 @@
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var seconds = date.getSeconds();
-        
+
         if( hour < 10 ){ hour = '0' + hour; }
         if( minutes < 10 ){ minutes = '0' + minutes; }
         if( seconds < 10 ){ seconds = '0' + seconds; }
@@ -676,7 +676,7 @@
 
         if( accountUsernameInput.val().length > 2 && usernameExpresion.test( accountUsernameInput.val() ) && accountUsernameInput.val() !== username ){
 
-            wz.config.setUsername( accountUsernameInput.val(), function( error ){
+            api.config.setUsername( accountUsernameInput.val(), function( error ){
 
                 if( error ){
 
@@ -687,7 +687,7 @@
 
                     username = accountUsernameInput.val();
 
-                    wz.banner()
+                    api.banner()
                         .setTitle( lang.usernameChanged )
                         .setText( lang.usernameChanged2 + ' ' + username )
                         .render();
@@ -702,7 +702,7 @@
 
         if( accountMailInput.val().length && mailExpresion.test( accountMailInput.val() ) && accountMailInput.val() !== mail ){
 
-            wz.config.setMail( accountMailInput.val(), function( error ){
+            api.config.setMail( accountMailInput.val(), function( error ){
 
                 if( error ){
 
@@ -713,7 +713,7 @@
 
                     mail = accountMailInput.val();
 
-                    wz.banner()
+                    api.banner()
                         .setTitle( lang.mailChanged )
                         .setText( lang.mailChanged2 + ' ' + mail )
                         .render();
@@ -821,7 +821,7 @@
 
         if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
 
-            wz.config.setPassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
+            api.config.setPassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
 
                 if( error ){
 
@@ -829,7 +829,7 @@
 
                 }else{
 
-                    wz.banner()
+                    api.banner()
                         .setTitle( lang.passwordChanged )
                         .setText( lang.passwordChanged2 )
                         .render();
@@ -897,7 +897,7 @@
 
             var id = $( this ).attr( 'data-id' );
 
-            wz.config.setWallpaper( id );
+            api.config.setWallpaper( id );
 
         }
 
@@ -913,7 +913,7 @@
         }
 
         e.stopPropagation();
-        
+
     })
 
     .on( 'click', '.preferences-invite-friends', function( e ){
@@ -1055,12 +1055,12 @@
         $( '.preferences-card-prev', win ).css( 'display', 'none' );
         $( '.preferences-card-next', win ).css( 'display', 'none' );
 
-        wz.system.updateQuota( function( error, quota ){
+        api.system.updateQuota( function( error, quota ){
 
             cakeTitle.text( lang.currentUsage );
-            cakeTotal.text( wz.tool.bytesToUnit( configObject.quotaMax ) );
-            cakeFree.text( wz.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
-            
+            cakeTotal.text( api.tool.bytesToUnit( configObject.quotaMax ) );
+            cakeFree.text( api.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
+
             changeCake( 0 );
 
         });
@@ -1076,7 +1076,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        wz.config.setTimeZone( timeZone, function( error ){
+        api.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
                 alert( error );
@@ -1095,7 +1095,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        wz.config.setTimeZone( timeZone, function( error ){
+        api.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
                 alert( error );
@@ -1109,7 +1109,7 @@
 
         var hour = date.getHours();
         var minutes = date.getMinutes();
-        
+
         if( hour < 10 ){ hour = '0' + hour; }
         if( minutes < 10 ){ minutes = '0' + minutes; }
 
@@ -1118,7 +1118,7 @@
 
         timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
 
-        wz.config.setTimeZone( timeZone, function( error ){
+        api.config.setTimeZone( timeZone, function( error ){
 
             if( error ){
 
@@ -1132,24 +1132,24 @@
 
     .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
 
-        wz.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
+        api.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
 
             if( error ){
                 alert( error );
             }
-            
+
         });
 
     })
 
     .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
 
-        wz.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
+        api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
 
             if( error ){
                 alert( error );
             }
-            
+
         });
 
     })
@@ -1158,12 +1158,12 @@
 
         var button = $( this );
 
-        wz.config.setDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+        api.config.setDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
 
             if( error ){
                 alert( error );
             }
-            
+
         });
 
     })
@@ -1173,11 +1173,11 @@
         $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
 
         if( $( this ).hasClass( 'english-uk' ) ){
-            wz.config.setLanguage( 'en-en' );
+            api.config.setLanguage( 'en-en' );
         }else if( $( this ).hasClass( 'english-us' ) ){
-            wz.config.setLanguage( 'en-us' );
+            api.config.setLanguage( 'en-us' );
         }else if( $( this ).hasClass( 'spanish' ) ){
-            wz.config.setLanguage( 'es-es' );
+            api.config.setLanguage( 'es-es' );
         }
 
     })
@@ -1185,7 +1185,7 @@
     // Launches browser window to add an account
     .on( 'click', '.preferences-social-icon.plus', function(){
         //alert( 'Demo accounts can\'t add social networks' );
-        wz.social.addAccount( $( this ).attr( 'data-social-network' ) );
+        api.social.addAccount( $( this ).attr( 'data-social-network' ) );
     })
 
     // Launches settings window of social networks ( Social Networks Tab )
@@ -1193,9 +1193,9 @@
 
         var socialNetwork = $( this ).parent( '.preferences-social-account' )
 
-        wz.app.createView( { 
+        api.app.createView( {
 
-            type: socialNetwork.data( 'social-network' ), 
+            type: socialNetwork.data( 'social-network' ),
             id: socialNetwork.data( 'id' ),
             name: socialNetwork.data( 'name' )
 
@@ -1205,7 +1205,7 @@
 
     .on( 'click', '.preferences-button.invite', function(){
 
-        wz.weekey.create( function( error, weekey ){
+        api.weekey.create( function( error, weekey ){
 
             if( error === 'DEMO CAN NOT CREATE A WEEKEY' ){
                 alert( 'Demo accounts can\'t create weeKeys' );
@@ -1217,46 +1217,46 @@
                 invitationInfo();
 
             }
-            
+
         });
 
     })
 
     .on( 'click', '.preferences-bottom-content.backup button', function(){
-        wz.fs.downloadBackup();
+        api.fs.downloadBackup();
     });
 
     // This function fills certain gaps with user's info
-    wz.system.updateQuota( function( error, quota ){
+    api.system.updateQuota( function( error, quota ){
 
-        cakeTotal.text( wz.tool.bytesToUnit( wz.system.quota().total ) );
-        cakeFree.text( wz.tool.bytesToUnit( wz.system.quota().free, 2 ) + ' ' + lang.freeSpace );
+        cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
+        cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
 
-        startCircleAnimation( wz.system.quota().used / wz.system.quota().total );
+        startCircleAnimation( api.system.quota().used / api.system.quota().total );
 
     });
 
-    avatarUrl = wz.system.user().avatar.normal;
-    mail      = wz.system.user().mail;
-    username  = wz.system.user().user;
+    avatarUrl = api.system.user().avatar.normal;
+    mail      = api.system.user().mail;
+    username  = api.system.user().user;
 
-    console.log( wz.system.user() );
+    console.log( api.system.user() );
 
     $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
 
     socialNetworks();
 
-    wz.config.getConfiguration( function( error, config ){
+    api.config.getConfiguration( function( error, config ){
 
         if( config.displayExtensions ){
             $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
         }else{
             $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
         }
-        
+
     });
 
-    wz.config.getLanguages( function( error, languages, used ){
+    api.config.getLanguages( function( error, languages, used ){
 
         if( used.code === "es" || used.code === "es-es" ){
             $( '.preferences-language-element.spanish', win ).addClass( 'active' );
@@ -1268,7 +1268,7 @@
 
     });
 
-    wz.config.getWallpapers( function( error, wallpapers, used ){
+    api.config.getWallpapers( function( error, wallpapers, used ){
 
         if( used.custom ){
             $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
@@ -1351,14 +1351,14 @@
     $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
     $( '.preferences-bottom-content.backup button', win ).text( lang.backupButton );
 
-    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + wz.system.version().replace( 'beta', 'Beta' ) );
+    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
     // SOCIAL NETWORKS CODE
-    wz.social
+    api.social
     .on( 'facebookAccountAdded', function( account ){
-        
+
         for( var i = 0; i < 8; i++ ){
             wql.insertType( [ account.id, i ] );
         }
@@ -1375,7 +1375,7 @@
     })
 
     .on( 'twitterAccountAdded', function( account ){
-        
+
         for( var i = 0; i < 8; i++ ){
             wql.insertType( [ account.id, i ] );
         }

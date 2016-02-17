@@ -1,7 +1,7 @@
 
     // To Do -> No se pueden cachear los permisos?
 
-    wz.social
+    api.social
     .on( 'twitterTweet', function( account, tweet ){
 
         wql.getType( [ account.id, 0 ], function( error, result ){
@@ -10,23 +10,23 @@
 
                 if( tweet.retweeted_status ){
 
-                    wz.banner()
+                    api.banner()
                         .setTitle( tweet.user.name )
                         .setText( tweet.retweeted_status.text )
                         .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                         .on( 'click', function(){
-                            wz.popup( tweet.url, 600, 500 ).render();
+                            api.popup( tweet.url, 600, 500 ).render();
                         })
                         .render();
 
                 }else{
 
-                    wz.banner()
+                    api.banner()
                         .setTitle( tweet.user.name )
                         .setText( tweet.text )
                         .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                         .on( 'click', function(){
-                            wz.popup( tweet.url, 600, 500 ).render();
+                            api.popup( tweet.url, 600, 500 ).render();
                         })
                         .render();
 
@@ -44,12 +44,12 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.twitter.message + ' ' + message.direct_message.sender_screen_name )
                     .setText( message.direct_message.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     /*.on( 'click', function(){
-                        wz.popup( tweet.url, 600, 500 ); // To Do -> Debería abrirse algo
+                        api.popup( tweet.url, 600, 500 ); // To Do -> Debería abrirse algo
                     })*/
                     .render();
 
@@ -65,12 +65,12 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( reply.user.name + ' ' + lang.twitter.reply )
                     .setText( reply.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( reply.url, 600, 500 ).render();
+                        api.popup( reply.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -86,12 +86,12 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( mention.user.name + ' ' + lang.twitter.mention )
                     .setText( mention.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( mention.url, 600, 500 ).render();
+                        api.popup( mention.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -107,12 +107,12 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( retweet.user.name + ' ' + lang.twitter.retweet )
                     .setText( retweet.retweeted_status.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( retweet.url, 600, 500 ).render();
+                        api.popup( retweet.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -128,12 +128,12 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( fav.source.name + ' ' + lang.twitter.fav )
                     .setText( fav.target_object.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( fav.url, 600, 500 ).render();
+                        api.popup( fav.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -149,12 +149,12 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( unfav.source.name + ' ' + lang.twitter.unfav )
                     .setText( unfav.target_object.text )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( unfav.url, 600, 500 ).render();
+                        api.popup( unfav.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -170,12 +170,12 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.twitter.follow )
                     .setText( follow.source.name + ' ' + lang.twitter.followMessage )
                     .setIcon( 'https://static.inevio.com/app/3/twitter.png' )
                     .on( 'click', function(){
-                        wz.popup( follow.url, 600, 500 ).render();
+                        api.popup( follow.url, 600, 500 ).render();
                     })
                     .render();
 
@@ -192,7 +192,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( data.group.name )
                     .setText( data.user.name + ': ' + data.message )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -210,7 +210,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.eventCreated )
                     .setText( data.user.name + ' ' + lang.facebook.eventCreated + ' ' + data.event.name )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -240,7 +240,7 @@
                     name = data.event.name;
                 }
 
-                wz.banner()
+                api.banner()
                     .setTitle( name + ' ' + lang.facebook.statusUpdated )
                     .setText( data.message )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -277,7 +277,7 @@
                     name = data.event.name;
                 }
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.photoPosted + ' ' + name )
                     .setText( data.user.name + ' ' + photoPostedText )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -295,7 +295,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( data.user.name + ' ' + lang.facebook.noteCreated )
                     .setText( data.user.name + ' ' + lang.facebook.noteCreatedText + ' ' + data.attachment.name )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -325,12 +325,12 @@
                     name = data.event.name;
                 }
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.linkPosted + ' ' + name )
                     .setText( data.attachment.description )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
                     .render();
-                
+
             }
 
         });
@@ -351,7 +351,7 @@
                     videoPostedText = lang.facebook.videoPostedText2;
                 }
 
-                wz.banner()
+                api.banner()
                     .setTitle( data.user.name + ' ' + lang.facebook.videoPosted )
                     .setText( videoPostedText )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -369,7 +369,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.message + ' ' + data.user.name )
                     .setText( data.body )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -387,7 +387,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.request + ' ' + data.user.name )
                     .setText( data.body )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -405,7 +405,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.eventCreated )
                     .setText( data.user.name + ' ' + lang.facebook.eventCreated + ' ' + data.event.name )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -423,7 +423,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.requestAccepted )
                     .setText( data.user.name + ' ' + lang.facebook.requestAcceptedExplain )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -441,7 +441,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.groupRequest )
                     .setText( lang.facebook.groupRequestOne + data.group.name + ' ' + lang.facebook.groupRequestTwo )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
@@ -459,7 +459,7 @@
 
             if( result.length ){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.facebook.userTagged )
                     .setText( data.user.name + ' ' + lang.facebook.beenTagged )
                     .setIcon( 'https://static.inevio.com/app/3/facebook.png' )
