@@ -52,9 +52,6 @@
     // Social Accounts
     var accountPrototype     = $( '.preferences-social-account.wz-prototype', win );
 
-    // Backup Variables
-    var backupButtonLabel    = $( '.backup-button-span', win );
-
     // Quota circle variables
     var cakeCanvas    = null;
     var cakeCanvasObj = null;
@@ -1367,7 +1364,7 @@
 
     $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
     $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
-    $( '.backup-button-span', win ).text( lang.backupButton );
+    $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
