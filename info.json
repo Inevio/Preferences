@@ -3,9 +3,9 @@
 
     "name" : {
 
-        "main" : "Preferences",
-        "en"   : "Preferences",
-        "es"   : "Preferencias"
+        "main" : "Preferences Dev",
+        "en"   : "Preferences Dev",
+        "es"   : "Preferencias Dev"
 
     },
 
@@ -39,7 +39,7 @@
                 "main" : {
 
                     "description" : "",
-                    
+
                     "template" : "main.html",
 
                     "maxizable" : false,
@@ -69,7 +69,7 @@
                 "social" : {
 
                     "description" : "",
-                    
+
                     "template" : "social.html",
 
                     "maxizable" : false,
@@ -108,7 +108,7 @@
 
             "modify" : true,
             "read"   : true
-            
+
         },
 
         "fs" : {
@@ -127,14 +127,14 @@
             "facebook" : true,
             "twitter"  : true,
             "modify"   : true
-            
+
         },
 
         "upload" : {
 
             "avatar"    : true,
             "wallpaper" : true
-            
+
         },
 
         "weekey" : {
