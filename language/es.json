@@ -102,7 +102,7 @@
 
     "backupTitle"       : "HACER UN BACKUP DE LOS FICHEROS",
     "backupDescription" : "Aquí puedes salvar una copia de seguridad de todos tus ficheros en tu ordenador",
-    "backupButton"      : "DESCARGAR TUS FICHEROS",
+    "backupButton"      : "Descargar todos tus archivos",
 
     "version"           : "Versión",
     "legalNotices"      : "Notas Legales",

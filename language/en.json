@@ -102,7 +102,7 @@
 
     "backupTitle"       : "BACKUP YOUR FILES",
     "backupDescription" : "Here you can save a security copy of all your files in your computer",
-    "backupButton"      : "DOWNLOAD YOUR FILES",
+    "backupButton"      : "Download all your files",
 
     "version"           : "Version",
     "legalNotices"      : "Legal Notices",
