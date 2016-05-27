@@ -40,8 +40,11 @@
     /*box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.15 ), inset 0 1px rgba( 255, 255, 255, 0.1 );*/
     position: relative;
     z-index: 1;
-
     background: #2C3238;
+}
+
+.preferences-top * {
+  transition: all 0.2s ease;
 }
 
 .preferences-top nav{
@@ -550,7 +553,10 @@
   display: inline-block;
   margin-top: 5px;
   position: relative;
+}
 
+.preferences-bottom-zone *{
+  transition: all 0.2s ease;
 }
 
 /* HDD ZONE START */
@@ -1512,6 +1518,7 @@ border-radius: 3px;
     background: url('https://static.inevio.com/app/374/wallpapers.jpg') no-repeat;
     background-size: 672px 336px;
     margin: 6px;
+    transition: all 0.2s ease;
 
 
 }
