@@ -126,7 +126,9 @@ span.preferences-content-title{
     float: right;
     margin-top: 10px;
     text-align: center;
-
+}
+.preferences-button * {
+  transition: all 0.2 ease;
 }
 
 .preferences-button.cancel{

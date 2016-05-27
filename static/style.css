@@ -116,6 +116,10 @@
 
 }
 
+.preferences-account-button *{
+  transition: all 0.2s ease;
+}
+
 .wz-ui-header.dark .wz-view-menu-group:last-child {
   border-right: none;
   border-left: 0px solid transparent;
@@ -964,6 +968,9 @@ span.preferences-card-subscribe-text{
     width: 286px;
     margin-top: 40px;
 
+}
+.preferences-social-zone *{
+  transition: all 0.2s ease;
 }
 
 .preferences-social-card{
@@ -1855,6 +1862,7 @@ background-image: -o-linear-gradient(bottom, #ef5251, #f75a59);
 background-image: -ms-linear-gradient(bottom, #ef5251, #f75a59);
 background-image: linear-gradient(to top, #ef5251, #f75a59);
     padding: 0 36px;
+
 }
 
 /* BACKUP ZONE FINISH */
@@ -1909,6 +1917,7 @@ background-image: linear-gradient(to top, #ef5251, #f75a59);
     display: inline-block;
     color: #FFF;
     text-decoration: underline;
+    transition: all 0.2s ease;
 }
 
 .preferences-about-link:hover{

@@ -50,7 +50,10 @@
     var englishLabel         = $( '.preferences-language-element-english', win );
 
     // Social Accounts
-    var accountPrototype = $( '.preferences-social-account.wz-prototype', win );
+    var accountPrototype     = $( '.preferences-social-account.wz-prototype', win );
+
+    // Backup Variables
+    var backupButtonLabel    = $( '.backup-button-span', win );
 
     // Quota circle variables
     var cakeCanvas    = null;
@@ -1364,7 +1367,7 @@
 
     $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
     $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
-    $( '.preferences-bottom-content.backup button', win ).text( lang.backupButton );
+    $( '.backup-button-span', win ).text( lang.backupButton );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
