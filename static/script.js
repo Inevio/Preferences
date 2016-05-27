@@ -25,11 +25,13 @@
     var accountMail          = $( '.account-mail', win );
     var accountMailInput     = $( 'input', accountMail );
     var currentPassword      = $( '.password-current', win );
+    var forgetPassword       = $( '.preferences-bottom-forgetPassword', win );
     var currentPasswordInput = $( 'input', currentPassword );
     var newPassword          = $( '.password-new', win );
     var newPasswordInput     = $( 'input', newPassword );
     var confirmPassword      = $( '.password-confirm', win );
     var confirmPasswordInput = $( 'input', confirmPassword );
+    var forgetPasswordHtml   ="https://www.inevio.com/";
 
     // HDD variables
     var cakeTitle            = $( '.preferences-hdd-usage', win );
@@ -42,6 +44,10 @@
     var cardDescriptionTwo   = $( '.preferences-card-description-two', win );
     var cardDescriptionThree = $( '.preferences-card-description-three', win );
     var cardDescriptionFour  = $( '.preferences-card-description-four', win );
+
+    // Config variables
+    var spanishLabel         = $( '.preferences-language-element-spanish', win );
+    var englishLabel         = $( '.preferences-language-element-english', win );
 
     // Social Accounts
     var accountPrototype = $( '.preferences-social-account.wz-prototype', win );
@@ -95,7 +101,7 @@
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
         cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#7EBE30";
+        cakeCanvas.strokeStyle = "#60B25E";
 
         // Start cakeCanvas
         cakeCanvas.beginPath();
@@ -143,7 +149,7 @@
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
         cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#7EBE30";
+        cakeCanvas.strokeStyle = "#60B25E";
 
         cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radians( cakeGrads ), false );
 
@@ -179,7 +185,7 @@
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
         cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#7EBE30";
+        cakeCanvas.strokeStyle = "#60B25E";
 
         cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radians( cakeGrads ), false );
 
@@ -233,7 +239,7 @@
 
         // avatarCanvas Style
         avatarCanvas.lineWidth   = 2;
-        avatarCanvas.strokeStyle = "#7EBE30";
+        avatarCanvas.strokeStyle = "#60B25E";
 
         clearInterval( avatarInterval );
         setTimeout( function(){
@@ -259,7 +265,7 @@
 
         // avatarCanvas Style
         avatarCanvas.lineWidth   = 2;
-        avatarCanvas.strokeStyle = "#7EBE30";
+        avatarCanvas.strokeStyle = "#60B25E";
 
         avatarCanvas.arc( 74, 74, 73, -Math.PI / 140, ( Math.PI / 180 ) * avatarGrads, false );
 
@@ -436,7 +442,7 @@
                         invitedFriend.find( 'img' ).attr( 'src', list[ i ].user.avatar.tiny );
                         invitedFriend.find( 'span' ).text( list[ i ].user.fullName );
                     }else{
-                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.inevio.com/app/3/weekey.png' );
+                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.inevio.com/app/374/weekey.png' );
                         invitedFriend.find( 'span' ).text( list[ i ].id );
                     }
 
@@ -504,7 +510,7 @@
 
                 $( '.preferences-account-avatar', win ).transition({ opacity : 0 }, function(){
 
-                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #7EBE30' }, function(){
+                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #60B25E' }, function(){
                         $( this ).transition({ 'box-shadow' : 'none' });
                     });
 
@@ -1304,16 +1310,23 @@
     $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
     $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
     $( '.avatar-edit', win ).text( lang.avatarEdit );
+    $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
+    $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
     $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
     $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
 
     $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
     $( '.preferences-bottom-description.password', win ).text( lang.passwordDescription );
     $( '.cancel-password .preferences-account-button', win ).text( lang.cancel );
+    $( '.preferences-bottom-labelCurrentPassword', win ).text( lang.currentPassword );
     $( '.save-password .preferences-account-button', win ).text( lang.saveChanges );
     $( '.password-current input', win ).attr( 'placeholder', lang.currentPassword );
     $( '.password-new input', win ).attr( 'placeholder', lang.newPassword );
     $( '.password-confirm input', win ).attr( 'placeholder', lang.confirmPassword );
+    $( '.preferences-bottom-labelNewPassword', win ).text( lang.newPassword );
+    $( '.preferences-bottom-labelConfirmPassword', win ).text( lang.confirmPassword );
+    $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
+    $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
 
     $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
     $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
@@ -1333,6 +1346,8 @@
 
     $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
     $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
+    $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
+    $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
 
     $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
     $('.preferences-extensions-display span').text( lang.displayExtensions );

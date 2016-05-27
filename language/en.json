@@ -9,7 +9,7 @@
     "invite"  : "Invite",
     "backup"  : "Backup",
     "about"   : "About",
-    
+
     "hddTitle"         : "YOUR HARD DRIVE",
     "hddDescription"   : "Here you view how much free space you have left",
     "currentUsage"     : "Current usage",
@@ -44,6 +44,8 @@
     "accountTitle"       : "YOUR PROFILE",
     "accountDescription" : "Here you can change your personal information",
     "avatarEdit"         : "CHANGE",
+    "accountUser"        : "USERNAME",
+    "accountMailUser"    : "EMAIL",
     "changePassword"     : "Change Password",
     "saveChanges"        : "Save Changes",
     "usernameChanged"    : "Username changed",
@@ -52,13 +54,17 @@
     "mailChanged2"       : "Your mail has been changed to",
 
     "passwordTitle"       : "YOUR PASSWORD",
-    "passwordDescription" : "Here you can change your current password",
+    "passwordDescription" : "Here you can change your password or recover it.",
     "cancel"              : "Cancel",
     "currentPassword"     : "Current Password",
+    "currentPasswordType" : "Type your current password",
     "newPassword"         : "New Password",
+    "newPasswordType"     : "Type your new password",
     "confirmPassword"     : "Confirm New Password",
+    "confirmPasswordType" : "Confirm the new password",
     "passwordChanged"     : "Password changed",
     "passwordChanged2"    : "Your password has been changed",
+    "forgetPassword"      : "Forgot your password?",
 
     "socialTitle"       : "SOCIAL NETWORKS",
     "socialDescription" : "Here you can link all your social networks with your Inevio account",
@@ -77,6 +83,8 @@
 
     "languageTitle"       : "LANGUAGE",
     "languageDescription" : "Please select the language of your Inevio",
+    "spanishLanguage"     : "Spanish",
+    "englishLanguage"     : "English",
 
     "extensionsTitle"   : "EXTENSIONS",
     "displayExtensions" : "Display the extension at the end of the filenames",
