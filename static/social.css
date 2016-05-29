@@ -113,9 +113,6 @@ span.preferences-content-title{
 .preferences-bottom-checkbox figure{
 
     float: right;
-    margin: 0;
-    background: #3f4750;
-
 }
 
 .preferences-button{
@@ -136,13 +133,11 @@ span.preferences-content-title{
     border: 1px solid #2F2F2F;
     float: right;
     margin-right: 10px;
-    background: #3f4750;
+
 
 }
 
 .preferences-button span:first-child{
 
-    width: 45px;
-    text-align: center;
-
+    width: auto;
 }

@@ -669,7 +669,7 @@
             }
 
             if( usernameOk || mailOk ){
-                $( '.save-info', win ).removeClass( 'unactive' ).addClass( 'active' );
+                $( '.save-info', win ).removeClass( 'unactive' ).addClass( 'active ui-btn accept' );
             }else{
                 $( '.save-info', win ).removeClass( 'active' ).addClass( 'unactive' );
             }
@@ -793,7 +793,7 @@
     .on( 'keyup', '.password-current input, .password-new input, .password-confirm input', function(){
 
         if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
-            $( '.save-password', win ).removeClass( 'unactive' ).addClass( 'active' );
+            $( '.save-password', win ).removeClass( 'unactive' ).addClass( 'active ui-btn accept' );
         }else{
             $( '.save-password', win ).removeClass( 'active' ).addClass( 'unactive' );
         }
