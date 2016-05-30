@@ -21,7 +21,7 @@
 .preferences-top span{
 
     float: left;
-    margin: 16px 15px;
+    margin: 12px 15px;
     font-size: 15px;
     color: #FFF;
     text-shadow: 0 -1px rgba( 0, 0, 0, 0.15 );
@@ -129,15 +129,10 @@ span.preferences-content-title{
 }
 
 .preferences-button.cancel{
-
-    border: 1px solid #2F2F2F;
     float: right;
     margin-right: 10px;
-
-
 }
 
 .preferences-button span:first-child{
-
     width: auto;
 }
