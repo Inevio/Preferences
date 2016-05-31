@@ -132,32 +132,55 @@
 
         </article>
 
-
-        <article class="preferences-bottom-container">
+        <section class="preferences-bottom-input-containter">
+        <article class="preferences-bottom-container dark">
           <article class="preferences-bottom-label">
             <span class="preferences-bottom-labelUsername"></span>
           </article>
-          <article class="preferences-bottom-input top account-username ui-input-search">
+
+          <!--article class="preferences-bottom-input top account-username ui-input-search">
               <article class="preferences-bottom-input-container">
                 <i></i>
                 <input type="text" />
                 <i class="preferences-input-status"></i>
               </article>
-          </article>
+          </article -->
+
+          <section class="ui-input-search account-username">
+            <figure class="input-icon user-icon search-icon">
+              <i></i>
+            </figure>
+            <input>
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
         </article>
 
-        <article class="preferences-bottom-container">
+        <article class="preferences-bottom-container dark">
           <article class="preferences-bottom-label">
             <span class="preferences-bottom-labelMail"></span>
           </article>
-          <article class="preferences-bottom-input bottom account-mail ui-input-search">
+
+          <!--article class="preferences-bottom-input bottom account-mail ui-input-search">
               <article class="preferences-bottom-input-container">
                 <i></i>
                 <input type="text" />
                 <i class="preferences-input-status"></i>
               </article>
           </article>
-        </article>
+        </article -->
+        <section class="ui-input-search account-mail">
+          <figure class="input-icon mail-icon search-icon">
+            <i></i>
+          </figure>
+          <input>
+          <figure class="delete-content">
+            <i></i>
+          </figure>
+        </section>
+      </section>
 
         <section class="preferences-account-buttons">
 
@@ -184,35 +207,73 @@
         <span class="preferences-bottom-title password"></span>
         <span class="preferences-bottom-description password"></span>
 
+        <article class="preferences-bottom-password-container dark">
 
-
-        <article class="preferences-bottom-password-container">
           <article class="preferences-bottom-labelPassword">
             <span class="preferences-bottom-labelCurrentPassword labelPassword"></span>
             <a class="preferences-bottom-forgetPassword forgetPassword" href="https://www.inevio.com/forgot" target="_blank"></a>
           </article>
-          <article class="preferences-bottom-input top password-current ui-input-search">
+
+
+          <!-- article class="preferences-bottom-input top password-current ui-input-search">
               <i></i>
               <input type="password" />
               <i class="preferences-input-status"></i>
-          </article>
+          </article -->
+          <section class="ui-input-search password-current">
+            <figure class="input-icon pass-icon search-icon">
+              <i></i>
+            </figure>
+            <input>
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
 
           <article class="preferences-bottom-labelPassword">
             <span class="preferences-bottom-labelNewPassword labelPassword"></span>
           </article>
-          <article class="preferences-bottom-input middle password-new ui-input-search">
+
+
+          <!-- article class="preferences-bottom-input middle password-new ui-input-search">
               <i></i>
               <input type="password" />
               <i class="preferences-input-status"></i>
-          </article>
+          </article -->
+
+          <section class="ui-input-search password-new">
+            <figure class="input-icon repeatPass-icon search-icon">
+              <i></i>
+            </figure>
+            <input type="password">
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
           <article class="preferences-bottom-labelPassword">
             <span class="preferences-bottom-labelConfirmPassword labelPassword"></span>
           </article>
-          <article class="preferences-bottom-input bottom password-confirm ui-input-search">
+
+          <!-- article class="preferences-bottom-input bottom password-confirm ui-input-search">
               <i></i>
               <input type="password" />
               <i class="preferences-input-status"></i>
-          </article>
+          </article -->
+
+          <section class="ui-input-search password-confirm">
+            <figure class="input-icon confirmPass-icon search-icon">
+              <i></i>
+            </figure>
+            <input type="password">
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
+
+
         </article>
 
         <section class="preferences-account-buttons">
@@ -259,9 +320,11 @@
             <section class="preferences-social-card twitter">
 
                 <article class="preferences-social-title">
-                    <img class="preferences-social-network" src="https://static.inevio.com/app/374/twitter.png" />
+                    <span class="preferences-social-network"/>
                     <span class="preferences-social-name twitter"></span>
-                    <img class="preferences-social-icon plus wz-view-option" src="https://static.inevio.com/app/374/anadirCuenta.png" data-social-network="twitter" />
+                    <span class="preferences-social-icon plus wz-view-option" data-social-network="twitter">
+                      <span class="preferences-social-icon-plus"></span>
+                    </span>
                 </article>
 
             </section>
@@ -269,7 +332,9 @@
             <article class="preferences-social-account wz-prototype">
                 <img class="preferences-social-avatar" />
                 <span class="ellipsis preferences-social-name dark"></span>
-                <img class="preferences-social-icon settings wz-view-option" src="https://static.inevio.com/app/374/gear.png" />
+                <span class="preferences-social-icon settings wz-view-option">
+                  <span class="preferences-social-icon-gear"></span>
+                </span>
             </article>
 
         </section>
@@ -471,7 +536,7 @@
     <!-- CUSTOMIZE ZONE FINISH -->
 
     <!-- INVITE ZONE START -->
-
+    <!--
     <section class="preferences-bottom-content invite">
 
         <span class="preferences-bottom-title invite"></span>
@@ -510,7 +575,7 @@
         </section>
 
     </section>
-
+  -->
     <!-- INVITE ZONE FINISH -->
 
     <!-- BACKUP ZONE START -->
@@ -519,9 +584,7 @@
 
         <span class="preferences-bottom-title backup"></span>
         <span class="preferences-bottom-description backup"></span>
-
-        <img src="https://static.inevio.com/app/374/backup.png" />
-
+        <span class="preferences-bottom-content-backup-img"></span>
         <article>
           <button class="ui-btn normal cancel">
               <span class="preferences-bottom-backup-button ellipsis"></span>

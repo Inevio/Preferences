@@ -1,5 +1,6 @@
 *{
   font-family: 'Lato';
+  letter-spacing: 0.02em;
 }
 
 .wz-view-menu-group{
@@ -7,6 +8,9 @@
     /*padding: 14px 20px 9px;*/
     position: sticky;
 
+}
+.wz-view{
+  border-radius: 6px;
 }
 
 .wz-scroll-bar{
@@ -30,6 +34,8 @@
     float: left;
 	  border: solid 1px #2c3238;
     border-bottom: none;
+    font-size: 13px;
+    border-radius: 6px 6px 0 0;
     /*box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.15 ), inset 0 1px rgba( 255, 255, 255, 0.1 );*/
     position: relative;
     z-index: 1;
@@ -55,7 +61,7 @@
     padding-top: 14px;
     display: inline-block;
     font-size: 15px;
-    color: #d2dce2;
+    color: #bdc4c6;
     margin: 0 11px;
     border-bottom: 2px solid transparent;
 
@@ -71,6 +77,7 @@
 .preferences-top li:hover{
 
     border-bottom: 2px solid #FFF;
+    color: white;
 
 }
 
@@ -90,12 +97,13 @@
 .preferences-bottom{
 
     width: 688px;
-    height: 447px;
+    height: 448px;
     float: left;
     border: 1px solid #2c3238;
     background: #3f4750;
     text-align: center;
     padding: 30px;
+    border-radius: 0 0 6px 6px;
   	-webkit-box-shadow: 0 20px 40px rgba(34,31,26,.3);
 	  -moz-box-shadow: 0 20px 40px rgba(34,31,26,.3);
 	  box-shadow: 0 20px 40px rgba(34,31,26,.3)
@@ -473,10 +481,10 @@
 .preferences-hdd-cake{
 
     width: 220px;
-    height: 221px;
+    height: 220px;
     display: inline-block;
-    background: url('@static/quota.png') no-repeat;
-    background-size: 220px 221px;
+    background: url('@static/quora.png') no-repeat;
+    background-size: 220px 220px;
     position: relative;
 
 }
@@ -731,16 +739,29 @@ span.preferences-card-subscribe-text{
 .preferences-account-avatar{
 
     position: absolute;
-    top: -1px;
-    left: -1px;
+    top: 0px;
+    left: 0px;
 
 }
 
 .preferences-account-image{
-
+/*
     width: 128px;
     height: 128px;
     border-radius: 75px;
+
+*/
+
+    width: 128px;
+    height: 128px;
+    -webkit-border-radius: 64px;
+    -moz-border-radius: 64px;
+    border-radius: 64px;
+    background-color: #545f65;
+    -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,.3);
+    -moz-box-shadow: inset 0 1px 1px rgba(255,255,255,.3);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,.3);
+    border: solid 1px rgba(44,50,56,.5);
     display: block;
     background-size: 128px 128px;
 
@@ -757,22 +778,50 @@ span.preferences-card-subscribe-text{
 
     border-bottom: 2px solid #60B25E;
     text-align: right;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: bold;
     color: #60B25E;
     cursor: pointer;
 
 }
+.preferences-bottom-input-containter{
+  width: 96%;
+  display: inline-block;
+  text-align: center;
 
-.preferences-bottom-input.account-username i:first-child{
-    background: url('@static/user.png') no-repeat;
-    background-size: contain;
+}
+.ui-input-search{
+  width: 380px;
 }
 
-.preferences-bottom-input.account-mail i:first-child{
-    background: url('@static/email.png') no-repeat;
-    background-size: contain;
+.input-icon i{
+  float: left;
+  width: 0px;
+  padding-left: 13px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  height: 16px;
+  margin: 0px 10px 0px -2px;
 }
+.input-icon.user-icon i{
+  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background-size: 200px 18px;
+  background-position: -83px 0px;
+}
+.dark .ui-input-search.active .user-icon i {
+  background-position: -104px 0px;
+}
+
+.input-icon.mail-icon i{
+  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background-size: 200px 18px;
+  background-position: -125px 0px;
+}
+.dark .ui-input-search.active .mail-icon i {
+  background-position: -145px 0px;
+}
+
 
 .preferences-account-buttons{
 
@@ -821,14 +870,31 @@ span.preferences-card-subscribe-text{
   margin-left: auto;
   margin-right: auto;
 }
-.preferences-bottom-input.password-current i:first-child{
-    background: url('@static/pass.png') no-repeat;
-    background-size: contain;
+
+.input-icon.pass-icon i{
+  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background-size: 200px 18px;
+  background-position: 0px 0px;
+}
+.dark .ui-input-search.active .pass-icon i {
+  background-position: -21px 0px;
 }
 
-.preferences-bottom-input.password-new i:first-child{
-    background: url('@static/repeat-pass.png') no-repeat;
-    background-size: contain;
+.input-icon.repeatPass-icon i{
+  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background-size: 200px 18px;
+  background-position: -42px 0px;
+}
+.dark .ui-input-search.active .repeatPass-icon i {
+  background-position: -63px 0px;
+}
+.input-icon.confirmPass-icon i{
+  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background-size: 234px 18px;
+  background-position: -193px 0px;
+}
+.dark .ui-input-search.active .confirmPass-icon i {
+  background-position: -214px 0px;
 }
 
 /* PASSWORD ZONE FINISH */
@@ -887,7 +953,9 @@ span.preferences-card-subscribe-text{
     float: left;
     width: 26px;
     height: 21px;
-    padding-top: 7px;
+    margin-top:7px;
+    background: url('@static/twitter.png') no-repeat;
+    background-size: contain;
 
 }
 
@@ -917,6 +985,21 @@ span.preferences-card-subscribe-text{
     height: 14px;
     margin-top: 3px;
 
+}
+
+.preferences-social-icon-plus{
+  float: left;
+  width: 14px;
+  height: 14px;
+  background: url('@static/anadirCuenta.png') no-repeat;
+  background-size: contain;
+}
+.preferences-social-icon-gear{
+  float: left;
+  width: 14px;
+  height: 14px;
+  background: url('@static/gear.png') no-repeat;
+  background-size: contain;
 }
 
 .preferences-social-icon.settings{
@@ -1147,12 +1230,11 @@ span.preferences-card-subscribe-text{
 	  -webkit-border-radius: 6px;
 	  -moz-border-radius: 6px;
 	  border-radius: 6px;
-	  /*border: solid 1px rgba(0,0,0,.1);*/
-    background: #485359;
     text-align: center;
     margin-top: 68px;
     margin-right: 30px;
     display: inline-block;
+    border: 1px solid transparent;
 
 }
 
@@ -1162,8 +1244,8 @@ span.preferences-card-subscribe-text{
 }
 
 .preferences-language-element:hover{
-    background: rgba( 96, 178, 94, 0.5 );
-    border: 1px solid rgba( 96, 178, 94, 0.2 );;
+    border: solid 1px rgba(0,0,0,.1);
+    background: #485359;
 }
 
 .preferences-language-element.active{
@@ -1709,10 +1791,12 @@ span.preferences-card-subscribe-text{
 
 }
 
-.preferences-bottom-content.backup img{
+.preferences-bottom-content-backup-img{
     display: inline-block;
-    height: 92px;
-    width: 222px;
+    height: 105px;
+    width: 223px;
+    background: url('@static/backup.png') no-repeat;
+    background-size: 228px 106px;
     margin: 65px 0 70px;
 }
 
