@@ -1158,7 +1158,9 @@
         api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
 
             if( error ){
-                alert( error );
+              $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
+              $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
+              alert(lang.wrongPass);
             }
 
         });

@@ -9,6 +9,7 @@
     "invite"  : "Invite",
     "backup"  : "Backup",
     "about"   : "About",
+    "wrongPass" : "Unable to save changes, incorrect password.",
 
     "hddTitle"         : "YOUR HARD DRIVE",
     "hddDescription"   : "Here you view how much free space you have left",

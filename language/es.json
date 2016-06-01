@@ -9,6 +9,7 @@
     "invite"  : "Invitar",
     "backup"  : "Backup",
     "about"   : "Acerca",
+    "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
 
     "hddTitle"         : "TU DISCO DURO",
     "hddDescription"   : "Aquí puedes ver cuanto espacio te queda libre",
