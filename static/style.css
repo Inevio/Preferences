@@ -86,6 +86,19 @@
 
 }
 
+.dark .ui-header-buttons .ui-maximize:hover{
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.dark .ui-header-buttons .ui-maximize:active{
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
 .preferences-top li.active:hover{
 
     color: #FFFFFF;
@@ -955,7 +968,7 @@ span.preferences-card-subscribe-text{
     width: 260px;
     height: 34px;
     padding: 8px 10px 8px 14px;
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 12px 12px 12px 12px;
     border: 1px solid #2C3238;
     float: left;
     background-image: -moz-linear-gradient( bottom, #2C3238, #2C3238 );
@@ -968,11 +981,11 @@ span.preferences-card-subscribe-text{
 .preferences-social-network{
 
     float: left;
-    width: 26px;
-    height: 21px;
+    width: 27px;
+    height: 22px;
     margin-top:7px;
     background: url('@static/twitter.png') no-repeat;
-    background-size: contain;
+    background-size: 27px 22px;
 
 }
 
@@ -998,29 +1011,38 @@ span.preferences-card-subscribe-text{
 .preferences-social-icon{
 
     float: right;
-    width: 14px;
-    height: 14px;
-    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    margin-top: 8px;
+    margin-right: 2px;
+    opacity: 0.7;
 
+}
+.preferences-social-icon:hover{
+  opacity: 1;
 }
 
 .preferences-social-icon-plus{
   float: left;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   background: url('@static/anadirCuenta.png') no-repeat;
-  background-size: contain;
+  background-size: 18px 18px;
 }
 .preferences-social-icon-gear{
   float: left;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   background: url('@static/gear.png') no-repeat;
-  background-size: contain;
+  background-size: 18px 18px;
 }
 
 .preferences-social-icon.settings{
-    margin-top: 2px;
+  margin-top: 1px;
+  width: 18px;
+  height: 18px;
+  margin-top: 8px;
+  margin-right: 3px;
 }
 
 .preferences-social-account{
@@ -1030,16 +1052,14 @@ span.preferences-card-subscribe-text{
     height: 32px;
     padding: 7px 10px 7px 15px;
     border-bottom: 1px solid #DDD;
-    box-shadow: 0 1px #FFFFFF;
     background: #EFEFEF;
 
 }
 
 .preferences-social-account:last-child{
 
-    border-radius: 0 0 25px 25px;
-    border-bottom: 1px solid #252525;
-    box-shadow: none;
+    border-radius: 0 0 12px 12px;
+
 
 }
 
@@ -1260,13 +1280,11 @@ span.preferences-card-subscribe-text{
 }
 
 .preferences-language-element:hover{
-    border: solid 1px rgba(0,0,0,.1);
     background: #485359;
 }
 
 .preferences-language-element.active{
     background: #60B25E;
-    border: 1px solid rgba(0,0,0,.5);
 
 }
 
@@ -1381,7 +1399,6 @@ span.preferences-card-subscribe-text{
 	  -moz-border-radius: 6px;
 	  border-radius: 6px;
 	  background-color: #545f65;
-	  border: solid 1px rgba(0,0,0,.2);
     display: inline-block;
     margin-top: 20px;
     position: relative;
