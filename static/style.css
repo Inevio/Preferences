@@ -36,7 +36,6 @@
     border-bottom: none;
     font-size: 13px;
     border-radius: 6px 6px 0 0;
-    /*box-shadow: 0 2px 4px rgba( 0, 0, 0, 0.15 ), inset 0 1px rgba( 255, 255, 255, 0.1 );*/
     position: relative;
     z-index: 1;
     background: #2C3238;
@@ -58,9 +57,9 @@
 .preferences-top li{
 
     padding-bottom: 10px;
-    padding-top: 14px;
+    padding-top: 15px;
     display: inline-block;
-    font-size: 15px;
+    font-size: 13px;
     color: #bdc4c6;
     margin: 0 11px;
     border-bottom: 2px solid transparent;
@@ -482,6 +481,7 @@
     width: 100%;
     text-align: center;
     font-size: 19px;
+    font-weight: bold;
     color: #FFFFFF;
     display: inline-block;
     margin-bottom: 15px;
@@ -490,11 +490,11 @@
 
 .preferences-hdd-cake{
 
-    width: 220px;
-    height: 220px;
+    width: 218px;
+    height: 218px;
     display: inline-block;
     background: url('@static/quora.png') no-repeat;
-    background-size: 220px 220px;
+    background-size: 218px 218px;
     position: relative;
 
 }
@@ -1809,20 +1809,27 @@ span.preferences-card-subscribe-text{
 
 .preferences-bottom-content-backup-img{
     display: inline-block;
-    height: 105px;
-    width: 223px;
+    height: 106px;
+    width: 228px;
     background: url('@static/backup.png') no-repeat;
     background-size: 228px 106px;
     margin: 65px 0 70px;
 }
 
+
 .preferences-bottom-content.backup button{
   width: 278px;
   height: 65px;
+  border-radius: 6px;
   transition: all 0.2s ease;
+
 
 }
 
+.ui-btn.cancel span {
+    font-size: 17px;
+    line-height: 19px;
+}
 /* BACKUP ZONE FINISH */
 
 /* ABOUT ZONE START */
