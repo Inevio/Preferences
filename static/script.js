@@ -874,11 +874,15 @@
     })
 
     // Shows or hides a tick on a checkbox when clicked
-    .on( 'click', '.preferences-bottom-checkbox', function(){
+    .on( 'click', '.preferences-bottom-checkbox', function( e ){
+
+      e.preventDefault();
+      e.stopPropagation();
 
         if( $( this ).hasClass( 'checked' ) ){
 
             $( this ).removeClass( 'checked' );
+            $( this ).find( 'figure' ).removeClass( 'active' );
 
         }else{
 
@@ -887,6 +891,7 @@
             }
 
             $( this ).addClass( 'checked' );
+            $( this ).find( 'figure' ).addClass( 'active' );
 
         }
 
@@ -1256,8 +1261,10 @@
 
         if( config.displayExtensions ){
             $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
+            $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
         }else{
             $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
+            $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
         }
 
     });

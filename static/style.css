@@ -153,7 +153,6 @@
   -webkit-box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
   -moz-box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
   box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
-  border: solid 1px #2c3238;
   text-align: center;
 }
 .preferences-button *{
@@ -167,41 +166,52 @@
 
 .preferences-button.unactive{
 
-    background: #404040;
-    border: 1px solid #333;
-    box-shadow: inset 0 1px #464646;
+    background-color: #4c7953;
+	  background-image: -webkit-linear-gradient(bottom, #50a54e, #60b25e);
+	  background-image: -moz-linear-gradient(bottom, #50a54e, #60b25e);
+	  background-image: -o-linear-gradient(bottom, #50a54e, #60b25e);
+	  background-image: -ms-linear-gradient(bottom, #50a54e, #60b25e);
+	  background-image: linear-gradient(to top, #50a54e, #60b25e);
+    opacity: 0.5;
 
 }
 
 
 .preferences-button.unactive span{
 
-    color: rgba( 141, 141, 141, 0.6 );
     text-shadow: 0 1px 1px rgba( 0, 0, 0, 0.4 );
 
 }
 
 .preferences-button.unactive:hover{
 
-    background: #404040;
-    border: 1px solid #333;
-    box-shadow: inset 0 1px #464646;
+    background-color: #4c7953;
+    background-image: -webkit-linear-gradient(bottom, #50a54e, #60b25e);
+    background-image: -moz-linear-gradient(bottom, #50a54e, #60b25e);
+    background-image: -o-linear-gradient(bottom, #50a54e, #60b25e);
+    background-image: -ms-linear-gradient(bottom, #50a54e, #60b25e);
+    background-image: linear-gradient(to top, #50a54e, #60b25e);
+    opacity: 0.5;
 }
 
 .preferences-button.unactive:active{
 
-    background: #404040;
-    border: 1px solid #333;
-    box-shadow: inset 0 1px #464646;
+  background-color: #4c7953;
+  background-image: -webkit-linear-gradient(bottom, #50a54e, #60b25e);
+  background-image: -moz-linear-gradient(bottom, #50a54e, #60b25e);
+  background-image: -o-linear-gradient(bottom, #50a54e, #60b25e);
+  background-image: -ms-linear-gradient(bottom, #50a54e, #60b25e);
+  background-image: linear-gradient(to top, #50a54e, #60b25e);
+  opacity: 0.5;
 }
 
 .preferences-bottom-title{
 
     width: 100%;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
-    color: #FFF;
+    color: #d2dce2;
     display: inline-block;
     margin-bottom: 15px;
 
@@ -212,7 +222,7 @@
     width: 100%;
     text-align: center;
     font-size: 13px;
-    color: #FFF;
+    color: #d2dce2;
     display: inline-block;
     margin-bottom: 15px;
 
@@ -238,7 +248,7 @@
 }
 .preferences-bottom-label{
   color: #d2dce2;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: bold;
   margin-bottom: 7px;
 }
@@ -250,16 +260,17 @@
 }
 .labelPassword{
   color: #d2dce2;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: bold;
   text-align: left;
+  text-transform: uppercase;
 
 }
 
 .forgetPassword{
   text-align: right;
   float: right;
-  color: #609125;
+  color: #60b25e;
   font-size: 13px;
 }
 .preferences-bottom-forget{
@@ -438,7 +449,6 @@
 	-moz-border-radius: 6px;
 	border-radius: 6px;
 	background-color: #545f65;
-	border: solid 1px rgba(0,0,0,.2);
   display: inline-block;
   margin-top: 5px;
   position: relative;
@@ -761,7 +771,6 @@ span.preferences-card-subscribe-text{
     -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,.3);
     -moz-box-shadow: inset 0 1px 1px rgba(255,255,255,.3);
     box-shadow: inset 0 1px 1px rgba(255,255,255,.3);
-    border: solid 1px rgba(44,50,56,.5);
     display: block;
     background-size: 128px 128px;
 
@@ -818,7 +827,7 @@ span.preferences-card-subscribe-text{
 .input-icon.mail-icon i{
   background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
   background-size: 181px 18px;
-  background-position: -75px 0px;
+  background-position: -113px 0px;
   width: 0px;
   padding-right: 6px;
 }
@@ -847,14 +856,12 @@ span.preferences-card-subscribe-text{
 
 .preferences-button.active.account{
 
-    border: 1px solid #2F2F2F;
-
 }
 
 .preferences-account-button{
 
     color: #FFF;
-    font-size: 16px;
+    font-size: 15px;
 
 }
 
@@ -873,6 +880,7 @@ span.preferences-card-subscribe-text{
   text-align: left;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 45px
 }
 
 .input-icon.pass-icon i{
@@ -890,6 +898,7 @@ span.preferences-card-subscribe-text{
   background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
   background-size: 181px 18px;
   background-position: -38px 0px;
+  padding-right: 5px;
 }
 .dark .ui-input-search.active .repeatPass-icon i {
   background-position: -57px 0px;
@@ -899,7 +908,7 @@ span.preferences-card-subscribe-text{
   background-size: 181px 18px;
   background-position: -149px 0px;
   width: 0px;
-  padding-right: 5px;
+  padding-right: 4px;
 }
 .dark .ui-input-search.active .confirmPass-icon i {
   background-position: -165px 0px;
@@ -1228,7 +1237,6 @@ span.preferences-card-subscribe-text{
 }
 
 .preferences-bottom-title.language{
-    margin-top: 15px;
 }
 
 .preferences-language-element{
