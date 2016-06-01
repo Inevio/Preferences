@@ -806,20 +806,24 @@ span.preferences-card-subscribe-text{
 }
 .input-icon.user-icon i{
   background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
-  background-size: 200px 18px;
-  background-position: -83px 0px;
+  background-size: 181px 18px;
+  background-position: -75px 0px;
+  width: 0px;
+  padding-right: 6px;
 }
 .dark .ui-input-search.active .user-icon i {
-  background-position: -104px 0px;
+  background-position: -94px 0px;
 }
 
 .input-icon.mail-icon i{
   background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
-  background-size: 200px 18px;
-  background-position: -125px 0px;
+  background-size: 181px 18px;
+  background-position: -75px 0px;
+  width: 0px;
+  padding-right: 6px;
 }
 .dark .ui-input-search.active .mail-icon i {
-  background-position: -145px 0px;
+  background-position: -131px 0px;
 }
 
 
