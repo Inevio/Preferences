@@ -877,28 +877,32 @@ span.preferences-card-subscribe-text{
 
 .input-icon.pass-icon i{
   background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
-  background-size: 200px 18px;
+  background-size: 181px 18px;
   background-position: 0px 0px;
+  width: 0px;
+  padding-right: 5px;
 }
 .dark .ui-input-search.active .pass-icon i {
-  background-position: -21px 0px;
+  background-position: -19px 0px;
 }
 
 .input-icon.repeatPass-icon i{
   background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
-  background-size: 200px 18px;
-  background-position: -42px 0px;
+  background-size: 181px 18px;
+  background-position: -38px 0px;
 }
 .dark .ui-input-search.active .repeatPass-icon i {
-  background-position: -63px 0px;
+  background-position: -57px 0px;
 }
 .input-icon.confirmPass-icon i{
   background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
-  background-size: 234px 18px;
-  background-position: -193px 0px;
+  background-size: 181px 18px;
+  background-position: -149px 0px;
+  width: 0px;
+  padding-right: 5px;
 }
 .dark .ui-input-search.active .confirmPass-icon i {
-  background-position: -214px 0px;
+  background-position: -165px 0px;
 }
 
 /* PASSWORD ZONE FINISH */
