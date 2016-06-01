@@ -1443,14 +1443,14 @@ span.preferences-card-subscribe-text{
 
 .preferences-upload-icon{
 
-    width: 49px;
-    height: 35px;
-    position: absolute;
-    background: url('@static/cloud.png') no-repeat;
-    background-size: 49px 35px;
-    position: absolute;
-    top: 10px;
-    left: 39px;
+  width: 49px;
+  height: 35px;
+  background: url('@static/sprite-cloud.png') no-repeat;
+  background-size: 149px 35px;
+  background-position: 0px 0px;
+  position: absolute;
+  top: 10px;
+  left: 39px;
 
 }
 
@@ -1465,21 +1465,26 @@ span.preferences-card-subscribe-text{
     bottom: 8px;
 
 }
+.preferences-wallpaper-upload:active .preferences-upload-icon{
+  background: url('@static/sprite-cloud.png') no-repeat !important;
+  background-size: 149px 35px !important;
+  background-position: -100px 0px !important;
+}
 
+.preferences-wallpaper-upload:active{
+  background: #343b42 !important;
+  color: #d2dce2;
+}
+
+
+.preferences-wallpaper-upload:hover .preferences-upload-icon{
+  background: url('@static/sprite-cloud.png') no-repeat;
+  background-size: 149px 35px;
+  background-position: -50px 0px;
+}
 .preferences-wallpaper-upload:hover{
     background: #515d67;
 
-}
-
-.preferences-wallpaper-upload:hover .preferences-upload-icon{
-  width: 49px;
-  height: 35px;
-  position: absolute;
-  background: url('@static/cloud-hover.png') no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 10px;
-  left: 39px;
 }
 
 .preferences-wallpaper-image{
