@@ -1,6 +1,8 @@
 
 .wz-view{
     background: #545f65;
+    width: 300px;
+    height: 426px;
 }
 
 .wz-ui-header.dark .wz-view-menu-group:last-child {
@@ -14,7 +16,7 @@
 }
 
 .preferences-top{
-    width: 282px;
+    width: 300px;
     border-bottom: none;
 }
 
@@ -30,7 +32,7 @@
 
 .preferences-account{
 
-    width: 254px;
+    width: 270px;
     height: 52px;
     padding: 0 15px;
     float: left;
@@ -53,7 +55,7 @@
 
 .preferences-account-name{
 
-    font-size: 13px;
+    font-size: 15px;
     color: #FFF;
     float: left;
     margin-top: 19px;
@@ -63,8 +65,8 @@
 
 .preferences-account-remove{
 
-    font-size: 13px;
-    color: #B93F3A;
+    font-size: 15px;
+    color: #e85c5c;
     float: right;
     margin-top: 19px;
 
@@ -82,14 +84,13 @@
     float: left;
     background: #545f65;
     border: none;
-
 }
 
 span.preferences-content-title{
 
     width: 100% !important;
     text-align: left !important;
-    font-size: 13px;
+    font-size: 15px;
     color: #FFF;
     float: left;
     margin-bottom: 15px;
@@ -98,16 +99,21 @@ span.preferences-content-title{
 
 .preferences-bottom-selectable{
     margin: 0;
-    background: #2C3238;
+    background: #363d46;
+    height: 295px;
+    width: 270px;
 }
 
 .preferences-bottom-checkbox{
 
     width: 100%;
     margin-left: 0;
-    margin-bottom: 10px;
+    margin-bottom: 13px;
 
+}
 
+.preferences-bottom-checkbox span{
+  color: white;
 }
 
 .preferences-bottom-checkbox figure{
@@ -118,8 +124,8 @@ span.preferences-content-title{
 .preferences-button{
 
     width: auto;
-    height: auto;
-    padding: 10px 15px;
+    height: 34px;
+    padding: 0 15px;
     float: right;
     margin-top: 10px;
     text-align: center;
@@ -128,11 +134,13 @@ span.preferences-content-title{
   transition: all 0.2 ease;
 }
 
-.preferences-button.cancel{
-    float: right;
-    margin-right: 10px;
-}
+.preferences-button.warning{
+  margin-right: 10px;
+  margin-top: 9px;
 
+}
 .preferences-button span:first-child{
     width: auto;
+    font-size: 15px;
+    margin-top: 8px;
 }
