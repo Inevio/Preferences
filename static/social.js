@@ -14,7 +14,7 @@
 
         });
 
-        service.trigger( 'config-changed' );
+        //service.trigger( 'config-changed' );
         api.view.remove();
 
     };
@@ -55,6 +55,7 @@
 
                 if( result.length ){
                     $( '.preferences-bottom-checkbox.type-' + result[0].type ).addClass( 'checked' );
+                    $( '.preferences-bottom-checkbox.type-' + result[0].type + ' figure').addClass( 'active' );
                 }
 
             });
@@ -80,6 +81,7 @@
 
                 if( result.length ){
                     $( '.preferences-bottom-checkbox.type-' + result[0].type ).addClass( 'checked' );
+                    $( '.preferences-bottom-checkbox.type-' + result[0].type + ' figure').addClass( 'active' );
                 }
 
             });
