@@ -841,7 +841,7 @@ span.preferences-card-subscribe-text{
   margin: 0px 10px 0px -2px;
 }
 .input-icon.user-icon i{
-  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background: url('@static/sprite-account.png') no-repeat;
   background-size: 181px 18px;
   background-position: -75px 0px;
   width: 0px;
@@ -852,7 +852,7 @@ span.preferences-card-subscribe-text{
 }
 
 .input-icon.mail-icon i{
-  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background: url('@static/sprite-account.png') no-repeat;
   background-size: 181px 18px;
   background-position: -113px 0px;
   width: 0px;
@@ -911,7 +911,7 @@ span.preferences-card-subscribe-text{
 }
 
 .input-icon.pass-icon i{
-  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background: url('@static/sprite-account.png') no-repeat;
   background-size: 181px 18px;
   background-position: 0px 0px;
   width: 0px;
@@ -922,7 +922,7 @@ span.preferences-card-subscribe-text{
 }
 
 .input-icon.repeatPass-icon i{
-  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background: url('@static/sprite-account.png') no-repeat;
   background-size: 181px 18px;
   background-position: -38px 0px;
   padding-right: 5px;
@@ -931,7 +931,7 @@ span.preferences-card-subscribe-text{
   background-position: -57px 0px;
 }
 .input-icon.confirmPass-icon i{
-  background: url('https://static.inevio.com/app/374/sprite-account.png') no-repeat;
+  background: url('@static/sprite-account.png') no-repeat;
   background-size: 181px 18px;
   background-position: -149px 0px;
   width: 0px;
