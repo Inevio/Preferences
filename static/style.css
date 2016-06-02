@@ -42,7 +42,7 @@
     background: #2C3238;
 }
 
-.preferences-top * {
+.wz-dragger li {
   transition: all 0.2s ease;
 }
 
@@ -84,8 +84,8 @@
 .wz-view.wz-view-dragging .preferences-top li:hover{
 
     border-bottom: 2px solid transparent;
-
 }
+
 
 .dark .ui-header-buttons .ui-maximize:hover{
   background-color: transparent;
@@ -99,6 +99,19 @@
   border: 1px solid transparent;
   box-shadow: none;
 }
+
+.dark .ui-header-buttons .ui-close:hover{
+  border-radius: 4px;
+  border: solid 1px #252b30;
+
+}
+
+.dark .ui-header-buttons .ui-minimize:hover{
+  border-radius: 4px;
+  border: solid 1px #252b30;
+
+}
+
 
 .preferences-top li.active:hover{
 
@@ -1004,7 +1017,7 @@ span.preferences-card-subscribe-text{
 
 .preferences-social-name.dark{
 
-    color: #000;
+    color: #545f65;
     margin-left: 10px;
 
 }
@@ -1877,8 +1890,8 @@ span.preferences-card-subscribe-text{
     display: inline-block;
     text-align: center;
     font-size: 13px;
-    color: #FFF;
-    margin-top: 20px;
+    color: #d2dce2;
+    margin-top: 50px;
 }
 
 .preferences-about-text{
