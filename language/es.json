@@ -1,6 +1,6 @@
 
 {
-    
+
     "hdd"     : "Disco",
     "account" : "Cuenta",
     "social"  : "Redes Sociales",
@@ -9,7 +9,8 @@
     "invite"  : "Invitar",
     "backup"  : "Backup",
     "about"   : "Acerca",
-    
+    "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
+
     "hddTitle"         : "TU DISCO DURO",
     "hddDescription"   : "Aquí puedes ver cuanto espacio te queda libre",
     "currentUsage"     : "Uso actual",
@@ -24,7 +25,7 @@
     "ultimate"         : "Ultimate",
     "ultimatePrice"    : "14,99€",
     "monthly"          : "mensual",
-    "forever"          : "para siempre",    
+    "forever"          : "para siempre",
     "FREE"             : "GRATIS",
     "storage"          : "de espacio",
     "starterUsage"     : "Uso con Starter",
@@ -44,6 +45,8 @@
     "accountTitle"       : "TU CUENTA",
     "accountDescription" : "Aquí puedes cambiar tu información personal",
     "avatarEdit"         : "CAMBIAR",
+    "accountUser"        : "USUARIO",
+    "accountMailUser"    : "CORREO",
     "changePassword"     : "Cambiar Contraseña",
     "saveChanges"        : "Guardar Cambios",
     "usernameChanged"    : "Nombre de usuario cambiado",
@@ -52,13 +55,17 @@
     "mailChanged2"       : "Tu cuenta de correo ha sido cambiada por",
 
     "passwordTitle"       : "TU CONTRASEÑA",
-    "passwordDescription" : "Aquí puedes cambiar tu contraseña actual",
+    "passwordDescription" : "Aquí puedes cambiar tu contraseña o recuperarla.",
     "cancel"              : "Cancelar",
     "currentPassword"     : "Contraseña Actual",
+    "currentPasswordType" : "Escribe tu actual contraseña",
     "newPassword"         : "Nueva Contraseña",
+    "newPasswordType"     : "Escribe la nueva contraseña",
     "confirmPassword"     : "Confirma Nueva Contraseña",
+    "confirmPasswordType" : "Confirma la nueva contraseña",
     "passwordChanged"     : "Contraseña cambiada",
     "passwordChanged2"    : "Tu contraseña ha sido cambiada correctamente",
+    "forgetPassword"      : "¿Olvidaste la contraseña?",
 
     "socialTitle"       : "REDES SOCIALES",
     "socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de Inevio",
@@ -74,9 +81,11 @@
     "ddmmyy"          : "DD MM AA",
     "mmddyy"          : "MM DD AA",
     "yymmdd"          : "AA MM DD",
-    
+
     "languageTitle"       : "IDIOMA",
     "languageDescription" : "Por favor selecciona el idioma de tu Inevio",
+    "spanishLanguage"     : "Español",
+    "englishLanguage"     : "Inglés",
 
     "extensionsTitle"   : "EXTENSIONES",
     "displayExtensions" : "Mostrar la extensión al final de los nombres de ficheros",
@@ -94,7 +103,7 @@
 
     "backupTitle"       : "HACER UN BACKUP DE LOS FICHEROS",
     "backupDescription" : "Aquí puedes salvar una copia de seguridad de todos tus ficheros en tu ordenador",
-    "backupButton"      : "DESCARGAR TUS FICHEROS",
+    "backupButton"      : "Descargar todos tus archivos",
 
     "version"           : "Versión",
     "legalNotices"      : "Notas Legales",

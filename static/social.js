@@ -24,7 +24,7 @@
         $( this ).toggleClass( 'checked' );
     })
 
-    .on( 'click', '.preferences-button.cancel', function(){
+    .on( 'click', '.preferences-button.warning.ui-btn', function(){
         api.view.remove();
     })
 
@@ -92,5 +92,5 @@
 
     $( '.preferences-account-remove', win ).text( lang.remove );
     $( '.preferences-content-title', win ).text( lang.notify + ':' );
-    $( '.preferences-button.cancel .preferences-account-button', win ).text( lang.cancel );
+    $( '.preferences-button .preferences-account-button', win ).text( lang.cancel );
     $( '.preferences-button.save .preferences-account-button', win ).text( lang.save );

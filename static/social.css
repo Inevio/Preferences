@@ -1,16 +1,29 @@
 
 .wz-view{
-    background: #3A3A3A;
+    background: #545f65;
+    width: 300px;
+    height: 426px;
+}
+
+.wz-ui-header.dark .wz-view-menu-group:last-child {
+  border-right: none;
+  border-left: 0px solid transparent;
+  box-shadow: -1px 0 transparent;
+}
+.wz-view-menu-group:last-child {
+    border-right: none;
+    border-left: 0px solid #e0e0e0;
 }
 
 .preferences-top{
-    width: 282px;
+    width: 300px;
+    border-bottom: none;
 }
 
 .preferences-top span{
 
     float: left;
-    margin: 16px 15px;
+    margin: 12px 15px;
     font-size: 15px;
     color: #FFF;
     text-shadow: 0 -1px rgba( 0, 0, 0, 0.15 );
@@ -19,13 +32,12 @@
 
 .preferences-account{
 
-    width: 252px;
-    height: 51px;
+    width: 270px;
+    height: 52px;
     padding: 0 15px;
     float: left;
-    background: #2D2D2D;
-    border: 1px solid #252525;
-    border-top: none;
+    background: #3f4750;
+    border: none;
 
 }
 
@@ -43,7 +55,7 @@
 
 .preferences-account-name{
 
-    font-size: 13px;
+    font-size: 15px;
     color: #FFF;
     float: left;
     margin-top: 19px;
@@ -53,8 +65,8 @@
 
 .preferences-account-remove{
 
-    font-size: 13px;
-    color: #B93F3A;
+    font-size: 15px;
+    color: #e85c5c;
     float: right;
     margin-top: 19px;
 
@@ -66,21 +78,19 @@
 
 .preferences-content{
 
-    width: 252px;
-    height: 268px;
+    width: 254px;
+    height: 278px;
     padding: 20px 15px;
     float: left;
-    background: #3A3A3A;
-    border: 1px solid #252525;
-    border-top: none;
-
+    background: #545f65;
+    border: none;
 }
 
 span.preferences-content-title{
 
     width: 100% !important;
     text-align: left !important;
-    font-size: 13px;
+    font-size: 15px;
     color: #FFF;
     float: left;
     margin-bottom: 15px;
@@ -89,43 +99,48 @@ span.preferences-content-title{
 
 .preferences-bottom-selectable{
     margin: 0;
+    background: #363d46;
+    height: 295px;
+    width: 270px;
 }
 
 .preferences-bottom-checkbox{
 
     width: 100%;
     margin-left: 0;
-    margin-bottom: 10px;
+    margin-bottom: 13px;
 
+}
+
+.preferences-bottom-checkbox span{
+  color: white;
 }
 
 .preferences-bottom-checkbox figure{
 
     float: right;
-    margin: 0;
-
 }
 
 .preferences-button{
 
     width: auto;
-    height: auto;
-    padding: 10px 15px;
-    float: left;
-    margin-top: 10px;
-
-}
-
-.preferences-button.save{
-
-    border: 1px solid #2F2F2F;
+    height: 34px;
+    padding: 0 15px;
     float: right;
-
+    margin-top: 10px;
+    text-align: center;
+}
+.preferences-button * {
+  transition: all 0.2 ease;
 }
 
-.preferences-button span:first-child{
-    
-    width: 45px;
-    text-align: center;
+.preferences-button.warning{
+  margin-right: 10px;
+  margin-top: 9px;
 
+}
+.preferences-button span:first-child{
+    width: auto;
+    font-size: 15px;
+    margin-top: 8px;
 }
