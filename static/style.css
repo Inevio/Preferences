@@ -31,6 +31,7 @@
 .preferences-top{
 
     width: 750px;
+    height: 39px;
     float: left;
 	  border: solid 1px #2c3238;
     border-bottom: none;
@@ -51,7 +52,7 @@
     width: 625px;
     height: inherit;
     text-align: left;
-
+    margin-left: 7px;
 }
 
 .preferences-top li{
@@ -61,7 +62,7 @@
     display: inline-block;
     font-size: 13px;
     color: #bdc4c6;
-    margin: 0 11px;
+    margin: 0px 11px 0px 11px;
     border-bottom: 2px solid transparent;
 
 }
