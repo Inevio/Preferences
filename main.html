@@ -1,5 +1,4 @@
-
-<section class="preferences-top wz-ui-header dark wz-dragger">
+<section class="preferences-top ui-header dark wz-dragger">
 
     <nav class="wz-dragger">
         <li class="hdd active wz-dragger"></li>
@@ -12,18 +11,21 @@
         <!--<li class="about wz-dragger"></li>-->
     </nav>
 
-    <article class="wz-view-menu-group right wz-dragger">
-        <figure class="wz-view-minimize">
+    <article class="ui-header-buttons right wz-dragger">
+        <figure class="ui-minimize">
             <i></i>
         </figure>
-        <figure class="wz-view-close">
+        <figure class="ui-maximize inactive">
+            <i></i>
+        </figure>
+        <figure class="ui-close">
             <i></i>
         </figure>
     </article>
 
 </section>
 
-<section class="preferences-bottom wz-scroll">
+<section class="preferences-bottom dark wz-scroll-y">
 
     <!-- HDD ZONE START -->
 
@@ -37,9 +39,10 @@
             <span class="preferences-hdd-usage"></span>
 
             <figure class="preferences-hdd-cake">
-
+              <span class="preferences-hdd-cake-circle">
                 <span class="preferences-hdd-cake-total"></span>
                 <span class="preferences-hdd-cake-free"></span>
+              </span>
 
                 <canvas class="preferences-hdd-canvas" width="220" height="221"></canvas>
 
@@ -129,30 +132,70 @@
 
         </article>
 
-        <article class="preferences-bottom-input top account-username">
-            <i></i>
-            <input type="text" />
-            <i class="preferences-input-status"></i>
+        <section class="preferences-bottom-input-containter">
+        <article class="preferences-bottom-container dark">
+          <article class="preferences-bottom-label">
+            <span class="preferences-bottom-labelUsername"></span>
+          </article>
+
+          <!--article class="preferences-bottom-input top account-username ui-input-search">
+              <article class="preferences-bottom-input-container">
+                <i></i>
+                <input type="text" />
+                <i class="preferences-input-status"></i>
+              </article>
+          </article -->
+
+          <section class="ui-input-search account-username">
+            <figure class="input-icon user-icon search-icon">
+              <i></i>
+            </figure>
+            <input>
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
         </article>
 
-        <article class="preferences-bottom-input bottom account-mail">
+        <article class="preferences-bottom-container dark">
+          <article class="preferences-bottom-label">
+            <span class="preferences-bottom-labelMail"></span>
+          </article>
+
+          <!--article class="preferences-bottom-input bottom account-mail ui-input-search">
+              <article class="preferences-bottom-input-container">
+                <i></i>
+                <input type="text" />
+                <i class="preferences-input-status"></i>
+              </article>
+          </article>
+        </article -->
+        <section class="ui-input-search account-mail">
+          <figure class="input-icon mail-icon search-icon">
             <i></i>
-            <input type="text" />
-            <i class="preferences-input-status"></i>
-        </article>
+          </figure>
+          <input>
+          <figure class="delete-content">
+            <i></i>
+          </figure>
+        </section>
+      </section>
 
         <section class="preferences-account-buttons">
 
-            <article class="preferences-button account change-password">
-                <span class="preferences-account-button"></span>
+            <article class="preferences-button account change-password ui-btn">
+                <article class="preferences-account-button-container">
+                  <span class="preferences-account-button"></span>
+                </article>
             </article>
 
             <article class="preferences-button account unactive save-info">
+              <article class="preferences-account-button-container">
                 <span class="preferences-account-button"></span>
+              </article>
             </article>
-
         </section>
-
     </section>
 
     <!-- ACCOUNT ZONE FINISH -->
@@ -164,32 +207,87 @@
         <span class="preferences-bottom-title password"></span>
         <span class="preferences-bottom-description password"></span>
 
-        <article class="preferences-bottom-input top password-current">
-            <i></i>
-            <input type="password" />
-            <i class="preferences-input-status"></i>
-        </article>
+        <article class="preferences-bottom-password-container dark">
 
-        <article class="preferences-bottom-input middle password-new">
-            <i></i>
-            <input type="password" />
-            <i class="preferences-input-status"></i>
-        </article>
+          <article class="preferences-bottom-labelPassword">
+            <span class="preferences-bottom-labelCurrentPassword labelPassword"></span>
+            <a class="preferences-bottom-forgetPassword forgetPassword" href="https://www.inevio.com/forgot" target="_blank"></a>
+          </article>
 
-        <article class="preferences-bottom-input bottom password-confirm">
-            <i></i>
-            <input type="password" />
-            <i class="preferences-input-status"></i>
+
+          <!-- article class="preferences-bottom-input top password-current ui-input-search">
+              <i></i>
+              <input type="password" />
+              <i class="preferences-input-status"></i>
+          </article -->
+          <section class="ui-input-search password-current">
+            <figure class="input-icon pass-icon search-icon">
+              <i></i>
+            </figure>
+            <input type="password">
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
+
+          <article class="preferences-bottom-labelPassword">
+            <span class="preferences-bottom-labelNewPassword labelPassword"></span>
+          </article>
+
+
+          <!-- article class="preferences-bottom-input middle password-new ui-input-search">
+              <i></i>
+              <input type="password" />
+              <i class="preferences-input-status"></i>
+          </article -->
+
+          <section class="ui-input-search password-new">
+            <figure class="input-icon repeatPass-icon search-icon">
+              <i></i>
+            </figure>
+            <input type="password">
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
+          <article class="preferences-bottom-labelPassword">
+            <span class="preferences-bottom-labelConfirmPassword labelPassword"></span>
+          </article>
+
+          <!-- article class="preferences-bottom-input bottom password-confirm ui-input-search">
+              <i></i>
+              <input type="password" />
+              <i class="preferences-input-status"></i>
+          </article -->
+
+          <section class="ui-input-search password-confirm">
+            <figure class="input-icon confirmPass-icon search-icon">
+              <i></i>
+            </figure>
+            <input type="password">
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
+
+
         </article>
 
         <section class="preferences-account-buttons">
 
-            <article class="preferences-button account cancel-password">
-                <span class="preferences-account-button"></span>
+            <article class="preferences-button account cancel-password ui-btn">
+                <article class="preferences-account-button-container">
+                  <span class="preferences-account-button"></span>
+                </article>
             </article>
 
-            <article class="preferences-button account unactive save-password">
+            <article class="preferences-button account unactive save-password ui-btn accept">
+              <article class="preferences-account-button-container">
                 <span class="preferences-account-button"></span>
+              </article>
             </article>
 
         </section>
@@ -222,9 +320,11 @@
             <section class="preferences-social-card twitter">
 
                 <article class="preferences-social-title">
-                    <img class="preferences-social-network" src="https://static.inevio.com/app/3/twitter.png" />
+                    <span class="preferences-social-network"/>
                     <span class="preferences-social-name twitter"></span>
-                    <img class="preferences-social-icon plus wz-view-option" src="https://static.inevio.com/app/3/plus.png" data-social-network="twitter" />
+                    <span class="preferences-social-icon plus" data-social-network="twitter">
+                      <span class="preferences-social-icon-plus"></span>
+                    </span>
                 </article>
 
             </section>
@@ -232,7 +332,9 @@
             <article class="preferences-social-account wz-prototype">
                 <img class="preferences-social-avatar" />
                 <span class="ellipsis preferences-social-name dark"></span>
-                <img class="preferences-social-icon settings wz-view-option" src="https://static.inevio.com/app/3/gear.png" />
+                <span class="preferences-social-icon settings">
+                  <span class="preferences-social-icon-gear"></span>
+                </span>
             </article>
 
         </section>
@@ -352,24 +454,17 @@
 
         <section class="preferences-bottom-zone">
 
-            <article class="preferences-language-element english-uk">
+            <article class="preferences-language-element english ">
 
-                <figure></figure>
-                <span>English UK</span>
-
-            </article>
-
-            <article class="preferences-language-element english-us">
-
-                <figure></figure>
-                <span>English US</span>
+                <figure class="englishFlag"></figure>
+                <span class="preferences-language-element-english"></span>
 
             </article>
 
             <article class="preferences-language-element spanish">
 
-                <figure></figure>
-                <span>Español</span>
+                <figure class="spanishFlag"></figure>
+                <span class="preferences-language-element-spanish"></span>
 
             </article>
 
@@ -377,9 +472,9 @@
 
         <span class="preferences-bottom-title extensions"></span>
 
-        <article class="preferences-bottom-checkbox preferences-extensions-display">
+        <article class="preferences-bottom-checkbox preferences-extensions-display dark">
 
-            <figure>
+            <figure class="ui-checkbox">
                 <i></i>
             </figure>
 
@@ -398,55 +493,57 @@
         <span class="preferences-bottom-title custom"></span>
         <span class="preferences-bottom-description custom"></span>
 
-        <section class="preferences-bottom-zone wz-scroll">
+          <section class="preferences-bottom-zone-scroll-container">
+            <section class="preferences-bottom-zone-customize wz-scroll">
 
-            <span class="preferences-wallpaper-title"></span>
+                <!-- <span class="preferences-wallpaper-title"></span> -->
 
-            <article class="preferences-wallpaper-upload wz-wallpaper-uploader-start">
+                <article class="preferences-wallpaper-upload wz-wallpaper-uploader-start ui-btn">
 
-                <figure class="preferences-upload-background"></figure>
-                <figure class="preferences-upload-uploading"></figure>
-                <figure class="preferences-upload-icon"></figure>
+                    <figure class="preferences-upload-background"></figure>
+                    <figure class="preferences-upload-uploading"></figure>
+                    <figure class="preferences-upload-icon"></figure>
 
-                <span></span>
+                    <span></span>
 
-            </article>
+                </article>
 
-            <figure class="preferences-wallpaper-image wallpaper-1" data-id="1"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-2" data-id="2"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-3" data-id="3"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-4" data-id="4"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-5" data-id="5"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-6" data-id="6"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-7" data-id="7"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-8" data-id="8"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-9" data-id="9"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-10" data-id="10"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-11" data-id="11"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-12" data-id="12"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-13" data-id="13"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-14" data-id="14"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-15" data-id="15"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-16" data-id="16"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-17" data-id="17"></figure>
-            <figure class="preferences-wallpaper-image wallpaper-18" data-id="18"></figure>
-            <figure class="preferences-wallpaper-image custom wz-prototype"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-1" data-id="1"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-2" data-id="2"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-3" data-id="3"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-4" data-id="4"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-5" data-id="5"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-6" data-id="6"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-7" data-id="7"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-8" data-id="8"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-9" data-id="9"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-10" data-id="10"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-11" data-id="11"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-12" data-id="12"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-13" data-id="13"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-14" data-id="14"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-15" data-id="15"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-16" data-id="16"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-17" data-id="17"></figure>
+                <figure class="preferences-wallpaper-image wallpaper-18" data-id="18"></figure>
+                <figure class="preferences-wallpaper-image custom wz-prototype"></figure>
 
-        </section>
+            </section>
+          </section>
 
     </section>
 
     <!-- CUSTOMIZE ZONE FINISH -->
 
     <!-- INVITE ZONE START -->
-
+    <!--
     <section class="preferences-bottom-content invite">
 
         <span class="preferences-bottom-title invite"></span>
         <span class="preferences-bottom-description invite"></span>
 
         <article class="preferences-invite-ticket">
-            <img src="https://static.inevio.com/app/3/ticket.png" />
+            <img src="https://static.inevio.com/app/374/ticket.png" />
         </article>
 
         <article class="preferences-bottom-input invite">
@@ -478,7 +575,7 @@
         </section>
 
     </section>
-
+  -->
     <!-- INVITE ZONE FINISH -->
 
     <!-- BACKUP ZONE START -->
@@ -487,11 +584,11 @@
 
         <span class="preferences-bottom-title backup"></span>
         <span class="preferences-bottom-description backup"></span>
-
-        <img src="https://staticbeta.inevio.com/app/3/backup.png" />
-
+        <span class="preferences-bottom-content-backup-img"></span>
         <article>
-            <button class="wz-ui-button red">Hola mundo</button>
+          <button class="ui-btn normal cancel">
+              <span class="preferences-bottom-backup-button ellipsis"></span>
+          </button>
         </article>
 
         <!--
@@ -509,11 +606,11 @@
     <!-- BACKUP ZONE FINISH -->
 
     <!-- ABOUT ZONE START -->
+  <!--
 
-    <!--
     <section class="preferences-bottom-content about">
 
-        <img src="https://static.inevio.com/app/3/logo.png" />
+        <img src="https://static.inevio.com/app/374/logo.png" />
         <span class="preferences-about-version"></span>
         <p class="preferences-about-text first wz-selectable">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non neque tincidunt, ullamcorper mi nec, eleifend ligula. Aliquam interdum augue mauris, viverra cursus dui imperdiet vitae. Fusce porttitor non libero ac tempor. In hac habitasse platea dictumst. Curabitur gravida feugiat adipiscing. Aliquam porta mi in mollis interdum. Curabitur eget fermentum mauris.</p>
         <p class="preferences-about-text second wz-selectable">Cras et eros vitae diam sagittis consectetur in varius tellus. Nam sed lacinia justo. Mauris nunc quam, imperdiet pellentesque imperdiet at, vulputate nec felis. Ut cursus augue at dapibus pharetra. Fusce pretium porta lacus pellentesque scelerisque. Nulla aliquet nisl eget rutrum tincidunt. Cras lacinia rhoncus sapien, quis ultricies metus tristique quis. Nunc faucibus sit amet urna vel convallis. Proin eu ligula rhoncus, rhoncus mi sit amet, eleifend neque. Aenean a justo risus. Suspendisse ultrices sem mauris, sed interdum nibh tempor nec.</p>
@@ -523,8 +620,7 @@
         </article>
 
     </section>
-    -->
-
+-->
     <!-- ABOUT ZONE FINISH -->
 
 </section>

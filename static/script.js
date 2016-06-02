@@ -25,11 +25,13 @@
     var accountMail          = $( '.account-mail', win );
     var accountMailInput     = $( 'input', accountMail );
     var currentPassword      = $( '.password-current', win );
+    var forgetPassword       = $( '.preferences-bottom-forgetPassword', win );
     var currentPasswordInput = $( 'input', currentPassword );
     var newPassword          = $( '.password-new', win );
     var newPasswordInput     = $( 'input', newPassword );
     var confirmPassword      = $( '.password-confirm', win );
     var confirmPasswordInput = $( 'input', confirmPassword );
+    var forgetPasswordHtml   ="https://www.inevio.com/";
 
     // HDD variables
     var cakeTitle            = $( '.preferences-hdd-usage', win );
@@ -43,8 +45,12 @@
     var cardDescriptionThree = $( '.preferences-card-description-three', win );
     var cardDescriptionFour  = $( '.preferences-card-description-four', win );
 
+    // Config variables
+    var spanishLabel         = $( '.preferences-language-element-spanish', win );
+    var englishLabel         = $( '.preferences-language-element-english', win );
+
     // Social Accounts
-    var accountPrototype = $( '.preferences-social-account.wz-prototype', win );
+    var accountPrototype     = $( '.preferences-social-account.wz-prototype', win );
 
     // Quota circle variables
     var cakeCanvas    = null;
@@ -95,7 +101,7 @@
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
         cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#7EBE30";
+        cakeCanvas.strokeStyle = "#60B25E";
 
         // Start cakeCanvas
         cakeCanvas.beginPath();
@@ -143,7 +149,7 @@
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
         cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#7EBE30";
+        cakeCanvas.strokeStyle = "#60B25E";
 
         cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radians( cakeGrads ), false );
 
@@ -179,7 +185,7 @@
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
         cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#7EBE30";
+        cakeCanvas.strokeStyle = "#60B25E";
 
         cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radians( cakeGrads ), false );
 
@@ -233,7 +239,7 @@
 
         // avatarCanvas Style
         avatarCanvas.lineWidth   = 2;
-        avatarCanvas.strokeStyle = "#7EBE30";
+        avatarCanvas.strokeStyle = "#60B25E";
 
         clearInterval( avatarInterval );
         setTimeout( function(){
@@ -259,7 +265,7 @@
 
         // avatarCanvas Style
         avatarCanvas.lineWidth   = 2;
-        avatarCanvas.strokeStyle = "#7EBE30";
+        avatarCanvas.strokeStyle = "#60B25E";
 
         avatarCanvas.arc( 74, 74, 73, -Math.PI / 140, ( Math.PI / 180 ) * avatarGrads, false );
 
@@ -436,7 +442,7 @@
                         invitedFriend.find( 'img' ).attr( 'src', list[ i ].user.avatar.tiny );
                         invitedFriend.find( 'span' ).text( list[ i ].user.fullName );
                     }else{
-                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.inevio.com/app/3/weekey.png' );
+                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.inevio.com/app/374/weekey.png' );
                         invitedFriend.find( 'span' ).text( list[ i ].id );
                     }
 
@@ -504,9 +510,16 @@
 
                 $( '.preferences-account-avatar', win ).transition({ opacity : 0 }, function(){
 
-                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #7EBE30' }, function(){
+                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #60B25E' }, function(){
                         $( this ).transition({ 'box-shadow' : 'none' });
                     });
+
+                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'none' }, function(){
+                        $( this ).transition({ 'box-shadow' : 'inset 0 1px 1px rgba(255, 255, 255, 0.3)' });
+                    });
+
+
+
 
                     $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
                         $( this ).text( lang.avatarEdit );
@@ -663,7 +676,7 @@
             }
 
             if( usernameOk || mailOk ){
-                $( '.save-info', win ).removeClass( 'unactive' ).addClass( 'active' );
+                $( '.save-info', win ).removeClass( 'unactive' ).addClass( 'active ui-btn accept' );
             }else{
                 $( '.save-info', win ).removeClass( 'active' ).addClass( 'unactive' );
             }
@@ -787,7 +800,7 @@
     .on( 'keyup', '.password-current input, .password-new input, .password-confirm input', function(){
 
         if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
-            $( '.save-password', win ).removeClass( 'unactive' ).addClass( 'active' );
+            $( '.save-password', win ).removeClass( 'unactive' ).addClass( 'active ui-btn accept' );
         }else{
             $( '.save-password', win ).removeClass( 'active' ).addClass( 'unactive' );
         }
@@ -868,11 +881,15 @@
     })
 
     // Shows or hides a tick on a checkbox when clicked
-    .on( 'click', '.preferences-bottom-checkbox', function(){
+    .on( 'click', '.preferences-bottom-checkbox', function( e ){
+
+      e.preventDefault();
+      e.stopPropagation();
 
         if( $( this ).hasClass( 'checked' ) ){
 
             $( this ).removeClass( 'checked' );
+            $( this ).find( 'figure' ).removeClass( 'active' );
 
         }else{
 
@@ -881,6 +898,7 @@
             }
 
             $( this ).addClass( 'checked' );
+            $( this ).find( 'figure' ).addClass( 'active' );
 
         }
 
@@ -1147,7 +1165,9 @@
         api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
 
             if( error ){
-                alert( error );
+              $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
+              $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
+              alert(lang.wrongPass);
             }
 
         });
@@ -1250,8 +1270,10 @@
 
         if( config.displayExtensions ){
             $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
+            $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
         }else{
             $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
+            $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
         }
 
     });
@@ -1304,16 +1326,23 @@
     $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
     $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
     $( '.avatar-edit', win ).text( lang.avatarEdit );
+    $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
+    $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
     $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
     $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
 
     $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
     $( '.preferences-bottom-description.password', win ).text( lang.passwordDescription );
     $( '.cancel-password .preferences-account-button', win ).text( lang.cancel );
+    $( '.preferences-bottom-labelCurrentPassword', win ).text( lang.currentPassword );
     $( '.save-password .preferences-account-button', win ).text( lang.saveChanges );
     $( '.password-current input', win ).attr( 'placeholder', lang.currentPassword );
     $( '.password-new input', win ).attr( 'placeholder', lang.newPassword );
     $( '.password-confirm input', win ).attr( 'placeholder', lang.confirmPassword );
+    $( '.preferences-bottom-labelNewPassword', win ).text( lang.newPassword );
+    $( '.preferences-bottom-labelConfirmPassword', win ).text( lang.confirmPassword );
+    $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
+    $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
 
     $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
     $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
@@ -1333,6 +1362,8 @@
 
     $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
     $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
+    $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
+    $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
 
     $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
     $('.preferences-extensions-display span').text( lang.displayExtensions );
@@ -1349,7 +1380,7 @@
 
     $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
     $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
-    $( '.preferences-bottom-content.backup button', win ).text( lang.backupButton );
+    $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
