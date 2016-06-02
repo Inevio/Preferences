@@ -30,7 +30,7 @@
 
 .preferences-top{
 
-    width: 748px;
+    width: 750px;
     float: left;
 	  border: solid 1px #2c3238;
     border-bottom: none;
@@ -762,8 +762,8 @@ span.preferences-card-subscribe-text{
 .preferences-account-avatar{
 
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: -1px;
+    left: -1px;
 
 }
 

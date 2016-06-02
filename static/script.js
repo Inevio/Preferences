@@ -514,6 +514,13 @@
                         $( this ).transition({ 'box-shadow' : 'none' });
                     });
 
+                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'none' }, function(){
+                        $( this ).transition({ 'box-shadow' : 'inset 0 1px 1px rgba(255, 255, 255, 0.3)' });
+                    });
+
+
+
+
                     $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
                         $( this ).text( lang.avatarEdit );
                         avatarUploading = false;
