@@ -1869,6 +1869,70 @@ span.preferences-card-subscribe-text{
 }
 /* BACKUP ZONE FINISH */
 
+/* PAYMENT ZONE START */
+
+.preferences-bottom-content.payment{
+
+    display: none;
+    opacity: 0;
+    text-align: center;
+    position: relative;
+
+}
+
+.preferences-bottom-payment{
+  width: 245px;
+  margin: 0 auto;
+  text-align: left;
+
+  input{
+    margin: 7px 0 10px;
+    color: #fff;
+  }
+
+  input:focus{
+    border-color: #60b25e;
+  }
+
+  input.small{
+    width: 54px;
+    margin-right: 11px;
+  }
+
+  span.small{
+    display: inline-block;
+    width: 72px;
+    margin-right: 11px;
+    margin-bottom: 0px;
+  }
+
+  .no-right-margin{
+    margin-right: 0 !important;
+  }
+
+  .preferences-payment-button-container{
+    background-color: transparent;
+    margin: auto;
+    text-align: center;
+    margin-top: 14px;
+
+  }
+
+  .preferences-payment-button *{
+    transition: all 0.2s ease;
+  }
+
+  .preferences-payment-button{
+
+      color: #FFF;
+      font-size: 15px;
+
+  }
+
+}
+
+/* PAYMENT ZONE FINISH */
+
 /* ABOUT ZONE START */
 
 .preferences-bottom-content.about{

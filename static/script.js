@@ -1,4 +1,5 @@
 
+    // Variables
     var win = $( this );
 
     // Clock variable
@@ -1307,6 +1308,7 @@
     $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
     $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
     $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
+    $( 'li.payment', win ).text( lang.payment ).data( 'type', 'payment' );
     $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
 
     $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
@@ -1381,6 +1383,14 @@
     $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
     $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
     $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
+
+    $('.preferences-bottom-title.payment').text( lang.paymentTitle );
+    $('.preferences-bottom-label.name').text( lang.paymentCardHolder );
+    $('.preferences-bottom-label.number').text( lang.paymentCardNumber );
+    $('.preferences-bottom-label.month').text( lang.paymentCardMonth );
+    $('.preferences-bottom-label.year').text( lang.paymentCardYear );
+    $('.preferences-bottom-label.cvv').text( lang.paymentCardCVV );
+    $('.preferences-payment-button').text( lang.saveChanges );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );

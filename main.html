@@ -8,6 +8,7 @@
         <li class="custom wz-dragger"></li>
         <!--<li class="invite wz-dragger"></li>-->
         <li class="backup wz-dragger"></li>
+        <li class="payment wz-dragger"></li>
         <!--<li class="about wz-dragger"></li>-->
     </nav>
 
@@ -591,19 +592,44 @@
           </button>
         </article>
 
-        <!--
-        <span class="preferences-about-version"></span>
-        <p class="preferences-about-text first wz-selectable">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non neque tincidunt, ullamcorper mi nec, eleifend ligula. Aliquam interdum augue mauris, viverra cursus dui imperdiet vitae. Fusce porttitor non libero ac tempor. In hac habitasse platea dictumst. Curabitur gravida feugiat adipiscing. Aliquam porta mi in mollis interdum. Curabitur eget fermentum mauris.</p>
-        <p class="preferences-about-text second wz-selectable">Cras et eros vitae diam sagittis consectetur in varius tellus. Nam sed lacinia justo. Mauris nunc quam, imperdiet pellentesque imperdiet at, vulputate nec felis. Ut cursus augue at dapibus pharetra. Fusce pretium porta lacus pellentesque scelerisque. Nulla aliquet nisl eget rutrum tincidunt. Cras lacinia rhoncus sapien, quis ultricies metus tristique quis. Nunc faucibus sit amet urna vel convallis. Proin eu ligula rhoncus, rhoncus mi sit amet, eleifend neque. Aenean a justo risus. Suspendisse ultrices sem mauris, sed interdum nibh tempor nec.</p>
-        <article class="preferences-about-footer">
-            <span class="preferences-about-link legal"></span>
-            <span class="preferences-about-link privacy"></span>
-        </article>
-        -->
-
     </section>
 
     <!-- BACKUP ZONE FINISH -->
+
+    <!-- PAYMENT ZONE START -->
+
+    <section class="preferences-bottom-content payment">
+
+        <span class="preferences-bottom-title payment"></span>
+        <span class="preferences-bottom-description payment"></span>
+
+        <section class="preferences-bottom-payment">
+
+          <span class="preferences-bottom-label name"></span>
+          <input class="ui-input payment-name"/>
+
+          <span class="preferences-bottom-label number"></span>
+          <input class="ui-input payment-cc" maxlength="16"/>
+
+          <span class="preferences-bottom-label small month"></span>
+          <span class="preferences-bottom-label small year"></span>
+          <span class="preferences-bottom-label small no-right-margin cvv"></span>
+
+          <input class="ui-input payment-date-month small" maxlength="2"/>
+          <input class="ui-input payment-date-year small" maxlength="2"/>
+          <input class="ui-input payment-cvv small no-right-margin" maxlength="4"/>
+
+          <article class="preferences-button unactive save-info">
+              <article class="preferences-payment-button-container">
+                <span class="preferences-payment-button">Guardar Cambios</span>
+              </article>
+            </article>
+
+        </section>
+
+    </section>
+
+    <!-- PAYMENT ZONE FINISH -->
 
     <!-- ABOUT ZONE START -->
   <!--

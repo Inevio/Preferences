@@ -8,6 +8,7 @@
     "custom"  : "Apariencia",
     "invite"  : "Invitar",
     "backup"  : "Backup",
+    "payment" : "Pago",
     "about"   : "Acerca",
     "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
 
@@ -178,6 +179,13 @@
         "Eventos creados",
         "Notas, links o videos posteados"
 
-    ]
+    ],
+
+    "paymentTitle"      : "MÉTODO DE PAGO",
+    "paymentCardHolder" : "NOMBRE EN LA TARJETA",
+    "paymentCardNumber" : "NÚMERO DE TARJETA",
+    "paymentCardMonth"  : "MES",
+    "paymentCardYear"   : "AÑO",
+    "paymentCardCVV"    : "CVV"
 
 }
