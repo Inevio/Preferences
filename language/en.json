@@ -8,6 +8,7 @@
     "custom"  : "Customize",
     "invite"  : "Invite",
     "backup"  : "Backup",
+    "payment" : "Payment",
     "about"   : "About",
     "wrongPass" : "Unable to save changes, incorrect password.",
 
@@ -178,6 +179,13 @@
         "Events created",
         "Notes, links or videos posted"
 
-    ]
+    ],
+
+    "paymentTitle"      : "PAYMENT METHOD",
+    "paymentCardHolder" : "NAME ON CARD",
+    "paymentCardNumber" : "CARD NUMBER",
+    "paymentCardMonth"  : "MONTH",
+    "paymentCardYear"   : "YEAR",
+    "paymentCardCVV"    : "CVV"
 
 }
