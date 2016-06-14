@@ -604,27 +604,27 @@
         <span class="preferences-bottom-description payment"></span>
 
         <section class="preferences-bottom-payment">
+            <form action="https://restbeta.inevio.com/subscribe" method="POST" id="payment-form">
+              <span class="preferences-bottom-label name"></span>
+              <input class="ui-input payment-name" name="fullName"/>
 
-          <span class="preferences-bottom-label name"></span>
-          <input class="ui-input payment-name"/>
+              <span class="preferences-bottom-label number"></span>
+              <input class="ui-input payment-cc" maxlength="16" data-stripe="number"/>
 
-          <span class="preferences-bottom-label number"></span>
-          <input class="ui-input payment-cc" maxlength="16"/>
+              <span class="preferences-bottom-label small month"></span>
+              <span class="preferences-bottom-label small year"></span>
+              <span class="preferences-bottom-label small no-right-margin cvv"></span>
 
-          <span class="preferences-bottom-label small month"></span>
-          <span class="preferences-bottom-label small year"></span>
-          <span class="preferences-bottom-label small no-right-margin cvv"></span>
+              <input class="ui-input payment-date-month small" maxlength="2" data-stripe="exp_month"/>
+              <input class="ui-input payment-date-year small" maxlength="2" data-stripe="exp_year"/>
+              <input class="ui-input payment-cvv small no-right-margin" maxlength="4" data-stripe="cvc"/>
 
-          <input class="ui-input payment-date-month small" maxlength="2"/>
-          <input class="ui-input payment-date-year small" maxlength="2"/>
-          <input class="ui-input payment-cvv small no-right-margin" maxlength="4"/>
-
-          <article class="preferences-button unactive save-info">
-              <article class="preferences-payment-button-container">
-                <span class="preferences-payment-button">Guardar Cambios</span>
+              <article class="preferences-button active save-info">
+                  <article class="preferences-payment-button-container">
+                    <input type="submit" class="preferences-payment-button">Guardar Cambios</input>
+                  </article>
               </article>
-            </article>
-
+            </form>
         </section>
 
     </section>
