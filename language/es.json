@@ -182,10 +182,12 @@
     ],
 
     "paymentTitle"      : "MÉTODO DE PAGO",
+    "peymentDesc"       : "Aquí puedes guardar tu tarjeta para realizar el pago a Inevio",
     "paymentCardHolder" : "NOMBRE EN LA TARJETA",
     "paymentCardNumber" : "NÚMERO DE TARJETA",
     "paymentCardMonth"  : "MES",
     "paymentCardYear"   : "AÑO",
-    "paymentCardCVV"    : "CVV"
+    "paymentCardCVV"    : "CVV",
+    "creditcardError"   : "La tarjeta introducida no es válida"
 
 }

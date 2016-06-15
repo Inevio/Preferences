@@ -1385,12 +1385,13 @@
     $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
 
     $('.preferences-bottom-title.payment').text( lang.paymentTitle );
+    $('.preferences-bottom-description.payment').text( lang.peymentDesc );
     $('.preferences-bottom-label.name').text( lang.paymentCardHolder );
     $('.preferences-bottom-label.number').text( lang.paymentCardNumber );
     $('.preferences-bottom-label.month').text( lang.paymentCardMonth );
     $('.preferences-bottom-label.year').text( lang.paymentCardYear );
     $('.preferences-bottom-label.cvv').text( lang.paymentCardCVV );
-    $('.preferences-payment-button').text( lang.saveChanges );
+    $('.preferences-payment-button span').text( lang.save );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );

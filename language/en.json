@@ -182,10 +182,12 @@
     ],
 
     "paymentTitle"      : "PAYMENT METHOD",
+    "peymentDesc"       : "Here you can save your bank account to pay Inevio",
     "paymentCardHolder" : "NAME ON CARD",
     "paymentCardNumber" : "CARD NUMBER",
     "paymentCardMonth"  : "MONTH",
     "paymentCardYear"   : "YEAR",
-    "paymentCardCVV"    : "CVV"
+    "paymentCardCVV"    : "CVV",
+    "creditcardError"   : "This credit card is not valid"
 
 }
