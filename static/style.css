@@ -1880,14 +1880,28 @@ span.preferences-card-subscribe-text{
 
 }
 
+.credit-card-figure{
+  width: 350px;
+  height: 127px;
+  margin: 10px auto;
+	-webkit-border-radius: 6px 6px 0 0;
+	-moz-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+	background: url('@static/visa.png');
+  background-size: 350px 127px;
+}
+
 .preferences-bottom-payment{
-  width: 245px;
+  width: 382px;
   margin: 0 auto;
   text-align: left;
+  margin-top: 20px;
 
   input{
     margin: 7px 0 10px;
     color: #fff;
+    width: ~'calc(100% - 18px)';
+    height: 38px;
   }
 
   input:focus{
@@ -1906,30 +1920,47 @@ span.preferences-card-subscribe-text{
     margin-bottom: 0px;
   }
 
+  span.cvv{
+    margin-right: 65px;
+  }
+
   .no-right-margin{
     margin-right: 0 !important;
   }
 
-  .preferences-payment-button-container{
-    background-color: transparent;
-    margin: auto;
-    text-align: center;
-    margin-top: 14px;
-
-  }
-
-  .preferences-payment-button *{
-    transition: all 0.2s ease;
-  }
-
   .preferences-payment-button{
+    width: 102px;
+    float: right;
+    height: 40px;
+    margin-top: 5px;
+  }
 
-      color: #FFF;
-      font-size: 15px;
-
+  .payment-date-month, .payment-date-year{
+    width: 47px !important;
   }
 
 }
+
+.save-credit-mode{
+  display: none;
+
+  .credit-card-saved{
+
+    width: 359px;
+    height: 250px;
+    background-image: url( '@static/visa-completa.png' );
+    background-size: 359px 250px;
+    margin: 0 auto;
+
+  }
+
+  
+
+
+
+}
+
+
 
 /* PAYMENT ZONE FINISH */
 

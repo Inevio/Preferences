@@ -603,28 +603,47 @@
         <span class="preferences-bottom-title payment"></span>
         <span class="preferences-bottom-description payment"></span>
 
-        <section class="preferences-bottom-payment">
-            <form action="https://restbeta.inevio.com/subscribe" method="POST" id="payment-form">
-              <span class="preferences-bottom-label name"></span>
-              <input class="ui-input payment-name" name="fullName"/>
+        <section class="intro-credit-mode">
 
-              <span class="preferences-bottom-label number"></span>
-              <input class="ui-input payment-cc" maxlength="16" data-stripe="number"/>
+        <figure class="credit-card-figure"></figure>
 
-              <span class="preferences-bottom-label small month"></span>
-              <span class="preferences-bottom-label small year"></span>
-              <span class="preferences-bottom-label small no-right-margin cvv"></span>
+          <section class="preferences-bottom-payment">
 
-              <input class="ui-input payment-date-month small" maxlength="2" data-stripe="exp_month"/>
-              <input class="ui-input payment-date-year small" maxlength="2" data-stripe="exp_year"/>
-              <input class="ui-input payment-cvv small no-right-margin" maxlength="4" data-stripe="cvc"/>
+              <form action="https://restbeta.inevio.com/subscribe" method="POST" id="payment-form">
+                <span class="preferences-bottom-label name"></span>
+                <input class="ui-input payment-name" name="fullName"/>
 
-              <article class="preferences-button active save-info">
-                  <article class="preferences-payment-button-container">
-                    <input type="submit" class="preferences-payment-button">Guardar Cambios</input>
-                  </article>
-              </article>
-            </form>
+                <span class="preferences-bottom-label number"></span>
+                <input class="ui-input payment-cc" maxlength="16" data-stripe="number"/>
+
+                <span class="preferences-bottom-label small month"></span>
+                <span class="preferences-bottom-label small year"></span>
+                <span class="preferences-bottom-label small cvv"></span>
+
+                <input class="ui-input payment-date-month small" maxlength="2" data-stripe="exp_month"/>
+                <input class="ui-input payment-date-year small" maxlength="2" data-stripe="exp_year"/>
+                <input class="ui-input payment-cvv small no-right-margin" maxlength="4" data-stripe="cvc"/>
+
+                <button class="ui-btn big accept preferences-payment-button">
+                  <span class="ellipsis"></span>
+                </button>
+
+              </form>
+          </section>
+
+        </section>
+        <section class="save-credit-mode">
+
+          <figure class="credit-card-saved"></figure>
+
+          <input class="credit-number">
+          <input class="credit-name">
+          <input class="credit-exp">
+
+          <button class="ui-btn big cancel cancel-credit">
+            <span class="ellipsis"></span>
+          </button>
+
         </section>
 
     </section>
