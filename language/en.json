@@ -188,6 +188,7 @@
     "paymentCardMonth"  : "MONTH",
     "paymentCardYear"   : "YEAR",
     "paymentCardCVV"    : "CVV",
-    "creditcardError"   : "This credit card is not valid"
+    "creditcardError"   : "This credit card is not valid",
+    "unlinkCard"        : "Unlink this credit card"
 
 }

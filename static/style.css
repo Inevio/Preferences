@@ -1941,8 +1941,11 @@ span.preferences-card-subscribe-text{
 
 }
 
-.save-credit-mode{
+.intro-credit-mode{
   display: none;
+}
+
+.save-credit-mode{
 
   .credit-card-saved{
 
@@ -1954,13 +1957,38 @@ span.preferences-card-subscribe-text{
 
   }
 
-  
+  .credit-number{
+    position: absolute;
+    top: 163px;
+    color: #fff;
+    left: 213px;
+    font-family: OCRAExtended;
+    font-size: 22px;
+  }
 
+  .credit-name{
+    position: absolute;
+    top: 228px;
+    left: 215px;
+    font-size: 12px;
+    color: #fff;
+    font-family: OCRAExtended;
+  }
 
+  .credit-exp{
+    position: absolute;
+    top: 227px;
+    left: 432px;
+    font-size: 12px;
+    color: #fff;
+    font-family: OCRAExtended;
+  }
+
+  .cancel-credit{
+    width: 220px;
+  }
 
 }
-
-
 
 /* PAYMENT ZONE FINISH */
 
