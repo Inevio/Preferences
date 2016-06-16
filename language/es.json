@@ -188,6 +188,7 @@
     "paymentCardMonth"  : "MES",
     "paymentCardYear"   : "AÑO",
     "paymentCardCVV"    : "CVV",
-    "creditcardError"   : "La tarjeta introducida no es válida"
+    "creditcardError"   : "La tarjeta introducida no es válida",
+    "unlinkCard"        : "Desvincular esta tarjeta"
 
 }
