@@ -1,8 +1,39 @@
-
+var app = $( this );
 Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU');
+
+$.ajax({
+ type: 'POST',
+ url: 'https://restbeta.inevio.com/checkstripe',
+ crossDomain: true,
+ data: {
+   id : api.system.user().id
+ },
+ success: function ( res, status ) {
+
+   console.log(res,status);
+
+   if ( res.subscription != null ) {
+
+     $( '.save-credit-mode' ).show();
+     $( '.intro-credit-mode' ).hide();
+
+   }else{
+
+     $( '.save-credit-mode' ).hide();
+     $( '.intro-credit-mode' ).show();
+
+   }
+
+ },
+ error: function( res, status ) {
+   console.log( res, status );
+ }
+});
 
 var stripeResponseHandler = function( status, response ) {
   var $form = $('#payment-form');
+
+  $form.find('button').prop('disabled', false);
 
   if (response.error) {
 
@@ -51,7 +82,7 @@ jQuery(function($) {
  });
 });
 
-$( '.ui-btn.preferences-payment-button' ).on( 'click' , function(){
+app.on( 'click' , '.preferences-payment-button' , function(){
   var $form =  $('#payment-form');
 
   // Disable the submit button to prevent repeated clicks
