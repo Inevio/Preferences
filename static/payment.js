@@ -17,6 +17,34 @@ $.ajax({
      $( '.save-credit-mode' ).show();
      $( '.intro-credit-mode' ).hide();
 
+     $.ajax({
+      type: 'POST',
+      url: 'https://restbeta.inevio.com/listcards',
+      crossDomain: true,
+      data: {
+        id    : api.system.user().id
+      },
+      success: function ( res, status ) {
+
+        console.log( res, status );
+
+        $( '.credit-number' ).text( '****   ****   ****  ' + res.cards.data[0].last4 );
+        $( '.credit-name' ).text( res.cards.data[0].name );
+        $( '.credit-exp' ).text( res.cards.data[0].exp_month + '/' + res.cards.data[0].exp_year );
+
+        $( '.save-credit-mode' ).show();
+        $( '.intro-credit-mode' ).hide();
+
+      },
+      error: function( res, status ) {
+
+        $( '.save-credit-mode' ).hide();
+        $( '.intro-credit-mode' ).show();
+
+        console.log( res, status );
+      }
+     });
+
    }else{
 
      $( '.save-credit-mode' ).hide();
@@ -33,11 +61,11 @@ $.ajax({
 var stripeResponseHandler = function( status, response ) {
   var $form = $('#payment-form');
 
-  $form.find('button').prop('disabled', false);
-
   if (response.error) {
 
     alert( lang.creditcardError );
+    $('.load-only').hide();
+    $('.preferences-payment-button').show();
 
   } else {
    // token contains id, last4, and card type
@@ -53,12 +81,50 @@ var stripeResponseHandler = function( status, response ) {
     url: 'https://restbeta.inevio.com/subscribe',
     crossDomain: true,
     data: {
-      desc  : api.system.user().fullName,
+      id    : api.system.user().id,
+      name  : api.system.user().fullName,
       mail  : api.system.user().mail,
       token : token
     },
     success: function ( res, status ) {
+
+
       console.log( res, status );
+      $.ajax({
+       type: 'POST',
+       url: 'https://restbeta.inevio.com/listcards',
+       crossDomain: true,
+       data: {
+         id    : api.system.user().id
+       },
+       success: function ( res, status ) {
+
+         console.log( res, status );
+
+         $( '.credit-number' ).text( '****   ****   ****  ' + res.cards.data[0].last4 );
+         $( '.credit-name' ).text( res.cards.data[0].name );
+         $( '.credit-exp' ).text( res.cards.data[0].exp_month + '/' + res.cards.data[0].exp_year );
+
+         $( '.save-credit-mode' ).show();
+         $( '.intro-credit-mode' ).hide();
+
+         $('.load-only').hide();
+         $('.preferences-payment-button').show();
+
+       },
+       error: function( res, status ) {
+
+         $( '.save-credit-mode' ).hide();
+         $( '.intro-credit-mode' ).show();
+
+         $('.load-only').hide();
+         $('.preferences-payment-button').show();
+         console.log( res, status );
+
+       }
+      });
+
+
     },
     error: function( res, status ) {
       console.log( res, status );
@@ -73,9 +139,17 @@ jQuery(function($) {
    var $form = $(this);
 
    // Disable the submit button to prevent repeated clicks
-   $form.find('button').prop('disabled', true);
+   $('.load-only').show();
+   $('.preferences-payment-button').hide();
 
-   Stripe.card.createToken($form, stripeResponseHandler);
+   Stripe.card.createToken({
+     number: $('.payment-cc').val(),
+     cvc: $('.payment-cvv').val(),
+     exp_month: $('.payment-date-month').val(),
+     exp_year: $('.payment-date-year').val(),
+     name: $('.payment-name').val()
+   }, stripeResponseHandler);
+
 
    // Prevent the form from submitting with the default action
    return false;
@@ -86,10 +160,39 @@ app.on( 'click' , '.preferences-payment-button' , function(){
   var $form =  $('#payment-form');
 
   // Disable the submit button to prevent repeated clicks
-  $form.find('button').prop('disabled', true);
+  $('.load-only').show();
+  $('.preferences-payment-button').hide();
 
-  Stripe.card.createToken($form, stripeResponseHandler);
+  Stripe.card.createToken({
+    number: $('.payment-cc').val(),
+    cvc: $('.payment-cvv').val(),
+    exp_month: $('.payment-date-month').val(),
+    exp_year: $('.payment-date-year').val(),
+    name: $('.payment-name').val()
+  }, stripeResponseHandler);
 
   // Prevent the form from submitting with the default action
   return false;
+});
+
+app.on( 'click' , '.cancel-credit' , function(){
+
+  $.ajax({
+   type: 'POST',
+   url: 'https://restbeta.inevio.com/unsubscribe',
+   crossDomain: true,
+   data: {
+     id    : api.system.user().id
+   },
+   success: function ( res, status ) {
+     console.log( res, status );
+     $( '.save-credit-mode' ).hide();
+     $( '.intro-credit-mode' ).show();
+
+   },
+   error: function( res, status ) {
+     console.log( res, status );
+   }
+  });
+
 });

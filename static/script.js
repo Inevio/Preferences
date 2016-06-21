@@ -1393,6 +1393,7 @@
     $('.preferences-bottom-label.cvv').text( lang.paymentCardCVV );
     $('.preferences-payment-button span').text( lang.save );
     $('.cancel-credit span').text( lang.unlinkCard );
+    $('.stripe-loading').text( lang.stripeLoading );
 
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
