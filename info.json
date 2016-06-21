@@ -28,7 +28,7 @@
             "service" : [ "networks.js" ],
             "common"  : {
 
-                "css"    : ["style.css"],
+                "css"    : ["style.css","spinner.css"],
                 "script" : [],
                 "start"  : []
 

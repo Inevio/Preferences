@@ -189,6 +189,7 @@
     "paymentCardYear"   : "YEAR",
     "paymentCardCVV"    : "CVV",
     "creditcardError"   : "This credit card is not valid",
-    "unlinkCard"        : "Unlink this credit card"
+    "unlinkCard"        : "Unlink this credit card",
+    "stripeLoading"     : "Connecting with the payment supplier..."
 
 }

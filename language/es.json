@@ -189,6 +189,7 @@
     "paymentCardYear"   : "AÑO",
     "paymentCardCVV"    : "CVV",
     "creditcardError"   : "La tarjeta introducida no es válida",
-    "unlinkCard"        : "Desvincular esta tarjeta"
+    "unlinkCard"        : "Desvincular esta tarjeta",
+    "stripeLoading"     : "Conectando con el proveedor de pagos..."
 
 }
