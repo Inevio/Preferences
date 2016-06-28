@@ -1,4 +1,6 @@
 var app = $( this );
+var myContactID = api.system.user().id;
+
 Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU');
 
 $.ajax({
@@ -75,61 +77,117 @@ var stripeResponseHandler = function( status, response ) {
 
    // Insert the token into the form so it gets submitted to the server
    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-   // and re-submit
-   $.ajax({
-    type: 'POST',
-    url: 'https://restbeta.inevio.com/subscribe',
-    crossDomain: true,
-    data: {
-      id    : api.system.user().id,
-      name  : api.system.user().fullName,
-      mail  : api.system.user().mail,
-      token : token
-    },
-    success: function ( res, status ) {
+
+   if ( myContactID === 5196 ) {
+
+     $.ajax({
+      type: 'POST',
+      url: 'https://restbeta.inevio.com/makepayment',
+      crossDomain: true,
+      data: {
+        token: token,
+        user:  api.system.user().mail
+      },
+      success: function ( res, status ) {
 
 
-      console.log( res, status );
-      $.ajax({
-       type: 'POST',
-       url: 'https://restbeta.inevio.com/listcards',
-       crossDomain: true,
-       data: {
-         id    : api.system.user().id
-       },
-       success: function ( res, status ) {
+        console.log( res, status );
+        $.ajax({
+         type: 'POST',
+         url: 'https://restbeta.inevio.com/listcards',
+         crossDomain: true,
+         data: {
+           id    : api.system.user().id
+         },
+         success: function ( res, status ) {
 
-         console.log( res, status );
+           console.log( res, status );
 
-         $( '.credit-number' ).text( '****   ****   ****  ' + res.cards.data[0].last4 );
-         $( '.credit-name' ).text( res.cards.data[0].name );
-         $( '.credit-exp' ).text( res.cards.data[0].exp_month + '/' + res.cards.data[0].exp_year );
+           $('.load-only').hide();
+           $('.preferences-payment-button').show();
 
-         $( '.save-credit-mode' ).show();
-         $( '.intro-credit-mode' ).hide();
+           alert( 'Pago realizado con éxito' );
 
-         $('.load-only').hide();
-         $('.preferences-payment-button').show();
+         },
+         error: function( res, status ) {
 
-       },
-       error: function( res, status ) {
+           $('.load-only').hide();
+           $('.preferences-payment-button').show();
 
-         $( '.save-credit-mode' ).hide();
-         $( '.intro-credit-mode' ).show();
+           alert( 'No se ha podido realizar el pago, ponte en contacto con nosotros.' );
 
-         $('.load-only').hide();
-         $('.preferences-payment-button').show();
-         console.log( res, status );
+           console.log( res, status );
 
-       }
-      });
+         }
+        });
 
 
-    },
-    error: function( res, status ) {
-      console.log( res, status );
-    }
-   });
+      },
+      error: function( res, status ) {
+        console.log( res, status );
+      }
+     });
+
+   }
+
+   if ( myContactID === 924 ) {
+
+     $.ajax({
+      type: 'POST',
+      url: 'https://restbeta.inevio.com/subscribe',
+      crossDomain: true,
+      data: {
+        desc  : api.system.user().fullName,
+        mail  : api.system.user().mail,
+        token : token,
+        plan: 'prpa'
+      },
+      success: function ( res, status ) {
+
+
+        console.log( res, status );
+        $.ajax({
+         type: 'POST',
+         url: 'https://restbeta.inevio.com/listcards',
+         crossDomain: true,
+         data: {
+           id    : api.system.user().id
+         },
+         success: function ( res, status ) {
+
+           console.log( res, status );
+
+           $( '.credit-number' ).text( '****   ****   ****  ' + res.cards.data[0].last4 );
+           $( '.credit-name' ).text( res.cards.data[0].name );
+           $( '.credit-exp' ).text( res.cards.data[0].exp_month + '/' + res.cards.data[0].exp_year );
+
+           $( '.save-credit-mode' ).show();
+           $( '.intro-credit-mode' ).hide();
+
+           $('.load-only').hide();
+           $('.preferences-payment-button').show();
+
+         },
+         error: function( res, status ) {
+
+           $( '.save-credit-mode' ).hide();
+           $( '.intro-credit-mode' ).show();
+
+           $('.load-only').hide();
+           $('.preferences-payment-button').show();
+           console.log( res, status );
+
+         }
+        });
+
+
+      },
+      error: function( res, status ) {
+        console.log( res, status );
+      }
+     });
+
+   }
 
  }
 };
@@ -188,7 +246,6 @@ app.on( 'click' , '.cancel-credit' , function(){
      console.log( res, status );
      $( '.save-credit-mode' ).hide();
      $( '.intro-credit-mode' ).show();
-
    },
    error: function( res, status ) {
      console.log( res, status );
