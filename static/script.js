@@ -73,6 +73,10 @@
     var backingStoreRatio = 1;
     var pixelRatio        = 1;
 
+    if ( wz.system.user().id !== 5196 || wz.system.user().id !== 924 ) {
+        $('.payment').css('display', 'none');
+    }
+
     // Quota circle functions
     var startCircleAnimation = function( end ){
 
