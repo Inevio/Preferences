@@ -14,7 +14,7 @@ $.ajax({
 
    console.log(res,status);
 
-   if ( res.subscription != null ) {
+   if ( res.customer != null ) {
 
      $( '.save-credit-mode' ).show();
      $( '.intro-credit-mode' ).hide();
@@ -24,7 +24,7 @@ $.ajax({
       url: 'https://restbeta.inevio.com/listcards',
       crossDomain: true,
       data: {
-        id    : api.system.user().id
+        id : api.system.user().id
       },
       success: function ( res, status ) {
 
@@ -140,7 +140,8 @@ var stripeResponseHandler = function( status, response ) {
         desc  : api.system.user().fullName,
         mail  : api.system.user().mail,
         token : token,
-        plan: 'prpa'
+        plan  : 'test2',
+        id    : api.system.user().id
       },
       success: function ( res, status ) {
 
@@ -201,11 +202,11 @@ jQuery(function($) {
    $('.preferences-payment-button').hide();
 
    Stripe.card.createToken({
+     name: $('.payment-name').val(),
      number: $('.payment-cc').val(),
      cvc: $('.payment-cvv').val(),
      exp_month: $('.payment-date-month').val(),
-     exp_year: $('.payment-date-year').val(),
-     name: $('.payment-name').val()
+     exp_year: $('.payment-date-year').val()
    }, stripeResponseHandler);
 
 
