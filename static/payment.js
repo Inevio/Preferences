@@ -1,11 +1,11 @@
 var app = $( this );
 var myContactID = api.system.user().id;
 
-Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU');
+Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 
 $.ajax({
  type: 'POST',
- url: 'https://restbeta.inevio.com/checkstripe',
+ url: 'https://rest.inevio.com/checkstripe',
  crossDomain: true,
  data: {
    id : api.system.user().id
@@ -21,7 +21,7 @@ $.ajax({
 
      $.ajax({
       type: 'POST',
-      url: 'https://restbeta.inevio.com/listcards',
+      url: 'https://rest.inevio.com/listcards',
       crossDomain: true,
       data: {
         id : api.system.user().id
@@ -78,11 +78,12 @@ var stripeResponseHandler = function( status, response ) {
    // Insert the token into the form so it gets submitted to the server
    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
 
+   /*
    if ( myContactID === 5196 ) {
 
      $.ajax({
       type: 'POST',
-      url: 'https://restbeta.inevio.com/makepayment',
+      url: 'https://rest.inevio.com/makepayment',
       crossDomain: true,
       data: {
         token: token,
@@ -90,11 +91,10 @@ var stripeResponseHandler = function( status, response ) {
       },
       success: function ( res, status ) {
 
-
         console.log( res, status );
         $.ajax({
          type: 'POST',
-         url: 'https://restbeta.inevio.com/listcards',
+         url: 'https://rest.inevio.com/listcards',
          crossDomain: true,
          data: {
            id    : api.system.user().id
@@ -129,18 +129,19 @@ var stripeResponseHandler = function( status, response ) {
      });
 
    }
+   */
 
-   if ( myContactID === 924 ) {
+   //if ( myContactID === 924 ) {
 
      $.ajax({
       type: 'POST',
-      url: 'https://restbeta.inevio.com/subscribe',
+      url: 'https://rest.inevio.com/subscribe',
       crossDomain: true,
       data: {
         desc  : api.system.user().fullName,
         mail  : api.system.user().mail,
         token : token,
-        plan  : 'test2',
+        plan  : api.system.user().id === 5196 ? 'plan1' : ( api.system.user().id === 11610 ? 'plan2' : 'plan0' ),
         id    : api.system.user().id
       },
       success: function ( res, status ) {
@@ -149,7 +150,7 @@ var stripeResponseHandler = function( status, response ) {
         console.log( res, status );
         $.ajax({
          type: 'POST',
-         url: 'https://restbeta.inevio.com/listcards',
+         url: 'https://rest.inevio.com/listcards',
          crossDomain: true,
          data: {
            id    : api.system.user().id
@@ -188,7 +189,7 @@ var stripeResponseHandler = function( status, response ) {
       }
      });
 
-   }
+   //}
 
  }
 };
@@ -238,7 +239,7 @@ app.on( 'click' , '.cancel-credit' , function(){
 
   $.ajax({
    type: 'POST',
-   url: 'https://restbeta.inevio.com/unsubscribe',
+   url: 'https://rest.inevio.com/unsubscribe',
    crossDomain: true,
    data: {
      id    : api.system.user().id
