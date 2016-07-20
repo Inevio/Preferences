@@ -73,7 +73,7 @@
     var backingStoreRatio = 1;
     var pixelRatio        = 1;
 
-    if ( wz.system.user().id !== 5196 || wz.system.user().id !== 924 ) {
+    if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) === -1 ){
         $('.payment').css('display', 'none');
     }
 
@@ -522,9 +522,6 @@
                     $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'none' }, function(){
                         $( this ).transition({ 'box-shadow' : 'inset 0 1px 1px rgba(255, 255, 255, 0.3)' });
                     });
-
-
-
 
                     $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
                         $( this ).text( lang.avatarEdit );
