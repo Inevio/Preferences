@@ -1197,17 +1197,28 @@
         if( $( this ).hasClass( 'english' ) ){
             api.config.setLanguage( 'en-en' , function(){
 
-              confirm('¿Desea recargar Inevio ahora?', function(){var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
-              window.location.reload();})
+              confirm('¿Desea recargar Inevio ahora?', function( o ){
+
+                console.log(arguments);
+                if (o == true){
+                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                  window.location.reload();
+                }
+
+            });
 
             });
         }else if( $( this ).hasClass( 'spanish' ) ){
             api.config.setLanguage( 'es-es' , function(){
 
-              confirm('Do you want to reload Inevio now?', function(){var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
-              window.location.reload();})
+              confirm('Do you want to reload Inevio now?', function(o){
+                if (o == true){
+                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                  window.location.reload();
+                }
         });
-      }
+      });
+    }
     })
 
     // Launches browser window to add an account
