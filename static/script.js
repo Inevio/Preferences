@@ -1194,14 +1194,20 @@
 
         $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
 
-        if( $( this ).hasClass( 'english-uk' ) ){
-            api.config.setLanguage( 'en-en' );
-        }else if( $( this ).hasClass( 'english-us' ) ){
-            api.config.setLanguage( 'en-us' );
-        }else if( $( this ).hasClass( 'spanish' ) ){
-            api.config.setLanguage( 'es-es' );
-        }
+        if( $( this ).hasClass( 'english' ) ){
+            api.config.setLanguage( 'en-en' , function(){
 
+              confirm('¿Desea recargar Inevio ahora?', function(){var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+              window.location.reload();})
+
+            });
+        }else if( $( this ).hasClass( 'spanish' ) ){
+            api.config.setLanguage( 'es-es' , function(){
+
+              confirm('Do you want to reload Inevio now?', function(){var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+              window.location.reload();})
+        });
+      }
     })
 
     // Launches browser window to add an account
@@ -1284,10 +1290,8 @@
 
         if( used.code === "es" || used.code === "es-es" ){
             $( '.preferences-language-element.spanish', win ).addClass( 'active' );
-        }else if( used.code === "en" || used.code === "en-us" ){
-            $( '.preferences-language-element.english-us', win ).addClass( 'active' );
-        }else if( used.code === "en-uk" ){
-            $( '.preferences-language-element.english-uk', win ).addClass( 'active' );
+        }else if( used.code === "en" || used.code === "en-en" ){
+            $( '.preferences-language-element.english', win ).addClass( 'active' );
         }
 
     });
@@ -1309,6 +1313,7 @@
     $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
     $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
     $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
+    $('li.payment').hide()
     $( 'li.payment', win ).text( lang.payment ).data( 'type', 'payment' );
     $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
 
