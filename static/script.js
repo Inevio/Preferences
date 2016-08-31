@@ -1199,7 +1199,6 @@
 
               confirm('¿Desea recargar Inevio ahora?', function( o ){
 
-                console.log(arguments);
                 if (o == true){
                   var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
                   window.location.reload();
