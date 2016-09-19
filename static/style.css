@@ -82,6 +82,10 @@
 
 }
 
+.preferences-top li.payment{
+  display: none;
+}
+
 .wz-view.wz-view-dragging .preferences-top li:hover{
 
     border-bottom: 2px solid transparent;
@@ -1946,6 +1950,7 @@ span.preferences-card-subscribe-text{
 }
 
 .save-credit-mode{
+  display: none;
 
   .credit-card-saved{
 

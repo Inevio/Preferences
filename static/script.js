@@ -73,9 +73,11 @@
     var backingStoreRatio = 1;
     var pixelRatio        = 1;
 
-    if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) === -1 ){
-        $('.payment').css('display', 'none');
+    /*
+    if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) !== -1 ){
+        $('.payment').css('display','inline-block');
     }
+    */
 
     // Quota circle functions
     var startCircleAnimation = function( end ){
@@ -1323,7 +1325,6 @@
     $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
     $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
     $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
-    $('li.payment').hide()
     $( 'li.payment', win ).text( lang.payment ).data( 'type', 'payment' );
     $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
 
