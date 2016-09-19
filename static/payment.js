@@ -1,5 +1,5 @@
 
-Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU');
+Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU')
 
 var win = $(this)
 var availablePlan = null
@@ -34,8 +34,8 @@ var processCardForm = function(){
     if( response.error ){
 
       alert( lang.creditcardError )
-      $('.load-only').hide();
-      $('.preferences-payment-button').show();
+      $('.load-only').hide()
+      $('.preferences-payment-button').show()
       return
 
     }
@@ -49,30 +49,43 @@ var processCardForm = function(){
 
       listCards().done( function( res ){
 
-        $( '.credit-number' ).text( '**** **** **** ' + res.cards[ 0 ].last4 );
-        $( '.credit-name' ).text( res.cards[ 0 ].name );
-        $( '.credit-exp' ).text( res.cards[ 0 ].exp_month + '/' + res.cards[ 0 ].exp_year );
-        $( '.save-credit-mode' ).show();
-        $( '.intro-credit-mode' ).hide();
-        $('.load-only').hide();
-        $('.preferences-payment-button').show();
+        $( '.credit-number' ).text( '**** **** **** ' + res.cards[ 0 ].last4 )
+        $( '.credit-name' ).text( res.cards[ 0 ].name )
+        $( '.credit-exp' ).text( res.cards[ 0 ].exp_month + '/' + res.cards[ 0 ].exp_year )
+        $( '.save-credit-mode' ).show()
+        $( '.intro-credit-mode' ).hide().find('input').val('')
+        $('.load-only').hide()
+        $('.preferences-payment-button').show()
 
       }).fail( function( res ){
 
-        $('.load-only').hide();
-        $('.preferences-payment-button').show();
-        alert( 'No se ha podido realizar el pago, ponte en contacto con nosotros.' );
+        $('.load-only').hide()
+        $('.preferences-payment-button').show()
+        alert( 'No se ha podido realizar el pago, ponte en contacto con nosotros.' )
 
       })
 
     }).fail( function( res ){
 
-      $('.load-only').hide();
-      $('.preferences-payment-button').show();
-      alert( 'No se ha podido realizar el pago, ponte en contacto con nosotros.' );
+      $('.load-only').hide()
+      $('.preferences-payment-button').show()
+      alert( 'No se ha podido realizar el pago, ponte en contacto con nosotros.' )
 
     })
 
+  })
+
+}
+
+var removeCard = function(){
+
+  request( 'POST', 'https://rest.inevio.com/unsubscribe' ).done( function(){
+
+    $( '.save-credit-mode' ).hide()
+    $( '.intro-credit-mode' ).show()
+
+  }).fail( function(){
+    alert( 'No se ha podido eliminar la suscripción, ponte en contacto con nosotros.' )
   })
 
 }
@@ -95,25 +108,29 @@ var request = function( verb, url, data ){
     promise.resolve( res )
   }).fail( function( res ){
     promise.reject( res )
-  });
+  })
 
   return promise
 
 }
 
-win.on( 'click' , '.preferences-payment-button' , function(){
+win
+.on( 'click' , '.preferences-payment-button' , function(){
 
   processCardForm()
   // Prevent the form from submitting with the default action
   return false
 
-});
+})
+.on( 'click' , '.cancel-credit' , function(){
+  removeCard()
+})
 
-$.when( /*currentPlan(),*/ availablePlans(), listCards() ).done( function( /*currentPlan,*/ plans, cards ){
+$.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
   if( plans.plans.length ){
 
-    $('.payment').css( 'display', 'inline-block' );
+    $('.payment').css( 'display', 'inline-block' )
 
     availablePlan = plans.plans[ 0 ].id
 
@@ -134,27 +151,4 @@ $.when( /*currentPlan(),*/ availablePlans(), listCards() ).done( function( /*cur
 
   }
 
-});
-
-/*
-win.on( 'click' , '.cancel-credit' , function(){
-
-  $.ajax({
-   type: 'POST',
-   url: 'https://rest.inevio.com/unsubscribe',
-   crossDomain: true,
-   data: {
-     id    : userId
-   },
-   success: function ( res ) {
-     console.log( res );
-     $( '.save-credit-mode' ).hide();
-     $( '.intro-credit-mode' ).show();
-   },
-   error: function( res ) {
-     console.log( res );
-   }
-  });
-
-});
-*/
+})
