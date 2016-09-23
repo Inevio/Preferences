@@ -1,6 +1,7 @@
 
 {
 
+    "appName" : "Preferences",
     "hdd"     : "Disk",
     "account" : "Account",
     "social"  : "Social Networks",
