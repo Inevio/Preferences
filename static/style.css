@@ -30,8 +30,8 @@
 
 .preferences-top{
 
-    width: 750px;
-    height: 39px;
+    width: 867px;
+    height: 81px;
     float: left;
 	  border: solid 1px #2c3238;
     border-bottom: none;
@@ -40,6 +40,28 @@
     position: relative;
     z-index: 1;
     background: #2C3238;
+}
+.preferences-top-header{
+    width: 867px;
+    height: 42px;
+    color: #bdc4c6;
+}
+.appName{
+  width: 731px;
+  display: block;
+  float: left;
+  padding-top: 8px;
+  height: 34px;
+  line-height: normal;
+}
+.iconApp{
+  background: url(https://static.inevio.com/app/374/gear.png) no-repeat;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  margin-right: 8px;
+  float: left;
+  background-size: 18px;
 }
 
 .wz-dragger li {
