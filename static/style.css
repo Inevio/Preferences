@@ -122,8 +122,8 @@
 
 .preferences-bottom{
 
-    width: 688px;
-    height: 448px;
+    width: 807px;
+    height: 471px;
     float: left;
     border: 1px solid #2c3238;
     background: #3f4750;
@@ -821,7 +821,7 @@ span.preferences-card-subscribe-text{
 
 }
 .preferences-bottom-input-containter{
-  width: 96%;
+  width: 382px;
   display: inline-block;
   text-align: center;
 
