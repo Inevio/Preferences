@@ -1300,7 +1300,7 @@
 
     });
 
-    $( 'li.hdd', win ).text( lang.hdd ).data( 'type', 'hdd' );
+    $( 'li.hdd', win ).text( lang.space ).data( 'type', 'hdd' );
     $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
     $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
     $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );

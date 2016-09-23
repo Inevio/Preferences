@@ -3,6 +3,7 @@
 
     "appName" : "Preferences",
     "hdd"     : "Disk",
+    "space"   : "Space",
     "account" : "Account",
     "social"  : "Social Networks",
     "config"  : "Configuration",
