@@ -1300,6 +1300,8 @@
 
     });
 
+    $( '.appName').find('span').text(lang.appName);
+
     $( 'li.hdd', win ).text( lang.space ).data( 'type', 'hdd' );
     $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
     $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
