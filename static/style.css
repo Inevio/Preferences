@@ -516,14 +516,85 @@
 
 }
 
+.preferences-hdd-payment{
+  height: 439px;
+  float: left;
+  width: 807px;
+}
+
+.preferences-hdd-payment-top{
+  float: left;
+}
+
+.preferences-hdd-payment-bottom{
+  display: flex;
+  width: inherit;
+}
 .preferences-hdd-quota{
 
-    width: 300px;
-    text-align: center;
-    margin: 35px 0 35px;
-    display: inline-block;
+  width: 300px;
+  text-align: center;
+  padding: 20px 0px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.5);
+  margin: 65px 0 0;
 
 }
+
+.box-current-plan{
+  background: rgba(0, 0, 0, 0.5);
+  height: 154px;
+  width: 375px;
+  text-align: left;
+  padding: 8px 20px;
+  float: right;
+  margin-left: 114px;
+  margin-top: 65px;
+  border-radius: 6px;
+  max-height: 240px;
+
+
+      .box-current-plan-top{
+        margin-top: 8px;
+      }
+
+      .box-current-plan-middle{
+        margin-top: 8px;
+
+        .premium{
+          height: 70px;
+
+            .left{
+              width: auto;
+              float: left;
+            }
+            .right{
+              width: auto;
+              float: right;
+            }
+
+            .premium-date{
+              height: 33px;
+              display: block;
+              float: left;
+              margin-top: 5px;
+            }
+        }
+
+      }
+
+
+      .box-current-plan-bottom{
+        height: 34px;
+        width: 81px;
+        margin: auto;
+        text-align: center;
+    }
+}
+
+
+
+
 
 .preferences-hdd-usage{
 
