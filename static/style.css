@@ -508,6 +508,22 @@
 
 /* HDD ZONE START */
 
+.preferences-bottom-content.hdd{
+
+    display: flex;
+    width: auto;
+}
+.hdd-container{
+  display: flex;
+}
+
+.hdd-container section{
+  margin-left: 31px;
+}
+.hdd-container:first-child{
+  margin-left: -31px;
+}
+
 .preferences-hdd-content{
 
     width: 100%;
@@ -526,20 +542,110 @@
   float: left;
 }
 
-.preferences-hdd-payment-bottom{
+.preferences-hdd-payment-middle{
   display: flex;
   width: inherit;
 }
-.preferences-hdd-quota{
+
+
+.big-box-hdd{
 
   width: 300px;
   text-align: center;
   padding: 20px 0px;
   border-radius: 6px;
   background: rgba(0,0,0,.5);
-  margin: 65px 0 0;
+  margin: 55px 0 0;
 
 }
+
+.small-box-hdd{
+
+  width: 80px;
+  text-align: center;
+  padding: 20px 0px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.5);
+
+}
+.current-plan-options{
+  display: flex;
+  width: 807px;
+}
+
+.info-current-card{
+  width: 300px;
+  float: right;
+  margin-left: 128px;
+
+    .info-current-card-top{
+      margin: 55px 0px 20px 0px;
+    }
+    .info-current-card-bottom{
+      text-align: left;
+      padding: 10px 0px;
+
+      .number-credit-card{
+        display: flex;
+        padding: 10px 8px;
+        background: rgba(0,0,0,.5);
+        border-radius: 16px;
+
+        figure{
+          width: 40px;
+          background: red;
+        }
+
+        .delete-card{
+          font-size: 12px;
+          padding-top: 3px;
+        }
+      }
+
+      .info-current-payment{
+        padding: 20px 10px;
+        font-size: 14px;
+      }
+
+    }
+}
+
+
+.info-current-plan{
+
+  text-align: left;
+
+  .options-top{
+    display: flex;
+    padding: 0px 30px;
+
+    .options-top-left{
+      width: 160px;
+
+    }
+  }
+
+  .options-middle{
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    padding: 15px 10px;
+    margin: 10px 20px;
+  }
+
+  .options-bottom{
+    display: block;
+    width: 150px;
+    padding: 0px 30px;
+  }
+
+}
+
+.preferences-hdd-payment-bottom{
+  margin-top: 60px;
+  margin-right: 0px;
+  float: right;
+}
+
 
 .box-current-plan{
   background: rgba(0, 0, 0, 0.5);
@@ -561,7 +667,7 @@
       .box-current-plan-middle{
         margin-top: 8px;
 
-        .premium{
+        .premium-version{
           height: 70px;
 
             .left{
