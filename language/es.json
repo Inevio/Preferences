@@ -13,7 +13,7 @@
     "about"   : "Acerca",
     "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
 
-    "hddTitle"         : "TU DISCO DURO",
+    "hddTitle"         : "Espacio",
     "hddDescription"   : "Aquí puedes ver cuanto espacio te queda libre",
     "currentUsage"     : "Uso actual",
     "moreFeatures"     : "¿Más funciones?",
@@ -43,6 +43,63 @@
     "safeFolders"      : "Carpetas seguras",
     "withPassword"     : "con contraseña",
     "subscribe"        : "Suscribir",
+
+
+    "usedSpace"        :  "Espacio usado",
+    "activePlan"       :  "Plan activo",
+    "moreInfo"         :  "Mas información",
+    "manage"           :  "Gestionar",
+    "increaseStorage"  :  "Aumenta tu espacio",
+    "currentPlan"      :  "Plan actual",
+    "totalSpace"       :  "ESPACIO TOTAL",
+    "modify"           :  "Modificar",
+    "creditCard"       :  "Tarjeta de crédito",
+    "inevioCredit"     :  "Crédito de Inevio",
+    "delete"           :  "Eliminar",
+
+    "infoPayment" : {
+
+        "partOne" : [
+
+          "A tu medida",
+          "Solo pagas por lo que necesitas.",
+          "Nada más ni nada menos."
+        ],
+
+        "partTwo"   : [
+
+          "¡No llega ni a un café!",
+          "Solo tienes que pagar 1€ al mes por cada 25GB adicionales que quieras en tu cuenta."
+        ],
+
+        "message" : "Se te cobrará de esta tarjeta 2€ todos los meses el día 7. Para cambiar de tarjeta primero elimina la actual."
+
+    },
+
+    "summary"   : "Resumen",
+    "order"     : "Pedido",
+
+    "creditCardOptions"   : {
+
+      "nameCreditCard"  : "Nombre del titular",
+      "numberCreditCard"    :  "Número de la tarjeta",
+      "monthCreditCard"     : "Mes",
+      "yearCreditCard"      : "Año",
+      "codeCreditCard"      : "CVV"
+    },
+
+    "next"        : "Siguiente",
+    "congratulation"    :  "¡Felicidades! Has aumentado tu espacio a",
+    "finish"      : "Finalizar",
+
+
+
+
+
+
+
+
+
 
     "accountTitle"       : "TU CUENTA",
     "accountDescription" : "Aquí puedes cambiar tu información personal",

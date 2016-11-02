@@ -13,7 +13,7 @@
     "about"   : "About",
     "wrongPass" : "Unable to save changes, incorrect password.",
 
-    "hddTitle"         : "YOUR HARD DRIVE",
+    "hddTitle"         : "Space",
     "hddDescription"   : "Here you view how much free space you have left",
     "currentUsage"     : "Current usage",
     "moreFeatures"     : "Need More Features?",
@@ -43,6 +43,58 @@
     "safeFolders"      : "Safe folders",
     "withPassword"     : "with password",
     "subscribe"        : "Subscribe",
+
+
+    "usedSpace"        :  "Used space",
+    "activePlan"       :  "Active plan",
+    "moreInfo"         :  "More info",
+    "manage"           :  "Manage",
+    "increaseStorage"  :  "Increase your storage",
+    "currentPlan"      :  "Actual plan",
+    "totalSpace"       :  "TOTAL SPACE",
+    "modify"           :  "Modify",
+    "creditCard"       :  "Credit card",
+    "inevioCredit"     :  "Inevio credit",
+    "delete"           :  "Delete",
+
+    "infoPayment" : {
+
+        "partOne" : [
+
+          "A tu medida",
+          "Solo pagas por lo que necesitas.",
+          "Nada más ni nada menos."
+        ],
+
+        "partTwo"   : [
+
+          "¡No llega ni a un café!",
+          "Solo tienes que pagar 1€ al mes por cada 25GB adicionales que quieras en tu cuenta."
+        ],
+
+        "message" : "Se te cobrará de esta tarjeta 2€ todos los meses el día 7. Para cambiar de tarjeta primero elimina la actual."
+
+    },
+
+    "summary"   : "Summary",
+    "order"     : "Order",
+
+    "creditCardOptions"   : {
+
+      "nameCreditCard"  : "Owner name",
+      "numberCreditCard"    :  "Card number",
+      "monthCreditCard"     : "Month",
+      "yearCreditCard"      : "Year",
+      "codeCreditCard"      : "CVV"
+    },
+
+    "next"        : "Next",
+    "congratulation"    :  "Congratulations! You have your space increased to ",
+    "finish"      : "Finish",
+
+
+
+
 
     "accountTitle"       : "YOUR PROFILE",
     "accountDescription" : "Here you can change your personal information",

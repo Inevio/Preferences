@@ -508,6 +508,17 @@
 
 /* HDD ZONE START */
 
+.premium-user{
+  .free{
+    display: none;
+  }
+}
+.free-user{
+  .premium{
+    display: none;
+  }
+}
+
 .preferences-bottom-content.hdd{
 
     display: flex;
@@ -540,11 +551,21 @@
 
 .preferences-hdd-payment-top{
   float: left;
+  display: flex;
+  font-size: 21px;
+  color: white;
+
+  figure{
+    width: 18px;
+    height: 18px;
+    background: blue;
+  }
 }
 
 .preferences-hdd-payment-middle{
   display: flex;
   width: inherit;
+  color: white;
 }
 
 
@@ -563,7 +584,7 @@
 
   width: 80px;
   text-align: center;
-  padding: 20px 0px;
+  padding: 10px;
   border-radius: 6px;
   background: rgba(0,0,0,.5);
 
@@ -573,42 +594,412 @@
   width: 807px;
 }
 
-.info-current-card{
-  width: 300px;
-  float: right;
-  margin-left: 128px;
+.current-information{
+  width: 329px;
+  height: 80px;
+  margin-top: 40px;
+  padding: 20px;
 
-    .info-current-card-top{
-      margin: 55px 0px 20px 0px;
-    }
-    .info-current-card-bottom{
-      text-align: left;
-      padding: 10px 0px;
-
-      .number-credit-card{
-        display: flex;
-        padding: 10px 8px;
-        background: rgba(0,0,0,.5);
-        border-radius: 16px;
-
-        figure{
-          width: 40px;
-          background: red;
-        }
-
-        .delete-card{
-          font-size: 12px;
-          padding-top: 3px;
-        }
-      }
-
-      .info-current-payment{
-        padding: 20px 10px;
-        font-size: 14px;
-      }
-
-    }
+  li{
+    /* Cambiar */
+  }
+  .paragraph{
+    padding: 15px 30px;
+    font-size: 12px;
+  }
 }
+
+.modify-premium{
+
+  .info-current-card{
+    width: 300px;
+    float: right;
+    display: block;
+    margin-left: 128px;
+
+      .info-current-card-top{
+        margin: 55px 0px 0px 0px;
+      }
+
+
+      .info-current-card-bottom{
+        text-align: left;
+        padding: 10px 0px;
+
+        .number-credit-card{
+          display: flex;
+          padding: 10px 0px;
+          background: rgba(0,0,0,.5);
+          border-radius: 16px;
+
+          figure{
+            width: 40px;
+          }
+
+          .delete-card{
+            font-size: 12px;
+            padding-top: 3px;
+          }
+        }
+
+        .info-current-payment{
+          padding: 20px 10px;
+          font-size: 14px;
+        }
+
+      }
+
+      .info-current-card-left{
+
+        .info-current-quantity{
+          margin-top: 160px;
+          display: flex;
+        }
+      }
+      .info-current-card-right{
+        margin-left: 15px;
+        margin-top: 65px;
+
+        .info-current-card-button.middle{
+          border-left: 1px dotted white;
+          padding: 10px 0px;
+        }
+
+        .info-current-card-button{
+          margin-top: 18px;
+
+                .card-button{
+
+                }
+                .show-space-selected{
+                  width: 210px;
+                  height: 60px;
+                  background: #061221;
+                  margin-left: 20px;
+                  padding-top: 20px;
+                  color: white;
+                  border-radius: 10px;
+                  border: 1px solid #20ea20;
+
+                  .big-text{
+                    font-size: 30px;
+                  }
+                }
+            }
+        }
+      }
+}
+
+.more{
+
+  .info-current-card{
+    width: 300px;
+    float: right;
+    display: flex;
+    margin-left: 128px;
+
+      .info-current-card-top{
+        margin: 55px 0px 0px 0px;
+      }
+
+
+      .info-current-card-bottom{
+        text-align: left;
+        padding: 10px 0px;
+
+        .number-credit-card{
+          display: flex;
+          padding: 10px 10px;
+          background: rgba(0,0,0,.5);
+          border-radius: 16px;
+
+          figure{
+            width: 40px;
+          }
+
+          .delete-card{
+            font-size: 12px;
+            padding-top: 3px;
+          }
+        }
+
+        .info-current-payment{
+          padding: 20px 10px;
+          font-size: 14px;
+        }
+
+      }
+
+      .info-current-card-left{
+
+        .info-current-quantity{
+          margin-top: 160px;
+          display: flex;
+        }
+      }
+      .info-current-card-right{
+        margin-left: 15px;
+        margin-top: 65px;
+
+        .info-current-card-button.middle{
+          border-left: 1px dotted white;
+          padding: 10px 0px;
+        }
+
+        .info-current-card-button{
+          margin-top: 18px;
+
+                .card-button{
+
+                }
+                .show-space-selected{
+                  width: 210px;
+                  height: 60px;
+                  background: #061221;
+                  margin-left: 20px;
+                  padding-top: 20px;
+                  color: white;
+                  border-radius: 10px;
+                  border: 1px solid #20ea20;
+
+                  .big-text{
+                    font-size: 30px;
+                  }
+                }
+            }
+        }
+      }
+
+}
+
+.order{
+
+  .info-current-plan{
+
+    text-align: left;
+
+    .options-top{
+      display: block;
+      padding: 0px 30px;
+
+      .options-top-tittle{
+        width: 240px;
+        text-align: left;
+      }
+
+      .options-top-body{
+        width: 160px;
+        display: block;
+        text-align: left;
+
+        .body-bottom{
+          display: flex;
+        }
+
+      }
+    }
+
+    .options-middle{
+      border-bottom: 1px solid white;
+      border-top: 1px solid white;
+      padding: 15px 10px;
+      margin: 10px 20px;
+    }
+
+    .options-bottom{
+      display: block;
+      width: 150px;
+      text-align: left;
+      padding: 0px 30px;
+    }
+
+  }
+
+
+
+
+
+  .info-current-card {
+    width: 300px;
+    float: right;
+    display: block;
+    margin-left: 128px;
+
+
+
+      .info-current-card-top{
+        margin: 55px 0px 0px 0px;
+      }
+      .info-current-card-bottom{
+        text-align: left;
+        padding: 10px 0px;
+
+        article{
+          margin-top: 10px;
+        }
+
+        .number-credit-card{
+          display: flex;
+          padding: 10px 10px;
+          background: rgba(0,0,0,.5);
+          border-radius: 16px;
+
+          input{
+            color: white;
+            background: transparent;
+          }
+
+          figure{
+            width: 40px;
+          }
+
+          .delete-card{
+            font-size: 12px;
+            padding-top: 3px;
+          }
+        }
+
+        .owner-credit-card{
+          display: flex;
+          padding: 10px 10px;
+          background: rgba(0,0,0,.5);
+          border-radius: 16px;
+
+          input{
+            color: white;
+            background: transparent;
+          }
+        }
+
+        .options-credit-card{
+          display: flex;
+
+          input{
+            width: 32px;
+            background: transparent;
+            color: white;
+          }
+
+          article{
+            max-width: 80px;
+            margin-top: 0px;
+            margin-right: 10px;
+          }
+
+          .month-credit-card{
+            display: flex;
+            padding: 10px 10px;
+            background: rgba(0,0,0,.5);
+            border-radius: 16px;
+          }
+
+          .year-credit-card{
+            display: flex;
+            padding: 10px 10px;
+            background: rgba(0,0,0,.5);
+            border-radius: 16px;
+          }
+
+          .code-credit-card{
+            display: flex;
+            padding: 10px 10px;
+            background: rgba(0,0,0,.5);
+            border-radius: 16px;
+          }
+
+        }
+
+        .info-current-payment{
+          padding: 20px 10px;
+          font-size: 14px;
+        }
+
+      }
+
+      .info-current-card-left{
+
+        .info-current-quantity{
+          margin-top: 160px;
+          display: flex;
+        }
+      }
+      .info-current-card-right{
+        margin-left: 15px;
+
+        .info-current-card-button.middle{
+          border-left: 1px dotted white;
+        }
+
+        .info-current-card-button{
+          height: 80px;
+
+          margin-top: 24px;
+
+                .card-button{
+                  padding-top: 24px;
+                }
+                .show-space-selected{
+                  width: 210px;
+                  height: 60px;
+                  background: #061221;
+                  margin-left: 20px;
+                  padding-top: 20px;
+                  color: white;
+                  border-radius: 10px;
+                  border: 1px solid #20ea20;
+
+                  .big-text{
+                    font-size: 30px;
+                  }
+                }
+            }
+        }
+      }
+
+}
+
+.finish{
+
+  .finish-top{
+    width: inherit;
+
+    .img-finish{
+      background: red;
+      border-radius: 100%;
+      width: 30px;
+      height: 90px;
+      padding: 20px 50px;
+      margin: 20px auto;
+    }
+  }
+
+  .finish-middle{
+    font-size: 50px;
+    width: 708px;
+    text-align: center;
+    padding-left: 52px;
+    padding-top: 22px;
+
+    .info-space{
+      font-style: bold;
+      color: white;
+    }
+  }
+
+  .finish-bottom{
+    margin-top: 70px;
+
+    article{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+
+}
+
+
+
 
 
 .info-current-plan{
@@ -640,22 +1031,24 @@
 
 }
 
+
+
 .preferences-hdd-payment-bottom{
-  margin-top: 60px;
-  margin-right: 0px;
+  position: relative;
   float: right;
+  display: block;
 }
 
 
 .box-current-plan{
   background: rgba(0, 0, 0, 0.5);
-  height: 154px;
+  height: auto;
   width: 375px;
   text-align: left;
   padding: 8px 20px;
   float: right;
   margin-left: 114px;
-  margin-top: 65px;
+  margin-top: 55px;
   border-radius: 6px;
   max-height: 240px;
 
@@ -687,18 +1080,27 @@
             }
         }
 
+        .free{
+          background: wheat;
+          height: 113px;
+          color: black;
+        }
+
       }
 
 
       .box-current-plan-bottom{
         height: 34px;
         width: 81px;
-        margin: auto;
+        margin: 25px auto;
         text-align: center;
     }
 }
 
 
+.hdd-container{
+  overflow: hidden;
+}
 
 
 
