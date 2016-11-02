@@ -589,6 +589,10 @@
 
         }
 
+
+
+
+
     })
 
     // Shows hour when config tab clicked
@@ -684,6 +688,16 @@
         }, 500 );
 
     })
+
+
+    .on( 'click' , '.siguiente', function(){
+
+        var currentObject = $('.hdd-container');
+        $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
+          console.log('se deberia mover?');
+        });
+    })
+
 
     .on( 'click', '.save-info', function(){
 
@@ -1085,6 +1099,7 @@
 
     })
 
+
     // Adds +1 hour to the clock
     .on( 'click', '.preferences-config-up', function(){
 
@@ -1324,6 +1339,33 @@
     $( '.hdd-plan-space.ultimate', win ).text( lang.ultimate );
     $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
     $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
+
+
+    $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+    $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+    $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+    $(  '.more .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+    $(  '.order .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+    $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+    $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
+    $(  '.free-user .box-current-plan-top').find('span').text(lang.increaseStorage);
+    $(  '.free-user .box-current-plan-bottom').find('span').text(lang.moreInfo);
+    $(  '.premium-user .box-current-plan-top').find('span').text(lang.activePlan);
+    $(  '.premium-user .box-current-plan-bottom').find('span').text(lang.manage);
+
+    $(  '.current-information.one').find('span').text(lang.infoPayment.partOne[0]);
+    $(  '.current-information.one').find('p').text(lang.infoPayment.partOne[1]);
+
+    $(  '.current-information.two').find('span').text(lang.infoPayment.partTwo[0]);
+    $(  '.current-information.two').find('p').text(lang.infoPayment.partTwo[1]);
+
+    $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
+
+
+
+
+
+
 
     $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
     $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
