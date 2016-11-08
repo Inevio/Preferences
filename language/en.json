@@ -78,6 +78,8 @@
 
     "summary"   : "Summary",
     "order"     : "Order",
+    "currentSpace"  : "Actual storage",
+    "totalStorage"    : "Total storage",
 
     "creditCardOptions"   : {
 
@@ -87,6 +89,8 @@
       "yearCreditCard"      : "Year",
       "codeCreditCard"      : "CVV"
     },
+
+    "infoCurrentPayment"  : "Este texto es un texto de prueba guarrooo.<br>lsadjkfhadklsjfhakldjsfhadklsjfhaklsdjfhlakdjsfh",
 
     "next"        : "Next",
     "congratulation"    :  "Congratulations! You have your space increased to ",

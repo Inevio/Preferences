@@ -72,6 +72,22 @@
     var backingStoreRatio = 1;
     var pixelRatio        = 1;
 
+    // Info about user
+    var userLocal  = {
+      premium : {
+        info : false,
+        actualStorage : 25,
+        actualPrice : 0,
+        payday : 1,
+        card : {
+          number : "1234123412341234",
+          owner : "Jesus Carpintero",
+          month : 5,
+          year : 19,
+          passcode : 53,
+        }
+      }
+    };
     // Quota circle functions
     var startCircleAnimation = function( end ){
 
@@ -694,8 +710,38 @@
 
         var currentObject = $('.hdd-container');
         $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
-          console.log('se deberia mover?');
         });
+    })
+
+    // Increases or reduces the required storage
+
+    .on(  'click', '.moreStorage' , function(){
+
+      var variacionEspacio = 25;
+      var variacionPrecio = 1;
+      var tamano = $('.show-space-selected .big-text');
+      var precio = $('.info-current-quantity').find('span');
+      tamano.text(parseInt(tamano.text()) + variacionEspacio);
+      precio.text(parseInt(precio.text()) + variacionPrecio);
+      // Hay que ir variando las frases de la izq!
+
+    })
+
+    .on(  'click', '.minusStorage' , function(){
+
+      var variacionEspacio = 25;
+      var variacionPrecio = 1;
+      var tamanoActual = api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0];
+      var precioActual = userLocal.premium.actualPrice;
+      var tamano = $('.show-space-selected .big-text');
+      var precio = $('.info-current-quantity').find('span');
+
+      if(((parseInt(tamano.text()) - variacionEspacio) > tamanoActual)&& (parseInt(precio.text()) - variacionPrecio > precioActual)){
+
+      tamano.text(parseInt(tamano.text()) - variacionEspacio);
+      precio.text(parseInt(precio.text()) - variacionPrecio);
+      }
+
     })
 
 
@@ -1271,9 +1317,26 @@
 
     });
 
+
+
     avatarUrl = api.system.user().avatar.normal;
     mail      = api.system.user().mail;
     username  = api.system.user().user;
+
+/*
+    // Información usuario.
+    userLocal = api.system.user();
+    userLocal.premium.info =  false;
+    userLocal.premium.actualStorage = 25;
+    userLocal.premium.actualPrice = 0;
+    userLocal.premium.payday = 7;
+    userLocal.premium.card.number = '1234 5678 9012 3456';
+    userLocal.premium.card.owner = 'Jesus Carpintero';
+    userLocal.premium.card.month = 7;
+    userLocal.premium.card.year = 19;
+    userLocal.premium.card.passcode = 563;
+    */
+
 
     console.log( api.system.user() );
 
@@ -1315,120 +1378,189 @@
 
     });
 
-    $( '.appName').find('span').text(lang.appName);
 
-    $( 'li.hdd', win ).text( lang.space ).data( 'type', 'hdd' );
-    $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
-    $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
-    $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
-    $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
-    $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
-    $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
-    $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
+/*
+    var loadAppUser = function(){
 
-    $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
-    $( '.preferences-bottom-description.hdd', win ).text( lang.hddDescription );
-    $( '.preferences-hdd-usage', win ).text( lang.currentUsage );
-    $( '.preferences-plans-title', win ).text( lang.moreFeatures );
-    $( '.hdd-plan-space.starter', win ).text( lang.starter );
-    $( '.hdd-plan-price.starter', win ).text( lang.free );
-    $( '.hdd-plan-space.pro', win ).text( lang.pro );
-    $( '.hdd-plan-price.pro', win ).text( lang.proPrice );
-    $( '.hdd-plan-space.advance', win ).text( lang.advance );
-    $( '.hdd-plan-price.advance', win ).text( lang.advancePrice );
-    $( '.hdd-plan-space.ultimate', win ).text( lang.ultimate );
-    $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
-    $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
+      userLocal = api.system.user();
+      var appType = $(  '.hdd-container');
+
+      if(userLocal.premium.value){
+
+        if( appType.hasClass('free-user')){
+
+          $(  '.hdd-container').removeClass('free-user');
+          $(  '.hdd-container').addClass('premium-user');
+          //Cambiar los textos a premium.
+
+            $(  '.box-current-plan-top').find('span').text(lang.increaseStorage);
+            $(  '.premium-info .left').find('span').text(Siguiente oferta);
+            $(  '.premium-info .right').find('span').text(Precio siguiente oferta);
+            $(  '.premium-date').find('span').text('Siguiente pago el ...');
+            $(  '.info-premium.preferences-hdd-payment-bottom').find('span').text(lang.moreInfo);
+            $(  '.number-card').find('span').text(EL numero de la tarjeta oculto)
+            $(  '.delete-card').find('span').text(lang.delete);
+            $(  '.modify-premium.preferences-hdd-payment-bottom').find('span').text(lang.save);
+            $(  '.options-middle').find('span').text(Se te cobrará el 7 de cada mes);
+            $(  '.options-bottom').find('span').text(lang.totalSpace);
+            $(  '.options-bottom .big-text').find('span').text(75GB);
+            parrafo compuesto Se cobrará 2€ de esta tarjeta todos los meeses el dia 7 para cambar de tarjeta primero elimina la actual
+            $('options-top-left').find('span').text(Aqui ponemos el texto de 2€/mes);
+            $('options-top-left .big-text').find('span').text(Aqui ponemos el texto de 50€ Extra);
+
+        }
+
+      }
+      else {
+        if( appType.hasClass('premium-user')){
+
+          $(  '.hdd-container').removeClass('premium-user');
+          $(  '.hdd-container').addClass('free-user');
+        }
+      }
+
+    }
+    */
+
+var translate = function(){
+
+  $( '.appName').find('span').text(lang.appName);
+
+  $( 'li.hdd', win ).text( lang.space ).data( 'type', 'hdd' );
+  $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
+  $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
+  $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
+  $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
+  $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+  $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
+  $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
+
+  $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
+  $( '.preferences-bottom-description.hdd', win ).text( lang.hddDescription );
+  $( '.preferences-hdd-usage', win ).text( lang.currentUsage );
+  $( '.preferences-plans-title', win ).text( lang.moreFeatures );
+  $( '.hdd-plan-space.starter', win ).text( lang.starter );
+  $( '.hdd-plan-price.starter', win ).text( lang.free );
+  $( '.hdd-plan-space.pro', win ).text( lang.pro );
+  $( '.hdd-plan-price.pro', win ).text( lang.proPrice );
+  $( '.hdd-plan-space.advance', win ).text( lang.advance );
+  $( '.hdd-plan-price.advance', win ).text( lang.advancePrice );
+  $( '.hdd-plan-space.ultimate', win ).text( lang.ultimate );
+  $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
+  $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
 
 
-    $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-    $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-    $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-    $(  '.more .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-    $(  '.order .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-    $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-    $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
-    $(  '.free-user .box-current-plan-top').find('span').text(lang.increaseStorage);
-    $(  '.free-user .box-current-plan-bottom').find('span').text(lang.moreInfo);
-    $(  '.premium-user .box-current-plan-top').find('span').text(lang.activePlan);
-    $(  '.premium-user .box-current-plan-bottom').find('span').text(lang.manage);
+  $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+  $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+  $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+  $(  '.more .preferences-hdd-payment-top').find('span').text(lang.increaseStorage);
 
-    $(  '.current-information.one').find('span').text(lang.infoPayment.partOne[0]);
-    $(  '.current-information.one').find('p').text(lang.infoPayment.partOne[1]);
+  $(  '.order .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+  $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+  $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
+  $(  '.free-user .box-current-plan-top').find('span').text(lang.increaseStorage);
+  $(  '.free-user .box-current-plan-bottom').find('span').text(lang.moreInfo);
+  $(  '.premium-user .box-current-plan-top').find('span').text(lang.activePlan);
+  $(  '.premium-user .box-current-plan-bottom').find('span').text(lang.manage);
 
-    $(  '.current-information.two').find('span').text(lang.infoPayment.partTwo[0]);
-    $(  '.current-information.two').find('p').text(lang.infoPayment.partTwo[1]);
+  $(  '.more .current-information.one').find('li').find('span').text(lang.infoPayment.partOne[0]);
+  $(  '.more .current-information.one.paragraph').find('span').text(lang.infoPayment.partOne[2]);
 
-    $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
+  $(  '.more .current-information.two').find('li').find('span').text(lang.infoPayment.partTwo[0]);
+  $(  '.more .current-information.two.paragraph').find('span').text(lang.infoPayment.partTwo[1]);
+
+  $(  '.more .info-current-quantity').find('span').text(1);
+  $(  '.more .show-space-selected').find('span').text('GB');
+  $(  '.more .show-space-selected .big-text').text(api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0]);
+
+  $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
+
+  $(  '.order .preferences-hdd-payment-top').find('span').text(lang.order);
+  $(  '.order .options-top-tittle').find('span').text(lang.summary);
+  $(  '.order .options-top-body').find('span').text(lang.currentSpace);
+  $(  '.order .options-bottom').find('span').text(lang.totalSpace);
+  $(  '.order .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
+  $(  '.order .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
+  $(  '.order .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
+  $(  '.order .info-current-card-bottom.options-credit-card.year-credit-card').find('input').attr('placeholder', lang.creditCardOptions.yearCreditCard);
+  $(  '.order .info-current-card-bottom.options-credit-card.code-credit-card').find('input').attr('placeholder', lang.creditCardOptions.codeCreditCard);
+  $(  '.order .info-current-card-bottom .info-current-payment').find('p').text(lang.infoCurrentPayment);
+  $(  '.order .preferences-hdd-payment-bottom').find('span').text(lang.next);
+
+  $(  '.finish .finish-middle').find('span').text(lang.congratulation);
+  $(  '.finish .finish-bottom').find('span').text(lang.finish);
 
 
 
 
 
 
+  $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
+  $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
+  $( '.avatar-edit', win ).text( lang.avatarEdit );
+  $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
+  $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
+  $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
+  $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
 
-    $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
-    $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
-    $( '.avatar-edit', win ).text( lang.avatarEdit );
-    $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
-    $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
-    $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
-    $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
+  $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
+  $( '.preferences-bottom-description.password', win ).text( lang.passwordDescription );
+  $( '.cancel-password .preferences-account-button', win ).text( lang.cancel );
+  $( '.preferences-bottom-labelCurrentPassword', win ).text( lang.currentPassword );
+  $( '.save-password .preferences-account-button', win ).text( lang.saveChanges );
+  $( '.password-current input', win ).attr( 'placeholder', lang.currentPassword );
+  $( '.password-new input', win ).attr( 'placeholder', lang.newPassword );
+  $( '.password-confirm input', win ).attr( 'placeholder', lang.confirmPassword );
+  $( '.preferences-bottom-labelNewPassword', win ).text( lang.newPassword );
+  $( '.preferences-bottom-labelConfirmPassword', win ).text( lang.confirmPassword );
+  $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
+  $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
 
-    $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
-    $( '.preferences-bottom-description.password', win ).text( lang.passwordDescription );
-    $( '.cancel-password .preferences-account-button', win ).text( lang.cancel );
-    $( '.preferences-bottom-labelCurrentPassword', win ).text( lang.currentPassword );
-    $( '.save-password .preferences-account-button', win ).text( lang.saveChanges );
-    $( '.password-current input', win ).attr( 'placeholder', lang.currentPassword );
-    $( '.password-new input', win ).attr( 'placeholder', lang.newPassword );
-    $( '.password-confirm input', win ).attr( 'placeholder', lang.confirmPassword );
-    $( '.preferences-bottom-labelNewPassword', win ).text( lang.newPassword );
-    $( '.preferences-bottom-labelConfirmPassword', win ).text( lang.confirmPassword );
-    $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
-    $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
+  $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
+  $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
+  $( '.preferences-social-name.facebook', win ).text( lang.facebookAccount );
+  $( '.preferences-social-name.twitter', win ).text( lang.twitterAccount );
 
-    $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
-    $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
-    $( '.preferences-social-name.facebook', win ).text( lang.facebookAccount );
-    $( '.preferences-social-name.twitter', win ).text( lang.twitterAccount );
+  $( '.preferences-bottom-title.date', win ).text( lang.dateTitle );
+  $( '.preferences-bottom-description.date', win ).text( lang.dateDescription );
+  $( '.preferences-config-auto span', win ).text( lang.autoTime );
+  $( '.time-format-title', win ).text( lang.timeFormat + ':' );
+  $( '.time-format-24', win ).text( '24' + ' ' + lang.hoursClock );
+  $( '.time-format-12', win ).text( '12' + ' ' + lang.hoursClock );
+  $( '.date-format-title', win ).text( lang.dateFormat + ':' );
+  $( '.date-format-ddmmyy', win ).text( lang.ddmmyy );
+  $( '.date-format-mmddyy', win ).text( lang.mmddyy );
+  $( '.date-format-yymmdd', win ).text( lang.yymmdd );
 
-    $( '.preferences-bottom-title.date', win ).text( lang.dateTitle );
-    $( '.preferences-bottom-description.date', win ).text( lang.dateDescription );
-    $( '.preferences-config-auto span', win ).text( lang.autoTime );
-    $( '.time-format-title', win ).text( lang.timeFormat + ':' );
-    $( '.time-format-24', win ).text( '24' + ' ' + lang.hoursClock );
-    $( '.time-format-12', win ).text( '12' + ' ' + lang.hoursClock );
-    $( '.date-format-title', win ).text( lang.dateFormat + ':' );
-    $( '.date-format-ddmmyy', win ).text( lang.ddmmyy );
-    $( '.date-format-mmddyy', win ).text( lang.mmddyy );
-    $( '.date-format-yymmdd', win ).text( lang.yymmdd );
+  $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
+  $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
+  $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
+  $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
 
-    $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
-    $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
-    $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
-    $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
+  $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
+  $('.preferences-extensions-display span').text( lang.displayExtensions );
 
-    $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
-    $('.preferences-extensions-display span').text( lang.displayExtensions );
+  $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
+  $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
+  $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
+  $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
 
-    $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
-    $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
-    $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
-    $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
+  $( '.preferences-bottom-title.invite', win ).text( lang.inviteTitle );
+  $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
+  $( '.preferences-account-button.invite', win ).text( lang.generate );
+  $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
 
-    $( '.preferences-bottom-title.invite', win ).text( lang.inviteTitle );
-    $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
-    $( '.preferences-account-button.invite', win ).text( lang.generate );
-    $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
+  $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
+  $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
+  $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
 
-    $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
-    $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
-    $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
+  $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
+  $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
+  $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
-    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
-    $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
-    $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
+}
+
+
 
     // SOCIAL NETWORKS CODE
     api.social
@@ -1465,3 +1597,8 @@
         socialNetworks();
 
     });
+
+//StartApp
+
+//loadAppUser();
+translate();
