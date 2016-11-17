@@ -56,30 +56,30 @@
     "creditCard"       :  "Tarjeta de crédito",
     "inevioCredit"     :  "Crédito de Inevio",
     "delete"           :  "Eliminar",
+    "extra"            :  "GB extra",
+    "euroMonth"        :  "€/MES",
+    "euroMonthMinus"   :  "€/mes",
+    "perMonth"         :  "/mes",
+    "payDay"           :  "Siguiente pago el ",
+    "partOnePayDay"    :  "Se cobra el ",
+    "partTwoPayDay"    :  " de cada mes.",
+    "add" : "Añadir ",
+    "totalMayus"  : "TOTAL",
 
-    "infoPayment" : {
 
-        "partOne" : [
 
-          "A tu medida",
-          "Solo pagas por lo que necesitas.",
-          "Nada más ni nada menos."
-        ],
 
-        "partTwo"   : [
+    "infoPaymentOneHead"  : "Tú decides",
+    "infoPaymentOneBody"  : "Paga solo por el espacio que consumes 25 Gb extra en tu cuenta por 1€/mes.",
+    "infoPaymentTwoHead"  : "Flexible",
+    "infoPaymentTwoBody"  : "Cambia tu plan cuando lo necesites para que siempre se ajuste a tus necesidades.",
 
-          "¡No llega ni a un café!",
-          "Solo tienes que pagar 1€ al mes por cada 25GB adicionales que quieras en tu cuenta."
-        ],
-
-        "message" : "Se te cobrará de esta tarjeta 2€ todos los meses el día 7. Para cambiar de tarjeta primero elimina la actual."
-
-    },
 
     "summary"   : "Resumen",
     "order"     : "Pedido",
     "currentSpace"  : "Espacio actual",
     "totalStorage"    : "Espacio total",
+    "totalStorageMayus":  "ESPACIO TOTAL",
 
     "creditCardOptions"   : {
 
@@ -177,6 +177,12 @@
     "notify"           : "Notificarme cuando",
     "remove"           : "Eliminar",
     "save"             : "Guardar",
+    "payParagraph"     :
+    [
+      "Se cobrará de esta tarjeta ",
+      " € todos los meses el dia. Para cambiar de tarjeta primero elimina la actual."
+    ],
+
 
     "twitter" : {
 

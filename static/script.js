@@ -78,6 +78,7 @@
         info : false,
         actualStorage : 25,
         actualPrice : 0,
+        extraStorage : 0,
         payday : 1,
         card : {
           number : "1234123412341234",
@@ -1457,17 +1458,18 @@ var translate = function(){
 
   $(  '.order .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
   $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-  $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
+  $(  '.preferences-hdd-usage').text(lang.usedSpace);
   $(  '.free-user .box-current-plan-top').find('span').text(lang.increaseStorage);
   $(  '.free-user .box-current-plan-bottom').find('span').text(lang.moreInfo);
-  $(  '.premium-user .box-current-plan-top').find('span').text(lang.activePlan);
-  $(  '.premium-user .box-current-plan-bottom').find('span').text(lang.manage);
+  $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
+  $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
 
-  $(  '.more .current-information.one').find('li').find('span').text(lang.infoPayment.partOne[0]);
-  $(  '.more .current-information.one.paragraph').find('span').text(lang.infoPayment.partOne[2]);
 
-  $(  '.more .current-information.two').find('li').find('span').text(lang.infoPayment.partTwo[0]);
-  $(  '.more .current-information.two.paragraph').find('span').text(lang.infoPayment.partTwo[1]);
+  $(  '.more .current-information.one').find('li').find('span').text(lang.infoPaymentOneHead);
+  $(  '.more .current-information.one .paragraph').find('span').text(lang.infoPaymentOneBody);
+
+  $(  '.more .current-information.two').find('li').find('span').text(lang.infoPaymentTwoHead);
+  $(  '.more .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
 
   $(  '.more .info-current-quantity').find('span').text(1);
   $(  '.more .show-space-selected').find('span').text('GB');
@@ -1478,7 +1480,21 @@ var translate = function(){
   $(  '.order .preferences-hdd-payment-top').find('span').text(lang.order);
   $(  '.order .options-top-tittle').find('span').text(lang.summary);
   $(  '.order .options-top-body').find('span').text(lang.currentSpace);
-  $(  '.order .options-bottom').find('span').text(lang.totalSpace);
+  $(  '.order .options-top-body .body-bottom .right').find('span').text(lang.free);
+  $(  '.order .options-top-body .body-bottom .left').find('span').text(userLocal.actualStorage + "GB");
+  $(  '.order .options-middle').find('span').text(lang.add + $('.show-space-selected .big-text').text()+"GB");
+
+  $(  '.order .options-bottom .top .left').text(lang.totalStorageMayus);
+  $(  '.order .options-bottom .top .right').text(lang.totalMayus);
+
+  $(  '.order .options-bottom .bottom .left').find('span').text(userLocal.actualStorage + userLocal.extraStorage + "GB");
+  $(  '.order .options-bottom .bottom .right').find('span').text(lang.perMonth);
+  $(  '.order .options-bottom .bottom .right .big').text($('.info-current-quantity').text()+"€");
+
+
+
+  //($(  '.order .options-bottom').find('span')[0]).text(lang.totalSpace);
+  //($(  '.order .options-bottom').find('span')[1]).text(userLocal.actualStorage + userLocal.extraStorage + "GB");
   $(  '.order .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
   $(  '.order .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
   $(  '.order .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
@@ -1488,12 +1504,32 @@ var translate = function(){
   $(  '.order .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
   $(  '.finish .finish-middle').find('span').text(lang.congratulation);
+  $(  '.finish .finish-middle .info-space').text(userLocal.actualStorage + userLocal.extraStorage + "GB");
   $(  '.finish .finish-bottom').find('span').text(lang.finish);
 
+  $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(userLocal.extraStorage + lang.extra );
+  $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.euroMonthMinus );
+  var fecha = new Date();
+  $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + userLocal.payday + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
 
+  $(  '.modify-premium .info-current-plan .optiones-top .options-top-left').find('span').text(userLocal.actualPrice + lang.euroMonth);
+  $(  '.modify-premium .info-current-plan .optiones-top .options-top-left .big-text').text(userLocal.extraStorage + lang.extra);
+  $(  '.modify-premium .info-current-plan .optiones-top .change-plan').find('span').text(lang.modify);
+  $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partOnePayDay + userLocal.payDay + lang.partOnePayDay);
+  $(  '.modify-premium .info-current-plan .options-bottom').find('span').text(lang.totalStorageMayus);
+  $(  '.modify-premium .info-current-plan .options-bottom .big-text').text(userLocal.actualStorage + userLocal.extraStorage + "GB");
+  $(  '.modify-premium .number-card').find('span').text(userLocal.premium.card.number);
+  $(  '.modify-premium .delete-card').find('span').text(lang.delete);
 
-
-
+  $(  '.modify-premium .preferences-hdd-payment-bottom').find('span').text(lang.save);
+  $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
+  $(  '.modify-premium .info-options .options-top .options-top-left').find('span').text(userLocal.actualPrice + lang.euroMonthMinus);
+  $(  '.modify-premium .info-options .options-top .options-top-left .big-text').text(userLocal.extraStorage + lang.extra);
+  $(  '.modify-premium .info-options .options-top .change-plan').find('span').text(lang.modify);
+  $(  '.modify-premium .info-options .options-middle').find('span').text(lang.partOnePayDay + userLocal.payDay + lang.partTwoPayDay);
+  $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.delete);
+  $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.actualPrice + lang.payParagraph[1]);
+  $(  '.info-current-card-top').find('span').text(lang.creditCard);
 
   $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
   $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
