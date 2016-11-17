@@ -812,6 +812,9 @@
       text-align: left;
       padding: 0px 30px;
     }
+    .options-bottom span{
+      display: flex;
+    }
 
   }
 
@@ -955,6 +958,8 @@
             }
         }
       }
+
+
 
 }
 
