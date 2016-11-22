@@ -56,7 +56,7 @@
     "creditCard"       :  "Tarjeta de crédito",
     "inevioCredit"     :  "Crédito de Inevio",
     "delete"           :  "Eliminar",
-    "extra"            :  "GB extra",
+    "extra"            :  "GB Extra",
     "euroMonth"        :  "€/MES",
     "euroMonthMinus"   :  "€/mes",
     "perMonth"         :  "/mes",
@@ -65,7 +65,17 @@
     "partTwoPayDay"    :  " de cada mes.",
     "add" : "Añadir ",
     "totalMayus"  : "TOTAL",
-
+    "addCard"     : "Añadir tarjeta",
+    "noCardInfo"  : "Si no hay ninguna tarjeta añadida no se puede realizar el cobro por el plan actual. De ser así éste será cancelado.",
+    "infoPlanPremium" :
+    [
+      "25",
+      "GB",
+      "por sólo",
+      "Extra",
+      "1€",
+      "/mes"
+    ],
 
 
 
@@ -78,6 +88,7 @@
     "summary"   : "Resumen",
     "order"     : "Pedido",
     "currentSpace"  : "Espacio actual",
+    "currentSpaceMayus" : "ESPACIO ACTUAL",
     "totalStorage"    : "Espacio total",
     "totalStorageMayus":  "ESPACIO TOTAL",
 
