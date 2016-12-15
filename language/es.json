@@ -56,13 +56,17 @@
     "creditCard"       :  "Tarjeta de crédito",
     "inevioCredit"     :  "Crédito de Inevio",
     "delete"           :  "Eliminar",
-    "extra"            :  "GB Extra",
-    "euroMonth"        :  "€/MES",
-    "euroMonthMinus"   :  "€/mes",
+    "extra"            :  " GB Extra",
+    "euroMonth"        :  " €/MES",
+    "euroMonthMinus"   :  " €/mes",
     "perMonth"         :  "/mes",
     "payDay"           :  "Siguiente pago el ",
-    "partOnePayDay"    :  "Se cobra el ",
-    "partTwoPayDay"    :  " de cada mes.",
+
+    "partPayDay"      : [
+      "Se cobra el ",
+      " de cada mes."
+    ],
+
     "add" : "Añadir ",
     "totalMayus"  : "TOTAL",
     "addCard"     : "Añadir tarjeta",
@@ -191,7 +195,8 @@
     "payParagraph"     :
     [
       "Se cobrará de esta tarjeta ",
-      " € todos los meses el dia. Para cambiar de tarjeta primero elimina la actual."
+      " € todos los meses el dia ",
+      ". Para cambiar de tarjeta primero elimina la actual."
     ],
 
 

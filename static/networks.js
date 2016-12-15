@@ -1,5 +1,17 @@
 
     // To Do -> No se pueden cachear los permisos?
+    var userLocal = null;
+    var loadAppUser = function() {
+          wz.config.getSubscriptionStatus(function( err, info ){
+            api.app.storage('infoSubscriptions', info);
+
+          });
+    }
+    loadAppUser();
+
+
+
+
 
     api.social
     .on( 'twitterTweet', function( account, tweet ){

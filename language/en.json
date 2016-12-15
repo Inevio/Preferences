@@ -56,13 +56,15 @@
     "creditCard"       :  "Credit card",
     "inevioCredit"     :  "Inevio credit",
     "delete"           :  "Delete",
-    "extra"            :  "GB Extra",
-    "euroMonth"        :  "€/MONTH",
-    "euroMonthMinus"   :  "€/mes",
+    "extra"            :  " GB Extra",
+    "euroMonth"        :  " €/MONTH",
+    "euroMonthMinus"   :  " €/month",
     "perMonth"         :  "/month",
     "payDay"           :  "The next payment ",
-    "partOnePayDay"    :  "Is charged ",
-    "partTwoPayDay"    :  " of each month.",
+    "partPayDay"      : [
+      "Is charged ",
+      " of each month."
+    ],
     "add" : "Add",
     "totalMayus"  : "TOTAL",
     "addCard"       :"Add card",
@@ -185,7 +187,8 @@
     "payParagraph"     :
     [
       "You will be charged for this card ",
-      " € every month on the day. To change the card first, delete the current card."
+      " € every month on the day ",
+       ". To change the card first, delete the current card."
     ],
 
     "twitter" : {
