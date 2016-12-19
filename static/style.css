@@ -5,6 +5,9 @@
 button{
   outline: none;
 }
+.hidden{
+  display: none !important;
+}
 
 .wz-view-menu-group{
 
@@ -925,6 +928,113 @@ button{
       }
 }
 
+.modify-space{
+
+
+    .info-current-plan{
+      width: 400px;
+    }
+
+
+    .info-current-card{
+      width: 417px;
+      float: right;
+      display: flex;
+
+        .info-current-card-top{
+          margin: 55px 0px 0px 0px;
+        }
+
+
+        .info-current-card-bottom{
+          text-align: left;
+          padding: 10px 0px;
+
+          .number-credit-card{
+            display: flex;
+            padding: 10px 10px;
+            background: rgb(44, 50, 56);
+            border-radius: 16px;
+            color: white;
+
+            figure{
+              width: 40px;
+            }
+
+            .delete-card{
+              font-size: 12px;
+              padding-top: 3px;
+            }
+          }
+
+          .info-current-payment{
+            padding: 20px 10px;
+            font-size: 14px;
+          }
+
+        }
+
+        .info-current-card-left{
+
+          width: 140px;
+
+          .info-current-quantity{
+            margin-top: 140px;
+            display: flex;
+            .quantity{
+              width: 87px;
+              color: #60b25e;
+              font-size: 48px;
+              text-align: right;
+            }
+            .quantity-container{
+              display: block;
+              font-size: 22px;
+              text-align: left;
+              color: white;
+
+            }
+          }
+        }
+        .info-current-card-right{
+          margin-left: 15px;
+          margin-top: 14px;
+
+          .info-current-card-button.middle{
+            border-left: 1px dashed #5e656b;
+            padding: 10px 0px;
+          }
+
+          .info-current-card-button{
+            margin-top: 18px;
+
+                  .card-button{
+
+                  }
+                  .show-space-selected{
+                    width: 214px;
+                    height: 104px;
+                    background-color: #2c3238;
+                    border: solid 2px #60b25e;
+                    border-radius: 12px;
+                    margin-left: 20px;
+                    font-size: 18px;
+                    color: white;
+
+                    .container{
+                      margin-top: 22px;
+                    }
+
+                    .big-text{
+                      font-size: 56px;
+                      font-weight: bold; 
+                    }
+                  }
+              }
+          }
+      }
+}
+
 .more{
 
   .info-current-plan{
@@ -1406,6 +1516,49 @@ button{
 
 }
 
+.finish-premium{
+
+  .finish-top{
+    width: inherit;
+
+    .img-finish{
+      background: url('@static/aumento-listo.png') no-repeat;
+      background-size: 135px 135px;
+      width: 36px;
+      height: 96px;
+      padding: 20px 50px;
+      margin: 20px auto;
+    }
+  }
+
+  .finish-middle{
+    font-size: 50px;
+    width: 708px;
+    text-align: center;
+    padding-left: 52px;
+    padding-top: 22px;
+    color: white;
+
+    .info-space{
+      font-weight: bold;
+
+    }
+  }
+
+  .finish-bottom{
+    margin-top: 70px;
+
+    /*article{
+      margin-left: auto;
+      padding-top: 7px;
+      margin-right: auto;
+      height: 27px;
+    }
+    */
+  }
+
+
+}
 
 
 
