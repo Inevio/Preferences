@@ -72,6 +72,20 @@
     var backingStoreRatio = 1;
     var pixelRatio        = 1;
 
+    var spaceTabs = [
+      "space-premium",
+      "modify-premium",
+      "modify-space",
+      "finish-premium",
+      "space",
+      "more",
+      "order",
+      "finish",
+    ]
+
+    var actualTab = null;
+    var loadTab = null;
+
     // Info about user
     var infoSubscriptions = null;
     var quota = null;
@@ -478,6 +492,7 @@
 
     };
 
+
     var socialNetworks = function(){
 
         $( '.preferences-social-card', win ).children().not( '.preferences-social-title' ).remove();
@@ -501,6 +516,96 @@
         });
 
     };
+
+    var nextPage = function(pestanaActual, modo) {
+
+      //pestana actual debe contener la clase active si o si sino la logica no funciona
+
+      if($('.'+pestanaActual).hasClass('active')){
+
+        calculateNextPage(pestanaActual, modo);
+
+        $('.'+pestanaActual).removeClass('active');
+        $('.'+loadTab).addClass('active');
+        actualTab = loadTab;
+
+      }
+      else{
+        console.log('ERROR! NO ACTIVE CLASS FOUND', pestanaActual);
+      }
+
+
+    };
+    var calculateNextPage = function(actualPage, mode) {
+      // Flujo
+
+      // Mode 1 nextPage
+      // Mode 2 previousPage
+      // Mode 3 loadPage
+
+        switch (mode) {
+          case 1:
+          //PREMIUM
+            if(actualPage == "space-premium"){
+              loadTab = spaceTabs[1];
+              break;
+            }
+            if(actualPage == "modify-premium"){
+              loadTab = spaceTabs[2];
+              break;
+            }
+            if(actualPage == "modify-space"){
+              loadTab = spaceTabs[3];
+              break;
+            }
+            if(actualPage == "finish-premium"){
+              loadTab = spaceTabs[0];
+              break;
+            }
+
+          //NORMAL
+          if(actualPage == "space"){
+            loadTab = spaceTabs[5];
+            break;
+          }
+          if(actualPage == "more"){
+            loadTab = spaceTabs[6];
+            break;
+          }
+          if(actualPage == "order"){
+            loadTab = spaceTabs[7];
+            break;
+          }
+
+          case 2:
+          //PREMIUM
+            if(actualPage == "modify-premium"){
+              loadTab = spaceTabs[0];
+              break;
+            }
+            if(actualPage == "modify-space"){
+              loadTab = spaceTabs[1];
+              break;
+            }
+          //NORMAL
+          if(actualPage == "more"){
+            loadTab = spaceTabs[4];
+            break;
+          }
+
+          case 3:
+          //PREMIUM cuando un usuario se quiere quitar la subscripcion
+          if(actualPage == "modify-space"){
+            loadTab = spaceTabs[4];
+            break;
+          }
+          default:
+          console.log("ERROR NO SE HA SELECCIONADO MODO");
+        }
+
+
+
+    }
 
     // WZ Events
     api.upload
@@ -714,23 +819,54 @@
 
     .on( 'click' , '.siguiente', function(){
 
-        var currentObject = $('.hdd-container');
-        $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
-        });
+
+        if($(this).parents('.preferences-hdd-payment').hasClass(actualTab)){
+          nextPage(actualTab, 1);
+          var currentObject = $('.hdd-container');
+          $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
+          });
+        }else{
+          console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , actualTab);
+        }
+
+
     })
 
     .on( 'click' , '.atras', function(){
 
+      if($(this).parents('.preferences-hdd-payment').hasClass(actualTab)){
+        nextPage(actualTab, 2);
         var currentObject = $('.hdd-container');
         $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() - 838}, 800, function(){
         });
+      }else{
+        console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , actualTab);
+      }
+    })
+    .on(  'click' , '.change-plan' , function(){
+
+      if($(this).parents('.preferences-hdd-payment').hasClass(actualTab)){
+        nextPage(actualTab, 1);
+        var currentObject = $('.hdd-container');
+        $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
+        });
+      }else{
+        console.log("ERROR" , this , actualTab);
+      }
     })
 
     .on( 'click' , '.inicio', function(){
 
+
+      if($(this).parents('.preferences-hdd-payment').hasClass(actualTab)){
+        nextPage(actualTab, 1);
         var currentObject = $('.hdd-container');
         $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() - 838*3}, 500, function(){
         });
+      }else{
+        console.log("ERROR" , this , actualTab);
+      }
+
     })
 
     .on(  'click', '.modify-premium .delete-card', function(){
@@ -1479,6 +1615,12 @@
         userLocal.premium.extraStorage = infoSubscriptions.currentPlan.addQuota;
         userLocal.premium.payDay = new Date(infoSubscriptions.currentPlan.current_period_start).getDate();
         userLocal.premium.card.number = infoSubscriptions.listCards[0].last4;
+        actualTab = spaceTabs[0];
+        $('.'+actualTab).addClass('active');
+
+      }else{
+        actualTab = spaceTabs[4];
+        $('.'+actualTab).addClass('active');
       }
 
       // Translate app
@@ -1512,6 +1654,7 @@
       $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.more .preferences-hdd-payment-top').find('span').text(lang.increaseStorage);
+      $(  '.modify-space .preferences-hdd-payment-top').find('span').text(lang.increaseStorage);
 
       $(  '.space .info-plan-premium .left').find('span').text(lang.infoPlanPremium[0]);
       $(  '.space .info-plan-premium .middle .top').find('span').text(lang.infoPlanPremium[1]);
@@ -1530,6 +1673,20 @@
       $(  '.free-user .box-current-plan-bottom').find('span').text(lang.moreInfo);
       $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
       $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
+
+      $(  '.modify-space .current-information.one .li-circle').find('span').text(lang.infoPaymentOneHead);
+      $(  '.modify-space .current-information.one .paragraph').find('span').text(lang.infoPaymentOneBody);
+
+      $(  '.modify-space .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
+      $(  '.modify-space .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
+
+      $(  '.modify-space .quantity').find('span').text(1);
+      $(  '.modify-space .quantity-container .top').text("€");
+      $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
+      $(  '.modify-space .show-space-selected').find('span').text('GB');
+      $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0]);
+
+      $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
 
       $(  '.more .current-information.one .li-circle').find('span').text(lang.infoPaymentOneHead);
@@ -1551,15 +1708,15 @@
       $(  '.order .options-top-body').find('span').text(lang.currentSpaceMayus);
       $(  '.order .options-top-body .body-bottom .right').find('span').text(lang.free);
       $(  '.order .options-top-body .body-bottom .left').find('span').text(userLocal.premium.actualStorage + "GB");
-      $(  '.order .options-middle .options-middle-left').find('span').text(lang.add + $('.show-space-selected .big-text').text()+"GB");
-      $(  '.order .options-middle .options-middle-right').find('span').text(($('.quantity').text()).toString().substring(29,30)+lang.euroMonthMinus);
+      $(  '.order .options-middle .options-middle-left').find('span').text(lang.add + $('.more .show-space-selected .big-text').text()+"GB");
+      $(  '.order .options-middle .options-middle-right').find('span').text(($('.more .quantity').text()).toString().substring(29,30)+lang.euroMonthMinus);
 
       $(  '.order .options-bottom .top .left').text(lang.totalStorageMayus);
       $(  '.order .options-bottom .top .right').text(lang.totalMayus);
 
-      $(  '.order .options-bottom .bottom .left').find('span').text(userLocal.premium.actualStorage + parseInt($('.show-space-selected .big-text').text())  + "GB");
+      $(  '.order .options-bottom .bottom .left').find('span').text(userLocal.premium.actualStorage + parseInt($('.more .show-space-selected .big-text').text())  + "GB");
       $(  '.order .options-bottom .bottom .right').find('span').text(lang.perMonth);
-      $(  '.order .options-bottom .bottom .right .big').text(($('.quantity').text()).toString().substring(29,30)+lang.euroMonthMinus);
+      $(  '.order .options-bottom .bottom .right .big').text(($('.more .quantity').text()).toString().substring(29,30)+lang.euroMonthMinus);
 
       //($(  '.order .options-bottom').find('span')[1]).text(userLocal.actualStorage + userLocal.extraStorage + "GB");
       $(  '.order .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
@@ -1571,8 +1728,12 @@
       $(  '.order .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
       $(  '.finish .finish-middle').find('span').text(lang.congratulation);
-      $(  '.finish .finish-middle .info-space').text(userLocal.premium.actualStorage + parseInt($('.show-space-selected .big-text').text()) + "GB");
+      $(  '.finish .finish-middle .info-space').text(userLocal.premium.actualStorage + parseInt($('.more .show-space-selected .big-text').text()) + "GB");
       $(  '.finish .finish-bottom').find('span').text(lang.finish);
+
+      $(  '.finish-premium .finish-middle').find('span').text(lang.congratulation);
+      $(  '.finish-premium .finish-middle .info-space').text(userLocal.premium.actualStorage + parseInt($('.modify-space .show-space-selected .big-text').text()) + "GB");
+      $(  '.finish-premium .finish-bottom').find('span').text(lang.finish);
 
       $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(userLocal.premium.extraStorage + lang.extra );
       $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.premium.actualPrice + lang.euroMonthMinus );
@@ -1660,6 +1821,13 @@
       $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
       $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
       $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
+
+      // Infinity storage??
+      if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
+        $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(lang.unlimitedStorage);
+        $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
+        $(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
+      }
 
     }
 
