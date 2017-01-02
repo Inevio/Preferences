@@ -18,7 +18,7 @@
 
         wql.getType( [ account.id, 0 ], function( error, result ){
 
-            if( result.length ){
+            if( result.length() ){
 
                 if( tweet.retweeted_status ){
 
@@ -54,7 +54,7 @@
 
         wql.getType( [ account.id, 1 ], function( error, result ){
 
-            if( result.length ){
+            if( result.length() ){
 
                 api.banner()
                     .setTitle( lang.twitter.message + ' ' + message.direct_message.sender_screen_name )
