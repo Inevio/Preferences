@@ -641,7 +641,7 @@ button{
   color: #c7d1d7;
 }
 
-.space-premium{
+.space-premium, .pr-box{
   .big-box-hdd{
     min-height: 257px;
   }
@@ -728,7 +728,8 @@ button{
     color: #b5bec5;
   }
 }
-.space-premium{
+
+.space-premium , .pr-box{
   .box-current-plan-middle{
     padding: 10px 0px;
     width: 297px !important;
@@ -753,9 +754,30 @@ button{
   .info-current-without-card-bottom{
     display: none !important;
   }
+  .info-current-new-card-bottom{
+    display: none !important;
+  }
+
+}
+
+.new-card{
+  .info-current-card-bottom{
+    display: none !important;
+  }
+  .info-current-without-card-bottom{
+    display: none !important;
+  }
+  .info-current-new-card-bottom{
+    display: block !important;
+  }
+
 }
 
 .modify-premium{
+
+  .preferences-hdd-paymen-bottom{
+    margin-top: 23px !important;
+  }
 
   .info-options{
     .options-top{
@@ -827,6 +849,7 @@ button{
         display: none;
         text-align: left;
         padding: 10px 0px;
+        margin-top: 20px;
 
         .number-credit-card{
           display: flex;
@@ -866,15 +889,18 @@ button{
 
       }
       .info-current-without-card-bottom{
-        margin-top: 20px;
+        margin-top: 36px;
         color: #c7d1d7;
         .top{
           color: white;
           font-weight: bold;
+          width: 120px;
+          height: 60px;
+          margin: auto;
         }
         .bottom{
           font-size: 13px;
-          margin-top: 25px;
+
           text-align: left;
           margin-bottom: 25px;
         }
@@ -885,6 +911,105 @@ button{
           height: 23px;
           margin: 25px auto 10px auto;
         }
+      }
+
+      .info-current-new-card-bottom{
+        display: none;
+        text-align: left;
+        padding: 10px 0px;
+
+        ::-webkit-input-placeholder {
+         color: white;
+        }
+        input{
+          color: white;
+          padding: 0px 7px;
+          background: transparent;
+        }
+
+        article{
+          margin-top: 10px;
+          padding: 5px 10px;
+        }
+
+        .number-credit-card{
+          display: flex;
+
+          background: rgb(44, 50, 56);
+          border-radius: 16px;
+          color: white;
+
+          input{
+            width: 265px;
+          }
+
+          figure{
+            width: 40px;
+          }
+
+          .delete-card{
+            font-size: 12px;
+            padding-top: 3px;
+          }
+        }
+
+        .owner-credit-card{
+          display: flex;
+
+          background: rgb(44, 50, 56);
+          border-radius: 16px;
+          color: white;
+
+
+          input{
+            width: 265px;
+          }
+
+        }
+
+        .options-credit-card{
+          display: flex;
+          padding-left: 0px;
+
+          input{
+            width: 47px;
+
+          }
+          article{
+            max-width: 60px;
+            margin-top: 0px;
+            margin-right: 10px;
+            padding: 5px 7px;
+          }
+
+          .month-credit-card{
+            display: flex;
+
+            background: rgb(44, 50, 56);
+            border-radius: 16px;
+          }
+
+          .year-credit-card{
+            display: flex;
+
+            background: rgb(44, 50, 56);
+            border-radius: 16px;
+          }
+
+          .code-credit-card{
+            display: flex;
+
+            background: rgb(44, 50, 56);
+            border-radius: 16px;
+          }
+
+        }
+
+        .info-current-payment{
+          padding: 20px 10px;
+          font-size: 14px;
+        }
+
       }
 
       .info-current-card-left{
@@ -930,7 +1055,6 @@ button{
 
 .modify-space{
 
-
     .info-current-plan{
       width: 400px;
     }
@@ -949,6 +1073,7 @@ button{
         .info-current-card-bottom{
           text-align: left;
           padding: 10px 0px;
+
 
           .number-credit-card{
             display: flex;
@@ -1517,6 +1642,13 @@ button{
 }
 
 .finish-premium{
+
+  .sad{
+    .img-finish{
+      background: url('@static/hdd-triste.png') no-repeat !important;
+      background-size: 135px !important;
+    }
+  }
 
   .finish-top{
     width: inherit;

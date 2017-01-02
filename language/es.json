@@ -80,7 +80,7 @@
       "1€",
       "/mes"
     ],
-  
+
     "unlimitedStorage" :"Espacio ilimitado",
 
 
@@ -111,6 +111,7 @@
 
     "next"        : "Siguiente",
     "congratulation"    :  "¡Felicidades! Has aumentado tu espacio a",
+    "decrease"    :  "!Hecho! Tu espacio ha bajado a",
     "finish"      : "Finalizar",
 
 
