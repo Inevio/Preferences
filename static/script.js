@@ -88,9 +88,14 @@
     var actualTab = null;
     var loadTab = null;
 
-    // Info about user
+    // Info about user & plans
     var infoSubscriptions = null;
     var quota = null;
+    var inevioPlans = null;
+    var contadorPlans = 0;
+    var activePlan = null;
+    var minusSpaceCondition = true;
+    var moreSpaceCondition = true;
 
     var userLocal  = {
       premium : {
@@ -105,8 +110,7 @@
       }
     };
 
-    var inevioPlans = null;
-    var contadorPlans = 0;
+
 
     // Quota circle functions
     var startCircleAnimation = function( end ){
@@ -617,11 +621,16 @@
             loadTab = spaceTabs[4];
             break;
           }
+          if(actualPage == "order"){
+            loadTab = spaceTabs[5];
+            break;
+          }
 
           case 3:
           //PREMIUM cuando un usuario se quiere quitar la subscripcion
           if(actualPage == "modify-space"){
-            loadTab = spaceTabs[4];
+            //loadTab = spaceTabs[4];
+            console.log("Usuario quiere quitar sub?");
             break;
           }
           default:
@@ -645,16 +654,63 @@
     };
 
     var updateSpaceToPremium = function(){
+      spacePRTab();
+      modifyPRTab();
+      modifySPTab();
       $('.space .fr-box').addClass('hidden');
       $('.space .pr-box').removeClass('hidden');
       $('.pr-box .box-current-plan-top').find('span').text(lang.activePlan);
       $('.pr-box .box-current-plan-bottom').find('span').text(lang.manage);
       $('.pr-box .box-current-plan-middle .premium-info .left').find('span').text(userLocal.premium.extraStorage + lang.extra );
-      $('.pr-box .box-current-plan-middle .premium-info .right').find('span').text(userLocal.premium.actualPrice + lang.euroMonthMinus );
+      $('.pr-box .box-current-plan-middle .premium-info .right').find('span').text(userLocal.premium.actualPrice + lang.dolarMonthMinus );
       var fecha = new Date();
-      $(  '.pr-box .box-current-plan-middle .premium-date').find('span').text(lang.payDay + (userLocal.premium.payDay).toString() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
+      $(  '.pr-box .box-current-plan-middle .premium-date').find('span').text(lang.payDay + userLocal.premium.payDay.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
     };
 
+    var updateUserLocal = function(value, attr){
+      /*
+      0 premium.info
+      1 premium.actualStorage
+      2 premium.actualPrice
+      3 premium.extraStorage
+      4 premium.payDay
+      */
+      switch (attr) {
+        case 0:
+          userLocal.premium.info = value;
+          break;
+        case 1:
+          userLocal.premium.actualStorage = value;
+          break;
+        case 2:
+          userLocal.premium.actualPrice = value;
+          break;
+        case 3:
+          userLocal.premium.extraStorage = value;
+          break;
+        case 4:
+          userLocal.premium.payDay = value;
+          break;
+        default:
+          console.log("Invalid attr: "+attr , "value: "+value );
+      }
+    };
+
+    var resetLocalVar = function(){
+      quota = wz.system.quota();
+      wz.config.getSubscriptionStatus(function( err, info ){
+        infoSubscriptions = info;
+        contadorPlans = 0;
+        activePlan = infoSubscriptions.currentPlan.id;
+        inevioPlans = infoSubscriptions.availablePlans;
+        if(activePlan == inevioPlans[0].id){
+          minusSpaceCondition = false;
+        }
+        if(activePlan == inevioPlans[inevioPlans.length - 1].id){
+          moreSpaceCondition = false;
+        }
+      });
+    };
 
 
     // WZ Events
@@ -882,7 +938,7 @@
           console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , actualTab);
         }
 
-        console.log(actualTab);
+        console.log("Pestaña actual: "+actualTab);
 
 
     })
@@ -898,8 +954,7 @@
         console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , actualTab);
       }
 
-      console.log(actualTab);
-
+      console.log("Pestaña actual: "+actualTab);
     })
     .on(  'click' , '.change-plan' , function(){
 
@@ -912,8 +967,23 @@
       }else{
         console.log("ERROR" , this , actualTab);
       }
-      console.log(actualTab);
+      console.log("Pestaña actual: "+actualTab);
 
+    })
+
+    .on(  'click', '.finish .loadPremium', function(){
+      //update userLocal and load Premium-mode
+      updateUserLocal(true, 0);
+      updateUserLocal(parseInt($('.more .quantity').text()), 2);
+      updateUserLocal(parseInt($('.more .show-space-selected .big-text').text()), 3);
+      updateUserLocal(new Date(), 4);
+      //La tarjeta ya se ha asignado cuando se valida
+      resetLocalVar();
+    })
+
+    .on(  'click', '.finish-premium .updatePremium', function(){
+      //update userLocal in premium-mode
+      resetLocalVar();
     })
 
     .on( 'click' , '.finish-premium .inicio', function(){
@@ -943,7 +1013,7 @@
         ventana.removeClass('free-user');
         ventana.addClass('premium-user');
         spaceTab();
-        
+
       }else{
         console.log("ERROR" , this , actualTab);
       }
@@ -957,102 +1027,140 @@
     })
 
     // Increases or reduces the required storage
-    .on(  'click', '.moreStorage' , function(){
+    .on('click', '.moreStorage', function() {
 
-        if (contadorPlans >= 0  && contadorPlans < inevioPlans.length){
+      if(moreSpaceCondition && inevioPlans[contadorPlans + 1] != null ){
 
-          if(inevioPlans[contadorPlans] != null){
+        var precio = null;
+        var tamaño = null;
+        var total = null;
+        var condicion = true;
 
-
-              if (actualTab == spaceTabs[2]){
-
-                var tamano = $('.modify-space .show-space-selected .big-text');
-                var precio = $('.modify-space .quantity');
-                var total = $('.finish-premium .info-space');
-
-
-              }else{
-                var tamano = $('.more .show-space-selected .big-text');
-                var precio = $('.more .quantity');
-                var total = $( '.order .options-bottom .bottom .left').find('span');
-              }
-
-              var variacionEspacio = api.tool.bytesToUnit( inevioPlans[contadorPlans].addQuota ).split(" ", 1)[0];
-              var variacionPrecio = inevioPlans[contadorPlans].amount;
-
-              console.log(variacionEspacio, variacionPrecio);
-
-              tamano.text(parseInt(tamano.text()) + variacionEspacio);
-              precio.text(parseInt(precio.text()) + variacionPrecio);
-              total.text(parseInt(tamano.text()) + parseInt(userLocal.premium.actualStorage) + " GB");
-              if(contadorPlans < inevioPlans.length - 1){
-                contadorPlans++;
-              }
-          }
+        if(actualTab == spaceTabs[2]){
+          //premium
+          tamano = $('.modify-space .show-space-selected .big-text');
+          precio = $('.modify-space .quantity');
+          total = $('.finish-premium .info-space');
         }
-    })
+        else if (actualTab == spaceTabs[5]){
+          //normal
+          tamano = $('.more .show-space-selected .big-text');
+          precio = $('.more .quantity');
+          total = $( '.order .options-bottom .bottom .left').find('span');
+        }
+        else{
+          console.log("ERROR! Mal gestión de pestañas");
+          condicion = false;
+        }
 
-    .on(  'click', '.minusStorage' , function(){
+        if(condicion){
 
-      if (contadorPlans < inevioPlans.length && contadorPlans >= 0){
-        var variacionEspacio = api.tool.bytesToUnit( inevioPlans[contadorPlans].addQuota );
-        var variacionPrecio = inevioPlans[contadorPlans].amount;
-
-        // Esta cogiendo los datos que proporciona el sistema, debería coger los datos de info de stripe??
-        var tamanoActual = api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0];
-        var precioActual = userLocal.premium.actualPrice;
-
-        if (actualTab == spaceTabs[2]){
-
-          var tamano = $('.modify-space .show-space-selected .big-text');
-          var precio = $('.modify-space .quantity');
-          var total = $('.finish-premium .info-space');
-
-          // El tamaño que proporcio el sistema es el básico mas el extra de stripe
-          var tamanoPremium = tamanoActual + userLocal.premium.extraStorage;
-          if (((parseInt(tamano.text()) - variacionEspacio ) >= tamanoActual) && (parseInt(precio.text()) > 1)){
-            console.log(tamanoActual, tamano, precio, total);
-            tamano.text(parseInt(tamano.text()) - variacionEspacio);
-            precio.text(parseInt(precio.text()) - variacionPrecio);
-            total.text(parseInt(tamano.text()) + parseInt(userLocal.premium.actualStorage) + " GB");
+          tamano.text(api.tool.bytesToUnit(inevioPlans[contadorPlans + 1].addQuota).split(" ", 1)[0]);
+          precio.text(inevioPlans[contadorPlans + 1 ].amount);
+          total.text( parseInt(tamano.text()) + parseInt(userLocal.premium.actualStorage) + " GB");
+          activePlan = inevioPlans[contadorPlans + 1].id;
+          console.log("Plan activo: " + activePlan);
+          if (contadorPlans < inevioPlans.length - 1){
+            contadorPlans++;
+          }else {
+            console.log("Desactivar boton mas, contador: "+contadorPlans);
+            // Bloqueamos el boton mas con la clase block(opacidad al .2) y le quitamos la clase al boton
+            moreSpaceCondition = false;
           }
 
-        }else{
-          var tamano = $('.more .show-space-selected .big-text');
-          var precio = $('.more .quantity');
-          var total = $( '.order .options-bottom .bottom .left').find('span');
 
-          if(((parseInt(tamano.text()) - variacionEspacio) >= tamanoActual)&& (parseInt(precio.text()) - variacionPrecio > 0)){
+          if(tamano.text() == api.tool.bytesToUnit(inevioPlans[inevioPlans.length - 1].addQuota).split(" ", 1)[0]){
+            // Bloqueamos el boton menos con la clase block(opacidad al .2) y le quitamos la clase al boton
+            $('.moreStorage').parents('.more-icon').addClass('block');
+            $('.moreStorage').removeClass('moreStorage');
+          }
 
-          tamano.text(parseInt(tamano.text()) - variacionEspacio);
-          precio.text(parseInt(precio.text()) - variacionPrecio);
-          total.text(parseInt(tamano.text()) + parseInt(userLocal.premium.actualStorage) + " GB");
+          minusSpaceCondition = true;
+          if($('.minus-icon').hasClass('block')){
+            $('.minus-icon').removeClass('block');
+            $('.minus-icon').find('figure').addClass('minusStorage');
           }
         }
-        if(contadorPlans < inevioPlans.length && contadorPlans > 0){
-          contadorPlans--;
-        }
-      }else{
-        console.log("Error asignación de planes");
+
+      }
+      else{
+        console.log("Error no hay un plan en esa posicion, contador: "+contadorPlans);
+        activePlan = null;
       }
 
     })
 
-    .on(  'click',  '.more .siguiente', function(){
 
-      var totalAPagar = $('.order .info-current-plan .info-options .options-middle .options-middle-right').find('span');
-      var paraAnadir = $('.order .info-current-plan .info-options .options-middle .options-middle-left').find('span');
-      var aPagar = $('.order .info-current-plan .info-options .options-bottom .bottom .right').find('span');
-      var espacioTotal = $('.order .info-current-plan .info-options .options-middle .options-middle-left').find('span');
-      var tamano = $('.show-space-selected .big-text').text();
-      var precio = $('.quantity').find('span').text();
-      totalAPagar.text(precio + lang.euroMonthMinus);
-      paraAnadir.text(lang.add +tamano + "GB");
-      aPagar.text(precio + lang.euroMonthMinus);
-      espacioTotal.text(lang.add +tamano + "GB");
 
+    .on(  'click', '.minusStorage' , function(){
+
+      if(minusSpaceCondition && inevioPlans[contadorPlans - 1] != null ){
+
+        var precio = null;
+        var tamaño = null;
+        var total = null;
+        var condicion = true;
+
+        if(actualTab == spaceTabs[2]){
+          //premium
+          tamano = $('.modify-space .show-space-selected .big-text');
+          precio = $('.modify-space .quantity');
+          total = $('.finish-premium .info-space');
+        }
+        else if (actualTab == spaceTabs[5]){
+          //normal
+          tamano = $('.more .show-space-selected .big-text');
+          precio = $('.more .quantity');
+          total = $( '.order .options-bottom .bottom .left').find('span');
+        }
+        else{
+          console.log("ERROR! Mal gestión de pestañas");
+          condicion = false;
+        }
+
+        if(condicion){
+
+          tamano.text(api.tool.bytesToUnit(inevioPlans[contadorPlans - 1].addQuota).split(" ", 1)[0]);
+          precio.text(inevioPlans[contadorPlans - 1].amount);
+          total.text( parseInt(tamano.text()) + parseInt(userLocal.premium.actualStorage) + " GB");
+          activePlan = inevioPlans[contadorPlans - 1 ].id;
+          console.log("Plan activo: " + activePlan);
+          if (contadorPlans > 0){
+            contadorPlans--;
+          }else {
+            console.log("Desactivar boton menos, contador: "+contadorPlans);
+            minusSpaceCondition = false;
+          }
+
+          if(tamano.text() == api.tool.bytesToUnit(inevioPlans[0].addQuota).split(" ", 1)[0]){
+            // Bloqueamos el boton menos con la clase block(opacidad al .2) y le quitamos la clase al boton
+            $('.minusStorage').parents('.minus-icon').addClass('block');
+            $('.minusStorage').removeClass('minusStorage');
+          }
+
+          moreSpaceCondition = true;
+          if($('.more-icon').hasClass('block')){
+            $('.more-icon').removeClass('block');
+            $('.more-icon').find('figure').addClass('moreStorage');
+          }
+        }
+
+      }
+      else{
+        console.log("Error no hay un plan en esa posicion, contador: "+contadorPlans);
+        activePlan = null;
+      }
     })
 
+    .on(  'click',  '.more .siguiente', function(){
+
+      var tamano = parseInt($('.more .show-space-selected .big-text').text());
+      var precio = parseInt($('.more .quantity').text());
+      $('.order .info-options .options-middle .options-middle-right').text(precio + lang.dolarMonthMinus);
+      $('.order .info-options .options-middle .options-middle-left').text( lang.add + tamano + "GB" );
+      $('.order .info-options .options-bottom .bottom .left').text((userLocal.premium.actualStorage + tamano) + "GB" );
+      $('.order .info-options .options-bottom .bottom .right').text(precio + lang.dolarMonthMinus);
+    })
 
     .on(  'click' , '.modify-space .siguiente', function(){
       if( parseInt($('.modify-space .quantity').text()) < parseInt(userLocal.premium.actualPrice)){
@@ -1072,11 +1180,11 @@
 
     .on ('click' ,'.order .validate', function(){
       var card = {
-        name: $('.order .owner-card').text(),
-        number : $('.order .number-card').text(),
-        month: $('.order .month-card').text(),
-        year : $('.order .year-card').text(),
-        code : $('.order .code-card').text()
+        name: $('.order .owner-card').val(),
+        number : $('.order .number-card').val(),
+        month: $('.order .month-card').val(),
+        year : $('.order .year-card').val(),
+        code : $('.order .code-card').val()
       }
       if(validateCard(card)){
         $('.finish .finish-middle .info-space').text( $( '.order .options-bottom .bottom .left').find('span').text());
@@ -1089,9 +1197,9 @@
           console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , actualTab);
         }
       }
-      console.log(actualTab);
+      console.log("Pestaña actual: "+actualTab);
 
-      updateUserLocal();
+
     })
 
     .on('click', '.modify-premium .validate', function(){
@@ -1114,7 +1222,7 @@
       }
       console.log(actualTab);
 
-      updateUserLocal();
+
 
     })
 
@@ -1790,13 +1898,148 @@
 
     };
 
+    // payments.js start
 
+
+var removeCard = function(){
+
+  request( 'POST', 'https://rest.inevio.com/unsubscribe' ).done( function(){
+
+    $( '.save-credit-mode' ).hide()
+    $( '.intro-credit-mode' ).show()
+
+  }).fail( function(){
+    alert( 'No se ha podido eliminar la suscripción, ponte en contacto con nosotros.' )
+  })
+
+}
+
+var request = function( verb, url, data ){
+
+  var promise = $.Deferred()
+
+  $.ajax({
+
+    type : verb,
+    url : url,
+    crossDomain : true,
+    xhrFields: {
+      withCredentials: true
+    },
+    data : data
+
+  }).done( function( res ){
+    promise.resolve( res )
+  }).fail( function( res ){
+    promise.reject( res )
+  })
+
+  return promise
+
+}
+
+win
+.on( 'click' , '.preferences-payment-button' , function(){
+
+  processCardForm()
+  // Prevent the form from submitting with the default action
+  return false
+
+})
+.on( 'click' , '.cancel-credit' , function(){
+  removeCard()
+})
+
+/*
+$.when( availablePlans(), listCards() ).done( function( plans, cards ){
+
+  if( plans.plans.length ){
+
+    $('.payment').css( 'display', 'inline-block' )
+
+    availablePlan = plans.plans[ 0 ].id
+
+  }
+
+  if( cards.cards.length ){
+
+    $( '.save-credit-mode' ).show()
+    $( '.intro-credit-mode' ).hide()
+    $( '.credit-number' ).text( '**** **** **** ' + cards.cards[ 0 ].last4 )
+    $( '.credit-name' ).text( cards.cards[ 0 ].name )
+    $( '.credit-exp' ).text( cards.cards[ 0 ].exp_month + '/' + cards.cards[ 0 ].exp_year )
+
+  }else{
+
+    $( '.save-credit-mode' ).hide()
+    $( '.intro-credit-mode' ).show()
+
+  }
+
+})
+*/
+
+// payments.js end
 
     // To DO
     var validateCard = function(card){
-      if(card != null){
+      // Crear token Stripe
+      Stripe.card.createToken({
+
+        number    : card.number,
+        cvc       : card.code,
+        exp_month : card.month,
+        exp_year  : card.year,
+        name      : card.name
+
+      }, function( status, response ) {
+
+        if( response.error ){
+          console.log(card);
+          console.log(response);
+          alert( lang.creditcardError )
+          $('.load-only').hide()
+          $('.preferences-payment-button').show()
+          return
+
+        }
+
+        request( 'POST', 'https://restbeta.inevio.com/payment/subscribe', {
+
+          token : response.id,
+          plan  : activePlan,
+
+        }).done( function( res ){
+
+          listCards().done( function( res ){
+
+            $( '.credit-number' ).text( '**** **** **** ' + res.cards[ 0 ].last4 )
+            $( '.credit-name' ).text( res.cards[ 0 ].name )
+            $( '.credit-exp' ).text( res.cards[ 0 ].exp_month + '/' + res.cards[ 0 ].exp_year )
+            $( '.save-credit-mode' ).show()
+            $( '.intro-credit-mode' ).hide().find('input').val('')
+            $('.load-only').hide()
+            $('.preferences-payment-button').show()
+
+          }).fail( function( res ){
+
+            $('.load-only').hide()
+            $('.preferences-payment-button').show()
+            alert( 'No se ha podido realizar el pago, ponte en contacto con nosotros.' )
+
+          })
+
+        }).fail( function( res ){
+
+          $('.load-only').hide()
+          $('.preferences-payment-button').show()
+          alert( 'No se ha podido realizar el pago, ponte en contacto con nosotros.' )
+
+        })
+
+      });
         return true;
-      }
+
     };
 
     var loadAppUser = function(){
@@ -1815,16 +2058,16 @@
       quota = wz.system.quota();
       inevioPlans = infoSubscriptions.availablePlans;
 
-      infoSubscriptions.currentPlan = null;
+      //infoSubscriptions.currentPlan = null;
 
-      console.log("BORRAR ESTE LOG");
+      console.log("BORRAR ESTE LINEA  -> infoSubscriptions.currentPlan = null;");
       // Load info user subscription
       if(infoSubscriptions.currentPlan !=  null){
         userLocal.premium.info = true;
         userLocal.premium.actualStorage = api.tool.bytesToUnit(quota.total).split(" ", 1)[0];
         userLocal.premium.actualPrice = infoSubscriptions.currentPlan.amount;
         userLocal.premium.extraStorage = infoSubscriptions.currentPlan.addQuota;
-        userLocal.premium.payDay = new Date(infoSubscriptions.currentPlan.current_period_start).getDate();
+        userLocal.premium.payDay = infoSubscriptions.currentPlan.current_period_start;
         userLocal.premium.card.number = infoSubscriptions.listCards[0].last4;
         actualTab = spaceTabs[0];
         $('.'+actualTab).addClass('active');
@@ -1834,6 +2077,12 @@
        }
 
       }else{
+        userLocal.premium.info = false;
+        userLocal.premium.actualStorage = api.tool.bytesToUnit(quota.total).split(" ", 1)[0];
+        userLocal.premium.actualPrice = 0;
+        userLocal.premium.extraStorage = 0;
+        userLocal.premium.payDay = null;
+        userLocal.premium.card.number = null;
         actualTab = spaceTabs[4];
         $('.'+actualTab).addClass('active');
         if($('.hdd-container').hasClass('premium-user')){
@@ -1841,6 +2090,7 @@
           $('.hdd-container').addClass('free-user');
         }
       }
+      console.log("Pestaña actual: "+actualTab);
 
       // Translate app
 
@@ -1870,14 +2120,20 @@
       $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
 
       //translate hdd zone
-      spaceTab();
-      moreTab();
-      orderTab();
-      finishTab();
-      spacePRTab();
-      modifyPRTab();
-      modifySPTab();
-      finishPRTab();
+
+      if (userLocal.premium.info){
+        spacePRTab();
+        modifyPRTab();
+        modifySPTab();
+        finishPRTab();
+      }
+      else{
+        spaceTab();
+        moreTab();
+        orderTab();
+        finishTab();
+      }
+
       $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
       $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
       $( '.avatar-edit', win ).text( lang.avatarEdit );
@@ -1974,7 +2230,7 @@
       $(  '.more .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
       $(  '.more .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
       $(  '.more .quantity').find('span').text(1);
-      $(  '.more .quantity-container .top').text("€");
+      $(  '.more .quantity-container .top').text("$");
       $(  '.more .quantity-container .bottom').text(lang.perMonth);
       $(  '.more .show-space-selected').find('span').text('GB');
       $(  '.more .show-space-selected .big-text').text(api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0]);
@@ -1989,12 +2245,12 @@
       $(  '.order .options-top-body .body-bottom .right').find('span').text(lang.free);
       $(  '.order .options-top-body .body-bottom .left').find('span').text(userLocal.premium.actualStorage + "GB");
       $(  '.order .options-middle .options-middle-left').find('span').text(lang.add + $('.more .show-space-selected .big-text').text()+"GB");
-      $(  '.order .options-middle .options-middle-right').find('span').text(($('.more .quantity').text()).toString().substring(29,30)+lang.euroMonthMinus);
+      $(  '.order .options-middle .options-middle-right').find('span').text(($('.more .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
       $(  '.order .options-bottom .top .left').text(lang.totalStorageMayus);
       $(  '.order .options-bottom .top .right').text(lang.totalMayus);
-      $(  '.order .options-bottom .bottom .left').find('span').text(userLocal.premium.actualStorage + parseInt($('.more .show-space-selected .big-text').text())  + "GB");
+      $(  '.order .options-bottom .bottom .left').find('span').text((parseInt(userLocal.premium.actualStorage) + parseInt($('.more .show-space-selected .big-text').text()))  + "GB");
       $(  '.order .options-bottom .bottom .right').find('span').text(lang.perMonth);
-      $(  '.order .options-bottom .bottom .right .big').text(($('.more .quantity').text()).toString().substring(29,30)+lang.euroMonthMinus);
+      $(  '.order .options-bottom .bottom .right .big').text(($('.more .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
       $(  '.order .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
       $(  '.order .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
       $(  '.order .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
@@ -2010,7 +2266,7 @@
     var finishTab = function(){
       $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.finish .finish-middle').find('span').text(lang.congratulation);
-      $(  '.finish .finish-middle .info-space').text(userLocal.premium.actualStorage + parseInt($('.more .show-space-selected .big-text').text()) + "GB");
+      $(  '.finish .finish-middle .info-space').text((parseInt(userLocal.premium.actualStorage) + parseInt($('.more .show-space-selected .big-text').text()))  + "GB");
       $(  '.finish .finish-bottom').find('span').text(lang.finish);
 
     };
@@ -2020,25 +2276,25 @@
       $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
       $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
       $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(userLocal.premium.extraStorage + lang.extra );
-      $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.premium.actualPrice + lang.euroMonthMinus );
+      $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.premium.actualPrice + lang.dolarMonthMinus );
       var fecha = new Date();
-      $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + (userLocal.premium.payDay).toString() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
+      $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + userLocal.premium.payDay.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
 
     };
     var modifyPRTab = function(){
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + userLocal.premium.payDay.toString() + lang.partPayDay[1]);
+      $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + userLocal.premium.payDay.getDate() + lang.partPayDay[1]);
       $(  '.modify-premium .info-current-plan .options-bottom .top').find('span').text(lang.totalStorageMayus);
       $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(userLocal.premium.actualStorage + userLocal.premium.extraStorage + "GB");
       $(  '.modify-premium .number-card').find('span').text("**** **** **** " + userLocal.premium.card.number);
       $(  '.modify-premium .delete-card').find('span').text(lang.delete);
       $(  '.modify-premium .preferences-hdd-payment-bottom').find('span').text(lang.save);
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
-      $(  '.modify-premium .info-options .options-top .bottom').find('span').text(userLocal.premium.actualPrice + lang.euroMonthMinus);
+      $(  '.modify-premium .info-options .options-top .bottom').find('span').text(userLocal.premium.actualPrice + lang.dolarMonthMinus);
       $(  '.modify-premium .info-options .options-top .top .left').find('span').text(userLocal.premium.extraStorage + lang.extra);
       $(  '.modify-premium .info-options .options-top .top .right').find('span').text(lang.modify);
       $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.delete);
-      $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.premium.actualPrice + lang.payParagraph[1]+ userLocal.premium.payDay + lang.payParagraph[2]);
+      $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.premium.actualPrice + lang.payParagraph[1]+ userLocal.premium.payDay.getDate() + lang.payParagraph[2]);
       $(  '.modify-premium .info-current-card-top').find('span').text(lang.creditCard);
       $(  '.modify-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
       $(  '.modify-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
@@ -2051,7 +2307,7 @@
       $(  '.modify-space .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
       $(  '.modify-space .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
       $(  '.modify-space .quantity').find('span').text(1);
-      $(  '.modify-space .quantity-container .top').text("€");
+      $(  '.modify-space .quantity-container .top').text("$");
       $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
       $(  '.modify-space .show-space-selected').find('span').text('GB');
       $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0]);

@@ -9,6 +9,10 @@ button{
   display: none !important;
 }
 
+.block {
+  opacity: .2 !important;
+}
+
 .wz-view-menu-group{
 
     /*padding: 14px 20px 9px;*/

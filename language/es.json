@@ -21,11 +21,11 @@
     "starter"          : "Starter",
     "free"             : "Gratis",
     "pro"              : "Pro",
-    "proPrice"         : "4,99€",
+    "proPrice"         : "4,99$",
     "advance"          : "Advance",
-    "advancePrice"     : "9,99€",
+    "advancePrice"     : "9,99$",
     "ultimate"         : "Ultimate",
-    "ultimatePrice"    : "14,99€",
+    "ultimatePrice"    : "14,99$",
     "monthly"          : "mensual",
     "forever"          : "para siempre",
     "FREE"             : "GRATIS",
@@ -57,8 +57,8 @@
     "inevioCredit"     :  "Crédito de Inevio",
     "delete"           :  "Eliminar",
     "extra"            :  " GB Extra",
-    "euroMonth"        :  " €/MES",
-    "euroMonthMinus"   :  " €/mes",
+    "dolarMonth"        :  " $/MES",
+    "dolarMonthMinus"   :  " $/mes",
     "perMonth"         :  "/mes",
     "payDay"           :  "Siguiente pago el ",
 
@@ -77,7 +77,7 @@
       "GB",
       "por sólo",
       "Extra",
-      "1€",
+      "1$",
       "/mes"
     ],
 
@@ -86,7 +86,7 @@
 
 
     "infoPaymentOneHead"  : "Tú decides",
-    "infoPaymentOneBody"  : "Paga solo por el espacio que consumes 25 Gb extra en tu cuenta por 1€/mes.",
+    "infoPaymentOneBody"  : "Paga solo por el espacio que consumes 25 Gb extra en tu cuenta por 1$/mes.",
     "infoPaymentTwoHead"  : "Flexible",
     "infoPaymentTwoBody"  : "Cambia tu plan cuando lo necesites para que siempre se ajuste a tus necesidades.",
 
@@ -198,7 +198,7 @@
     "payParagraph"     :
     [
       "Se cobrará de esta tarjeta ",
-      " € todos los meses el dia ",
+      " $ todos los meses el dia ",
       ". Para cambiar de tarjeta primero elimina la actual."
     ],
 

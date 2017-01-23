@@ -57,8 +57,8 @@
     "inevioCredit"     :  "Inevio credit",
     "delete"           :  "Delete",
     "extra"            :  " GB Extra",
-    "euroMonth"        :  " €/MONTH",
-    "euroMonthMinus"   :  " €/month",
+    "dolarMonth"        :  " $/MONTH",
+    "dolarMonthMinus"   :  " $/month",
     "perMonth"         :  "/month",
     "payDay"           :  "The next payment ",
     "partPayDay"      : [
@@ -75,7 +75,7 @@
       "GB",
       "for just",
       "Extra",
-      "1€",
+      "1$",
       "/month"
     ],
 
@@ -84,7 +84,7 @@
 
 
     "infoPaymentOneHead"  : "It´s up to you",
-    "infoPaymentOneBody"  : "Pay only for what you consume Extra 25 Gb per 1€/month on your account.",
+    "infoPaymentOneBody"  : "Pay only for what you consume Extra 25 Gb per 1$/month on your account.",
     "infoPaymentTwoHead"  : "Flexible",
     "infoPaymentTwoBody"  : "Change your plan whenever you need it to match your necessities.",
 
@@ -190,7 +190,7 @@
     "payParagraph"     :
     [
       "You will be charged for this card ",
-      " € every month on the day ",
+      " $ every month on the day ",
        ". To change the card first, delete the current card."
     ],
 
