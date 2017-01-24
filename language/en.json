@@ -62,8 +62,8 @@
     "perMonth"         :  "/month",
     "payDay"           :  "The next payment ",
     "partPayDay"      : [
-      "Is charged ",
-      " of each month."
+      "Is charged at ",
+      " of the next month."
     ],
     "add" : "Add",
     "totalMayus"  : "TOTAL",

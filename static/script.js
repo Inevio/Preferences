@@ -92,6 +92,7 @@
     var infoSubscriptions = null;
     var quota = null;
     var inevioPlans = null;
+    var listPlans = null;
     var contadorPlans = 0;
     var activePlan = null;
     var minusSpaceCondition = true;
@@ -100,6 +101,7 @@
     var userLocal  = {
       premium : {
         info : false,
+        activePlan: null,
         actualStorage : 0,
         actualPrice : 0,
         extraStorage : 0,
@@ -534,7 +536,7 @@
         //espacioTotal = lang.unlimitedStorage;
         espacioTotal = 10000;
       }else{
-        espacioTotal = userLocal.premium.extraStorage + api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0];
+        espacioTotal = userLocal.premium.extraStorage;
       }
       $('.modify-space .show-space-selected .big-text').text(espacioTotal);
       $('.modify-space .quantity').text(userLocal.premium.actualPrice);
@@ -663,8 +665,8 @@
       $('.pr-box .box-current-plan-bottom').find('span').text(lang.manage);
       $('.pr-box .box-current-plan-middle .premium-info .left').find('span').text(userLocal.premium.extraStorage + lang.extra );
       $('.pr-box .box-current-plan-middle .premium-info .right').find('span').text(userLocal.premium.actualPrice + lang.dolarMonthMinus );
-      var fecha = new Date();
-      $(  '.pr-box .box-current-plan-middle .premium-date').find('span').text(lang.payDay + userLocal.premium.payDay.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
+      var fecha = new Date(userLocal.premium.payDay);
+      $(  '.pr-box .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
     };
 
     var updateUserLocal = function(value, attr){
@@ -674,6 +676,7 @@
       2 premium.actualPrice
       3 premium.extraStorage
       4 premium.payDay
+      5 premium.activePlan
       */
       switch (attr) {
         case 0:
@@ -690,6 +693,9 @@
           break;
         case 4:
           userLocal.premium.payDay = value;
+          break;
+        case 5:
+          userLocal.premium.activePlan = value;
           break;
         default:
           console.log("Invalid attr: "+attr , "value: "+value );
@@ -1024,6 +1030,7 @@
     .on(  'click', '.modify-premium .delete-card', function(){
       //Delete actual card
       $('.modify-premium .card-active').removeClass('card-active');
+      console.log("NO IMPLEMENTADO NO SE BORRA TARJETA");
     })
 
     // Increases or reduces the required storage
@@ -1158,7 +1165,7 @@
       var precio = parseInt($('.more .quantity').text());
       $('.order .info-options .options-middle .options-middle-right').text(precio + lang.dolarMonthMinus);
       $('.order .info-options .options-middle .options-middle-left').text( lang.add + tamano + "GB" );
-      $('.order .info-options .options-bottom .bottom .left').text((userLocal.premium.actualStorage + tamano) + "GB" );
+      $('.order .info-options .options-bottom .bottom .left').text((parseInt(userLocal.premium.actualStorage) + parseInt(tamano)) + "GB" );
       $('.order .info-options .options-bottom .bottom .right').text(precio + lang.dolarMonthMinus);
     })
 
@@ -1202,15 +1209,11 @@
 
     })
 
-    .on('click', '.modify-premium .validate', function(){
-      var card = {
-        name: userLocal.premium.card.name,
-        number : $('.modify-premium .number-card').text(),
-        month: $('.modify-premium .month-card').text(),
-        year : $('.modify-premium .year-card').text(),
-        code : $('.modify-premium .code-card').text()
-      }
-      if(validateCard(card)){
+    .on('click', '.modify-space .validate', function(){
+      console.log("VIEJO: "+userLocal.premium.activePlan);
+      //Cambio de plan en premium (plan activo, nuevoplan);
+      cambioPlan(activePlan);
+      console.log("NUEVO: "+userLocal.premium.activePlan);
         if($(this).parents('.preferences-hdd-payment').hasClass(actualTab)){
           nextPage(actualTab, 1);
           var currentObject = $('.hdd-container');
@@ -1219,11 +1222,6 @@
         }else{
           console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , actualTab);
         }
-      }
-      console.log(actualTab);
-
-
-
     })
 
 
@@ -1983,7 +1981,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     // To DO
     var validateCard = function(card){
-      // Crear token Stripe
+
       Stripe.card.createToken({
 
         number    : card.number,
@@ -2042,6 +2040,25 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     };
 
+    var cambioPlan = function(planNuevo){
+
+
+          request( 'POST', 'https://restbeta.inevio.com/payment/subscribe', {
+
+
+            plan  : planNuevo
+
+          }).done(function(res){
+            console.log("TODO OK", res);
+          })
+          .fail( function(res){
+            console.log("ERROR", res);
+          })
+          return true;
+
+
+    };
+
     var loadAppUser = function(){
       var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
       var canvasObject2 = $( '.preferences-hdd-canvas-cake')[1];
@@ -2057,19 +2074,20 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       infoSubscriptions = api.app.storage('infoSubscriptions');
       quota = wz.system.quota();
       inevioPlans = infoSubscriptions.availablePlans;
+      listPlans = inevioPlans.map(function( item ){
+        return item.id});
 
-      //infoSubscriptions.currentPlan = null;
-
-      console.log("BORRAR ESTE LINEA  -> infoSubscriptions.currentPlan = null;");
       // Load info user subscription
       if(infoSubscriptions.currentPlan !=  null){
         userLocal.premium.info = true;
         userLocal.premium.actualStorage = api.tool.bytesToUnit(quota.total).split(" ", 1)[0];
         userLocal.premium.actualPrice = infoSubscriptions.currentPlan.amount;
-        userLocal.premium.extraStorage = infoSubscriptions.currentPlan.addQuota;
-        userLocal.premium.payDay = infoSubscriptions.currentPlan.current_period_start;
+        userLocal.premium.extraStorage = api.tool.bytesToUnit(infoSubscriptions.currentPlan.addQuota).split(" ", 1)[0];;
+        userLocal.premium.payDay = infoSubscriptions.currentPlan.current_period_end;
         userLocal.premium.card.number = infoSubscriptions.listCards[0].last4;
+        userLocal.premium.activePlan = infoSubscriptions.currentPlan.id;
         actualTab = spaceTabs[0];
+        contadorPlans = listPlans.indexOf(userLocal.premium.activePlan);
         $('.'+actualTab).addClass('active');
        if($('.hdd-container').hasClass('free-user')){
          $('.hdd-container').removeClass('free-user');
@@ -2083,6 +2101,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         userLocal.premium.extraStorage = 0;
         userLocal.premium.payDay = null;
         userLocal.premium.card.number = null;
+        contadorPlans=0;
         actualTab = spaceTabs[4];
         $('.'+actualTab).addClass('active');
         if($('.hdd-container').hasClass('premium-user')){
@@ -2277,15 +2296,15 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
       $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(userLocal.premium.extraStorage + lang.extra );
       $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.premium.actualPrice + lang.dolarMonthMinus );
-      var fecha = new Date();
-      $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + userLocal.premium.payDay.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
+      var fecha = new Date(userLocal.premium.payDay);
+      $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
 
     };
     var modifyPRTab = function(){
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + userLocal.premium.payDay.getDate() + lang.partPayDay[1]);
+      $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + new Date(userLocal.premium.payDay).getDate() + lang.partPayDay[1]);
       $(  '.modify-premium .info-current-plan .options-bottom .top').find('span').text(lang.totalStorageMayus);
-      $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(userLocal.premium.actualStorage + userLocal.premium.extraStorage + "GB");
+      $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(parseInt(userLocal.premium.actualStorage) + parseInt(userLocal.premium.extraStorage) + "GB");
       $(  '.modify-premium .number-card').find('span').text("**** **** **** " + userLocal.premium.card.number);
       $(  '.modify-premium .delete-card').find('span').text(lang.delete);
       $(  '.modify-premium .preferences-hdd-payment-bottom').find('span').text(lang.save);
@@ -2294,7 +2313,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-premium .info-options .options-top .top .left').find('span').text(userLocal.premium.extraStorage + lang.extra);
       $(  '.modify-premium .info-options .options-top .top .right').find('span').text(lang.modify);
       $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.delete);
-      $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.premium.actualPrice + lang.payParagraph[1]+ userLocal.premium.payDay.getDate() + lang.payParagraph[2]);
+      $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.premium.actualPrice + lang.payParagraph[1]+ new Date(userLocal.premium.payDay).getDate() + lang.payParagraph[2]);
       $(  '.modify-premium .info-current-card-top').find('span').text(lang.creditCard);
       $(  '.modify-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
       $(  '.modify-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
@@ -2310,7 +2329,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-space .quantity-container .top').text("$");
       $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
       $(  '.modify-space .show-space-selected').find('span').text('GB');
-      $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0]);
+      $(  '.modify-space .show-space-selected .big-text').text(userLocal.premium.extraStorage);
       $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
     };
