@@ -761,7 +761,16 @@ button{
 .preferences-hdd-canvas-cake{
     margin-top: -115px;
     margin-left: -2px;
+    width: 242px;
+    height: 242px;
 }
+
+@-moz-document url-prefix() {
+  .preferences-hdd-canvas-cake {
+     margin-top : -117px !important;
+  }
+}
+
 .preferences-hdd-cake-circle{
   text-align: center;
   width: 80px;
@@ -857,6 +866,96 @@ button{
 .card-active{
   .info-current-card-bottom{
     display: block !important;
+
+    .card-visa{
+      figure{
+        background: url('@static/card-visa.png') no-repeat !important;
+        background-size: 25px 8px !important;
+        width: 25px;
+        margin: 0px 0px;
+        margin-top: 7px;
+        margin-right: 11px;
+      }
+    }
+
+    .card-americanExp{
+
+      figure{
+        background: url('@static/card-americanExp.png') no-repeat !important;
+        background-size: 25px 8px !important;
+        width: 25px;
+        margin: 0px 0px;
+        margin-top: 7px;
+        margin-right: 11px;
+      }
+
+    }
+
+    .card-master{
+
+      figure{
+        background: url('@static/card-master.png') no-repeat !important;
+        background-size: 25px 8px !important;
+        width: 25px;
+        margin: 0px 0px;
+        margin-top: 7px;
+        margin-right: 11px;
+      }
+
+    }
+
+    .card-discover{
+
+      figure{
+        background: url('@static/card-discover.png') no-repeat !important;
+        background-size: 25px 8px !important;
+        width: 25px;
+        margin: 0px 0px;
+        margin-top: 7px;
+        margin-right: 11px;
+      }
+
+    }
+
+    .card-JCB{
+
+      figure{
+        background: url('@static/card-JCB.png') no-repeat !important;
+        background-size: 25px 8px !important;
+        width: 25px;
+        margin: 0px 0px;
+        margin-top: 7px;
+        margin-right: 11px;
+      }
+
+    }
+
+    .card-diners{
+
+      figure{
+        background: url('@static/card-diners.png') no-repeat !important;
+        background-size: 25px 8px !important;
+        width: 25px;
+        margin: 0px 0px;
+        margin-top: 7px;
+        margin-right: 11px;
+      }
+
+    }
+
+    .card-default{
+
+      figure{
+        background: url('@static/card-default.png') no-repeat !important;
+        background-size: 25px 8px !important;
+        width: 25px;
+        margin: 0px 0px;
+        margin-top: 7px;
+        margin-right: 11px;
+      }
+
+    }
+
   }
   .info-current-without-card-bottom{
     display: none !important;
@@ -965,16 +1064,7 @@ button{
           border-radius: 16px;
           color: #c7d1d7;
 
-          figure{
-            background: url('@static/visa.png') no-repeat;
-            background-size: 25px 8px;
-            /*  VISA  */
-            width: 25px;
-            margin: 0px 0px;
-            margin-top: 7px;
-            margin-right: 11px;
 
-          }
 
           .number-card{
             margin-top: 2px;
@@ -1281,6 +1371,17 @@ button{
               }
           }
       }
+}
+
+.space{
+  .es{
+    background: url('@static/frase-es.png') no-repeat;
+    background-size: 210px auto;
+  }
+  .en{
+    background: url('@static/frase-en.png') no-repeat;
+    background-size: 210px auto;
+  }
 }
 
 .more{
@@ -1917,6 +2018,7 @@ button{
         .free-info{
           height: 80px;
           color: white;
+          margin-top: 20px;
 
             .info-plan-premium{
               display: flex;

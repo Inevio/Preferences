@@ -9,7 +9,14 @@
     }
     loadAppUser();
 
+    var getLanguage = function(){
+      api.config.getLanguages( function( error, languages, used ){
+          api.app.storage('language', used.code);
 
+      });
+    };
+
+    getLanguage();
 
 
 
