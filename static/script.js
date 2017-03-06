@@ -79,6 +79,7 @@
       "space-premium",
       "modify-premium",
       "modify-space",
+      "order-premium",
       "finish-premium",
       "space",
       "more",
@@ -92,7 +93,7 @@
     // Info about user & plans
     var infoSubscriptions = null;
     var quota = null;
-    var inevioPlans = null;
+    var inevioPlans = [];
     /*
     cardStatus mode{
       0 -> no card
@@ -100,6 +101,8 @@
       2 -> mode add card
   }
     */
+
+
     var cardStatus = 0;
     var listPlans = null;
     var plansCounter = 0;
@@ -124,6 +127,19 @@
         }
       }
     };
+
+    var codeNumber = [48,49,50,51,52,53,54,55,56,57];
+
+    var plan0 = {
+      addQuota : 0,
+      amount  : 0,
+      currency :  "usd",
+      customPlan : false,
+      id  : "plan0",
+      name  : "Basic Plan"
+    };
+
+    inevioPlans.push(plan0);
 
 
 
@@ -619,6 +635,10 @@
               loadTab = spaceTabs[3];
               break;
             }
+            if(actualPage == "order-premium"){
+              loadTab = spaceTabs[4];
+              break;
+            }
             if(actualPage == "finish-premium"){
               loadTab = spaceTabs[0];
               break;
@@ -626,15 +646,15 @@
 
           //NORMAL
           if(actualPage == "space"){
-            loadTab = spaceTabs[5];
-            break;
-          }
-          if(actualPage == "more"){
             loadTab = spaceTabs[6];
             break;
           }
-          if(actualPage == "order"){
+          if(actualPage == "more"){
             loadTab = spaceTabs[7];
+            break;
+          }
+          if(actualPage == "order"){
+            loadTab = spaceTabs[8];
             break;
           }
           // Change to premium
@@ -653,13 +673,17 @@
               loadTab = spaceTabs[1];
               break;
             }
+            if(actualPage == "order-premium"){
+              loadTab = spaceTabs[2];
+              break;
+            }
           //NORMAL
           if(actualPage == "more"){
-            loadTab = spaceTabs[4];
+            loadTab = spaceTabs[5];
             break;
           }
           if(actualPage == "order"){
-            loadTab = spaceTabs[5];
+            loadTab = spaceTabs[6];
             break;
           }
 
@@ -671,7 +695,7 @@
           }
           default:
           console.log(mode);
-          console.log("ERROR NO SE HA SELECCIONADO mode");
+          console.log("ERROR NO SE HA SELECCIONADO modo");
         }
 
     };
@@ -689,8 +713,8 @@
 
 
       }else{
-        loadTab = spaceTabs[4];
-        currentTab = spaceTabs[4];
+        loadTab = spaceTabs[5];
+        currentTab = spaceTabs[5];
         if($('.more .minus-icon').hasClass('minusStorage')){
           $('.more .minus-icon').removeClass('minusStorage');
           $('.more .minus-icon').addClass('block');
@@ -761,9 +785,10 @@
       wz.config.getSubscriptionStatus(function( err, info ){
         api.app.storage('infoSubscriptions', info);
         infoSubscriptions = info;
-
         activePlan = infoSubscriptions.currentPlan.id;
-        inevioPlans = infoSubscriptions.availablePlans;
+        for(var i = 0; i<infoSubscriptions.availablePlans.length; i++){
+          inevioPlans.push(infoSubscriptions.availablePlans[i]);
+        }
         if(activePlan == inevioPlans[0].id){
           minusSpaceCondition = false;
         }
@@ -809,9 +834,11 @@
           userLocal.premium.card.brand = null;
           $('.modify-premium .info-current-card').removeClass('card-active');
         }else{
+          cardStatus = 1;
           userLocal.premium.card.number = infoSubscriptions.listCards[0].last4;
           userLocal.premium.card.id = infoSubscriptions.listCards[0].id;
           userLocal.premium.card.brand = infoSubscriptions.listCards[0].brand;
+          $('.modify-premium .info-current-card').addClass('card-active');
         }
         userLocal.premium.activePlan = infoSubscriptions.currentPlan.id;
         if (tabCondition){
@@ -834,7 +861,7 @@
         userLocal.premium,card.id = null;
         userLocal.premium.card.brand = null;
         plansCounter=0;
-        currentTab = spaceTabs[4];
+        currentTab = spaceTabs[5];
         $('.'+currentTab).addClass('active');
         if($('.hdd-container').hasClass('premium-user')){
           $('.hdd-container').removeClass('premium-user');
@@ -881,8 +908,6 @@
                     $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'none' }, function(){
                         $( this ).transition({ 'box-shadow' : 'inset 0 1px 1px rgba(255, 255, 255, 0.3)' });
                     });
-
-
 
 
                     $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
@@ -967,6 +992,7 @@
           */
           clearVar();
           resetLocalVar();
+          console.log("Ejecuando prueba()... quitar antes de lanczar");
           prueba();
 
 
@@ -1084,8 +1110,16 @@
           console.log("Pestaña actual: "+currentTab);
         }
 
-
     })
+
+    .on('focus', '.hdd input',function(){
+      $(this).parent('.new-input').addClass('active');
+    })
+
+    .on('blur', '.hdd input',function(){
+      $(this).parent('.new-input').removeClass('active');
+    })
+
 
     .on( 'click' , '.back', function(){
 
@@ -1093,8 +1127,15 @@
       if(!loading){
 
         if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
+          if (currentTab == '.modify-premium' || currentTab == '.order-premium')  {
+            if(! $('.'+currentTab +' .secure-by-stripe').hasClass('hidden') && $('.'+currentTab+ ' .info-current-card').hasClass('new-card')){
+              $('.'+currentTab +' .secure-by-stripe').addClass('hidden');
+              $('.'+currentTab +' .info-current-card').removeClass('new-card');
+            }
+          }
           nextPage(currentTab, 2);
           var currentObject = $('.hdd-container');
+          $('.order .secure-by-stripe').addClass('hidden');
           $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() - 838}, 800, function(){
           });
         }else{
@@ -1105,6 +1146,9 @@
     })
     .on(  'click' , '.change-plan' , function(){
       plansCounter = listPlans.indexOf(userLocal.premium.activePlan);
+      if(userLocal.premium.card.id == null && cardStatus == 2){
+        cardStatus = 0;
+      }
       if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
         nextPage(currentTab, 1);
         loadModifySpace();
@@ -1125,7 +1169,6 @@
       updateUserLocal(inevioPlans[listPlans.indexOf(activePlan)].amount, 2);
       updateUserLocal(api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota).split(" ", 1)[0], 3);
       updateUserLocal(new Date(), 4);
-      //La tarjeta ya se ha asignado cuando se valida
       resetLocalVar();
     })
 
@@ -1172,47 +1215,80 @@
       var tipo = null;
       if(this.className == "number-card"){
         tipo = 1;
-      }else if (this.className == "month-card"){
+      }else if (this.className == "month-year-card"){
         tipo = 2;
-      }else if (this.className == "year-card"){
-        tipo = 3;
       }else if (this.className == "code-card"){
-        tipo = 4;
+        tipo = 3;
       }else{
         tipo = 0;
       }
-
       if(tipo == 0){
           $(this).append(tecla.key);
       }
 
       if(tipo == 1){
-        if(tecla.keyCode > 47 && tecla.keyCode < 58 && $(this).val().length < 19){
-          $(this).append(tecla.key);
+
+        if(tecla.charCode == 0){
+          var text = $(this).val();
+          text = text.toString();
+          text.substring(0, text.length - 1);
+          $(this).val(text);
+          return;
+        }
+
+        if($(this).val().length < 19){
+          if(tecla.charCode == codeNumber[codeNumber.indexOf(tecla.charCode)]){
+            $(this).append(codeNumber.indexOf(tecla.charCode));
+          }else{
+            return false;
+          }
         }else{
           return false;
         }
       }
 
       if(tipo == 2){
-        if(tecla.keyCode > 47 && tecla.keyCode < 58 && $(this).val().length < 2){
-          $(this).append(tecla.key);
+
+        if(tecla.charCode == 0){
+          var text = $(this).val();
+          text = text.toString();
+          text.substring(0, text.length - 1);
+          $(this).val(text);
+          return;
+        }
+
+        if($(this).val().length < 5){
+          if($(this).val().length == 2){
+
+            $(this).val($(this).val() + "/");
+          }
+          if(tecla.charCode == codeNumber[codeNumber.indexOf(tecla.charCode)]){
+            $(this).append(codeNumber.indexOf(tecla.charCode));
+          }else{
+            return false;
+          }
         }else{
           return false;
         }
       }
+
 
       if(tipo == 3){
-        if(tecla.keyCode > 47 && tecla.keyCode < 58 && $(this).val().length < 2){
-          $(this).append(tecla.key);
-        }else{
-          return false;
-        }
-      }
 
-      if(tipo == 4){
-        if(tecla.keyCode > 47 && tecla.keyCode < 58 && $(this).val().length < 4){
-          $(this).append(tecla.key);
+        if(tecla.charCode == 0){
+          var text = $(this).val();
+          text = text.toString();
+          text.substring(0, text.length - 1);
+          $(this).val(text);
+          return;
+        }
+
+        if($(this).val().length < 4){
+          if(tecla.charCode == codeNumber[codeNumber.indexOf(tecla.charCode)]){
+            $(this).append(codeNumber.indexOf(tecla.charCode));
+          }else{
+            return false;
+          }
         }else{
           return false;
         }
@@ -1222,20 +1298,49 @@
 
     .on(  'click', '.modify-premium .save', function(){
 
+      if(cardStatus == 1){
+        return;
+      }
 
+      if(cardStatus == 0){
+        $('.modify-premium .preferences-hdd-payment-bottom button').addClass('back');
+        $('.modify-premium .card-active').removeClass('card-active');
+        $('.modify-premium .new-card').removeClass('new-card');
+        $('.modify-premium .secure-by-stripe').addClass('hidden');
+        return;
+      }
+
+
+      var month_year = $('.modify-premium .month-year-card').val().split("/");
+
+      if(month_year[1] == null && month_year[0] != null){
+        month_year[1] = "";
+      }
 
       var card = {
         name : $('.modify-premium .new-card .owner-card').val(),
         number : $('.modify-premium .info-current-new-card-bottom .number-card').val(),
-        month : $('.modify-premium .info-current-new-card-bottom .month-card').val(),
-        year :  $('.modify-premium .info-current-new-card-bottom .year-card').val(),
+        month : month_year[0],
+        year :  month_year[1],
         code :  $('.modify-premium .info-current-new-card-bottom .code-card').val()
       }
 
-      if(card.name == "" | card.number == "" | card.month == "" | card.year == "" | card.code == ""){
-          alert( lang.creditcardError );
-      }else{
-        console.log(cardStatus);
+
+
+      if(card.name == "" && card.number == "" && card.month == "" && card.code == ""){
+        cardStatus = 0;
+        $('.modify-premium .preferences-hdd-payment-bottom button').addClass('back');
+        $('.modify-premium .card-active').removeClass('card-active');
+        $('.modify-premium .new-card').removeClass('new-card');
+        $('.modify-premium .secure-by-stripe').addClass('hidden');
+        return;
+      }
+
+      if( card.name == "" | card.number == "" | card.month == "" | card.code == ""){
+        alert(lang.emptyInput);
+        return;
+      }
+
         if(parseInt(card.month) < 10){
           card.month = '0' + card.month;
         }
@@ -1253,13 +1358,13 @@
 
             if( response.error ){
 
-              alert( lang.creditcardError );
+              alert( lang[response.error.code] );
               loadLoading();
-              return
+              return;
 
             }
 
-            request( 'POST', 'https://restbeta.inevio.com/payment/addCard', {
+            request( 'POST', 'https://restbeta.horbito.com/payment/addCard', {
 
               token : response.id
 
@@ -1272,7 +1377,12 @@
               setTimeout(function(){
                 $('.modify-premium .new-card').removeClass('new-card').addClass('card-active');
                 loadLoading();
+                if(! $('.modify-premium .secure-by-stripe').hasClass('hidden')){
+                  $('.modify-premium .secure-by-stripe').addClass('hidden');
+                }
+
               }, 1000);
+
 
             })
             .fail( function( res ){
@@ -1284,11 +1394,115 @@
 
           });
         }
-      }
 
     })
 
-    .on(  'click', '.modify-premium .delete-card', function(){
+
+    .on(  'click', '.order-premium .validate', function(){
+
+      console.log(cardStatus);
+      if(cardStatus == 0){
+        alert(lang.mustBeCard);
+        return;
+      }
+      if(cardStatus == 1){
+        loadLoading();
+        changePlan(activePlan);
+          if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
+            loadLoading();
+            nextPage(currentTab, 1);
+            var currentObject = $('.hdd-container');
+            $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
+            });
+          }else{
+            console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , currentTab);
+          }
+      }
+      else{
+
+        var month_year = $('.order-premium .month-year-card').val().split("/");
+        if(month_year[1] == null && month_year[0] != null){
+          month_year[1] = "";
+        }
+
+        var card = {
+          name : $('.order-premium .new-card .owner-card').val(),
+          number : $('.order-premium .info-current-new-card-bottom .number-card').val(),
+          month : month_year[0],
+          year :  month_year[1],
+          code :  $('.order-premium .info-current-new-card-bottom .code-card').val()
+        }
+
+        if(card.name == "" && card.number == "" && card.month == "" && card.code == ""){
+          cardStatus = 0;
+          $('.order-premium .card-active').removeClass('card-active');
+          $('.order-premium .new-card').removeClass('new-card');
+          $('.order-premium .secure-by-stripe').addClass('hidden');
+          return;
+        }
+
+        if( card.name == "" | card.number == "" | card.month == "" | card.code == ""){
+          alert(lang.emptyInput);
+          return;
+        }
+
+
+          if(parseInt(card.month) < 10){
+            card.month = '0' + card.month;
+          }
+          if (cardStatus == 2){
+            loadLoading();
+            Stripe.card.createToken({
+
+              number    : card.number,
+              cvc       : card.code,
+              exp_month : card.month,
+              exp_year  : card.year,
+              name      : card.name
+
+            }, function( status, response ) {
+
+              if( response.error ){
+
+                alert( lang[response.error.code] );
+                loadLoading();
+                return;
+
+              }
+
+
+              request( 'POST', 'https://restbeta.horbito.com/payment/addCard', {
+
+                token : response.id
+
+              })
+              .done( function( res ){
+                resetLocalVar();
+                cardStatus=1;
+                setTimeout(function(){
+                  $('.order-premium .new-card').removeClass('new-card').addClass('card-active');
+                  loadLoading();
+                  if(! $('.order-premium .secure-by-stripe').hasClass('hidden')){
+                    $('.order-premium .secure-by-stripe').addClass('hidden');
+                  }
+
+                }, 1000);
+
+
+              })
+              .fail( function( res ){
+                console.log("ERROR");
+                alert( lang.paymentError );
+                loadLoading();
+
+              })
+            });
+          }
+      }
+    })
+
+
+    .on(  'click', '.delete-card', function(){
       //Delete actual card
       resetInputVal();
       cardStatus=0;
@@ -1297,7 +1511,11 @@
 
       setTimeout(function(){
         loadLoading();
-        $('.modify-premium .card-active').removeClass('card-active');
+
+        $('.' +currentTab + ' .card-active').removeClass('card-active');
+        if(currentTab == 'order-premium'){
+          $('.order-premium button').find('span').text(lang.save);
+        }
       },300)
     })
 
@@ -1317,7 +1535,7 @@
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
-        else if (currentTab == spaceTabs[5]){
+        else if (currentTab == spaceTabs[6]){
           //normal
           tamano = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
@@ -1367,7 +1585,11 @@
           }
         }
 
-
+        if(currentTab == 'more' && plansCounter == 1){
+          console.log(plansCounter, "QUITAR");
+          $('.more button').removeClass('block');
+          $('.more button').addClass('nextTab');
+        }
 
       }
       else{
@@ -1394,7 +1616,7 @@
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
-        else if (currentTab == spaceTabs[5]){
+        else if (currentTab == spaceTabs[6]){
           //normal
           tamano = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
@@ -1443,6 +1665,12 @@
           }
         }
 
+        if(currentTab == 'more' && plansCounter == 0){
+          console.log(plansCounter, "QUITAR");
+          $('.more button').addClass('block');
+          $('.more button').removeClass('nextTab');
+        }
+
 
       }
       else{
@@ -1453,6 +1681,7 @@
 
     .on(  'click',  '.more .nextTab', function(){
 
+      $('.order .secure-by-stripe').removeClass('hidden');
       var total = parseInt($('.more .show-space-selected .big-text').text());
       var price = parseInt($('.more .quantity').text());
       $('.order .info-options .options-middle .options-middle-right').text(price + lang.dolarMonthMinus);
@@ -1463,30 +1692,44 @@
 
 
 
-
-
-
-
     .on(  'click', '.addCard' , function(){
-
+      if(currentTab == 'modify-premium'){
+        $('.modify-premium .secure-by-stripe').removeClass('hidden');
         $('.modify-premium .info-current-card').addClass('new-card');
         $('.modify-premium .preferences-hdd-payment-bottom button').removeClass('back');
         cardStatus = 2;
+      }else if (currentTab == 'order-premium'){
+        $('.order-premium .secure-by-stripe').removeClass('hidden');
+        $('.order-premium .info-current-card').addClass('new-card');
+        $('.order-premium .preferences-hdd-payment-bottom button').removeClass('back');
+        cardStatus = 2;
+      }else{
+        console.log("ERROR");
+      }
+
     })
+
+
 
     .on ('click' ,'.order .validate', function(){
 
-      var card = {
-        name: $('.order .owner-card').val(),
-        number : $('.order .number-card').val(),
-        month: $('.order .month-card').val(),
-        year : $('.order .year-card').val(),
-        code : $('.order .code-card').val()
+      var month_year = $('.order .month-year-card').val().split("/");
+      if(month_year[1] == null && month_year[0] != null){
+        month_year[1] = "";
       }
 
-      if(card.name == "" | card.number == "" | card.month == "" | card.year == "" | card.code == ""){
-          alert( lang.creditcardError );
-      }else{
+      var card = {
+        name : $('.order .new-card .owner-card').val(),
+        number : $('.order .info-current-new-card-bottom .number-card').val(),
+        month : month_year[0],
+        year :  month_year[1],
+        code :  $('.order .info-current-new-card-bottom .code-card').val()
+      }
+
+      if( card.name == "" | card.number == "" | card.month == "" | card.code == ""){
+        alert(lang.emptyInput);
+        return;
+      }
 
         if(parseInt(card.month) < 10){
           card.month = '0' + card.month;
@@ -1504,12 +1747,12 @@
 
             if( response.error ){
 
-              alert( lang.creditcardError );
+              alert( lang[response.error.code] );
               loadLoading();
-              return
+              return;
 
             }
-            request( 'POST', 'https://restbeta.inevio.com/payment/subscribe', {
+            request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
 
               token : response.id,
               plan  : activePlan,
@@ -1525,6 +1768,7 @@
                 nextPage(currentTab, 1);
                 var currentObject = $('.hdd-container');
                 $('.finish .finish-middle .info-space').text( $( '.order .options-bottom .bottom .left').text());
+                $('.order .secure-by-stripe').addClass('hidden');
                 $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
                 });
               }else{
@@ -1542,12 +1786,62 @@
 
           });
 
-      }
-
     })
+/*
+    .on('click', '.more .preferences-hdd-payment-bottom .block', function(){
+      alert(lang.noSelectablePlan0);
+    })
+
+  */
 
     .on('click', '.modify-space .validate', function(){
 
+      $('.order-premium .options-top-body .body-bottom .left').find('span').text((parseInt(userLocal.premium.actualStorage) + parseInt(userLocal.premium.extraStorage )) + 'GB');
+      $('.order-premium .options-top-body .body-bottom .right').find('span').text(userLocal.premium.actualPrice + lang.dolarMonthMinus);
+
+      $('.order-premium .options-middle .options-middle-left').find('span').text(lang.changeTo + $('.modify-space .big-text').text() + 'GB');
+      $('.order-premium .options-middle .options-middle-right').find('span').text($('.modify-space .quantity').text() + lang.dolarMonthMinus);
+
+      $('.order-premium .options-bottom .left').find('span').text($('.modify-space .big-text').text() + 'GB');
+      $('.order-premium .options-bottom .right').find('span').text($('.modify-space .quantity').text() + lang.dolarMonthMinus);
+
+
+      if(cardStatus == 1){
+        $('.order-premium .info-current-card').addClass('card-active');
+
+        var cardFigure = $('.order-premium .card-active .number-credit-card');
+        if(userLocal.premium.card.brand == "Visa"){
+          cardFigure.addClass('card-visa');
+        }
+        else if (userLocal.premium.card.brand == "American Express"){
+          cardFigure.addClass('card-americanExp');
+        }
+        else if (userLocal.premium.card.brand == "MasterCard"){
+          cardFigure.addClass('card-master');
+        }
+        else if (userLocal.premium.card.brand == "Discover"){
+          cardFigure.addClass('card-discover');
+        }
+        else if (userLocal.premium.card.brand == "JCB"){
+          cardFigure.addClass('card-JCB');
+        }
+        else if (userLocal.premium.card.brand == "Diners Club") {
+          cardFigure.addClass('card-diners');
+        }
+        else{
+          cardFigure.addClass('card-default');
+        }
+
+        $(  '.order-premium .number-card').find('span').text("**** **** **** " + userLocal.premium.card.number);
+        $(  '.order-premium .delete-card').find('span').text(lang.delete);
+        $(  '.order-premium .info-current-card-bottom .delete-card').text(lang.delete);
+        $(  '.order-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + $('.modify-space .quantity').text() + lang.payParagraph[1]+ new Date(userLocal.premium.payDay).getDate() + lang.payParagraph[2]);
+
+        $(  '.order-premium .preferences-hdd-payment-bottom button').find('span').text(lang.confirm);
+      }
+      else{
+        $(  '.order-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
+      }
       if ((parseInt(userLocal.premium.actualStorage) + parseInt(userLocal.premium.extraStorage )) > (parseInt($('.modify-space .big-text').text()))) {
 
         $('.finish-premium .finish-top').addClass('sad');
@@ -1558,9 +1852,8 @@
         $('.finish-premium .finish-middle span:first-child').text(lang.congratulation);
       }
 
+      console.log(cardStatus);
 
-      cambioPlan(activePlan);
-      console.log("NUEVO: "+userLocal.premium.activePlan);
         if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
           nextPage(currentTab, 1);
           var currentObject = $('.hdd-container');
@@ -1570,6 +1863,13 @@
           console.log("ERROR" , $(this).parents('.preferences-hdd-payment') , currentTab);
         }
     })
+
+    .on('click', '.order-premium .back', function(){
+      $('.order-premium .secure-by-stripe').addClass('hidden');
+      $('.order-premium .info-current-card').removeClass('new-card');
+    })
+
+
 
 
     .on( 'click', '.save-info', function(){
@@ -1697,9 +1997,7 @@
         }else if( !confirmPassword.hasClass( 'pending' ) && confirmPasswordInput.val().length ){
             confirmPassword.removeClass( 'pending' ).addClass( 'correct error' );
         }
-
     })
-
     // Shows password content and hides account content when clicked ( Account Tab )
     .on( 'click', '.change-password', function(){
 
@@ -2265,6 +2563,40 @@
 
     };
 
+
+    var doGetCaretPosition = function (oField) {
+
+      // Initialize
+      var iCaretPos = 0;
+
+      // IE Support
+      if (document.selection) {
+
+        // Set focus on the element
+        oField.focus();
+
+        // To get cursor position, get empty selection range
+        var oSel = document.selection.createRange();
+
+        // Move selection start to 0 position
+        oSel.moveStart('character', -oField.value.length);
+
+        // The caret position is selection length
+        iCaretPos = oSel.text.length;
+      }
+
+      // Firefox support
+      else if (oField.selectionStart || oField.selectionStart == '0')
+        iCaretPos = oField.selectionStart;
+
+      // Return results
+      return iCaretPos;
+    }
+
+
+
+
+
     // payments.js start
 
 var resetInputVal = function(){
@@ -2274,7 +2606,7 @@ var resetInputVal = function(){
 
 var unsubscribe = function(){
 
-  request( 'POST', 'https://restbeta.inevio.com/unsubscribe' ).done( function(){
+  request( 'POST', 'https://restbeta.horbito.com/unsubscribe' ).done( function(){
 
     console.log("unsubscribe OK");
 
@@ -2289,15 +2621,13 @@ var removeCard = function(){
 
 
 
-  request( 'POST', 'https://restbeta.inevio.com/payment/removeCard', {
+  request( 'POST', 'https://restbeta.horbito.com/payment/removeCard', {
 
     card  : userLocal.premium.card.id
 
   }).done(function(res){
-    console.log("TODO OK", res);
-    console.log(loading, "QUITAR");
+    console.log("TODO OK, tarjeta borrada", res);
     resetLocalVar();
-    console.log(userLocal);
   })
   .fail( function(res){
     console.log("ERROR", res);
@@ -2391,14 +2721,14 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         if( response.error ){
           console.log(card);
           console.log(response);
-          alert( lang.creditcardError )
-          $('.load-only').hide()
-          $('.preferences-payment-button').show()
+          alert( lang[response.error.code] );;
+          $('.load-only').hide();
+          $('.preferences-payment-button').show();
           return
 
         }
 
-        request( 'POST', 'https://restbeta.inevio.com/payment/subscribe', {
+        request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
 
           token : response.id,
           plan  : activePlan,
@@ -2410,6 +2740,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
         }).fail( function( res ){
 
+          console.log(res);
+
           alert( lang.paymentError );
 
         })
@@ -2419,17 +2751,16 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     };
 
-    var cambioPlan = function(newPlan){
+    var changePlan = function(newPlan){
 
 
-          request( 'POST', 'https://restbeta.inevio.com/payment/subscribe', {
+          request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
 
 
             plan  : newPlan
 
           }).done(function(res){
             console.log("TODO OK", res);
-            console.log("CARGAR VENTANA");
             resetLocalVar();
           })
           .fail( function(res){
@@ -2453,11 +2784,16 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         loadCanvasCake(canvasObject2,contexto2, centroX, centroY, radio, porcentaje);
 
       infoSubscriptions = api.app.storage('infoSubscriptions');
+      console.log(infoSubscriptions);
       language = api.app.storage('language');
       quota = wz.system.quota();
-      inevioPlans = infoSubscriptions.availablePlans;
+      for(var i = 0; i<infoSubscriptions.availablePlans.length; i++){
+        inevioPlans.push(infoSubscriptions.availablePlans[i]);
+      }      console.log(inevioPlans);
       listPlans = inevioPlans.map(function( item ){
         return item.id});
+
+      console.log(infoSubscriptions);
 
       // Load info user subscription
       loadInfoUserSub(infoSubscriptions);
@@ -2500,6 +2836,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         spacePRTab();
         modifyPRTab();
         modifySPTab();
+        orderPRTab();
         finishPRTab();
       }
       else{
@@ -2584,7 +2921,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     };
     var spaceTab = function(){
-      console.log(language);
+      //console.log(language);
       if (language == 'es'){
         $('.space .info-plan-premium').addClass('es');
       }else if (language == 'en') {
@@ -2614,7 +2951,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.more .current-information.one .paragraph').find('span').text(lang.infoPaymentOneBody);
       $(  '.more .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
       $(  '.more .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
-      $(  '.more .quantity').find('span').text(1);
+      $(  '.more .quantity').find('span').text(inevioPlans[0].amount);
       $(  '.more .quantity-container .top').text("$");
       $(  '.more .quantity-container .bottom').text(lang.perMonth);
       $(  '.more .show-space-selected').find('span').text('GB');
@@ -2643,10 +2980,12 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.order .info-current-card-bottom.options-credit-card.year-credit-card').find('input').attr('placeholder', lang.creditCardOptions.yearCreditCard);
       $(  '.order .info-current-card-bottom.options-credit-card.code-credit-card').find('input').attr('placeholder', lang.creditCardOptions.codeCreditCard);
       $(  '.order .info-current-card-bottom .info-current-payment').find('p').text(lang.infoCurrentPayment);
-      $(  '.order .preferences-hdd-payment-bottom').find('span').text(lang.next);
+      $(  '.order .preferences-hdd-payment-bottom button').find('span').text(lang.next);
       $(  '.order .info-current-card-top').find('span').text(lang.creditCard);
       $(  '.order .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
       $(  '.order .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
+      $(  '.order .info-secure span').text(lang.secureByStripe);
+      $(  '.order .info-secure .underline').text(lang.stripe);
 
 
     };
@@ -2673,7 +3012,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     };
 
     var prueba = function(){
-      var valor = 4;
+
+      var valor = 5;
       if (userLocal.premium.info){
         valor = 0;
       }
@@ -2705,8 +3045,6 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
 
     var modifyPRTab = function(){
-
-
 
       if(cardStatus == 1){
         var cardFigure = $('.modify-premium .card-active .number-credit-card');
@@ -2756,7 +3094,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(parseInt(userLocal.premium.actualStorage) + parseInt(userLocal.premium.extraStorage) + "GB");
       $(  '.modify-premium .number-card').find('span').text("**** **** **** " + userLocal.premium.card.number);
       $(  '.modify-premium .delete-card').find('span').text(lang.delete);
-      $(  '.modify-premium .preferences-hdd-payment-bottom').find('span').text(lang.save);
+      $(  '.modify-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
       $(  '.modify-premium .info-options .options-top .bottom').find('span').text(userLocal.premium.actualPrice + lang.dolarMonthMinus);
       $(  '.modify-premium .info-options .options-top .top .left').find('span').text(userLocal.premium.extraStorage + lang.extra);
@@ -2766,6 +3104,10 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-premium .info-current-card-top').find('span').text(lang.creditCard);
       $(  '.modify-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
       $(  '.modify-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
+      $(  '.modify-premium .info-secure span').text(lang.secureByStripe);
+      $(  '.modify-premium .info-secure .underline').text(lang.stripe);
+
+
 
     };
     var modifySPTab = function(){
@@ -2783,6 +3125,35 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-space .show-space-selected').find('span').text('GB');
       $(  '.modify-space .show-space-selected .big-text').text(userLocal.premium.extraStorage +  parseInt(userLocal.premium.actualStorage));
       $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
+
+    };
+
+    var orderPRTab = function (){
+      $(  '.order-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+      $(  '.order-premium .preferences-hdd-payment-top').find('span').text(lang.order);
+      $(  '.order-premium .options-top-tittle').find('span').text(lang.summary);
+      $(  '.order-premium .options-top-body').find('span').text(lang.currentSpaceMayus);
+      $(  '.order-premium .options-top-body .body-bottom .right').find('span').text(lang.free);
+      $(  '.order-premium .options-top-body .body-bottom .left').find('span').text(userLocal.premium.actualStorage + "GB");
+      $(  '.order-premium .options-middle .options-middle-left').find('span').text(lang.add + $('.modify-space .show-space-selected .big-text').text()+"GB");
+      $(  '.order-premium .options-middle .options-middle-right').find('span').text(($('.modify-space .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
+      $(  '.order-premium .options-bottom .top .left').text(lang.totalStorageMayus);
+      $(  '.order-premium .options-bottom .top .right').text(lang.totalMayus);
+      $(  '.order-premium .options-bottom .bottom .left').find('span').text((parseInt(userLocal.premium.actualStorage) + parseInt($('.modify-space .show-space-selected .big-text').text()))  + "GB");
+      $(  '.order-premium .options-bottom .bottom .right').find('span').text(lang.perMonth);
+      $(  '.order-premium .options-bottom .bottom .right .big').text(($('.modify-space .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
+      $(  '.order-premium .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
+      $(  '.order-premium .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
+      $(  '.order-premium .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
+      $(  '.order-premium .info-current-card-bottom.options-credit-card.year-credit-card').find('input').attr('placeholder', lang.creditCardOptions.yearCreditCard);
+      $(  '.order-premium .info-current-card-bottom.options-credit-card.code-credit-card').find('input').attr('placeholder', lang.creditCardOptions.codeCreditCard);
+      $(  '.order-premium .info-current-card-bottom .info-current-payment').find('p').text(lang.infoCurrentPayment);
+      $(  '.order-premium .preferences-hdd-payment-bottom button').find('span').text(lang.next);
+      $(  '.order-premium .info-current-card-top').find('span').text(lang.creditCard);
+      $(  '.order-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
+      $(  '.order-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
+      $(  '.order-premium .info-secure span').text(lang.secureByStripe);
+      $(  '.order-premium .info-secure .underline').text(lang.stripe);
 
     };
     var finishPRTab = function(){
@@ -2830,4 +3201,5 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
 //StartApp
 loadAppUser();
-prueba();
+
+//prueba();

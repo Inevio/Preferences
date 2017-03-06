@@ -43,6 +43,7 @@
     "safeFolders"      : "Carpetas seguras",
     "withPassword"     : "con contraseña",
     "subscribe"        : "Suscribir",
+    "noSelectablePlan0" : "No se puede seleccionar plan gratuito.",
 
 
     "usedSpace"        :  "Espacio usado",
@@ -55,14 +56,26 @@
     "modify"           :  "Modificar",
     "creditCard"       :  "Tarjeta de crédito",
     "creditcardError"  :  "Error en la tarjeta de crédito",
+    "invalid_number"	      : "El número de tarjeta no es un número de tarjeta de crédito válido.",
+    "invalid_expiry_month"	: "El mes de vencimiento de la tarjeta no es válido.",
+    "invalid_expiry_year"	  : "El año de vencimiento de la tarjeta no es válido",
+    "invalid_cvc"	          : "El código de seguridad de la tarjeta no es válido.",
+    "invalid_swipe_data"	  : "Los datos de desplazamiento de la tarjeta no son válidos.",
+    "incorrect_number"      :	"El número de tarjeta es incorrecto.",
+    "expired_card"          :	"La tarjeta ha caducado.",
+    "incorrect_cvc"	        : "El código de seguridad de la tarjeta es incorrecto.",
+    "incorrect_zip"	        : "El código postal de la tarjeta no se validó.",
+    "card_declined"         :	"La tarjeta fue rechazada.",
+    "missing"               :	"No hay una tarjeta en un cliente que se está cargando.",
+    "processing_error"	    : "Se produjo un error al procesar la tarjeta.",
     "paymentError"     :  "No se ha podido realizar el pago, ponte en contacto con nosotros.",
     "errorRemoveCard"  :  "Error al borrar la tarjeta, por favor contactca con nosotros.",
     "changePlanError"  :  "Error al cambiar el plan, por favor contacta con nosotros.",
     "inevioCredit"     :  "Crédito de Inevio",
     "delete"           :  "Eliminar",
     "extra"            :  " GB Extra",
-    "dolarMonth"        :  " $/MES",
-    "dolarMonthMinus"   :  " $/mes",
+    "dolarMonth"        :  "$/MES",
+    "dolarMonthMinus"   :  "$/mes",
     "perMonth"         :  "/mes",
     "payDay"           :  "Siguiente pago el ",
 
@@ -70,11 +83,14 @@
       "Se cobra el ",
       " del próximo mes."
     ],
+    "changeTo" : "Modificar a ",
+    "emptyInput" : "Si desea añadir una tarjeta primero debe rellenar todos los campos.",
 
     "add" : "Añadir ",
     "totalMayus"  : "TOTAL",
     "addCard"     : "Añadir tarjeta",
     "noCardInfo"  : "Si no hay ninguna tarjeta añadida no se puede realizar el cobro por el plan actual. De ser así éste será cancelado.",
+    "mustBeCard"  : "Para cambiar el plan de almacenamiento, primero debes añadir una tarjeta.",
     "infoPlanPremium" :
     [
       "25",
@@ -148,6 +164,7 @@
     "newPasswordType"     : "Escribe la nueva contraseña",
     "confirmPassword"     : "Confirma Nueva Contraseña",
     "confirmPasswordType" : "Confirma la nueva contraseña",
+    "confirm"             : "Confirmar",
     "passwordChanged"     : "Contraseña cambiada",
     "passwordChanged2"    : "Tu contraseña ha sido cambiada correctamente",
     "forgetPassword"      : "¿Olvidaste la contraseña?",
@@ -205,6 +222,8 @@
       " $ todos los meses el dia ",
       ". Para cambiar de tarjeta primero elimina la actual."
     ],
+    "secureByStripe"  : "Asegurado por ",
+    "stripe"          : "Stripe",
 
 
     "twitter" : {

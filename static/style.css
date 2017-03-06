@@ -9,9 +9,35 @@ button{
   display: none !important;
 }
 
+.block:hover{
+  cursor: default !important;
+  *:hover{
+    cursor:default !important;
+  }
+}
 .block {
   opacity: .2 !important;
 }
+
+
+.pointer:hover{
+    cursor: pointer;
+    *:hover{
+      cursor:pointer;
+    }
+}
+.focuted:hover{
+  opacity: 1 !important;
+  color: white;
+}
+
+.underline{
+  text-decoration: underline;
+  margin-left: 3px;
+  color: rgba(255,255, 255, 0.7);
+}
+
+
 
 .wz-view-menu-group{
 
@@ -367,6 +393,7 @@ button{
 
 }
 
+/*
 .preferences-bottom-input{
 
     width: 382px;
@@ -374,6 +401,7 @@ button{
     background: #545F65;
     border: 1px solid #444;
 }
+*/
 
 
 .preferences-bottom-container{
@@ -672,7 +700,7 @@ button{
 
   .ui-btn{
     width: auto;
-    min-width: 117px;
+    min-width: 124px;
     min-height: 34px;
   }
 }
@@ -749,9 +777,13 @@ button{
   margin: 37px 0 0 26px;
 
   .usage-circle{
+
     background: url('@static/elipse.png') no-repeat;
     width: 238px;
+    position: relative;
     margin: 0px auto;
+    display: block;
+    margin-top: 5px;
     height: 238px;
     background-size: 238px 238px;
   }
@@ -759,16 +791,51 @@ button{
 
 
 .preferences-hdd-canvas-cake{
-    margin-top: -115px;
+  margin: -2px;
+  width: 242px;
+  height: 242px;
+  position: relative;
+}
+/*
+
+@media
+(-webkit-min-device-pixel-ratio: 1.3),
+(min-moz-device-pixel-ratio: 1.3),
+(-o-min-device-pixel-ratio: 2.6/2),
+(min-device-pixel-ratio: 1.3),
+(min-resolution: 1.3dppx) {
+  .preferences-hdd-canvas-cake{
+      -webkit-margin-top: -116px !important;
+      -moz-margin-top: -117.2px !important;
+  }
+}
+
+
+
+/*
+
+@media
+(-webkit-min-device-pixel-ratio: 1.3),
+(min-device-pixel-ratio: 1.3),
+(min-resolution: 1.3dppx) {
+  .preferences-hdd-canvas-cake{
+      -webkit-margin-top: -116px !important;
+  	  -moz-margin-top: -117.2px !important;
+  }
+}
+
+
+.preferences-hdd-canvas-cake{
+    margin-top: -116px;
     margin-left: -2px;
     width: 242px;
     height: 242px;
 }
 
 @-moz-document url-prefix() {
-  .preferences-hdd-canvas-cake {
-     margin-top : -117px !important;
-  }
+    .preferences-hdd-canvas-cake {
+       margin-top : -117px;
+    }
 }
 
 .preferences-hdd-cake-circle{
@@ -776,6 +843,7 @@ button{
   width: 80px;
 }
 
+*/
 
 .small-box-hdd.active{
   /*border: solid 2px #60b25e;*/
@@ -863,30 +931,60 @@ button{
   }
 }
 
+.secure-by-stripe{
+
+  color: white;
+  display: flex;
+  width: 234px;
+  margin-top: 11px;
+
+  .info-secure{
+    color: rgba(255, 255, 255, 0.7);
+    width: 170px;
+    display: flex;
+
+    .icon-secure{
+      background: url('@static/lock-stripe.png') no-repeat;
+      background-size: 10px 13px;
+      width: 15px;
+      margin: 0px auto;
+      height: 26px;
+      margin-top: 1px;
+    }
+  }
+
+
+}
+
+.change-plan{
+  span{
+    opacity: .7;
+  }
+
+}
+
+
 .card-active{
   .info-current-card-bottom{
     display: block !important;
 
     .card-visa{
       figure{
-        background: url('@static/card-visa.png') no-repeat !important;
-        background-size: 25px 8px !important;
+        background: url('@static/card-visa.png') no-repeat;
+        background-size: 25px 8px;
         width: 25px;
         margin: 0px 0px;
         margin-top: 7px;
-        margin-right: 11px;
       }
     }
 
     .card-americanExp{
 
       figure{
-        background: url('@static/card-americanExp.png') no-repeat !important;
-        background-size: 25px 8px !important;
+        background: url('@static/card-americanExp.png') no-repeat;
+        background-size: 25px 17px;
         width: 25px;
         margin: 0px 0px;
-        margin-top: 7px;
-        margin-right: 11px;
       }
 
     }
@@ -894,12 +992,11 @@ button{
     .card-master{
 
       figure{
-        background: url('@static/card-master.png') no-repeat !important;
-        background-size: 25px 8px !important;
+        background: url('@static/card-master.png') no-repeat;
+        background-size: 25px 15px;
         width: 25px;
-        margin: 0px 0px;
-        margin-top: 7px;
-        margin-right: 11px;
+        height: 15px;
+        margin-top: 2px;
       }
 
     }
@@ -907,12 +1004,11 @@ button{
     .card-discover{
 
       figure{
-        background: url('@static/card-discover.png') no-repeat !important;
-        background-size: 25px 8px !important;
+        background: url('@static/card-discover.png') no-repeat;
+        background-size: 25px 17px;
         width: 25px;
         margin: 0px 0px;
-        margin-top: 7px;
-        margin-right: 11px;
+
       }
 
     }
@@ -962,6 +1058,7 @@ button{
   }
   .info-current-new-card-bottom{
     display: none !important;
+
   }
 
 }
@@ -1036,7 +1133,7 @@ button{
     background-size: 52px 38px;
     width: 52px;
     height: 38px;
-    margin: 10px auto 10px auto;
+    margin: 10px 10px 0px 0px;
     transition: all .2s ease;
   }
 
@@ -1047,7 +1144,7 @@ button{
     margin-left: 85px;
 
       .info-current-card-top{
-        margin: 55px 0px 0px 0px;
+        margin: 28px 0px 0px 0px;
       }
 
       .info-current-card-bottom{
@@ -1088,12 +1185,11 @@ button{
 
       }
 
-      .focuted:hover{
-        opacity: 1 !important;
-      }
+
       .info-current-without-card-bottom{
 
         margin-top: 36px;
+        margin-bottom: 86px;
         color: #c7d1d7;
         .top{
           opacity: 0.7;
@@ -1124,100 +1220,8 @@ button{
       }
 
       .info-current-new-card-bottom{
+
         display: none;
-        text-align: left;
-        padding: 10px 0px;
-
-        ::-webkit-input-placeholder {
-         color: white;
-        }
-        input{
-          color: white;
-          padding: 0px 7px;
-          background: transparent;
-        }
-
-        article{
-          margin-top: 10px;
-          padding: 5px 10px;
-          width: 320px;
-          border-radius: 25px !important;
-        }
-
-        .number-credit-card{
-          display: flex;
-
-          background: rgb(44, 50, 56);
-          border-radius: 16px;
-          color: white;
-
-          input{
-            width: 265px;
-          }
-
-          figure{
-            width: 40px;
-          }
-
-          .delete-card{
-            font-size: 12px;
-            padding-top: 3px;
-          }
-        }
-
-        .owner-credit-card{
-          display: flex;
-
-          background: rgb(44, 50, 56);
-          border-radius: 16px;
-          color: white;
-
-
-          input{
-            width: 265px;
-          }
-
-        }
-
-        .options-credit-card{
-          display: flex;
-          margin-top: 5px;
-          padding-left: 0px;
-
-          input{
-            width: 47px;
-
-          }
-          article{
-            max-width: 60px;
-            margin-top: 0px;
-            margin-right: 10px;
-            padding: 5px 7px;
-          }
-
-          .month-credit-card{
-            display: flex;
-
-            background: rgb(44, 50, 56);
-            border-radius: 16px;
-          }
-
-          .year-credit-card{
-            display: flex;
-
-            background: rgb(44, 50, 56);
-            border-radius: 16px;
-          }
-
-          .code-credit-card{
-            display: flex;
-
-            background: rgb(44, 50, 56);
-            border-radius: 16px;
-          }
-
-        }
-
         .info-current-payment{
           padding: 20px 10px;
           font-size: 14px;
@@ -1491,6 +1495,491 @@ button{
 }
 
 
+.order-premium{
+
+  .current-plan-options{
+    display: flex;
+
+    .current-plan-options-rigth{
+      width: 432px;
+    }
+    .current-plan-options-left{
+      display: block;
+      margin-top: 55px;
+      margin-left: 30px;
+
+      /*
+      Serrated edge
+      */
+
+      .current-top{
+        color:white;
+        background-color:#2B3A48;
+        text-align:center;
+        }
+      .current-top:after {
+        content: " ";
+        display: block;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: inherit;
+        height: 7px;
+    background: linear-gradient(#3f4750 0%, transparent 0%), -webkit-linear-gradient(135deg, #2c3238 33.33%, transparent 33.33%) 0 0%, #3f4750 -webkit-linear-gradient(45deg, #2c3238 33.33%, #3f4750 33.33%) 0 0%;
+        background-repeat: repeat-x;
+        background-size: 7px 7px, 7px 7px;
+      }
+
+
+    .current-bottom{
+      color:white;
+      background-color:#2B3A48;
+      text-align:center;
+      }
+    .current-bottom:after {
+      content: " ";
+      display: block;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: inherit;
+      height: 7px;
+    background: linear-gradient(#2c3238 0%, transparent 0%), -webkit-linear-gradient(135deg, #3f4750 33.33%, transparent 33.33%) 0 0%, #2c3238 -webkit-linear-gradient(45deg, #3f4750 33.33%, #2c3238 33.33%) 0 0%;
+    background-repeat: repeat-x;
+    background-size: 7px 7px, 7px 7px;
+    }
+
+    .big-box-hdd{
+      width: 330px;
+      text-align: center;
+      padding: 20px 0px;
+      background: #2c3238;
+      margin: 0px;
+      border-radius: 0px;
+    }
+    }
+  }
+
+  .info-current-plan{
+
+    text-align: left;
+
+    .options-top{
+      display: block;
+      padding: 0px 30px;
+
+      .options-top-tittle{
+        color: white;
+        width: 240px;
+        text-align: left;
+      }
+
+      .options-top-body{
+        display: block;
+        text-align: left;
+        margin-top: 27px;
+        margin-bottom: 17px;
+
+        .body-bottom{
+          color: white;
+          display: flex;
+          margin-top: 17px;
+          .right{
+            width: 50%;
+            text-align: right;
+          }
+          .left{
+            width: 50%;
+            text-align: left;
+          }
+        }
+
+      }
+    }
+
+    .options-middle{
+      border-bottom: 1px dashed #5e656b;
+      border-top: 1px dashed #5e656b;
+      padding: 17px 10px;
+      margin: 10px 20px;
+      display: flex;
+      color: #60b25e;
+
+      .options-middle-left{
+        margin-left: 0px;
+        text-align: left;
+        width: 250px;
+        font-weight: bold;
+      }
+      .options-middle-right{
+        margin-right: 0px;
+        text-align: right;
+        width: 135px;
+      }
+
+
+    }
+
+    .options-bottom{
+      display: block;
+      text-align: left;
+      padding: 0px 30px;
+      width: 272px;
+      margin-top: 17px;
+      font-weight: bold;
+      .top{
+        display: flex;
+        .right{
+          width: 50%;
+          text-align: right;
+        }
+        .left{
+          width: 50%;
+          text-align: left;
+        }
+      }
+      .bottom{
+        margin-top: 15px;
+        display: flex;
+        color: white;
+        .right{
+          width: 50%;
+          text-align: right;
+        }
+        .left{
+          width: 50%;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+
+
+
+/*
+  .info-current-card {
+    width: 345px;
+    float: right;
+    display: block;
+    margin-left: 85px;
+
+
+
+      .info-current-card-top{
+        margin: 55px 0px 0px 0px;
+      }
+
+
+      .img-card{
+        background: url('@static/icono-tarjeta.png') no-repeat;
+        background-size: 52px 38px;
+        width: 52px;
+        height: 38px;
+        margin: 10px 10px 0px 0px;
+        transition: all .2s ease;
+      }
+
+      .info-current-card-bottom{
+          /*
+        text-align: left;
+        width: 340px
+        padding: 10px 0px;
+
+        ::-webkit-input-placeholder {
+         color: white;
+        }
+        input{
+          color: white;
+          padding: 0px 7px;
+          background: transparent;
+        }
+
+        article{
+          margin-top: 14px;
+        }
+
+        .number-credit-card{
+          display: flex;
+          padding: 10px 10px;
+          background: rgb(44, 50, 56);
+          border-radius: 16px;
+          color: white;
+
+          input{
+            width: 265px;
+          }
+
+          figure{
+            width: 40px;
+          }
+
+          .delete-card{
+            font-size: 12px;
+            padding-top: 3px;
+          }
+        }
+
+        .owner-credit-card{
+          display: flex;
+
+          padding: 10px 10px;
+          background: rgb(44, 50, 56);
+          border-radius: 16px;
+          color: white;
+
+
+          input{
+            width: 265px;
+          }
+
+        }
+
+        .options-credit-card{
+          display: flex;
+
+/*
+          input{
+            width: 47px;
+
+          }
+          article{
+            max-width: 60px;
+            margin-top: 0px;
+            margin-right: 10px;
+          }
+
+          .month-credit-card{
+            display: flex;
+            padding: 10px 7px;
+            background: rgb(44, 50, 56);
+            border-radius: 16px;
+          }
+
+          .year-credit-card{
+            display: flex;
+            padding: 10px 7px;
+            background: rgb(44, 50, 56);
+            border-radius: 16px;
+          }
+
+          .code-credit-card{
+            display: flex;
+            padding: 10px 7px;
+            background: rgb(44, 50, 56);
+            border-radius: 16px;
+          }
+
+
+        }
+        *
+        .info-current-payment{
+          padding: 20px 10px;
+          font-size: 14px;
+        }
+
+      }
+
+      .info-current-card-left{
+
+        .info-current-quantity{
+          margin-top: 140px;
+          display: flex;
+          font-size: 24px;
+
+          .quantity{
+            color: #60b25e;
+            font-size: 48px;
+          }
+          .quantity-container{
+            display: block;
+            text-align: left;
+            color: white;
+          }
+        }
+      }
+      .info-current-card-right{
+        margin-left: 15px;
+
+        .info-current-card-button.middle{
+          border-left: 1px dashed #5e656b;
+        }
+
+        .info-current-card-button{
+          height: 80px;
+
+          margin-top: 24px;
+
+                .card-button{
+                  padding-top: 24px;
+                }
+                .show-space-selected{
+                  width: 210px;
+                  height: 60px;
+                  background: #061221;
+                  margin-left: 20px;
+                  padding-top: 20px;
+                  color: white;
+                  border-radius: 10px;
+                  border: 1px solid #20ea20;
+
+                  .big-text{
+                    font-size: 30px;
+                  }
+                }
+            }
+        }
+      }
+      */
+
+      .img-card{
+        background: url('@static/icono-tarjeta.png') no-repeat;
+        background-size: 52px 38px;
+        width: 52px;
+        height: 38px;
+        margin: 10px 10px 0px 0px;
+        transition: all .2s ease;
+      }
+
+      .info-current-card{
+        width: 345px;
+        float: right;
+        display: block;
+        margin-left: 85px;
+
+          .info-current-card-top{
+            margin: 55px 0px 0px 0px;
+          }
+
+          .info-current-card-bottom{
+            display: none;
+            width: 340px;
+            text-align: left;
+            padding: 10px 0px;
+            margin-top: 20px;
+
+            .number-credit-card{
+              display: flex;
+              padding: 10px 20px;
+              background: rgb(44, 50, 56);
+              border-radius: 16px;
+              color: #c7d1d7;
+
+
+
+              .number-card{
+                margin-top: 2px;
+                margin-right: 20px;
+                margin-left: 20px;
+                width: 160px;
+              }
+              .delete-card:hover{
+                color: white;
+              }
+              .delete-card{
+                font-size: 12px;
+                padding-top: 4px;
+              }
+            }
+
+            .info-current-payment{
+              padding: 20px 10px;
+              font-size: 14px;
+            }
+
+          }
+
+
+          .info-current-without-card-bottom{
+
+            margin-top: 36px;
+            margin-bottom: 86px;
+            color: #c7d1d7;
+            .top{
+              opacity: 0.7;
+              color: white;
+              font-weight: bold;
+              width: 120px;
+              height: 60px;
+              margin: auto;
+            }
+            .info-without-card{
+              width: 260px;
+              margin-left: 20px;
+              text-align: justify;
+            }
+            .bottom{
+              font-size: 13px;
+
+              text-align: left;
+              margin-bottom: 25px;
+            }
+            .img-add-card{
+              background: url('@static/add-tarjeta.png') no-repeat;
+              background-size: 37px 23px;
+              width: 37px;
+              height: 23px;
+              margin: 25px auto 10px auto;
+            }
+          }
+
+          .info-current-new-card-bottom{
+
+            margin-top: 25px;
+
+            display: none;
+            .info-current-payment{
+              padding: 20px 10px;
+              font-size: 14px;
+            }
+
+          }
+
+          .info-current-card-left{
+
+            .info-current-quantity{
+              margin-top: 140px;
+              display: flex;
+            }
+          }
+          .info-current-card-right{
+            margin-left: 15px;
+            margin-top: 14px;
+
+            .info-current-card-button.middle{
+              border-left: 1px dashed #5e656b;
+              padding: 10px 0px;
+            }
+
+            .info-current-card-button{
+              margin-top: 18px;
+
+                    .card-button{
+
+                    }
+                    .show-space-selected{
+                      width: 210px;
+                      height: 60px;
+                      background: #061221;
+                      margin-left: 20px;
+                      padding-top: 20px;
+                      color: white;
+                      border-radius: 10px;
+                      border: 1px solid #20ea20;
+
+                      .big-text{
+                        font-size: 30px;
+                      }
+                    }
+                }
+            }
+          }
+
+
+
+}
+
+
 .order{
 
   .current-plan-options{
@@ -1671,11 +2160,12 @@ button{
         background-size: 52px 38px;
         width: 52px;
         height: 38px;
-        margin: 10px auto 10px auto;
+        margin: 10px 10px 0px 0px;
         transition: all .2s ease;
       }
 
       .info-current-card-bottom{
+          /*
         text-align: left;
         width: 340px
         padding: 10px 0px;
@@ -1716,6 +2206,7 @@ button{
 
         .owner-credit-card{
           display: flex;
+
           padding: 10px 10px;
           background: rgb(44, 50, 56);
           border-radius: 16px;
@@ -1731,6 +2222,7 @@ button{
         .options-credit-card{
           display: flex;
 
+/*
           input{
             width: 47px;
 
@@ -1762,8 +2254,9 @@ button{
             border-radius: 16px;
           }
 
-        }
 
+        }
+        */
         .info-current-payment{
           padding: 20px 10px;
           font-size: 14px;
@@ -1963,11 +2456,134 @@ button{
   }
 }
 
+.info-secure{
 
+  color: rgba(255, 255, 255, 0.7);
+
+  .icon-secure{
+    background: url('@static/owner-card.png') no-repeat;
+    background-size: 21px 20px;
+  }
+
+}
+
+.credit-card-info{
+
+  margin-bottom: 50px;
+
+  .options-credit-card{
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .active.new-input{
+    border-color: #60b25e !important;
+  }
+  .new-input{
+    border-color: transparent !important;
+  }
+
+  input{
+
+    background: transparent;
+    color: white;
+  }
+
+  figure{
+    height: 21px;
+    width: 21px;
+  }
+
+  .input-long{
+    display: flex;
+    width: 331px;
+    padding: 0px 10px;
+    height: 40px;
+	  -webkit-border-radius: 6px;
+	  -moz-border-radius: 6px;
+	  border-radius: 6px;
+	  background-color: #2c3238;
+    border: 1px solid transparent;
+    margin-top: 15px;
+
+    input{
+      width: 290px;
+    }
+  }
+
+  .input-short{
+    display: flex;
+    width: 77px;
+    padding: 0px 10px;
+    height: 40px;
+	  -webkit-border-radius: 6px;
+	  -moz-border-radius: 6px;
+	  border-radius: 6px;
+	  background-color: #2c3238;
+    border: 1px solid transparent;
+    margin-left: 20px;
+
+    input{
+      width: 44px;
+    }
+  }
+  .input-normal{
+    display: flex;
+    width: 99px;
+    padding: 0px 10px;
+    height: 40px;
+	  -webkit-border-radius: 6px;
+	  -moz-border-radius: 6px;
+	  border-radius: 6px;
+	  background-color: #2c3238;
+    border: 1px solid transparent;
+
+    input{
+      width: 66px;
+    }
+  }
+
+  .icon-number-card{
+
+      background: url('@static/card-default.png') no-repeat;
+      background-size: 23px 15px;
+      width: 33px;
+      height: 15px;
+      margin: auto 0px;
+
+  }
+  .icon-owner-card{
+
+      background: url('@static/owner-card.png') no-repeat;
+      background-size: 21px 20px;
+      width: 33px;
+      height: 20px;
+      margin: auto 0px;
+
+  }
+  .icon-month-year-card{
+
+      background: url('@static/calendar-card.png') no-repeat;
+      background-size: 21px 19px;
+      width: 33px;
+      height: 19px;
+      margin: auto 0px;
+
+  }
+  .icon-code-card{
+
+      background: url('@static/code-card.png') no-repeat;
+      background-size: 16px 20px;
+      width: 33px;
+      height: 20px;
+      margin: auto 0px;
+
+  }
+}
 .preferences-hdd-payment-bottom{
   position: relative;
   float: right;
-  display: block;
+  display: flex;
   margin-right: 10px;
 }
 
@@ -2077,7 +2693,17 @@ button{
   overflow: hidden;
 }
 
-
+.hdd{
+  ::-webkit-input-placeholder{
+    color:white;
+  }
+  :-moz-placeholder{
+    color:white;
+  }
+  ::-moz-placeholder{
+    color: white;
+  }
+}
 
 .preferences-hdd-usage{
 
@@ -2092,13 +2718,17 @@ button{
 }
 
 .preferences-hdd-cake{
+    background: url('@static/icono-hdd.png') no-repeat;
     width: 47px;
     height: 63px;
+    margin: -45px auto;
     display: inline-block;
-    background: url('@static/icono-hdd.png') no-repeat;
     background-size: 47px 63px;
-    position: relative;
-    margin-top: 48px;
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    bottom: 0px;
+    right: 0px;
 }
 .preferences-hdd-cake-total{
 

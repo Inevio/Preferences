@@ -66,6 +66,7 @@
                       <span class="preferences-hdd-usage"></span>
                     </article>
                     <article class="bottom usage-circle">
+                      <canvas class="preferences-hdd-canvas-cake" width="242" height="242"></canvas>
                       <figure class="preferences-hdd-cake">
                         <article class="preferences-hdd-cake-circle">
                           <span class="preferences-hdd-cake-total"></span>
@@ -75,7 +76,7 @@
                           <canvas class="preferences-hdd-canvas" width="220" height="221"></canvas>
                           -->
                       </figure>
-                      <canvas class="preferences-hdd-canvas-cake" width="242" height="242"></canvas>
+
                     </article>
                   </article>
                 </article>
@@ -108,7 +109,7 @@
                   </article>
 
                   <article class="box-current-plan-bottom">
-                    <button class="ui-btn nextTab accept">
+                    <button class="ui-btn nextTab accept pointer">
                       <span></span>
                     </button>
                   </article>
@@ -128,7 +129,7 @@
 
           <article class="preferences-hdd-payment-top">
 
-            <article class="black-circle mini back">
+            <article class="black-circle mini back pointer">
               <figure></figure>
             </article>
             <span></span>
@@ -148,8 +149,8 @@
                         <article class="left">
                             <span></span>
                         </article>
-                        <article class="right change-plan">
-                              <span></span>
+                        <article class="right change-plan pointer">
+                              <span class="focuted"></span>
                         </article>
                       </article>
 
@@ -187,18 +188,6 @@
 
                   </article>
 
-                  <!--
-
-                  <article class="inevio-credit small-box-hdd">
-
-                    <article class="img-card">
-
-                    </article>
-                    <span>#INEVIO CREDIT#</span>
-
-                  </article>
-
-                -->
                 </article>
 
                 <article class="info-current-card-bottom">
@@ -211,7 +200,7 @@
                     <article class="number-card">
                       <span></span>
                     </article>
-                    <span class="delete-card">
+                    <span class="delete-card pointer">
 
                     </span>
 
@@ -224,7 +213,7 @@
 
                 </article>
                 <article class="info-current-without-card-bottom">
-                  <article class="top addCard focuted">
+                  <article class="top addCard focuted pointer">
                     <article class="top-top">
                       <figure class="img-add-card"></figure>
                     </article>
@@ -242,30 +231,37 @@
 
                 <article class="info-current-new-card-bottom credit-card-info">
 
-                  <article class="owner-credit-card ui-input">
+                  <article class="number-credit-card input-long new-input">
+                    <figure class="icon-number-card">
+
+                    </figure>
+                    <input class="number-card" placeholder="Número de la tarjeta">
+                    </input>
+                  </article>
+
+                  <article class="owner-credit-card input-long new-input">
+                    <figure class="icon-owner-card">
+
+                    </figure>
                     <input class="owner-card" placeholder="Nombre del titular">
                     </input>
                   </article>
 
 
-                  <article class="number-credit-card ui-input">
-                    <input class="number-card" placeholder="Numero de la tarjeta">
-                    </input>
-                  </article>
-
                   <article class="options-credit-card">
 
-                    <article class="month-credit-card ui-input">
-                      <input class="month-card" placeholder="Mes">
+                    <article class="month-year-credit-card input-normal new-input">
+                      <figure class="icon-month-year-card">
+
+                      </figure>
+                      <input class="month-year-card" placeholder="MM/YY">
                       </input>
                     </article>
 
-                    <article class="year-credit-card ui-input">
-                      <input class="year-card" placeholder="Año">
-                      </input>
-                    </article>
+                    <article class="code-credit-card input-short new-input">
+                      <figure class="icon-code-card">
 
-                    <article class="code-credit-card ui-input">
+                      </figure>
                       <input class="code-card" placeholder="CVV">
                       </input>
                     </article>
@@ -281,10 +277,21 @@
           </article>
 
           <article class="preferences-hdd-payment-bottom">
-            <button class="ui-btn accept back save">
+            <article class="hidden secure-by-stripe">
+
+              <article class="info-secure">
+                <figure class="icon-secure">
+                  <i></i>
+                </figure>
+                <span></span>
+                <a class="underline focuted stripe pointer" href="https://stripe.com/us/customers" target="_blank"></a>
+
+              </article>
+
+            </article>
+            <button class="ui-btn accept back save pointer">
               <span></span>
               <article class="loader">
-
               </article>
             </button>
           </article>
@@ -296,7 +303,7 @@
         <section class="preferences-hdd-payment premium modify-space ">
 
                 <article class="preferences-hdd-payment-top">
-                  <article class="black-circle mini back">
+                  <article class="black-circle mini back pointer">
                     <figure></figure>
                   </article>
                   <span></span>
@@ -347,7 +354,7 @@
 
                         <article class="info-current-card-button top">
                               <article class="card-button">
-                                <article class="black-circle maxi more-icon moreStorage">
+                                <article class="black-circle maxi more-icon moreStorage pointer">
                                   <figure ></figure>
                                 </article>
                               </article>
@@ -355,7 +362,7 @@
 
                         <article class="info-current-card-button middle">
 
-                          <article class="show-space-selected ui-input">
+                          <article class="show-space-selected">
 
                             <article class="container">
                               <span class="big-text"></span>
@@ -369,7 +376,7 @@
 
                         <article class="info-current-card-button bottom">
                           <article class="card-button">
-                            <article class="black-circle maxi minus-icon minusStorage">
+                            <article class="black-circle maxi minus-icon minusStorage pointer">
                               <figure></figure>
                             </article>
                           </article>
@@ -388,10 +395,207 @@
 
 
                 <article class="preferences-hdd-payment-bottom">
-                  <button class="ui-btn accept validate">
+                  <button class="ui-btn accept validate pointer">
                     <span></span>
                   </button>
                 </article>
+
+        </section>
+
+
+        <section class="preferences-hdd-payment premium order-premium">
+
+                  <article class="preferences-hdd-payment-top">
+                    <article class="black-circle mini back pointer">
+                      <figure></figure>
+                    </article>
+                    <span></span>
+                  </article>
+
+                  <article class="preferences-hdd-payment-middle">
+
+                    <article class="current-plan-options">
+
+                      <article class="current-plan-options-left">
+                        <article class="current-top">
+
+                        </article>
+                        <article class="current-middle">
+                          <article class="info-current-plan">
+                            <article class="info-options big-box-hdd">
+                                <article class="options-top">
+                                    <article class="options-top-tittle">
+                                      <span></span>
+                                    </article>
+                                    <article class="options-top-body">
+                                      <span></span>
+                                      <article class="body-bottom">
+                                        <article class="left">
+                                          <span></span>
+                                        </article>
+                                        <article class="right">
+                                          <span></span>
+                                        </article>
+                                      </article>
+                                    </article>
+                                </article>
+
+                                <article class="options-middle">
+                                  <article class="options-middle-left"><span></span></article>
+                                  <article class="options-middle-right"><span></span></article>
+                                </article>
+
+                                <article class="options-bottom">
+                                  <article class="top">
+                                    <span class="left"></span>
+                                    <span class="right"></span>
+                                  </article>
+                                  <article class="bottom">
+
+                                    <article class="left">
+                                      <span class="big"></span>
+                                    </article>
+
+                                    <article class="right">
+                                      <span class="big"></span>
+                                    </article>
+                                  </article>
+                                </article>
+                            </article>
+                          </article>
+                        </article>
+                        <article class="current-bottom">
+
+                        </article>
+                      </article>
+                      <article class="current-plan-options-right">
+                        <article class="info-current-card">
+
+                          <article class="info-current-card-top">
+
+                            <article class="type-card small-box-hdd active">
+
+                              <article class="img-card">
+
+                              </article>
+                              <span></span>
+
+                            </article>
+
+                          </article>
+
+                          <article class="info-current-card-bottom">
+
+                            <article class="number-credit-card">
+
+                              <figure>
+                                <i></i>
+                              </figure>
+                              <article class="number-card">
+                                <span></span>
+                              </article>
+                              <span class="delete-card pointer">
+
+                              </span>
+
+                            </article>
+                            <article class="info-current-payment">
+
+                              <span></span>
+
+                            </article>
+
+                          </article>
+                          <article class="info-current-without-card-bottom">
+                            <article class="top addCard focuted pointer">
+                              <article class="top-top">
+                                <figure class="img-add-card"></figure>
+                              </article>
+                              <article class="top-bottom">
+                                <span></span>
+                              </article>
+                            </article>
+                            <article class="bottom">
+                              <article class="info-without-card">
+                                <span></span>
+                              </article>
+                            </article>
+
+                          </article>
+
+                          <article class="info-current-new-card-bottom credit-card-info">
+
+                            <article class="number-credit-card input-long new-input">
+                              <figure class="icon-number-card">
+
+                              </figure>
+                              <input class="number-card" placeholder="Número de la tarjeta">
+                              </input>
+                            </article>
+
+                            <article class="owner-credit-card input-long new-input">
+                              <figure class="icon-owner-card">
+
+                              </figure>
+                              <input class="owner-card" placeholder="Nombre del titular">
+                              </input>
+                            </article>
+
+
+                            <article class="options-credit-card">
+
+                              <article class="month-year-credit-card input-normal new-input">
+                                <figure class="icon-month-year-card">
+
+                                </figure>
+                                <input class="month-year-card" placeholder="MM/YY">
+                                </input>
+                              </article>
+
+                              <article class="code-credit-card input-short new-input">
+                                <figure class="icon-code-card">
+
+                                </figure>
+                                <input class="code-card" placeholder="CVV">
+                                </input>
+                              </article>
+
+                            </article>
+                          </article>
+
+
+                        </article>
+                      </article>
+                    </article>
+
+                  </article>
+
+
+                  <article class="preferences-hdd-payment-bottom">
+
+                    <article class="hidden secure-by-stripe">
+
+                      <article class="info-secure">
+                        <figure class="icon-secure">
+                          <i></i>
+                        </figure>
+                        <span></span>
+                        <a class="underline focuted stripe pointer" href="https://stripe.com/us/customers" target="_blank"></a>
+
+                      </article>
+
+                    </article>
+                    <button class="ui-btn accept validate pointer">
+                      <span></span>
+                      <article class="loader">
+                      </article>
+                    </button>
+                  </article>
+
+
+
+
+
 
         </section>
 
@@ -415,7 +619,7 @@
 
           <article class="finish-bottom">
 
-            <button class="ui-btn accept inicio updatePremium">
+            <button class="ui-btn accept inicio updatePremium pointer">
                 <span></span>
             </button>
 
@@ -445,6 +649,7 @@
                     <span class="preferences-hdd-usage"></span>
                   </article>
                   <article class="bottom usage-circle">
+                    <canvas class="preferences-hdd-canvas-cake" width="242" height="242"></canvas>
                     <figure class="preferences-hdd-cake">
                       <article class="preferences-hdd-cake-circle">
                         <span class="preferences-hdd-cake-total"></span>
@@ -454,7 +659,7 @@
                         <canvas class="preferences-hdd-canvas" width="220" height="221"></canvas>
                         -->
                     </figure>
-                    <canvas class="preferences-hdd-canvas-cake" width="242" height="242"></canvas>
+
                   </article>
                 </article>
               </article>
@@ -502,7 +707,7 @@
                   </article>
 
                   <article class="box-current-plan-bottom">
-                    <button class="ui-btn  nextTab accept moreInfo">
+                    <button class="ui-btn  nextTab accept moreInfo pointer">
                       <span></span>
                     </button>
                   </article>
@@ -562,7 +767,7 @@
 
 
                 <article class="preferences-hdd-payment-top">
-                  <article class="black-circle mini back">
+                  <article class="black-circle mini back pointer">
                     <figure></figure>
                   </article>
                   <span></span>
@@ -613,7 +818,7 @@
 
                         <article class="info-current-card-button top">
                               <article class="card-button">
-                                <article class="black-circle maxi more-icon moreStorage">
+                                <article class="black-circle maxi more-icon moreStorage pointer">
                                   <figure></figure>
                                 </article>
                               </article>
@@ -621,7 +826,7 @@
 
                         <article class="info-current-card-button middle">
 
-                          <article class="show-space-selected ui-input">
+                          <article class="show-space-selected">
 
                             <article class="container">
                               <span class="big-text"></span>
@@ -634,7 +839,7 @@
                         </article>
                         <article class="info-current-card-button bottom">
                           <article class="card-button">
-                            <article class="black-circle maxi minus-icon block">
+                            <article class="black-circle maxi minus-icon block pointer">
                               <figure class=""></figure>
                             </article>
                           </article>
@@ -653,7 +858,7 @@
 
 
                 <article class="preferences-hdd-payment-bottom">
-                  <button class="ui-btn nextTab accept">
+                  <button class="ui-btn block accept pointer">
                     <span></span>
                   </button>
                 </article>
@@ -664,7 +869,7 @@
         <section class="preferences-hdd-payment free order">
 
                   <article class="preferences-hdd-payment-top">
-                    <article class="black-circle mini back">
+                    <article class="black-circle mini back pointer">
                       <figure></figure>
                     </article>
                     <span></span>
@@ -758,35 +963,43 @@
 
                           <article class="info-current-card-bottom credit-card-info">
 
-                            <article class="owner-credit-card ui-input">
+                            <article class="number-credit-card input-long new-input">
+                              <figure class="icon-number-card">
+
+                              </figure>
+                              <input class="number-card" placeholder="Número de la tarjeta">
+                              </input>
+                            </article>
+
+                            <article class="owner-credit-card input-long new-input">
+                              <figure class="icon-owner-card">
+
+                              </figure>
                               <input class="owner-card" placeholder="Nombre del titular">
                               </input>
                             </article>
 
 
-                            <article class="number-credit-card ui-input">
-                              <input class="number-card" placeholder="Numero de la tarjeta">
-                              </input>
-                            </article>
-
                             <article class="options-credit-card">
 
-                              <article class="month-credit-card ui-input">
-                                <input class="month-card" placeholder="Mes">
+                              <article class="month-year-credit-card input-normal new-input">
+                                <figure class="icon-month-year-card">
+
+                                </figure>
+                                <input class="month-year-card" placeholder="MM/YY">
                                 </input>
                               </article>
 
-                              <article class="year-credit-card ui-input">
-                                <input class="year-card" placeholder="Año">
-                                </input>
-                              </article>
+                              <article class="code-credit-card input-short new-input">
+                                <figure class="icon-code-card">
 
-                              <article class="code-credit-card ui-input">
+                                </figure>
                                 <input class="code-card" placeholder="CVV">
                                 </input>
                               </article>
 
                             </article>
+
 
                           </article>
 
@@ -798,7 +1011,20 @@
 
 
                   <article class="preferences-hdd-payment-bottom">
-                    <button class="ui-btn accept validate">
+
+                    <article class="hidden secure-by-stripe">
+
+                      <article class="info-secure">
+                        <figure class="icon-secure">
+                          <i></i>
+                        </figure>
+                        <span></span>
+                        <a class="underline focuted stripe pointer" href="https://stripe.com/us/customers" target="_blank"></a>
+
+                      </article>
+
+                    </article>
+                    <button class="ui-btn accept validate pointer">
                       <span></span>
                       <article class="loader">
                       </article>
@@ -831,7 +1057,7 @@
 
           <article class="finish-bottom">
 
-            <button class="ui-btn accept inicio loadPremium">
+            <button class="ui-btn accept inicio loadPremium pointer">
                 <span></span>
             </button>
 
