@@ -4,7 +4,6 @@
     var loadAppUser = function() {
           wz.config.getSubscriptionStatus(function( err, info ){
             api.app.storage('infoSubscriptions', info);
-
           });
     }
     loadAppUser();

@@ -43,6 +43,7 @@
     "safeFolders"      : "Safe folders",
     "withPassword"     : "with password",
     "subscribe"        : "Subscribe",
+    "noSelectablePlan0" : "Can not select free plan.",
 
 
     "usedSpace"        :  "Used space",
@@ -55,24 +56,42 @@
     "modify"           :  "Modify",
     "creditCard"       :  "Credit card",
     "creditcardError"  :  "Credit card error",
+
+    "invalid_number"	      : "The card number is not a valid credit card number.",
+    "invalid_expiry_month"	: "The card's expiration month is invalid.",
+    "invalid_expiry_year"	  : "The card's expiration year is invalid.",
+    "invalid_cvc"	          : "The card's security code is invalid.",
+    "invalid_swipe_data"	  : "The card's swipe data is invalid.",
+    "incorrect_number"      :	"The card number is incorrect.",
+    "expired_card"          :	"The card has expired.",
+    "incorrect_cvc"	        : "The card's security code is incorrect.",
+    "incorrect_zip"	        : "The card's zip code failed validation.",
+    "card_declined"         :	"The card was declined.",
+    "missing"               :	"There is no card on a customer that is being charged.",
+    "processing_error"	    : "An error occurred while processing the card.",
+
     "paymentError"     :  "The payment could not be made, contact us.",
     "errorRemoveCard"  :  "Fail to delete card, please contact us.",
     "changePlanError"  :  "Fail to change plans, please contact us.",
     "inevioCredit"     :  "Inevio credit",
     "delete"           :  "Delete",
     "extra"            :  " GB Extra",
-    "dolarMonth"        :  " $/MONTH",
-    "dolarMonthMinus"   :  " $/month",
+    "dolarMonth"        :  "$/MONTH",
+    "dolarMonthMinus"   :  "$/month",
     "perMonth"         :  "/month",
     "payDay"           :  "The next payment ",
     "partPayDay"      : [
       "Is charged at ",
       " of the next month."
     ],
+
+    "changeTo" : "Modify to ",
+    "emptyInput" : "If you want to add a card you must first complete all the fields.",
     "add" : "Add",
     "totalMayus"  : "TOTAL",
     "addCard"       :"Add card",
     "noCardInfo"    : "If no card is added, the current plan can not be charged. If so, this will be canceled.",
+    "mustBeCard"  : "To change the storage plan, you must first add a credit card.",
     "infoPlanPremium" :
     [
       "25",
@@ -140,6 +159,7 @@
     "newPasswordType"     : "Type your new password",
     "confirmPassword"     : "Confirm New Password",
     "confirmPasswordType" : "Confirm the new password",
+    "confirm"             : "Confirm",
     "passwordChanged"     : "Password changed",
     "passwordChanged2"    : "Your password has been changed",
     "forgetPassword"      : "Forgot your password?",
@@ -197,6 +217,8 @@
       " $ every month on the day ",
        ". To change the card first, delete the current card."
     ],
+    "secureByStripe"  : "Secured by ",
+    "stripe"          : "Stripe",
 
     "twitter" : {
 
