@@ -73,11 +73,48 @@
     var backingStoreRatio = 1;
     var pixelRatio        = 1;
 
+    /* Invite variables */
+    var addMailButton = $('.add-mail span');
+    var mailPrototype = $('.mail.wz-prototype');
+    var mailList      = $('.mail-list');
+    var shareButton   = $('.share-button');
+
     /*
     if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) !== -1 ){
         $('.payment').css('display','inline-block');
     }
     */
+
+    addMailButton.on( 'click' , function(){
+      addMail();
+    });
+
+    shareButton.on( 'click' , function(){
+      share();
+    });
+
+    var addMail = function(){
+      var mail = mailPrototype.clone();
+      mail.removeClass('wz-prototype');
+      mailList.append(mail);
+      mailList.stop().clearQueue().animate( { scrollTop : mailList[0].offsetTop }, 400  );
+    }
+
+    var share = function(){
+      var mails = [];
+      var list = mailList.find('.mail:not(.wz-prototype)');
+      $.each( list , function( i , mail ){
+        var mail = $(mail);
+        if (mail.val() != '') {
+          mails.push(mail.val());
+        }
+      });
+      if (mails.length > 0) {
+        api.user.inviteByMail(mails);
+      }
+      wz.app.removeView( app );
+    }
+
 
     // Quota circle functions
     var startCircleAnimation = function( end ){
@@ -1415,6 +1452,13 @@
     $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
+
+    $('.preferences-bottom-content .title').text(lang.inviteYourFriends);
+    $('.preferences-bottom-content .subtitle').text(lang.feelAlone);
+    $('.preferences-bottom-content .emails').text(lang.emails);
+    $('.preferences-bottom-content .add-mail-text').text(lang.addMail);
+    $('.preferences-bottom-content .share-text').text(lang.sendInvitations);
+    $('.preferences-bottom-content .mail').attr('placeholder' , lang.mailExample);
 
     // SOCIAL NETWORKS CODE
     api.social

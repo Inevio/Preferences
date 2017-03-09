@@ -190,6 +190,14 @@
     "paymentCardCVV"    : "CVV",
     "creditcardError"   : "This credit card is not valid",
     "unlinkCard"        : "Unlink this credit card",
-    "stripeLoading"     : "Connecting with the payment supplier..."
+    "stripeLoading"     : "Connecting with the payment supplier...",
+
+    "inviteYourFriends" : "Invite all your friends",
+    "feelAlone"         : "If you feel alone in horbito, start now inviting all your friends! Then you can share files, collaborate etc...",
+    "emails"            : "Emails",
+    "addMail"           : "+ Add more mails",
+    "sendInvitations"   : "Send invitations",
+    "mailExample"       : "example@mail.com"
+
 
 }
