@@ -115,7 +115,7 @@
           .setIcon( 'https://static.inevio.com/app/3/icon.png' )
           .render();
         mailList.find('.mail:not(.wz-prototype)').each(function(){
-            $(this).val('');
+            $(this).removeClass('wrong').val('');
         });
       }
     }
