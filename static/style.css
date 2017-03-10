@@ -2115,14 +2115,19 @@ span.preferences-card-subscribe-text{
 
 .mail{
   float: left;
-  width: ~'calc(100% - 20px)';
-  height: 42px;
+  width: ~'calc(100% - 18px)';
+  height: 40px;
   border-radius: 6px;
   margin-bottom: 15px;
   background-color: #2c3238;
   font-size: 17px;
   color: #fff;
   padding-left: 20px;
+  border: 1px solid transparent;
+}
+
+.wrong.mail{
+  border: 1px solid red;
 }
 
 .add-mail{
@@ -2145,6 +2150,7 @@ span.preferences-card-subscribe-text{
   position: absolute;
   bottom: 10px;
   right: 30px;
+  opacity: 0.7;
 
   .share-text{
     color: #fff;
@@ -2156,6 +2162,10 @@ span.preferences-card-subscribe-text{
     margin-top: 18px;
   }
 }
+
+.share-button.valid{
+  opacity: 1;
+} 
 
 .share-button:hover{
   background-color: #60b25e;

@@ -78,6 +78,8 @@
     var mailPrototype = $('.mail.wz-prototype');
     var mailList      = $('.mail-list');
     var shareButton   = $('.share-button');
+    var validMails    = [];
+    var MAIL_REGEXP = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/
 
     /*
     if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) !== -1 ){
@@ -101,18 +103,30 @@
     }
 
     var share = function(){
-      var mails = [];
-      var list = mailList.find('.mail:not(.wz-prototype)');
-      $.each( list , function( i , mail ){
-        var mail = $(mail);
-        if (mail.val() != '') {
-          mails.push(mail.val());
+      if (shareButton.hasClass('valid')) {
+        api.user.inviteByMail(validMails);
+        api.banner()
+          .setTitle( lang.invitationSentTitle )
+          .setText( lang.invitationSentSubtitle )
+          .setIcon( 'https://static.inevio.com/app/2/icon.png' )
+          .render();
+        wz.app.removeView( app );
+      }
+    }
+
+    var checkMails = function(){
+      $('.wrong').removeClass('wrong');
+      shareButton.removeClass('valid');
+      mailList.find('.mail:not(.wz-prototype)').each( function(){
+        if ( $(this).val() != '' ) {
+          if( $(this).val().length && MAIL_REGEXP.test( $(this).val() ) ){
+            validMails.push( $(this).val() )
+            shareButton.addClass('valid');
+          }else{
+            $(this).addClass('wrong');
+          }
         }
       });
-      if (mails.length > 0) {
-        api.user.inviteByMail(mails);
-      }
-      wz.app.removeView( app );
     }
 
 
