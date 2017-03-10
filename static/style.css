@@ -2115,7 +2115,7 @@ span.preferences-card-subscribe-text{
 
 .mail{
   float: left;
-  width: ~'calc(100% - 18px)';
+  width: ~'calc(100% - 23px)';
   height: 40px;
   border-radius: 6px;
   margin-bottom: 15px;
@@ -2165,7 +2165,7 @@ span.preferences-card-subscribe-text{
 
 .share-button.valid{
   opacity: 1;
-} 
+}
 
 .share-button:hover{
   background-color: #60b25e;
