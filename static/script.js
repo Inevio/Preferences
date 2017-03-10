@@ -114,7 +114,9 @@
           .setText( lang.invitationSentSubtitle )
           .setIcon( 'https://static.inevio.com/app/3/icon.png' )
           .render();
-        wz.app.removeView( app );
+        mailList.find('.mail:not(.wz-prototype)').each(function(){
+            $(this).val('');
+        });
       }
     }
 
