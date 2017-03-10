@@ -192,12 +192,13 @@
     "unlinkCard"        : "Unlink this credit card",
     "stripeLoading"     : "Connecting with the payment supplier...",
 
-    "inviteYourFriends" : "Invite all your friends",
-    "feelAlone"         : "If you feel alone in horbito, start now inviting all your friends! Then you can share files, collaborate etc...",
+    "inviteYourFriends" : "Invite all your contacts",
+    "feelAlone"         : "If you feel alone in horbito, start inviting now all your contacts! Afterwards you'll be able to share files, collaborate or join worlds with them.",
     "emails"            : "Emails",
     "addMail"           : "+ Add more mails",
     "sendInvitations"   : "Send invitations",
-    "mailExample"       : "example@mail.com"
-
+    "mailExample"       : "example@mail.com",
+    "invitationSentTitle"    : "Invitations sent", 
+    "invitationSentSubtitle" : "Your invitations are on their way!"
 
 }
