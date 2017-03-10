@@ -95,6 +95,10 @@
       share();
     });
 
+    win.on( 'blur input' , '.mail' , function(){
+      checkMails();
+    });
+
     var addMail = function(){
       var mail = mailPrototype.clone();
       mail.removeClass('wz-prototype');
@@ -108,7 +112,7 @@
         api.banner()
           .setTitle( lang.invitationSentTitle )
           .setText( lang.invitationSentSubtitle )
-          .setIcon( 'https://static.inevio.com/app/2/icon.png' )
+          .setIcon( 'https://static.inevio.com/app/3/icon.png' )
           .render();
         wz.app.removeView( app );
       }
