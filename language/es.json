@@ -69,7 +69,7 @@
     "forgetPassword"      : "¿Olvidaste la contraseña?",
 
     "socialTitle"       : "REDES SOCIALES",
-    "socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de Inevio",
+    "socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de horbito",
     "facebookAccount"   : "Cuentas de Facebook",
     "twitterAccount"    : "Cuentas de Twitter",
 
@@ -84,7 +84,7 @@
     "yymmdd"          : "AA MM DD",
 
     "languageTitle"       : "IDIOMA",
-    "languageDescription" : "Por favor selecciona el idioma de tu Inevio",
+    "languageDescription" : "Por favor selecciona el idioma de tu horbito",
     "spanishLanguage"     : "Español",
     "englishLanguage"     : "Inglés",
 
@@ -92,12 +92,12 @@
     "displayExtensions" : "Mostrar la extensión al final de los nombres de ficheros",
 
     "customTitle"       : "PERSONALIZAR",
-    "customDescription" : "Aquí puedes cambiar el aspecto de tu Inevio",
+    "customDescription" : "Aquí puedes cambiar el aspecto de tu horbito",
     "wallpaper"         : "Fondo de escritorio",
     "upload"            : "Subir",
 
     "inviteTitle"       : "INVITAR",
-    "inviteDescription" : "Aquí puedes generar weekeys para que tus amigos entren en Inevio",
+    "inviteDescription" : "Aquí puedes generar weekeys para que tus amigos entren en horbito",
     "generate"          : "Generar",
     "invitesLeft"       : "Invitaciones restantes",
     "inviteBeware"      : "Ten cuidado de quién usa tu weeKey porque si tu amigo es baneado tu también serás responsable",
@@ -182,7 +182,7 @@
     ],
 
     "paymentTitle"      : "MÉTODO DE PAGO",
-    "peymentDesc"       : "Aquí puedes guardar tu tarjeta para realizar el pago a Inevio",
+    "peymentDesc"       : "Aquí puedes guardar tu tarjeta para realizar el pago a horbito",
     "paymentCardHolder" : "NOMBRE EN LA TARJETA",
     "paymentCardNumber" : "NÚMERO DE TARJETA",
     "paymentCardMonth"  : "MES",

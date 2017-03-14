@@ -69,7 +69,7 @@
     "forgetPassword"      : "Forgot your password?",
 
     "socialTitle"       : "SOCIAL NETWORKS",
-    "socialDescription" : "Here you can link all your social networks with your Inevio account",
+    "socialDescription" : "Here you can link all your social networks with your horbito account",
     "facebookAccount"   : "Your Facebook account",
     "twitterAccount"    : "Your Twitter account",
 
@@ -84,7 +84,7 @@
     "yymmdd"          : "YY MM DD",
 
     "languageTitle"       : "LANGUAGE",
-    "languageDescription" : "Please select the language of your Inevio",
+    "languageDescription" : "Please select the language of your horbito",
     "spanishLanguage"     : "Spanish",
     "englishLanguage"     : "English",
 
@@ -92,12 +92,12 @@
     "displayExtensions" : "Display the extension at the end of the filenames",
 
     "customTitle"       : "CUSTOMIZE",
-    "customDescription" : "Here you can change the look of your Inevio",
+    "customDescription" : "Here you can change the look of your horbito",
     "wallpaper"         : "Wallpaper",
     "upload"            : "Upload",
 
     "inviteTitle"       : "INVITE",
-    "inviteDescription" : "Here you can generate weeKeys to get your friends inside Inevio",
+    "inviteDescription" : "Here you can generate weeKeys to get your friends inside horbito",
     "generate"          : "Generate",
     "invitesLeft"       : "Invites left",
     "inviteBeware"      : "Beware who uses your weeKey because if your friend gets banned you will also be responsible",
@@ -182,7 +182,7 @@
     ],
 
     "paymentTitle"      : "PAYMENT METHOD",
-    "peymentDesc"       : "Here you can save your bank account to pay Inevio",
+    "peymentDesc"       : "Here you can save your bank account to pay horbito",
     "paymentCardHolder" : "NAME ON CARD",
     "paymentCardNumber" : "CARD NUMBER",
     "paymentCardMonth"  : "MONTH",
