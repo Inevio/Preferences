@@ -84,6 +84,10 @@
       "Is charged at ",
       " of the next month."
     ],
+    "limitStorageDowngrade" : [
+      "You are currently spending ",
+      "GB and you should reduce it to be able to assign the new plan."
+    ],
 
     "changeTo" : "Modify to ",
     "emptyInput" : "If you want to add a card you must first complete all the fields.",
@@ -104,8 +108,6 @@
 
       "unlimitedStorage" :"Unlimited storage",
 
-
-
     "infoPaymentOneHead"  : "It´s up to you",
     "infoPaymentOneBody"  : "Pay only for what you consume Extra 25 Gb per 1$/month on your account.",
     "infoPaymentTwoHead"  : "Flexible",
@@ -117,6 +119,7 @@
     "currentSpaceMayus" : "ACTUAL STORAGE",
     "totalStorage"    : "Total storage",
     "totalStorageMayus":  "TOTAL STORAGE",
+    "unsubscribeConfirm"  : "Are you sure you want to cancel your subscription and return to the free plan? If you press 'confirm' we will remove the card that you have associated with our system, your subscription will be canceled and you will return to the free plan.",
 
     "creditCardOptions"   : {
 
@@ -127,7 +130,7 @@
       "codeCreditCard"      : "CVV"
     },
 
-    "infoCurrentPayment"  : "Este texto es un texto de prueba guarrooo.<br>lsadjkfhadklsjfhakldjsfhadklsjfhaklsdjfhlakdjsfh",
+    "infoCurrentPayment"  : "Este texto es un texto de prueba.",
 
     "next"        : "Next",
     "congratulation"    :  "Congratulations! You have your space increased to ",
