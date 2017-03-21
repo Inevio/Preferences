@@ -83,6 +83,13 @@
       "Se cobra el ",
       " del próximo mes."
     ],
+
+    "limitStorageDowngrade" : [
+      "Actualmente está gastando ",
+      "GB y que debe reducirlo para poder asignar el nuevo plan."
+    ],
+
+
     "changeTo" : "Modificar a ",
     "emptyInput" : "Si desea añadir una tarjeta primero debe rellenar todos los campos.",
 
@@ -103,8 +110,6 @@
 
     "unlimitedStorage" :"Espacio ilimitado",
 
-
-
     "infoPaymentOneHead"  : "Tú decides",
     "infoPaymentOneBody"  : "Paga solo por el espacio que consumes 25 Gb extra en tu cuenta por 1$/mes.",
     "infoPaymentTwoHead"  : "Flexible",
@@ -117,6 +122,7 @@
     "currentSpaceMayus" : "ESPACIO ACTUAL",
     "totalStorage"    : "Espacio total",
     "totalStorageMayus":  "ESPACIO TOTAL",
+    "unsubscribeConfirm"  : "¿Estás seguro que quieres cancelar tu suscripción y volver al plan gratuito? Si pulsas 'confirmar' eliminaremos la tarjeta que tengas asociada de nuestro sistema, tu suscripción será cancelada y volverás al plan gratuito.",
 
     "creditCardOptions"   : {
 
@@ -127,21 +133,12 @@
       "codeCreditCard"      : "CVV"
     },
 
-    "infoCurrentPayment"  : "Este texto es un texto de prueba guarrooo.lsadjkfhadklsjfhakldjsfhadklsjfhaklsdjfhlakdjsfh",
+    "infoCurrentPayment"  : "Este texto es un texto de prueba.",
 
     "next"        : "Siguiente",
     "congratulation"    :  "¡Felicidades! Has aumentado tu espacio a",
-    "decrease"    :  "!Hecho! Tu espacio ha bajado a",
+    "decrease"    :  "¡Hecho! Tu espacio ha bajado a",
     "finish"      : "Finalizar",
-
-
-
-
-
-
-
-
-
 
     "accountTitle"       : "TU CUENTA",
     "accountDescription" : "Aquí puedes cambiar tu información personal",
@@ -290,5 +287,4 @@
         "Notas, links o videos posteados"
 
     ]
-
 }

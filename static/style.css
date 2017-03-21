@@ -31,14 +31,24 @@ button{
   color: white;
 }
 
+.underline:hover{
+  color: white;
+}
 .underline{
   text-decoration: underline;
   margin-left: 3px;
-  color: rgba(255,255, 255, 0.7);
+  color: #d2dce2;
 }
 
+.summary-subtitle{
+  font-size: 13px;
+  font-weight: bold;
+}
 
-
+.summary-subtitle-big{
+  font-size: 21px;
+  font-weight: bold;
+}
 .wz-view-menu-group{
 
     /*padding: 14px 20px 9px;*/
@@ -62,6 +72,11 @@ button{
     background: rgba( 0, 0, 0, 0.2 );
     width: 7px;
 
+}
+
+.goUp{
+  margin-top: -40px;
+  margin-right: 37px !important;
 }
 
 .loading{
@@ -171,14 +186,15 @@ button{
   line-height: normal;
 }
 .iconApp{
-  background: url(https://static.inevio.com/app/374/gear.png) no-repeat;
+  display: block;
+  background: url('@static/gear.png') no-repeat;
   width: 18px;
   height: 18px;
   margin-left: 14px;
   margin-right: 14px;
   margin-top: 2px;
   float: left;
-  background-size: 18px;
+  background-size: 18px 18px;
 }
 
 .wz-dragger li {
@@ -291,6 +307,7 @@ button{
   border-left: 0px solid transparent;
   box-shadow: -1px 0 transparent;
 }
+
 
 .wz-view-minimize i{
   margin-top: 8px;
@@ -703,8 +720,26 @@ button{
     min-width: 124px;
     min-height: 34px;
   }
+
 }
 
+.more, .modify-space{
+  .ui-btn{
+    width: 215px;
+    height: 48px;
+    font-size: 21px;
+    line-height: 0px;
+  }
+}
+
+.order, .order-premium, .modify-premium, .finish, .finish-premium{
+  .ui-btn{
+    width: 173px;
+    height: 41px;
+    font-size: 17px;
+    line-height: 0px;
+  }
+}
 
 .premium-user{
   .free{
@@ -875,6 +910,13 @@ button{
 .current-plan-options{
   display: flex;
   width: 807px;
+  height: 325px;
+}
+
+.info-current-plan{
+  .two{
+    margin-top: 12px;
+  }
 }
 
 .current-information{
@@ -930,17 +972,21 @@ button{
     }
   }
 }
-
+.order-premium, .order, .modify-premium, .space, .finish, .finish-premium{
+  .secure-by-stripe{
+    width: 170px;
+  }
+}
 .secure-by-stripe{
 
-  color: white;
+  color: #d2dce2;
   display: flex;
-  width: 234px;
-  margin-top: 11px;
+  font-size: 13px;
+  width: 230px;
+  margin-top: 14px;
 
   .info-secure{
-    color: rgba(255, 255, 255, 0.7);
-    width: 170px;
+    color: #d2dce2;
     display: flex;
 
     .icon-secure{
@@ -949,7 +995,6 @@ button{
       width: 15px;
       margin: 0px auto;
       height: 26px;
-      margin-top: 1px;
     }
   }
 
@@ -1141,7 +1186,7 @@ button{
     width: 345px;
     float: right;
     display: block;
-    margin-left: 85px;
+    margin-left: 55px;
 
       .info-current-card-top{
         margin: 28px 0px 0px 0px;
@@ -1226,13 +1271,12 @@ button{
           padding: 20px 10px;
           font-size: 14px;
         }
-
       }
 
       .info-current-card-left{
 
         .info-current-quantity{
-          margin-top: 140px;
+          margin-top: 118px;
           display: flex;
         }
       }
@@ -1246,14 +1290,14 @@ button{
         }
 
         .info-current-card-button{
-          margin-top: 18px;
+          margin-top: 10px;
 
                 .card-button{
 
                 }
                 .show-space-selected{
-                  width: 210px;
-                  height: 60px;
+                  width: 215px;
+                  height: 115px;
                   background: #061221;
                   margin-left: 20px;
                   padding-top: 20px;
@@ -1267,6 +1311,9 @@ button{
                 }
             }
         }
+      }
+      .big-box-hdd{
+        margin: 37px 0 0 42px;
       }
 }
 
@@ -1321,20 +1368,22 @@ button{
           width: 140px;
 
           .info-current-quantity{
-            margin-top: 140px;
+            margin-top: 118px;
             display: flex;
             .quantity{
               width: 87px;
               color: #60b25e;
-              font-size: 48px;
+              font-size: 71px;
               text-align: right;
             }
             .quantity-container{
               display: block;
-              font-size: 22px;
+              font-size: 21px;
+              height: 45px;
+              margin: 22px auto 0px auto;
               text-align: left;
               color: white;
-
+              width: 60px;
             }
           }
         }
@@ -1348,27 +1397,29 @@ button{
           }
 
           .info-current-card-button{
-            margin-top: 18px;
+            margin-top: 10px;
 
                   .card-button{
 
                   }
                   .show-space-selected{
-                    width: 214px;
-                    height: 104px;
+                    width: 215px;
+                    height: 115px;
                     background-color: #2c3238;
                     border: solid 2px #60b25e;
                     border-radius: 12px;
                     margin-left: 20px;
-                    font-size: 18px;
+                    font-size: 21px;
                     color: white;
 
                     .container{
-                      margin-top: 22px;
+                      height: 85px;
+                      width: 215px;
+                      margin: 20px auto 0px auto;
                     }
 
                     .big-text{
-                      font-size: 56px;
+                      font-size: 71px;
                       font-weight: bold; 
                     }
                   }
@@ -1438,20 +1489,22 @@ button{
         width: 140px;
 
         .info-current-quantity{
-          margin-top: 140px;
+          margin-top: 118px;
           display: flex;
           .quantity{
             width: 87px;
             color: #60b25e;
-            font-size: 48px;
+            font-size: 71px;
             text-align: right;
           }
           .quantity-container{
             display: block;
-            font-size: 22px;
+            font-size: 21px;
+            height: 45px;
+            margin: 22px auto 0px auto;
             text-align: left;
             color: white;
-
+            width: 60px;
           }
         }
       }
@@ -1465,27 +1518,29 @@ button{
         }
 
         .info-current-card-button{
-          margin-top: 18px;
+          margin-top: 10px;
 
                 .card-button{
 
                 }
                 .show-space-selected{
-                  width: 214px;
-                  height: 104px;
+                  width: 215px;
+                  height: 115px;
                   background-color: #2c3238;
                   border: solid 2px #60b25e;
                   border-radius: 12px;
                   margin-left: 20px;
-                  font-size: 18px;
+                  font-size: 21px;
                   color: white;
 
                   .container{
-                    margin-top: 22px;
+                    height: 85px;
+                    width: 215px;
+                    margin: 20px auto 0px auto;
                   }
 
                   .big-text{
-                    font-size: 56px;
+                    font-size: 71px;
                     font-weight: bold; 
                   }
                 }
@@ -1493,7 +1548,6 @@ button{
         }
       }
 }
-
 
 .order-premium{
 
@@ -1505,8 +1559,9 @@ button{
     }
     .current-plan-options-left{
       display: block;
-      margin-top: 55px;
-      margin-left: 30px;
+      margin-top: 19px;
+      margin-left: 38px;
+      height: 304px;
 
       /*
       Serrated edge
@@ -1551,6 +1606,7 @@ button{
 
     .big-box-hdd{
       width: 330px;
+      height: 264px;;
       text-align: center;
       padding: 20px 0px;
       background: #2c3238;
@@ -1601,9 +1657,10 @@ button{
       border-bottom: 1px dashed #5e656b;
       border-top: 1px dashed #5e656b;
       padding: 17px 10px;
-      margin: 10px 20px;
+      margin: 30px 20px;
       display: flex;
       color: #60b25e;
+      font-size: 19px;
 
       .options-middle-left{
         margin-left: 0px;
@@ -1783,7 +1840,7 @@ button{
       .info-current-card-left{
 
         .info-current-quantity{
-          margin-top: 140px;
+          margin-top: 118px;
           display: flex;
           font-size: 24px;
 
@@ -1814,8 +1871,8 @@ button{
                   padding-top: 24px;
                 }
                 .show-space-selected{
-                  width: 210px;
-                  height: 60px;
+                width: 215px;
+                height: 115px;
                   background: #061221;
                   margin-left: 20px;
                   padding-top: 20px;
@@ -1845,10 +1902,10 @@ button{
         width: 345px;
         float: right;
         display: block;
-        margin-left: 85px;
+        margin-left: 55px;
 
           .info-current-card-top{
-            margin: 55px 0px 0px 0px;
+            margin: 19px 0px 0px 0px;
           }
 
           .info-current-card-bottom{
@@ -1925,7 +1982,7 @@ button{
 
           .info-current-new-card-bottom{
 
-            margin-top: 25px;
+            margin-top: 33px;
 
             display: none;
             .info-current-payment{
@@ -1938,7 +1995,7 @@ button{
           .info-current-card-left{
 
             .info-current-quantity{
-              margin-top: 140px;
+              margin-top: 118px;
               display: flex;
             }
           }
@@ -1952,14 +2009,14 @@ button{
             }
 
             .info-current-card-button{
-              margin-top: 18px;
+              margin-top: 10px;
 
                     .card-button{
 
                     }
                     .show-space-selected{
-                      width: 210px;
-                      height: 60px;
+                      width: 215px;
+                      height: 115px;
                       background: #061221;
                       margin-left: 20px;
                       padding-top: 20px;
@@ -1979,6 +2036,13 @@ button{
 
 }
 
+.info-current-card-button{
+  .card-button{
+    width: 215px;
+    margin-left: 20px;
+  }
+}
+
 
 .order{
 
@@ -1989,8 +2053,11 @@ button{
       width: 432px;
     }
     .current-plan-options-left{
+
       display: block;
-      margin-top: 55px;
+      margin-top: 19px;
+      margin-left: 38px;
+      height: 304px;
 
       /*
       Serrated edge
@@ -2035,6 +2102,7 @@ button{
 
     .big-box-hdd{
       width: 330px;
+      height: 264px;
       text-align: center;
       padding: 20px 0px;
       background: #2c3238;
@@ -2085,9 +2153,10 @@ button{
       border-bottom: 1px dashed #5e656b;
       border-top: 1px dashed #5e656b;
       padding: 17px 10px;
-      margin: 10px 20px;
+      margin: 30px 20px;
       display: flex;
       color: #60b25e;
+      font-size: 19px;
 
       .options-middle-left{
         margin-left: 0px;
@@ -2146,12 +2215,12 @@ button{
     width: 345px;
     float: right;
     display: block;
-    margin-left: 85px;
+    margin-left: 55px;
 
 
 
       .info-current-card-top{
-        margin: 55px 0px 0px 0px;
+        margin: 19px 0px 0px 0px;
       }
 
 
@@ -2267,18 +2336,22 @@ button{
       .info-current-card-left{
 
         .info-current-quantity{
-          margin-top: 140px;
+          margin-top: 118px;
           display: flex;
           font-size: 24px;
 
           .quantity{
             color: #60b25e;
-            font-size: 48px;
+            font-size: 71px;
           }
           .quantity-container{
             display: block;
+            font-size: 21px;
+            height: 45px;
+            margin: 22px auto 0px auto;
             text-align: left;
             color: white;
+            width: 60px;
           }
         }
       }
@@ -2298,8 +2371,8 @@ button{
                   padding-top: 24px;
                 }
                 .show-space-selected{
-                  width: 210px;
-                  height: 60px;
+                  width: 215px;
+                  height: 115px;
                   background: #061221;
                   margin-left: 20px;
                   padding-top: 20px;
@@ -2435,7 +2508,7 @@ button{
     border-bottom: 1px dashed #5e656b;
     border-top: 1px dashed #5e656b;
     padding: 17px 10px;
-    margin: 10px 20px;
+    margin: 30px 20px;
   }
 
   .options-bottom{
@@ -2469,13 +2542,16 @@ button{
 
 .credit-card-info{
 
-  margin-bottom: 50px;
+  margin-top: 35px;
 
   .options-credit-card{
     display: flex;
-    margin-top: 15px;
+    margin-top: 17px;
   }
 
+  .error.new-input{
+    border-color: #F00 !important;
+  }
   .active.new-input{
     border-color: #60b25e !important;
   }
@@ -2496,7 +2572,7 @@ button{
 
   .input-long{
     display: flex;
-    width: 331px;
+    width: 324px;
     padding: 0px 10px;
     height: 40px;
 	  -webkit-border-radius: 6px;
@@ -2504,7 +2580,7 @@ button{
 	  border-radius: 6px;
 	  background-color: #2c3238;
     border: 1px solid transparent;
-    margin-top: 15px;
+    margin-top: 12px;
 
     input{
       width: 290px;
@@ -2584,7 +2660,13 @@ button{
   position: relative;
   float: right;
   display: flex;
-  margin-right: 10px;
+  margin-right: 7px;
+}
+
+.modify-space, .more{
+  .preferences-hdd-payment-bottom{
+    margin-right: 18px;
+  }
 }
 
 
