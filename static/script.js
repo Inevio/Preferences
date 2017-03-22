@@ -567,7 +567,7 @@
       }
       else{
 
-        espacioTotal = parseInt(userLocal.total);
+        espacioTotal = parseInt(userLocal.totalStorage);
 
         if(plansCounter == inevioPlans.length - 1){
             moreSpaceCondition = false;
@@ -852,7 +852,7 @@
       if(infoSubscriptions.currentPlan !=  null){
 
         userLocal.info = true;
-        userLocal.total = parseInt(api.tool.bytesToUnit(quota.total).split(" ", 1)[0]);
+        userLocal.totalStorage = parseInt(api.tool.bytesToUnit(quota.total).split(" ", 1)[0]);
         userLocal.base = parseInt(api.tool.bytesToUnit(quota.base).split(" ", 1)[0]);
         userLocal.actualPrice = parseInt(infoSubscriptions.currentPlan.amount);
         userLocal.extraStorage = parseInt(api.tool.bytesToUnit(infoSubscriptions.currentPlan.addQuota).split(" ", 1)[0]);
