@@ -567,7 +567,7 @@
       }
       else{
 
-        espacioTotal = parseInt(userLocal.totalStorage);
+        espacioTotal = parseInt(userLocal.total);
 
         if(plansCounter == inevioPlans.length - 1){
             moreSpaceCondition = false;
