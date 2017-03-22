@@ -112,7 +112,7 @@
     var tabCondition = true;
     var loading = false;
 
-    var userLocal  = {
+    var userLocal = {
       premium : {
         info : false,
         activePlan: null,
@@ -2947,7 +2947,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       var centroX = canvasObject1.width / 2;
       var centroY = canvasObject1.height / 2;
       var radio = 107;
-      var porcentaje = 1 - api.system.quota().free / api.system.quota().total;
+      var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
+      porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
         loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
         loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
       infoSubscriptions = api.app.storage('infoSubscriptions');
