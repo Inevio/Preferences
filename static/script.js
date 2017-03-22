@@ -560,7 +560,7 @@
 
       $('.modify-space .quantity').find('span').text(userLocal.actualPrice);
       plansCounter = listPlans.indexOf(userLocal.activePlan);
-      var espacioTotal = api.tool.bytesToUnit( api.system.quota().total).split(" ", 1)[0];
+      var espacioTotal = userLocal.base + parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter].addQuota).split(" ", 1)[0]);
       if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
         //espacioTotal = lang.unlimitedStorage;
         espacioTotal = 10000;
