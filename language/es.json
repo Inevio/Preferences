@@ -286,5 +286,12 @@
         "Eventos creados",
         "Notas, links o videos posteados"
 
-    ]
+    ],
+
+    "inviteYourFriends" : "Invita a todos tus colegas",
+   "feelAlone"         : "Si te sientes muy solo en horbito date un poco de vida e invita a todos los que conozcas!! Así podrás compartir archivos y colaborar etc...",
+   "emails"            : "Emails",
+   "addMail"           : "+ Añadir más correos",
+   "sendInvitations"   : "Enviar invitaciones",
+   "mailExample"       : "ejemplo@mail.com" 
 }

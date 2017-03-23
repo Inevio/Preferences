@@ -3904,222 +3904,124 @@ span.preferences-card-subscribe-text{
 /* CUSTOMIZE ZONE FINISH */
 
 /* INVITE ZONE START */
-
-.preferences-bottom-content.invite{
-
-    display: none;
-    opacity: 0;
-    position: relative;
-
+.invite.preferences-bottom-content{
+  width: 100%;
+  height: 100%;
 }
 
-.preferences-invite-ticket{
-
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
-
+.invite .left-side{
+  float: left;
+  height: 100%;
+  width: ~'calc(60% - 20px)';
+  padding-right: 20px;
 }
 
-.preferences-invite-ticket img{
-    width: 178px;
-    height: 90px;
+.invite .right-side{
+  float: left;
+  height: 100%;
+  width: 40%;
 }
 
-.preferences-bottom-input.invite{
-
-    width: 275px;
-    height: 15px;
-    padding: 14px;
-    margin-top: 25px;
-
+.invite .title{
+  float: left;
+  width: 100%;
+  font-size: 45px;
+  color: #fff;
+  font-weight: 900;
+  margin-top: 60px;
+  letter-spacing: 0px;
+  text-align: left;
 }
 
-.preferences-bottom-input.invite span{
-
-    font-size: 19px;
-    color: #242424;
-
+.invite .subtitle{
+  float: left;
+  width: 100%;
+  font-size: 17px;
+  color: #fff;
+  margin-top: 40px;
+  line-height: 27px;
+  letter-spacing: 0px;
+  text-align: left;
 }
 
-.preferences-account-buttons.invite{
-    margin-top: 25px;
+.emails{
+  float: left;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 60px;
+  margin-left: 5px;
 }
 
-.preferences-button.invite{
-    display: inline-block;
-    border: 1px solid #2F2F2F;
+.mail-list{
+  float: left;
+  width: 100%;
+  max-height: 235px;
+  margin-top: 9px;
 }
 
-.preferences-invite-left{
-    width: 100%;
-    height: 15px;
+.mail{
+  float: left;
+  width: ~'calc(100% - 23px)';
+  height: 40px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  background-color: #2c3238;
+  font-size: 17px;
+  color: #fff;
+  padding-left: 20px;
+  border: 1px solid transparent;
+}
+
+.wrong.mail{
+  border: 1px solid red;
+}
+
+.add-mail{
+  float: left;
+  width: ~'calc(100% - 10px)';
+  margin: 10px 10px 0 0;
+  .add-mail-text{
+    float: right;
+    color: #d2dce2;
     font-size: 15px;
-    color: #D3D3D3;
-    display: inline-block;
-    margin-top: 15px;
+    cursor: pointer;
+  }
 }
 
-.preferences-invite-beware{
-    width: 360px;
-    font-size: 13px;
-    color: #D3D3D3;
-    display: inline-block;
-    line-height: 20px;
-    margin-top: 65px;
-}
+.share-button{
+  width: 229px;
+  height: 56px;
+  border-radius: 6px;
+  background-color: #60b25e;
+  transition: all ease 0.19s;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  opacity: 0.7;
 
-.preferences-invite-invited{
-
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-    box-shadow: 0 1px rgba( 255, 255, 255, 0.2 ) inset, 0 0 0 1px rgba( 37, 37, 37, 0.5 );
-
-    background-image: -moz-linear-gradient( bottom, #414141, #656565 );
-    background-image: -webkit-linear-gradient( bottom, #414141, #656565 );
-    background-image: -o-linear-gradient( bottom, #414141, #656565 );
-    background-image: linear-gradient( to top, #414141, #656565 );
-
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    display: none;
-
-}
-
-.preferences-invite-invited.display{
-    display: block;
-}
-
-.preferences-invite-invited:hover{
-
-    background-image: -moz-linear-gradient( bottom, #4C4C4C, #737373 );
-    background-image: -webkit-linear-gradient( bottom, #4C4C4C, #737373 );
-    background-image: -o-linear-gradient( bottom, #4C4C4C, #737373 );
-    background-image: linear-gradient( to top, #4C4C4C, #737373 );
-
-}
-
-.preferences-invite-invited:active{
-
-    box-shadow: 0 1px 2px rgba( 0, 0, 0, 0.2 ) inset, 0 0 0 1px rgba( 37, 37, 37, 0.5 );
-
-    background-image: -moz-linear-gradient( top, #3F3F3F, #4D4D4D );
-    background-image: -webkit-linear-gradient( top, #3F3F3F, #4D4D4D );
-    background-image: -o-linear-gradient( top, #3F3F3F, #4D4D4D );
-    background-image: linear-gradient( to bottom, #3F3F3F, #4D4D4D );
-
-}
-
-.invited-friends .preferences-invite-invited{
-
-    box-shadow: 0 1px rgba( 255, 255, 255, 0.2 ) inset, 0 0 0 1px rgba( 37, 37, 37, 0.5 );
-
-    background-image: -moz-linear-gradient( bottom, #414141, #656565 );
-    background-image: -webkit-linear-gradient( bottom, #414141, #656565 );
-    background-image: -o-linear-gradient( bottom, #414141, #656565 );
-    background-image: linear-gradient( to top, #414141, #656565 );
-
-}
-
-.preferences-invite-invited i{
-
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-    background: url('@static/invite.png') no-repeat;
-    background-size: 50px 25px;
-    margin-top: 2px;
-
-}
-
-.invited-friends .preferences-invite-invited i{
-    background-position: -25px 0;
-}
-
-.preferences-invite-friends{
-
-    position: absolute;
-    top: 40px;
-    right: 0;
-
-    width: 160px;
-    background: #EFEFEF;
-    box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.3 ), inset 0 1px #FFF;
-    border: 1px solid #DDD;
-    border-radius: 3px;
-    display: none;
-
-}
-
-.invited-friends .preferences-invite-friends{
-    display: block;
-}
-
-.preferences-invite-friends:after, .preferences-invite-friends:before {
-
-    bottom: 100%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-
-}
-
-.preferences-invite-friends:after {
-
-    border-color: rgba(136, 183, 213, 0);
-    border-bottom-color: #EFEFEF;
-    border-width: 5px;
-    left: 89%;
-
-}
-
-.preferences-invite-friends article{
-
+  .share-text{
+    color: #fff;
+    font-weight: bold;
+    font-size: 19px;
+    width: 100%;
+    text-align: center;
     float: left;
-    width: 140px;
-    height: 25px;
-    padding: 5px 10px;
-    border-bottom: 1px solid #DDD;
-    box-shadow: 0 1px #FFF;
-
+    margin-top: 18px;
+  }
 }
 
-.preferences-invite-friends article:last-child{
-
-    border-bottom: none;
-    box-shadow: none;
-
+.share-button.valid{
+  opacity: 1;
 }
 
-.preferences-invite-friends article img{
-
-    float: left;
-    width: 24px;
-    height: 24px;
-    border-radius: 2px;
-
+.share-button:hover{
+  background-color: #60b25e;
 }
 
-.preferences-invite-friends article span{
-
-    float: left;
-    width: 108px;
-    height: 14px;
-    margin-left: 8px;
-    margin-top: 6px;
-    font-size: 13px;
-    color: #828282;
-    text-align: left;
-
+.share-button:active{
+  background-color: #60b25e;
 }
-
 /* INVITE ZONE FINISH */
 
 /* BACKUP ZONE START */
