@@ -62,6 +62,14 @@
     var degrees    = 0;
     var pixelRatio = 1;
 
+    /* Invite variables */
+    var addMailButton = $('.add-mail span');
+    var mailPrototype = $('.mail.wz-prototype');
+    var mailList      = $('.mail-list');
+    var shareButton   = $('.share-button');
+    var validMails    = [];
+    var MAIL_REGEXP = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/
+
     var spaceTabs = [
       "space-premium",
       "modify-premium",
@@ -130,6 +138,53 @@
 
     inevioPlans.push(plan0);
 
+    addMailButton.on( 'click' , function(){
+      addMail();
+    });
+
+    shareButton.on( 'click' , function(){
+      share();
+    });
+
+    win.on( 'blur input' , '.mail' , function(){
+      checkMails();
+    });
+
+    var addMail = function(){
+      var mail = mailPrototype.clone();
+      mail.removeClass('wz-prototype');
+      mailList.append(mail);
+      mailList.stop().clearQueue().animate( { scrollTop : mailList[0].offsetTop }, 400  );
+    }
+
+    var share = function(){
+      if (shareButton.hasClass('valid')) {
+        api.user.inviteByMail(validMails);
+        api.banner()
+          .setTitle( lang.invitationSentTitle )
+          .setText( lang.invitationSentSubtitle )
+          .setIcon( 'https://static.inevio.com/app/3/icon.png' )
+          .render();
+        mailList.find('.mail:not(.wz-prototype)').each(function(){
+            $(this).removeClass('wrong').val('');
+        });
+      }
+    }
+
+    var checkMails = function(){
+      $('.wrong').removeClass('wrong');
+      shareButton.removeClass('valid');
+      mailList.find('.mail:not(.wz-prototype)').each( function(){
+        if ( $(this).val() != '' ) {
+          if( $(this).val().length && MAIL_REGEXP.test( $(this).val() ) ){
+            validMails.push( $(this).val() )
+            shareButton.addClass('valid');
+          }else{
+            $(this).addClass('wrong');
+          }
+        }
+      });
+    }
 
     // Quota circle functions
     var changeCake = function( space ){
@@ -2911,11 +2966,6 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
       $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
 
-      $( '.preferences-bottom-title.invite', win ).text( lang.inviteTitle );
-      $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
-      $( '.preferences-account-button.invite', win ).text( lang.generate );
-      $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
-
       $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
       $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
       $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
@@ -2923,6 +2973,13 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
       $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
       $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
+
+      $('.preferences-bottom-content.invite .title').text(lang.inviteYourFriends);
+      $('.preferences-bottom-content.invite .subtitle').text(lang.feelAlone);
+      $('.preferences-bottom-content.invite .emails').text(lang.emails);
+      $('.preferences-bottom-content.invite .add-mail-text').text(lang.addMail);
+      $('.preferences-bottom-content.invite .share-text').text(lang.sendInvitations);
+      $('.preferences-bottom-content.invite .mail').attr('placeholder' , lang.mailExample);
 
       // Infinity storage??
 
