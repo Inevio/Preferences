@@ -1414,6 +1414,7 @@
                 $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[0].addQuota - quota.used) + ' ' + lang.freeSpace );
                 $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
                 });
+                updateCanvasCake();
                 makePremium = false;
                 resetLocalVar();
               }else{
@@ -1851,6 +1852,7 @@
                 nextPage(currentTab, 1);
                 $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
                 $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota - quota.used) + ' ' + lang.freeSpace );
+                updateCanvasCake();
                 var currentObject = $('.hdd-container');
                 $('.finish .finish-middle .info-space').text( $( '.order .options-bottom .bottom .left').text());
                 $('.order .secure-by-stripe').addClass('hidden');
@@ -2838,6 +2840,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
               });
               $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
               $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota - quota.used) + ' ' + lang.freeSpace );
+              updateCanvasCake();
               return;
             }
             else{
@@ -2852,6 +2855,21 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
           return;
     };
 
+    var updateCanvasCake = function(){
+
+      var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
+      var canvasObject2 = $( '.preferences-hdd-canvas-cake')[1];
+      var context1 = canvasObject1.getContext('2d');
+      var context2 = canvasObject2.getContext('2d');
+      var centroX = canvasObject1.width / 2;
+      var centroY = canvasObject1.height / 2;
+      var radio = 107;
+      var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
+      porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
+        loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
+        loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
+
+    };
 
     var loadAppUser = function(){
       var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
