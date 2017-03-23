@@ -1400,13 +1400,13 @@
             console.log("Confirm clicked");
 
 
-            request( 'POST', 'https://restbeta.horbito.com/unsubscribe' )
+            request( 'POST', 'https://restbeta.horbito.com/payment/unsubscribe' )
 
             .done( function(){
               loadLoading();
               console.log("unsubscribe OK");
 
-              if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
+              if($('.order-premium').parents('.preferences-hdd-payment').hasClass(currentTab)){
                 loadLoading();
                 nextPage(currentTab, 1);
                 var currentObject = $('.hdd-container');
@@ -2674,7 +2674,7 @@ var resetInputVal = function(){
 
 var unsubscribe = function(){
 
-  request( 'POST', 'https://restbeta.horbito.com/unsubscribe' ).done( function(){
+  request( 'POST', 'https://restbeta.horbito.com/payment/unsubscribe' ).done( function(){
 
     console.log("unsubscribe OK");
 
