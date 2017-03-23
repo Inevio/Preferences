@@ -467,14 +467,14 @@
 
       $('.modify-space .quantity').find('span').text(userLocal.actualPrice);
       plansCounter = listPlans.indexOf(userLocal.activePlan);
-      var espacioTotal = userLocal.base + parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter].addQuota).split(" ", 1)[0]);
+      var espacioTotal = api.tool.bytesToUnit(quota.base + inevioPlans[plansCounter].addQuota).split(" ", 1)[0];
       if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
         //espacioTotal = lang.unlimitedStorage;
         espacioTotal = 10000;
       }
       else{
 
-        espacioTotal = parseInt(userLocal.totalStorage);
+        //espacioTotal = parseInt(userLocal.totalStorage);
 
         if(plansCounter == inevioPlans.length - 1){
             moreSpaceCondition = false;
@@ -666,12 +666,13 @@
 
     var updateUserLocal = function(value, attr){
       /*
-      0 premium.info
-      1 premium.actualStorage
-      2 premium.actualPrice
-      3 premium.extraStorage
-      4 premium.payDay
-      5 premium.activePlan
+      0 userLocal.info
+      1 userLocal.totalStorage
+      2 userLocal.actualPrice
+      3 userLocal.extraStorage
+      4 userLocal.payDay
+      5 userLocal.activePlan
+      6 userLocal.base
       */
       switch (attr) {
         case 0:
@@ -691,6 +692,9 @@
           break;
         case 5:
           userLocal.activePlan = value;
+          break;
+        case 6:
+          userLocal.base = value;
           break;
         default:
           console.log("Invalid attr: "+attr , "value: "+value );
@@ -1124,6 +1128,9 @@
       if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
         nextPage(currentTab, 1);
         $('.hdd-container').scrollLeft(0);
+        resetLocalVar();
+        //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
+        //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
       }else{
         console.log("ERROR, no currentTab");
       }
@@ -1135,21 +1142,24 @@
 
       if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
         nextPage(currentTab, 1);
+        spaceTab();
+        spacePRTab();
 
-
+        resetLocalVar();
         if (makePremium){
           updateSpaceToPremium();
           var tab = $('.free-user');
           tab.removeClass('free-user');
           tab.addClass('premium-user');
-          spaceTab();
           $('.hdd-container').scrollLeft(0);
+          //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
+          //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
         }else{
           updateSpaceToFree();
           $('.hdd-container').scrollLeft(0);
+          //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
+          //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
         }
-
-
       }else{
         console.log("ERROR, no currentTab");
       }
@@ -1400,6 +1410,8 @@
                 loadLoading();
                 nextPage(currentTab, 1);
                 var currentObject = $('.hdd-container');
+                $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
+                $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[0].addQuota - quota.used) + ' ' + lang.freeSpace );
                 $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
                 });
                 makePremium = false;
@@ -1524,7 +1536,6 @@
                   cardStatus=1;
                   loadLoading();
                   changePlan(activePlan, this);
-
                 })
                 .fail( function( res ){
                   console.log("addCard fail", res);
@@ -1838,6 +1849,8 @@
               if($('.order .validate').parents('.preferences-hdd-payment').hasClass(currentTab)){
 
                 nextPage(currentTab, 1);
+                $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
+                $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota - quota.used) + ' ' + lang.freeSpace );
                 var currentObject = $('.hdd-container');
                 $('.finish .finish-middle .info-space').text( $( '.order .options-bottom .bottom .left').text());
                 $('.order .secure-by-stripe').addClass('hidden');
@@ -2520,9 +2533,7 @@
                 invitationInfo();
 
             }
-
         });
-
     })
 
     .on( 'click', '.preferences-bottom-content.backup button', function(){
@@ -2819,11 +2830,14 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
             console.log("Plan changed", res);
             resetLocalVar();
             if($(context).parents('.preferences-hdd-payment').hasClass(currentTab)){
+              userLocal.activePlan = newPlan;
               loadLoading();
               nextPage(currentTab, 1);
               var currentObject = $('.hdd-container');
               $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
               });
+              $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
+              $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota - quota.used) + ' ' + lang.freeSpace );
               return;
             }
             else{
@@ -3000,8 +3014,9 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         $('.space .info-plan-premium').addClass('en');
       }
       $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
-      cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
-      cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
+
+      //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
+      //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
       $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
       $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       /*
@@ -3071,8 +3086,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     var spacePRTab = function(){
       $(  '.space-premium .preferences-hdd-usage').text(lang.usedSpace);
 
-      cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
-      cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
+      //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
+      //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
       $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
       $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
@@ -3080,7 +3095,6 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus );
       var fecha = new Date(userLocal.payDay);
       $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
-
     };
 
     var modifyPRTab = function(){
