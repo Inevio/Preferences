@@ -76,6 +76,7 @@
 
     var currentTab = null;
     var loadTab = null;
+    var makePremium = true;
 
     // Info about user & plans
     var infoSubscriptions = null;
@@ -598,6 +599,15 @@
       $(  '.pr-box .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
     };
 
+    var updateSpaceToFree = function(){
+      spaceTab();
+      moreTab();
+      orderTab();
+      finishTab();
+      $('.space .pr-box').addClass('hidden');
+      $('.space .fr-box').removeClass('hidden');
+    };
+
 
     var updateUserLocal = function(value, attr){
       /*
@@ -1050,9 +1060,7 @@
     })
 
     .on(  'click', '.finish-premium .updatePremium', function(){
-      //update userLocal in premium-mode
-      //resetLocalVar();
-      //currentTab = "space-premium";
+      //
     })
 
     .on( 'click' , '.finish-premium .inicio', function(){
@@ -1072,13 +1080,20 @@
 
       if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
         nextPage(currentTab, 1);
-        updateSpaceToPremium();
 
-        var ventana = $('.free-user');
-        ventana.removeClass('free-user');
-        ventana.addClass('premium-user');
-        spaceTab();
-        $('.hdd-container').scrollLeft(0);
+
+        if (makePremium){
+          updateSpaceToPremium();
+          var tab = $('.free-user');
+          tab.removeClass('free-user');
+          tab.addClass('premium-user');
+          spaceTab();
+          $('.hdd-container').scrollLeft(0);
+        }else{
+          updateSpaceToFree();
+          $('.hdd-container').scrollLeft(0);
+        }
+
 
       }else{
         console.log("ERROR, no currentTab");
@@ -1214,7 +1229,7 @@
         return;
       }
 
-      if( card.name == "" | card.number == "" | card.month == "" | card.code == ""){
+      if((cardStatus == 2)&&( card.name == "" | card.number == "" | card.month == "" | card.code == "")){
         alert(lang.emptyInput);
         if(card.name == ""){
           $('.modify-premium .info-current-new-card-bottom .owner-credit-card').addClass('error');
@@ -1301,7 +1316,7 @@
     .on(  'click', '.order-premium .validate', function(){
       //console.log(quota.used);
       var stUser = quota.used;
-      var stNewPlan = userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota;
+      var stNewPlan = quota.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota;
 
       if(typePlan == "downgrade"){
         if(stUser >= stNewPlan){
@@ -1313,10 +1328,11 @@
       if(activePlan == plan0.id){
 
         loadLoading();
-
+        console.log("plan 0");
         var test = confirm( lang.unsubscribeConfirm, function( value ){
           if( value ){
             console.log("Confirm clicked");
+
 
             request( 'POST', 'https://restbeta.horbito.com/unsubscribe' )
 
@@ -1330,6 +1346,7 @@
                 var currentObject = $('.hdd-container');
                 $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
                 });
+                makePremium = false;
                 resetLocalVar();
               }else{
                 console.log("ERROR, no currentTab");
@@ -1359,18 +1376,7 @@
 
         if(cardStatus == 1){
           loadLoading();
-          changePlan(activePlan);
-            if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
-              loadLoading();
-              nextPage(currentTab, 1);
-              var currentObject = $('.hdd-container');
-              $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
-              });
-              return;
-            }else{
-              console.log("ERROR, no currentTab");
-              return;
-            }
+          changePlan(activePlan, this);
         }
         if(cardStatus == 0){
           alert(lang.mustBeCard);
@@ -1400,7 +1406,7 @@
             return;
           }
 
-          if( card.name == "" | card.number == "" | card.month == "" | card.code == ""){
+          if((cardStatus == 2)&&( card.name == "" | card.number == "" | card.month == "" | card.code == "")){
             alert(lang.emptyInput);
             if(card.name == ""){
               $('.order-premium .new-card .owner-credit-card').addClass('error');
@@ -1461,10 +1467,8 @@
                   resetLocalVar();
                   cardStatus=1;
                   loadLoading();
-                  changePlan(activePlan);
-                  nextPage(currentTab, 1);
-                  var currentObject = $('.hdd-container');
-                  $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){});
+                  changePlan(activePlan, this);
+
                 })
                 .fail( function( res ){
                   console.log("addCard fail", res);
@@ -1699,6 +1703,8 @@
 
     .on ('click' ,'.order .validate', function(){
 
+      makePremium = true;
+
       var month_year = $('.order .month-year-card').val().split("/");
       if(month_year[1] == null && month_year[0] != null){
         month_year[1] = "";
@@ -1806,6 +1812,12 @@
 
     .on('click', '.modify-space .validate', function(){
 
+      if (userLocal.card.id != null) {
+        cardStatus = 1;
+      }else{
+        cardStatus = 0;
+      }
+
       $('.order-premium .options-top-body .body-bottom .left').find('span').text((parseInt(userLocal.base) + parseInt(userLocal.extraStorage )) + 'GB');
       $('.order-premium .options-top-body .body-bottom .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus);
 
@@ -1863,11 +1875,15 @@
         typePlan = "downgrade";
         $('.finish-premium .finish-top').addClass('sad');
         $('.finish-premium .finish-middle span:first-child').text(lang.decrease);
+        $('.finish .finish-top').addClass('sad');
+        $('.finish .finish-middle span:first-child').text(lang.decrease);
 
       }else{
         typePlan = "update";
         $('.finish-premium .finish-top').removeClass('sad');
         $('.finish-premium .finish-middle span:first-child').text(lang.congratulation);
+        $('.finish .finish-top').removeClass('sad');
+        $('.finish .finish-middle span:first-child').text(lang.congratulation);
       }
 
       //console.log(cardStatus);
@@ -2735,7 +2751,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     };
 
-    var changePlan = function(newPlan){
+    var changePlan = function(newPlan, context){
 
 
           request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
@@ -2746,6 +2762,18 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
           }).done(function(res){
             console.log("Plan changed", res);
             resetLocalVar();
+            if($(context).parents('.preferences-hdd-payment').hasClass(currentTab)){
+              loadLoading();
+              nextPage(currentTab, 1);
+              var currentObject = $('.hdd-container');
+              $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
+              });
+              return;
+            }
+            else{
+              console.log("ERROR, no currentTab");
+              return;
+            }
           })
           .fail( function(res){
             console.log("ERROR", res);
