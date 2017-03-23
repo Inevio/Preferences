@@ -47,19 +47,8 @@
     var cardDescriptionThree = $( '.preferences-card-description-three', win );
     var cardDescriptionFour  = $( '.preferences-card-description-four', win );
 
-    // Config variables
-    var spanishLabel         = $( '.preferences-language-element-spanish', win );
-    var englishLabel         = $( '.preferences-language-element-english', win );
-
     // Social Accounts
     var accountPrototype     = $( '.preferences-social-account.wz-prototype', win );
-
-    // Quota circle variables
-    var cakeCanvas    = null;
-    var cakeCanvasObj = null;
-    var cakeInterval  = 0;
-    var cakeGrads     = 0;
-    var cakeEnd       = 0;
 
     // Avatar uploading variables
     var avatarCanvas    = null;
@@ -70,9 +59,8 @@
     var avatarUploading = false;
     var avatarUrl       = '';
 
-    var degrees           = 0;
-    var backingStoreRatio = 1;
-    var pixelRatio        = 1;
+    var degrees    = 0;
+    var pixelRatio = 1;
 
     var spaceTabs = [
       "space-premium",
@@ -143,150 +131,13 @@
 
 
     // Quota circle functions
-    var startCircleAnimation = function( end ){
-
-        /*
-        cakeEnd = ( end * 360 ) + 5;
-
-        // Define cakeCanvas Object
-        cakeCanvasObj     = $( '.preferences-hdd-canvas', win ).transition( { opacity : 1 }, 500 );
-        cakeCanvas        = cakeCanvasObj[ 0 ].getContext('2d');
-        backingStoreRatio = cakeCanvas.webkitBackingStorePixelRatio ||
-                            cakeCanvas.mozBackingStorePixelRatio ||
-                            cakeCanvas.msBackingStorePixelRatio ||
-                            cakeCanvas.oBackingStorePixelRatio ||
-                            cakeCanvas.backingStorePixelRatio || 1;
-        pixelRatio        = api.tool.devicePixelRatio() / backingStoreRatio;
-
-        var oldWidth  = cakeCanvasObj.width();
-        var oldHeight = cakeCanvasObj.height();
-
-
-
-        cakeCanvasObj[ 0 ].width  = oldWidth * pixelRatio;
-        cakeCanvasObj[ 0 ].height = oldHeight * pixelRatio;
-
-        cakeCanvasObj[ 0 ].style.width  = oldWidth + 'px';
-        cakeCanvasObj[ 0 ].style.height = oldHeight + 'px';
-
-        cakeCanvas.scale( pixelRatio, pixelRatio );
-
-        // cakeCanvas Style
-        cakeCanvas.lineWidth   = 22;
-        cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#60B25E";
-
-        // Start cakeCanvas
-        cakeCanvas.beginPath();
-        cakeCanvas.moveTo(110,12);
-        cakeCanvas.lineTo(111,12);
-        cakeCanvas.stroke();
-
-        if( cakeGrads === 0 ){
-            setTimeout( function(){
-                cakeInterval = setInterval( nextCircleAnimation, 10 );
-            }, 1000 );
-        }else if( cakeGrads < cakeEnd ){
-            clearInterval( cakeInterval );
-            setTimeout( function(){
-                cakeInterval = setInterval( nextCircleAnimation, 10 );
-            }, 100 );
-        }else{
-            clearInterval( cakeInterval );
-            setTimeout( function(){
-                cakeInterval = setInterval( prevCircleAnimation, 10 );
-            }, 100 );
-        }
-
-    */
-
-  };
-
-    var radayns =  function( grads ){
-        return ( ( Math.PI / 180 ) * grads ) - ( Math.PI / 2 );
-    };
-
-    // Makes cake circle bigger
-    var nextCircleAnimation = function(){
-
-        var oldWidth  = cakeCanvasObj.width();
-        var oldHeight = cakeCanvasObj.height();
-
-        cakeCanvasObj[ 0 ].width        = oldWidth * pixelRatio;
-        cakeCanvasObj[ 0 ].height       = oldHeight * pixelRatio;
-        cakeCanvasObj[ 0 ].style.width  = oldWidth + 'px';
-        cakeCanvasObj[ 0 ].style.height = oldHeight + 'px';
-
-        cakeCanvas.scale( pixelRatio, pixelRatio );
-
-        cakeCanvas.beginPath();
-
-        // cakeCanvas Style
-        cakeCanvas.lineWidth   = 22;
-        cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#60B25E";
-
-        cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radayns( cakeGrads ), false );
-
-        if( ( cakeGrads / cakeEnd ) < 0.5 ){
-            cakeGrads += 6;
-        }else{
-            cakeGrads += ( 10 - ( ( cakeGrads / cakeEnd ) * 10 ) );
-        }
-
-        cakeCanvas.stroke();
-
-        if( cakeGrads >= cakeEnd ){
-            clearInterval( cakeInterval );
-        }
-
-    };
-
-    // Makes cake circle shorter
-    var prevCircleAnimation = function(){
-
-        var oldWidth  = cakeCanvasObj.width();
-        var oldHeight = cakeCanvasObj.height();
-
-        cakeCanvasObj[ 0 ].width        = oldWidth * pixelRatio;
-        cakeCanvasObj[ 0 ].height       = oldHeight * pixelRatio;
-        cakeCanvasObj[ 0 ].style.width  = oldWidth + 'px';
-        cakeCanvasObj[ 0 ].style.height = oldHeight + 'px';
-
-        cakeCanvas.scale( pixelRatio, pixelRatio );
-
-        cakeCanvas.beginPath();
-
-        // cakeCanvas Style
-        cakeCanvas.lineWidth   = 22;
-        cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#60B25E";
-
-        cakeCanvas.arc( 110, 110, 98, ( -Math.PI / 2 ), radayns( cakeGrads ), false );
-
-        if( ( cakeEnd / cakeGrads ) < 0.5 ){
-            cakeGrads -= 6;
-        }else{
-            cakeGrads -= ( 10 - ( ( cakeEnd / cakeGrads ) * 10 ) );
-        }
-
-        cakeCanvas.stroke();
-
-        if( cakeGrads < cakeEnd ){
-            clearInterval( cakeInterval );
-        }
-
-    };
-
     var changeCake = function( space ){
 
         api.system.updateQuota( function(){
 
             if( space ){
-                startCircleAnimation( configObject.quota / space );
                 cakeFree.text( api.tool.bytesToUnit( space - configObject.quota, 2 ) + ' ' + lang.freeSpace );
             }else{
-                startCircleAnimation( configObject.quotaPercentage );
                 cakeFree.text( api.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
             }
 
@@ -1656,19 +1507,19 @@
       if(moreSpaceCondition && inevioPlans[plansCounter + 1] != null ){
 
         var price = null;
-        var tamaño = null;
+        var size = null;
         var total = null;
         var condition = true;
 
         if(currentTab == spaceTabs[2]){
           //premium
-          tamano = $('.modify-space .show-space-selected .big-text');
+          size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
-          tamano = $('.more .show-space-selected .big-text');
+          size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
         }
@@ -1679,9 +1530,9 @@
 
         if(condition){
 
-          tamano.text(parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
+          size.text(parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
           price.text(inevioPlans[plansCounter + 1 ].amount);
-          total.text(tamano.text() + " GB");
+          total.text(size.text() + " GB");
           activePlan = inevioPlans[plansCounter + 1].id;
           console.log("Plan: " + activePlan);
           if (plansCounter < inevioPlans.length - 1){
@@ -1690,7 +1541,7 @@
             moreSpaceCondition = false;
           }
 
-          if(parseInt(tamano.text()) == (parseInt(api.tool.bytesToUnit(inevioPlans[inevioPlans.length - 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base))){
+          if(parseInt(size.text()) == (parseInt(api.tool.bytesToUnit(inevioPlans[inevioPlans.length - 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base))){
 
             $('.moreStorage').addClass('block');
             $('.'+currentTab+ ' .more-icon').removeClass('moreStorage');
@@ -1735,19 +1586,19 @@
       if(minusSpaceCondition && inevioPlans[plansCounter - 1] != null ){
 
         var price = null;
-        var tamaño = null;
+        var size = null;
         var total = null;
         var condition = true;
 
         if(currentTab == spaceTabs[2]){
           //premium
-          tamano = $('.modify-space .show-space-selected .big-text');
+          size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
-          tamano = $('.more .show-space-selected .big-text');
+          size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
         }
@@ -1757,9 +1608,9 @@
 
         if(condition){
 
-          tamano.text(parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
+          size.text(parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
           price.text(inevioPlans[plansCounter - 1].amount);
-          total.text( tamano.text() + " GB");
+          total.text( size.text() + " GB");
           activePlan = inevioPlans[plansCounter - 1 ].id;
           console.log("Plan: " + activePlan);
           if (plansCounter > 0){
@@ -1768,7 +1619,7 @@
             minusSpaceCondition = false;
           }
 
-          if(parseInt(tamano.text()) == (parseInt(api.tool.bytesToUnit(inevioPlans[0].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base))){
+          if(parseInt(size.text()) == (parseInt(api.tool.bytesToUnit(inevioPlans[0].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base))){
             $('.minusStorage').addClass('block');
             $('.'+currentTab+ ' .minus-icon').removeClass('minusStorage');
           }
@@ -2613,8 +2464,6 @@
         cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
         cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
 
-        startCircleAnimation( api.system.quota().used / api.system.quota().total );
-
     });
 
 
@@ -2701,7 +2550,6 @@
         tiempo = 200;
       }
       var curPerc = 0;
-      var counterClockwise = true;
       var circ = Math.PI * 2;
       var quart = Math.PI / 2;
 
@@ -2731,40 +2579,6 @@
       }
 
     };
-
-
-    var doGetCaretPosition = function (oField) {
-
-      // Initialize
-      var iCaretPos = 0;
-
-      // IE Support
-      if (document.selection) {
-
-        // Set focus on the element
-        oField.focus();
-
-        // To get cursor position, get empty selection range
-        var oSel = document.selection.createRange();
-
-        // Move selection start to 0 position
-        oSel.moveStart('character', -oField.value.length);
-
-        // The caret position is selection length
-        iCaretPos = oSel.text.length;
-      }
-
-      // Firefox support
-      else if (oField.selectionStart || oField.selectionStart == '0')
-        iCaretPos = oField.selectionStart;
-
-      // Return results
-      return iCaretPos;
-    }
-
-
-
-
 
     // payments.js start
 
