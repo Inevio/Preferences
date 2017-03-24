@@ -709,7 +709,7 @@
       moreSpaceCondition = true;
       $(  '.hdd .more .minus-icon').addClass('block');
       wz.config.getSubscriptionStatus(function( err, info ){
-        api.app.storage('infoSubscriptions', info);
+        //api.app.storage('infoSubscriptions', info);
         infoSubscriptions = info;
         //activePlan = infoSubscriptions.currentPlan.id;
         inevioPlans= [];
@@ -1875,12 +1875,13 @@
   */
 
     .on('click', '.modify-space .validate', function(){
-      orderPRTab();
+
       if (userLocal.card.id != null) {
         cardStatus = 1;
       }else{
         cardStatus = 0;
       }
+      orderPRTab();
 
       $('.order-premium .options-top-body .body-bottom .left').find('span').text((parseInt(userLocal.base) + parseInt(userLocal.extraStorage )) + 'GB');
       $('.order-premium .options-top-body .body-bottom .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus);
