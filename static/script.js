@@ -1127,6 +1127,12 @@
       if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
         nextPage(currentTab, 1);
         $('.hdd-container').scrollLeft(0);
+        if(!makePremium){
+          var tab = $('.premium-user');
+          tab.removeClass('premium-user');
+          tab.addClass('free-user');
+        }
+        spaceTab();
         resetLocalVar();
         //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
         //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
@@ -1415,7 +1421,7 @@
                 });
                 updateCanvasCake();
                 makePremium = false;
-                resetLocalVar();
+                //resetLocalVar();
               return;
 
             })
