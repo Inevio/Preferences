@@ -119,7 +119,7 @@
     "currentSpaceMayus" : "ACTUAL STORAGE",
     "totalStorage"    : "Total storage",
     "totalStorageMayus":  "TOTAL STORAGE",
-    "unsubscribeConfirm"  : "Are you sure you want to cancel your subscription and return to the free plan? If you press 'confirm' we will remove the card that you have associated with our system, your subscription will be canceled and you will return to the free plan.",
+    "unsubscribeConfirm"  : "Are you sure you want to cancel your subscription and return to the free plan? If you press 'accept' we will remove the card that you have associated with our system, your subscription will be canceled and you will return to the free plan.",
 
     "creditCardOptions"   : {
 
@@ -288,7 +288,7 @@
         "Notes, links or videos posted"
 
     ],
- 
+
     "inviteYourFriends" : "Invite all your friends",
     "feelAlone"         : "If you feel alone in horbito, start now inviting all your friends! Then you can share files, collaborate etc...",
     "emails"            : "Emails",
