@@ -122,7 +122,7 @@
     "currentSpaceMayus" : "ESPACIO ACTUAL",
     "totalStorage"    : "Espacio total",
     "totalStorageMayus":  "ESPACIO TOTAL",
-    "unsubscribeConfirm"  : "¿Estás seguro que quieres cancelar tu suscripción y volver al plan gratuito? Si pulsas 'confirmar' eliminaremos la tarjeta que tengas asociada de nuestro sistema, tu suscripción será cancelada y volverás al plan gratuito.",
+    "unsubscribeConfirm"  : "¿Estás seguro que quieres cancelar tu suscripción y volver al plan gratuito? Si pulsas 'aceptar' eliminaremos la tarjeta que tengas asociada de nuestro sistema, tu suscripción será cancelada y volverás al plan gratuito.",
 
     "creditCardOptions"   : {
 
@@ -293,5 +293,5 @@
    "emails"            : "Emails",
    "addMail"           : "+ Añadir más correos",
    "sendInvitations"   : "Enviar invitaciones",
-   "mailExample"       : "ejemplo@mail.com" 
+   "mailExample"       : "ejemplo@mail.com"
 }

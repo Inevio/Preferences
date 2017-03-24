@@ -111,6 +111,7 @@
 
     var userLocal = {
         info : false,
+        customPlan : false,
         activePlan: null,
         base: 0,
         totalStorage : 0,
@@ -772,6 +773,8 @@
       if(infoSubscriptions.currentPlan !=  null){
 
         userLocal.info = true;
+        userLocal.customPlan = infoSubscriptions.currentPlan.customPlan;
+        $('.hdd .modify-premium .change-plan').addClass('block').removeClass('pointer');
         userLocal.totalStorage = parseInt(api.tool.bytesToUnit(quota.total).split(" ", 1)[0]);
         userLocal.base = parseInt(api.tool.bytesToUnit(quota.base).split(" ", 1)[0]);
         userLocal.actualPrice = parseInt(infoSubscriptions.currentPlan.amount);
@@ -803,6 +806,7 @@
 
       }else{
         userLocal.info = false;
+        userLocal.customPlan = false;
         userLocal.totalStorage = parseInt(api.tool.bytesToUnit(quota.total).split(" ", 1)[0]);
         userLocal.base = parseInt(api.tool.bytesToUnit(quota.base).split(" ", 1)[0]);
         userLocal.actualPrice = 0;
@@ -1090,20 +1094,23 @@
       }
     })
     .on(  'click' , '.change-plan' , function(){
-      plansCounter = listPlans.indexOf(userLocal.activePlan);
-      if(userLocal.card.id == null && cardStatus == 2){
-        cardStatus = 0;
+
+      if(!userLocal.customPlan){
+        plansCounter = listPlans.indexOf(userLocal.activePlan);
+        if(userLocal.card.id == null && cardStatus == 2){
+          cardStatus = 0;
+        }
+        if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
+          nextPage(currentTab, 1);
+          loadModifySpace();
+          var currentObject = $('.hdd-container');
+          $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
+          });
+        }else{
+          console.log("ERROR, no currentTab");
+        }
+        //console.log("Pestaña actual: "+currentTab);
       }
-      if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
-        nextPage(currentTab, 1);
-        loadModifySpace();
-        var currentObject = $('.hdd-container');
-        $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
-        });
-      }else{
-        console.log("ERROR, no currentTab");
-      }
-      //console.log("Pestaña actual: "+currentTab);
 
     })
 
@@ -1158,13 +1165,9 @@
           tab.removeClass('free-user');
           tab.addClass('premium-user');
           $('.hdd-container').scrollLeft(0);
-          //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
-          //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
         }else{
           updateSpaceToFree();
           $('.hdd-container').scrollLeft(0);
-          //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
-          //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
         }
       }else{
         console.log("ERROR, no currentTab");
@@ -1397,7 +1400,6 @@
 
       if(typePlan == "downgrade"){
         if(stUser >= stNewPlan){
-          //alert(lang.limitStorageDowngrade[0] + api.tool.bytesToUnit(stUser).split(" ",1)[0] + lang.limitStorageDowngrade[1]);
           alert(lang.limitStorageDowngrade[0] + (stUser / (1024*1024*1024)).toString().substring(0,4) + lang.limitStorageDowngrade[1]);
           return;
         }
@@ -1878,12 +1880,6 @@
           });
 
     })
-/*
-    .on('click', '.more .preferences-hdd-payment-bottom .block', function(){
-      alert(lang.noSelectablePlan0);
-    })
-
-  */
 
     .on('click', '.modify-space .validate', function(){
 
@@ -3047,19 +3043,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         $('.space .info-plan-premium').addClass('en');
       }
       $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
-
-      //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
-      //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
       $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
       $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      /*
-      $(  '.space .info-plan-premium .left').find('span').text(lang.infoPlanPremium[0]);
-      $(  '.space .info-plan-premium .middle .top').find('span').text(lang.infoPlanPremium[1]);
-      $(  '.space .info-plan-premium .middle .bottom').find('span').text(lang.infoPlanPremium[2]);
-      $(  '.space .info-plan-premium .right .top').find('span').text(lang.infoPlanPremium[3]);
-      $(  '.space .info-plan-premium .right .bottom').find('span').text(lang.infoPlanPremium[5]);
-      $(  '.space .info-plan-premium .right .bottom .big-text').text(lang.infoPlanPremium[4]);
-      */
       $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
       $(  '.space .box-current-plan-top').find('span').text(lang.increaseStorage);
     };
@@ -3118,9 +3103,6 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     };
     var spacePRTab = function(){
       $(  '.space-premium .preferences-hdd-usage').text(lang.usedSpace);
-
-      //$(  '.preferences-hdd-cake-total').text( api.tool.bytesToUnit( api.system.quota().total ) );
-      //$(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
       $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
       $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
@@ -3287,36 +3269,3 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
 //StartApp
 loadAppUser();
-
-/*
-var prueba = function(){
-
-  var valor = 5;
-  if (userLocal.info){
-    valor = 0;
-  }
-
-  console.log("Pestaña actual" + currentTab + " ->"+ spaceTabs[valor]);
-  console.log("Pestaña a cargar "+ loadTab + " ->"+ spaceTabs[valor]);
-
-
-  console.log("Plan activo user: "+ userLocal.activePlan);
-  console.log("Plan activo en app: "+ activePlan);
-  console.log("Contador de planes en PR" + plansCounter + " -> 0");
-  console.log("condition minus en PR "+ minusSpaceCondition + " -> true");
-  console.log("condition more en PR: "+ moreSpaceCondition + " -> false");
-
-  console.log("Contador de planes en NORMAL" + plansCounter + " -> 0");
-  console.log("condition minus en NORMAL "+ minusSpaceCondition + " -> true");
-  console.log("condition more en NORMAL: "+ moreSpaceCondition + " -> false");
-
-  console.log("Estado tarjeta" + cardStatus);
-
-  console.log("Plan activo" + activePlan);
-
-
-  console.log("condition pestaña" + tabCondition);
-  console.log("Cargando"+ loading);
-}
-prueba();
-*/
