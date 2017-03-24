@@ -711,7 +711,7 @@
       wz.config.getSubscriptionStatus(function( err, info ){
         api.app.storage('infoSubscriptions', info);
         infoSubscriptions = info;
-        activePlan = infoSubscriptions.currentPlan.id;
+        //activePlan = infoSubscriptions.currentPlan.id;
         inevioPlans= [];
         inevioPlans.push(plan0);
         for(var i = 0; i<infoSubscriptions.availablePlans.length; i++){
@@ -820,7 +820,6 @@
         }
       }
     };
-
 
     // WZ Events
     api.upload
@@ -1406,7 +1405,7 @@
               loadLoading();
               console.log("unsubscribe OK");
 
-              if($('.order-premium').parents('.preferences-hdd-payment').hasClass(currentTab)){
+
                 loadLoading();
                 nextPage(currentTab, 1);
                 var currentObject = $('.hdd-container');
@@ -1417,10 +1416,6 @@
                 updateCanvasCake();
                 makePremium = false;
                 resetLocalVar();
-              }else{
-                console.log("ERROR, no currentTab");
-              }
-
               return;
 
             })
@@ -1847,10 +1842,10 @@
 
               loadLoading();
 
-              if($('.order .validate').parents('.preferences-hdd-payment').hasClass(currentTab)){
+
 
                 nextPage(currentTab, 1);
-                $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
+                $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
                 $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota - quota.used) + ' ' + lang.freeSpace );
                 updateCanvasCake();
                 var currentObject = $('.hdd-container');
@@ -1859,9 +1854,7 @@
                 $('.'+currentTab +' .preferences-hdd-payment-bottom').removeClass('goUp');
                 $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
                 });
-              }else{
-                console.log("ERROR, no currentTab");
-              }
+
 
             })
             .fail( function( res ){
@@ -1882,7 +1875,7 @@
   */
 
     .on('click', '.modify-space .validate', function(){
-
+      orderPRTab();
       if (userLocal.card.id != null) {
         cardStatus = 1;
       }else{
