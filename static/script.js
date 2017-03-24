@@ -2838,9 +2838,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     var changePlan = function(newPlan, context){
 
-
           request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
-
 
             plan  : newPlan
 
@@ -2866,7 +2864,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
           })
           .fail( function(res){
             console.log("ERROR", res);
-            alert(lang.chagePlanError);
+            alert(lang.changePlanError);
             loadLoading();
           })
           return;
