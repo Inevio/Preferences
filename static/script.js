@@ -1128,6 +1128,7 @@
         nextPage(currentTab, 1);
         $('.hdd-container').scrollLeft(0);
         if(!makePremium){
+          updateSpaceToFree();
           var tab = $('.premium-user');
           tab.removeClass('premium-user');
           tab.addClass('free-user');
@@ -1379,9 +1380,15 @@
 
           });
         }
-
     })
 
+    .on(  'click', '.space .nextTab' , function(){
+      $('.hdd .more button').addClass('block');
+      moreSpaceCondition = true;
+      $(  '.hdd .more .minus-icon').addClass('block');
+      $('.hdd .more .quantity').text(0);
+      $('.hdd .more .container .big-text').text(userLocal.base);
+    })
 
     .on(  'click', '.order-premium .validate', function(){
       //console.log(quota.used);
@@ -1410,15 +1417,13 @@
             .done( function(){
               loadLoading();
               console.log("unsubscribe OK");
-
-
-                loadLoading();
                 nextPage(currentTab, 1);
                 var currentObject = $('.hdd-container');
-                $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
+                $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[0].addQuota));
                 $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[0].addQuota - quota.used) + ' ' + lang.freeSpace );
                 $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
                 });
+                $('.finish-premium button').find('span').text(lang.finish);
                 updateCanvasCake();
                 makePremium = false;
                 //resetLocalVar();
