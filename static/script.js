@@ -1385,7 +1385,7 @@
       if(typePlan == "downgrade"){
         if(stUser >= stNewPlan){
           //alert(lang.limitStorageDowngrade[0] + api.tool.bytesToUnit(stUser).split(" ",1)[0] + lang.limitStorageDowngrade[1]);
-          alert(lang.limitStorageDowngrade[0] + (stUser / (1024*1024*1024)).toString().substring(0,6) + lang.limitStorageDowngrade[1]);
+          alert(lang.limitStorageDowngrade[0] + (stUser / (1024*1024*1024)).toString().substring(0,4) + lang.limitStorageDowngrade[1]);
           return;
         }
       }
@@ -2856,6 +2856,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
           .fail( function(res){
             console.log("ERROR", res);
             alert(lang.chagePlanError);
+            loadLoading();
           })
           return;
     };
