@@ -2480,11 +2480,8 @@
 
         $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
 
-        if( $( this ).hasClass( 'english-uk' ) ){
+        if( $( this ).hasClass( 'english' ) ){
             api.config.setLanguage( 'en-en' );
-            language= "en";
-        }else if( $( this ).hasClass( 'english-us' ) ){
-            api.config.setLanguage( 'en-us' );
             language= "en";
         }else if( $( this ).hasClass( 'spanish' ) ){
             api.config.setLanguage( 'es-es' );
