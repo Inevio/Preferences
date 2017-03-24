@@ -2481,12 +2481,29 @@
         $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
 
         if( $( this ).hasClass( 'english' ) ){
-            api.config.setLanguage( 'en-en' );
-            language= "en";
+            api.config.setLanguage( 'en-en' , function(){
+
+              confirm('¿Desea recargar Inevio ahora?', function( o ){
+
+                if (o == true){
+                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                  window.location.reload();
+                }
+
+            });
+
+            });
         }else if( $( this ).hasClass( 'spanish' ) ){
-            api.config.setLanguage( 'es-es' );
-            language= "es";
-        }
+            api.config.setLanguage( 'es-es' , function(){
+
+              confirm('Do you want to reload Inevio now?', function(o){
+                if (o == true){
+                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                  window.location.reload();
+                }
+        });
+      });
+    }
 
     })
 
@@ -2576,10 +2593,7 @@
             $( '.preferences-language-element.spanish', win ).addClass( 'active' );
             language = "es";
         }else if( used.code === "en" || used.code === "en-us" ){
-            $( '.preferences-language-element.english-us', win ).addClass( 'active' );
-            language = "en";
-        }else if( used.code === "en-uk" ){
-            $( '.preferences-language-element.english-uk', win ).addClass( 'active' );
+            $( '.preferences-language-element.english', win ).addClass( 'active' );
             language = "en";
         }
 
