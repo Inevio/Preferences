@@ -1,5 +1,6 @@
   Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU');
 
+    // Variables
     var win = $( this );
     var language = null;
 
@@ -59,8 +60,9 @@
     var avatarUploading = false;
     var avatarUrl       = '';
 
-    var degrees    = 0;
-    var pixelRatio = 1;
+    var degrees           = 0;
+    var backingStoreRatio = 1;
+    var pixelRatio        = 1;
 
     /* Invite variables */
     var addMailButton = $('.add-mail span');
@@ -122,6 +124,113 @@
           id: null,
           number : 0,
           brand : null
+
+    /*
+    if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) !== -1 ){
+        $('.payment').css('display','inline-block');
+    }
+    */
+
+    addMailButton.on( 'click' , function(){
+      addMail();
+    });
+
+    shareButton.on( 'click' , function(){
+      share();
+    });
+
+    win.on( 'blur input' , '.mail' , function(){
+      checkMails();
+    });
+
+    var addMail = function(){
+      var mail = mailPrototype.clone();
+      mail.removeClass('wz-prototype');
+      mailList.append(mail);
+      mailList.stop().clearQueue().animate( { scrollTop : mailList[0].offsetTop }, 400  );
+    }
+
+    var share = function(){
+      if (shareButton.hasClass('valid')) {
+        api.user.inviteByMail(validMails);
+        api.banner()
+          .setTitle( lang.invitationSentTitle )
+          .setText( lang.invitationSentSubtitle )
+          .setIcon( 'https://static.inevio.com/app/3/icon.png' )
+          .render();
+        mailList.find('.mail:not(.wz-prototype)').each(function(){
+            $(this).removeClass('wrong').val('');
+        });
+      }
+    }
+
+    var checkMails = function(){
+      $('.wrong').removeClass('wrong');
+      shareButton.removeClass('valid');
+      mailList.find('.mail:not(.wz-prototype)').each( function(){
+        if ( $(this).val() != '' ) {
+          if( $(this).val().length && MAIL_REGEXP.test( $(this).val() ) ){
+            validMails.push( $(this).val() )
+            shareButton.addClass('valid');
+          }else{
+            $(this).addClass('wrong');
+          }
+        }
+      });
+    }
+
+
+    // Quota circle functions
+    var startCircleAnimation = function( end ){
+
+        cakeEnd = ( end * 360 ) + 5;
+
+        // Define cakeCanvas Object
+        cakeCanvasObj     = $( '.preferences-hdd-canvas', win ).transition( { opacity : 1 }, 500 );
+        cakeCanvas        = cakeCanvasObj[ 0 ].getContext('2d');
+        backingStoreRatio = cakeCanvas.webkitBackingStorePixelRatio ||
+                            cakeCanvas.mozBackingStorePixelRatio ||
+                            cakeCanvas.msBackingStorePixelRatio ||
+                            cakeCanvas.oBackingStorePixelRatio ||
+                            cakeCanvas.backingStorePixelRatio || 1;
+        pixelRatio        = api.tool.devicePixelRatio() / backingStoreRatio;
+
+        var oldWidth  = cakeCanvasObj.width();
+        var oldHeight = cakeCanvasObj.height();
+
+        cakeCanvasObj[ 0 ].width  = oldWidth * pixelRatio;
+        cakeCanvasObj[ 0 ].height = oldHeight * pixelRatio;
+
+        cakeCanvasObj[ 0 ].style.width  = oldWidth + 'px';
+        cakeCanvasObj[ 0 ].style.height = oldHeight + 'px';
+
+        cakeCanvas.scale( pixelRatio, pixelRatio );
+
+        // cakeCanvas Style
+        cakeCanvas.lineWidth   = 22;
+        cakeCanvas.lineCap     = 'round';
+        cakeCanvas.strokeStyle = "#60B25E";
+
+        // Start cakeCanvas
+        cakeCanvas.beginPath();
+        cakeCanvas.moveTo(110,12);
+        cakeCanvas.lineTo(111,12);
+        cakeCanvas.stroke();
+
+        if( cakeGrads === 0 ){
+            setTimeout( function(){
+                cakeInterval = setInterval( nextCircleAnimation, 10 );
+            }, 1000 );
+        }else if( cakeGrads < cakeEnd ){
+            clearInterval( cakeInterval );
+            setTimeout( function(){
+                cakeInterval = setInterval( nextCircleAnimation, 10 );
+            }, 100 );
+        }else{
+            clearInterval( cakeInterval );
+            setTimeout( function(){
+                cakeInterval = setInterval( prevCircleAnimation, 10 );
+            }, 100 );
         }
 
     };
@@ -425,7 +534,7 @@
                         invitedFriend.find( 'img' ).attr( 'src', list[ i ].user.avatar.tiny );
                         invitedFriend.find( 'span' ).text( list[ i ].user.fullName );
                     }else{
-                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.inevio.com/app/374/weekey.png' );
+                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.inevio.com/app/3/weekey.png' );
                         invitedFriend.find( 'span' ).text( list[ i ].id );
                     }
 
@@ -866,7 +975,6 @@
                     $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'none' }, function(){
                         $( this ).transition({ 'box-shadow' : 'inset 0 1px 1px rgba(255, 255, 255, 0.3)' });
                     });
-
 
                     $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
                         $( this ).text( lang.avatarEdit );
@@ -2517,6 +2625,14 @@
       });
     }
 
+              confirm('Do you want to reload Inevio now?', function(o){
+                if (o == true){
+                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                  window.location.reload();
+                }
+        });
+      });
+    }
     })
 
     // Launches browser window to add an account
@@ -2620,7 +2736,6 @@
         }
 
     });
-
 
     var loadLoading = function(){
 
@@ -3234,6 +3349,111 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.finish-premium .finish-bottom').find('span').text(lang.finish);
 
     };
+
+    $( 'li.hdd', win ).text( lang.hdd ).data( 'type', 'hdd' );
+    $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
+    $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
+    $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
+    $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
+    $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+    $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
+    $( 'li.payment', win ).text( lang.payment ).data( 'type', 'payment' );
+    $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
+
+    $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
+    $( '.preferences-bottom-description.hdd', win ).text( lang.hddDescription );
+    $( '.preferences-hdd-usage', win ).text( lang.currentUsage );
+    $( '.preferences-plans-title', win ).text( lang.moreFeatures );
+    $( '.hdd-plan-space.starter', win ).text( lang.starter );
+    $( '.hdd-plan-price.starter', win ).text( lang.free );
+    $( '.hdd-plan-space.pro', win ).text( lang.pro );
+    $( '.hdd-plan-price.pro', win ).text( lang.proPrice );
+    $( '.hdd-plan-space.advance', win ).text( lang.advance );
+    $( '.hdd-plan-price.advance', win ).text( lang.advancePrice );
+    $( '.hdd-plan-space.ultimate', win ).text( lang.ultimate );
+    $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
+    $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
+
+    $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
+    $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
+    $( '.avatar-edit', win ).text( lang.avatarEdit );
+    $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
+    $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
+    $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
+    $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
+
+    $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
+    $( '.preferences-bottom-description.password', win ).text( lang.passwordDescription );
+    $( '.cancel-password .preferences-account-button', win ).text( lang.cancel );
+    $( '.preferences-bottom-labelCurrentPassword', win ).text( lang.currentPassword );
+    $( '.save-password .preferences-account-button', win ).text( lang.saveChanges );
+    $( '.password-current input', win ).attr( 'placeholder', lang.currentPassword );
+    $( '.password-new input', win ).attr( 'placeholder', lang.newPassword );
+    $( '.password-confirm input', win ).attr( 'placeholder', lang.confirmPassword );
+    $( '.preferences-bottom-labelNewPassword', win ).text( lang.newPassword );
+    $( '.preferences-bottom-labelConfirmPassword', win ).text( lang.confirmPassword );
+    $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
+    $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
+
+    $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
+    $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
+    $( '.preferences-social-name.facebook', win ).text( lang.facebookAccount );
+    $( '.preferences-social-name.twitter', win ).text( lang.twitterAccount );
+
+    $( '.preferences-bottom-title.date', win ).text( lang.dateTitle );
+    $( '.preferences-bottom-description.date', win ).text( lang.dateDescription );
+    $( '.preferences-config-auto span', win ).text( lang.autoTime );
+    $( '.time-format-title', win ).text( lang.timeFormat + ':' );
+    $( '.time-format-24', win ).text( '24' + ' ' + lang.hoursClock );
+    $( '.time-format-12', win ).text( '12' + ' ' + lang.hoursClock );
+    $( '.date-format-title', win ).text( lang.dateFormat + ':' );
+    $( '.date-format-ddmmyy', win ).text( lang.ddmmyy );
+    $( '.date-format-mmddyy', win ).text( lang.mmddyy );
+    $( '.date-format-yymmdd', win ).text( lang.yymmdd );
+
+    $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
+    $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
+    $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
+    $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
+
+    $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
+    $('.preferences-extensions-display span').text( lang.displayExtensions );
+
+    $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
+    $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
+    $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
+    $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
+
+    $( '.preferences-bottom-title.invite', win ).text( lang.inviteTitle );
+    $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
+    $( '.preferences-account-button.invite', win ).text( lang.generate );
+    $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
+
+    $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
+    $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
+    $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
+
+    $('.preferences-bottom-title.payment').text( lang.paymentTitle );
+    $('.preferences-bottom-description.payment').text( lang.peymentDesc );
+    $('.preferences-bottom-label.name').text( lang.paymentCardHolder );
+    $('.preferences-bottom-label.number').text( lang.paymentCardNumber );
+    $('.preferences-bottom-label.month').text( lang.paymentCardMonth );
+    $('.preferences-bottom-label.year').text( lang.paymentCardYear );
+    $('.preferences-bottom-label.cvv').text( lang.paymentCardCVV );
+    $('.preferences-payment-button span').text( lang.save );
+    $('.cancel-credit span').text( lang.unlinkCard );
+    $('.stripe-loading').text( lang.stripeLoading );
+
+    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
+    $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
+    $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
+
+    $('.preferences-bottom-content .title').text(lang.inviteYourFriends);
+    $('.preferences-bottom-content .subtitle').text(lang.feelAlone);
+    $('.preferences-bottom-content .emails').text(lang.emails);
+    $('.preferences-bottom-content .add-mail-text').text(lang.addMail);
+    $('.preferences-bottom-content .share-text').text(lang.sendInvitations);
+    $('.preferences-bottom-content .mail').attr('placeholder' , lang.mailExample);
 
     // SOCIAL NETWORKS CODE
     api.social

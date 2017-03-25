@@ -28,7 +28,7 @@
             "service" : [ "networks.js" ],
             "common"  : {
 
-                "css"    : ["style.css"],
+                "css"    : ["style.css","spinner.css"],
                 "script" : [],
                 "start"  : []
 
@@ -62,7 +62,7 @@
                     },
 
                     "css"    : [],
-                    "script" : ["script.js"]
+                    "script" : ["script.js", "payment.js"]
 
                 },
 
@@ -143,7 +143,14 @@
             "read"   : true
         },
 
-        "service" : true
+        "service" : true,
+
+        "user" : {
+
+            "modify" : true,
+            "read"   : true
+
+        }
 
     }
 
