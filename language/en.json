@@ -1,7 +1,9 @@
 
 {
 
+    "appName" : "Preferences",
     "hdd"     : "Disk",
+    "space"   : "Space",
     "account" : "Account",
     "social"  : "Social Networks",
     "config"  : "Configuration",
@@ -12,7 +14,7 @@
     "about"   : "About",
     "wrongPass" : "Unable to save changes, incorrect password.",
 
-    "hddTitle"         : "YOUR HARD DRIVE",
+    "hddTitle"         : "Space",
     "hddDescription"   : "Here you view how much free space you have left",
     "currentUsage"     : "Current usage",
     "moreFeatures"     : "Need More Features?",
@@ -42,6 +44,103 @@
     "safeFolders"      : "Safe folders",
     "withPassword"     : "with password",
     "subscribe"        : "Subscribe",
+    "noSelectablePlan0" : "Can not select free plan.",
+
+
+    "usedSpace"        :  "Used space",
+    "activePlan"       :  "Active plan",
+    "moreInfo"         :  "More info",
+    "manage"           :  "Manage",
+    "increaseStorage"  :  "Increase your storage",
+    "currentPlan"      :  "Actual plan",
+    "totalSpace"       :  "TOTAL SPACE",
+    "modify"           :  "Modify",
+    "creditCard"       :  "Credit card",
+    "creditcardError"  :  "Credit card error",
+
+    "invalid_number"	      : "The card number is not a valid credit card number.",
+    "invalid_expiry_month"	: "The card's expiration month is invalid.",
+    "invalid_expiry_year"	  : "The card's expiration year is invalid.",
+    "invalid_cvc"	          : "The card's security code is invalid.",
+    "invalid_swipe_data"	  : "The card's swipe data is invalid.",
+    "incorrect_number"      :	"The card number is incorrect.",
+    "expired_card"          :	"The card has expired.",
+    "incorrect_cvc"	        : "The card's security code is incorrect.",
+    "incorrect_zip"	        : "The card's zip code failed validation.",
+    "card_declined"         :	"The card was declined.",
+    "missing"               :	"There is no card on a customer that is being charged.",
+    "processing_error"	    : "An error occurred while processing the card.",
+
+    "paymentError"     :  "The payment could not be made, contact us.",
+    "errorRemoveCard"  :  "Fail to delete card, please contact us.",
+    "changePlanError"  :  "Fail to change plans, please contact us.",
+    "inevioCredit"     :  "Inevio credit",
+    "delete"           :  "Delete",
+    "extra"            :  " GB Extra",
+    "dolarMonth"        :  "$/MONTH",
+    "dolarMonthMinus"   :  "$/month",
+    "perMonth"         :  "/month",
+    "payDay"           :  "The next payment ",
+    "partPayDay"      : [
+      "Is charged at ",
+      " of the next month."
+    ],
+    "limitStorageDowngrade" : [
+      "You are currently spending ",
+      "GB and you should reduce it to be able to assign the new plan."
+    ],
+
+    "changeTo" : "Modify to ",
+    "emptyInput" : "If you want to add a card you must first complete all the fields.",
+    "add" : "Add",
+    "totalMayus"  : "TOTAL",
+    "addCard"       :"Add card",
+    "noCardInfo"    : "If no card is added, the current plan can not be charged. If so, this will be canceled.",
+    "mustBeCard"  : "To change the storage plan, you must first add a credit card.",
+    "infoPlanPremium" :
+    [
+      "25",
+      "GB",
+      "for just",
+      "Extra",
+      "1$",
+      "/month"
+    ],
+
+      "unlimitedStorage" :"Unlimited storage",
+
+    "infoPaymentOneHead"  : "It´s up to you",
+    "infoPaymentOneBody"  : "Pay only for what you consume Extra 25 Gb per 1$/month on your account.",
+    "infoPaymentTwoHead"  : "Flexible",
+    "infoPaymentTwoBody"  : "Change your plan whenever you need it to match your necessities.",
+
+    "summary"   : "Summary",
+    "order"     : "Order",
+    "currentSpace"  : "Actual storage",
+    "currentSpaceMayus" : "ACTUAL STORAGE",
+    "totalStorage"    : "Total storage",
+    "totalStorageMayus":  "TOTAL STORAGE",
+    "unsubscribeConfirm"  : "Are you sure you want to cancel your subscription and return to the free plan? If you press 'accept' we will remove the card that you have associated with our system, your subscription will be canceled and you will return to the free plan.",
+
+    "creditCardOptions"   : {
+
+      "nameCreditCard"  : "Owner name",
+      "numberCreditCard"    :  "Card number",
+      "monthCreditCard"     : "Month",
+      "yearCreditCard"      : "Year",
+      "codeCreditCard"      : "CVV"
+    },
+
+    "infoCurrentPayment"  : "Este texto es un texto de prueba.",
+
+    "next"        : "Next",
+    "congratulation"    :  "Congratulations! You have your space increased to ",
+    "decrease"    :  "Done! Your space has decreased to",
+    "finish"      : "Finish",
+
+
+
+
 
     "accountTitle"       : "YOUR PROFILE",
     "accountDescription" : "Here you can change your personal information",
@@ -64,6 +163,7 @@
     "newPasswordType"     : "Type your new password",
     "confirmPassword"     : "Confirm New Password",
     "confirmPasswordType" : "Confirm the new password",
+    "confirm"             : "Confirm",
     "passwordChanged"     : "Password changed",
     "passwordChanged2"    : "Your password has been changed",
     "forgetPassword"      : "Forgot your password?",
@@ -115,6 +215,14 @@
     "notify"           : "Notify me when",
     "remove"           : "Remove",
     "save"             : "Save",
+    "payParagraph"     :
+    [
+      "You will be charged for this card ",
+      " $ every month on the day ",
+       ". To change the card first, delete the current card."
+    ],
+    "secureByStripe"  : "Secured by ",
+    "stripe"          : "Stripe",
 
     "twitter" : {
 
@@ -128,6 +236,7 @@
         "followMessage" : "now follows you"
 
     },
+
 
     "twitterOptions" : [
 
@@ -198,7 +307,7 @@
     "addMail"           : "+ Add more mails",
     "sendInvitations"   : "Send invitations",
     "mailExample"       : "example@mail.com",
-    "invitationSentTitle"    : "Invitations sent", 
+    "invitationSentTitle"    : "Invitations sent",
     "invitationSentSubtitle" : "Your invitations are on their way!"
 
 }
