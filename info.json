@@ -47,7 +47,7 @@
 
                     "width"  : {
 
-                        "default" : 750,
+                        "default" : 868,
                         "min"     : 0,
                         "max"     : 0
 
@@ -55,14 +55,14 @@
 
                     "height" : {
 
-                        "default" : 550,
+                        "default" : 572,
                         "min"     : 0,
                         "max"     : 0
 
                     },
 
                     "css"    : [],
-                    "script" : ["script.js", "payment.js"]
+                    "script" : ["script.js"]
 
                 },
 

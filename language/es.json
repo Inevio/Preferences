@@ -1,7 +1,9 @@
 
 {
 
+    "appName" : "Preferencias",
     "hdd"     : "Disco",
+    "space"   : "Espacio",
     "account" : "Cuenta",
     "social"  : "Redes Sociales",
     "config"  : "Configuración",
@@ -12,7 +14,7 @@
     "about"   : "Acerca",
     "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
 
-    "hddTitle"         : "TU DISCO DURO",
+    "hddTitle"         : "Espacio",
     "hddDescription"   : "Aquí puedes ver cuanto espacio te queda libre",
     "currentUsage"     : "Uso actual",
     "moreFeatures"     : "¿Más funciones?",
@@ -20,11 +22,11 @@
     "starter"          : "Starter",
     "free"             : "Gratis",
     "pro"              : "Pro",
-    "proPrice"         : "4,99€",
+    "proPrice"         : "4,99$",
     "advance"          : "Advance",
-    "advancePrice"     : "9,99€",
+    "advancePrice"     : "9,99$",
     "ultimate"         : "Ultimate",
-    "ultimatePrice"    : "14,99€",
+    "ultimatePrice"    : "14,99$",
     "monthly"          : "mensual",
     "forever"          : "para siempre",
     "FREE"             : "GRATIS",
@@ -42,6 +44,102 @@
     "safeFolders"      : "Carpetas seguras",
     "withPassword"     : "con contraseña",
     "subscribe"        : "Suscribir",
+    "noSelectablePlan0" : "No se puede seleccionar plan gratuito.",
+
+
+    "usedSpace"        :  "Espacio usado",
+    "activePlan"       :  "Plan activo",
+    "moreInfo"         :  "Mas información",
+    "manage"           :  "Gestionar",
+    "increaseStorage"  :  "Aumenta tu espacio",
+    "currentPlan"      :  "Plan actual",
+    "totalSpace"       :  "ESPACIO TOTAL",
+    "modify"           :  "Modificar",
+    "creditCard"       :  "Tarjeta de crédito",
+    "creditcardError"  :  "Error en la tarjeta de crédito",
+    "invalid_number"	      : "El número de tarjeta no es un número de tarjeta de crédito válido.",
+    "invalid_expiry_month"	: "El mes de vencimiento de la tarjeta no es válido.",
+    "invalid_expiry_year"	  : "El año de vencimiento de la tarjeta no es válido",
+    "invalid_cvc"	          : "El código de seguridad de la tarjeta no es válido.",
+    "invalid_swipe_data"	  : "Los datos de desplazamiento de la tarjeta no son válidos.",
+    "incorrect_number"      :	"El número de tarjeta es incorrecto.",
+    "expired_card"          :	"La tarjeta ha caducado.",
+    "incorrect_cvc"	        : "El código de seguridad de la tarjeta es incorrecto.",
+    "incorrect_zip"	        : "El código postal de la tarjeta no se validó.",
+    "card_declined"         :	"La tarjeta fue rechazada.",
+    "missing"               :	"No hay una tarjeta en un cliente que se está cargando.",
+    "processing_error"	    : "Se produjo un error al procesar la tarjeta.",
+    "paymentError"     :  "No se ha podido realizar el pago, ponte en contacto con nosotros.",
+    "errorRemoveCard"  :  "Error al borrar la tarjeta, por favor contactca con nosotros.",
+    "changePlanError"  :  "Error al cambiar el plan, por favor contacta con nosotros.",
+    "inevioCredit"     :  "Crédito de Inevio",
+    "delete"           :  "Eliminar",
+    "extra"            :  " GB Extra",
+    "dolarMonth"        :  "$/MES",
+    "dolarMonthMinus"   :  "$/mes",
+    "perMonth"         :  "/mes",
+    "payDay"           :  "Siguiente pago el ",
+
+    "partPayDay"      : [
+      "Se cobra el ",
+      " del próximo mes."
+    ],
+
+    "limitStorageDowngrade" : [
+      "Actualmente está gastando ",
+      "GB y que debe reducirlo para poder asignar el nuevo plan."
+    ],
+
+
+    "changeTo" : "Modificar a ",
+    "emptyInput" : "Si desea añadir una tarjeta primero debe rellenar todos los campos.",
+
+    "add" : "Añadir ",
+    "totalMayus"  : "TOTAL",
+    "addCard"     : "Añadir tarjeta",
+    "noCardInfo"  : "Si no hay ninguna tarjeta añadida no se puede realizar el cobro por el plan actual. De ser así éste será cancelado.",
+    "mustBeCard"  : "Para cambiar el plan de almacenamiento, primero debes añadir una tarjeta.",
+    "infoPlanPremium" :
+    [
+      "25",
+      "GB",
+      "por sólo",
+      "Extra",
+      "1$",
+      "/mes"
+    ],
+
+    "unlimitedStorage" :"Espacio ilimitado",
+
+    "infoPaymentOneHead"  : "Tú decides",
+    "infoPaymentOneBody"  : "Paga solo por el espacio que consumes 25 Gb extra en tu cuenta por 1$/mes.",
+    "infoPaymentTwoHead"  : "Flexible",
+    "infoPaymentTwoBody"  : "Cambia tu plan cuando lo necesites para que siempre se ajuste a tus necesidades.",
+
+
+    "summary"   : "Resumen",
+    "order"     : "Pedido",
+    "currentSpace"  : "Espacio actual",
+    "currentSpaceMayus" : "ESPACIO ACTUAL",
+    "totalStorage"    : "Espacio total",
+    "totalStorageMayus":  "ESPACIO TOTAL",
+    "unsubscribeConfirm"  : "¿Estás seguro que quieres cancelar tu suscripción y volver al plan gratuito? Si pulsas 'aceptar' eliminaremos la tarjeta que tengas asociada de nuestro sistema, tu suscripción será cancelada y volverás al plan gratuito.",
+
+    "creditCardOptions"   : {
+
+      "nameCreditCard"  : "Nombre del titular",
+      "numberCreditCard"    :  "Número de la tarjeta",
+      "monthCreditCard"     : "Mes",
+      "yearCreditCard"      : "Año",
+      "codeCreditCard"      : "CVV"
+    },
+
+    "infoCurrentPayment"  : "Este texto es un texto de prueba.",
+
+    "next"        : "Siguiente",
+    "congratulation"    :  "¡Felicidades! Has aumentado tu espacio a",
+    "decrease"    :  "¡Hecho! Tu espacio ha bajado a",
+    "finish"      : "Finalizar",
 
     "accountTitle"       : "TU CUENTA",
     "accountDescription" : "Aquí puedes cambiar tu información personal",
@@ -64,6 +162,7 @@
     "newPasswordType"     : "Escribe la nueva contraseña",
     "confirmPassword"     : "Confirma Nueva Contraseña",
     "confirmPasswordType" : "Confirma la nueva contraseña",
+    "confirm"             : "Confirmar",
     "passwordChanged"     : "Contraseña cambiada",
     "passwordChanged2"    : "Tu contraseña ha sido cambiada correctamente",
     "forgetPassword"      : "¿Olvidaste la contraseña?",
@@ -115,6 +214,15 @@
     "notify"           : "Notificarme cuando",
     "remove"           : "Eliminar",
     "save"             : "Guardar",
+    "payParagraph"     :
+    [
+      "Se cobrará de esta tarjeta ",
+      " $ todos los meses el dia ",
+      ". Para cambiar de tarjeta primero elimina la actual."
+    ],
+    "secureByStripe"  : "Asegurado por ",
+    "stripe"          : "Stripe",
+
 
     "twitter" : {
 
@@ -198,7 +306,7 @@
     "addMail"           : "+ Añadir más correos",
     "sendInvitations"   : "Enviar invitaciones",
     "mailExample"       : "ejemplo@mail.com",
-    "invitationSentTitle"    : "Invitaciones enviadas", 
+    "invitationSentTitle"    : "Invitaciones enviadas",
     "invitationSentSubtitle" : "Tus invitaciones están de camino!"
 
 }

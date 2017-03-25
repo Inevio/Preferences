@@ -1,12 +1,30 @@
 
     // To Do -> No se pueden cachear los permisos?
+    var userLocal = null;
+    var loadAppUser = function() {
+          wz.config.getSubscriptionStatus(function( err, info ){
+            api.app.storage('infoSubscriptions', info);
+          });
+    }
+    loadAppUser();
+
+    var getLanguage = function(){
+      api.config.getLanguages( function( error, languages, used ){
+          api.app.storage('language', used.code);
+
+      });
+    };
+
+    getLanguage();
+
+
 
     api.social
     .on( 'twitterTweet', function( account, tweet ){
 
         wql.getType( [ account.id, 0 ], function( error, result ){
 
-            if( result.length ){
+            if( result.length() ){
 
                 if( tweet.retweeted_status ){
 
@@ -42,7 +60,7 @@
 
         wql.getType( [ account.id, 1 ], function( error, result ){
 
-            if( result.length ){
+            if( result.length() ){
 
                 api.banner()
                     .setTitle( lang.twitter.message + ' ' + message.direct_message.sender_screen_name )
