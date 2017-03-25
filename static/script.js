@@ -1,4 +1,4 @@
-  Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU');
+  Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 
     // Variables
     var win = $( this );
