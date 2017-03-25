@@ -774,7 +774,11 @@
 
         userLocal.info = true;
         userLocal.customPlan = infoSubscriptions.currentPlan.customPlan;
-        $('.hdd .modify-premium .change-plan').addClass('block').removeClass('pointer');
+        if(userLocal.customPlan){
+          $('.hdd .modify-premium .change-plan').addClass('block').removeClass('pointer');
+        }else{
+          $('.hdd .modify-premium .change-plan').removeClass('block').addClass('pointer');
+        }
         userLocal.totalStorage = parseInt(api.tool.bytesToUnit(quota.total).split(" ", 1)[0]);
         userLocal.base = parseInt(api.tool.bytesToUnit(quota.base).split(" ", 1)[0]);
         userLocal.actualPrice = parseInt(infoSubscriptions.currentPlan.amount);
