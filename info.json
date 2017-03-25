@@ -62,7 +62,7 @@
                     },
 
                     "css"    : [],
-                    "script" : ["script.js", "payment.js"]
+                    "script" : ["script.js"]
 
                 },
 

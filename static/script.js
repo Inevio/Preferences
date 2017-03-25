@@ -124,6 +124,8 @@
           id: null,
           number : 0,
           brand : null
+       }
+    }
 
     /*
     if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) !== -1 ){
@@ -167,6 +169,7 @@
     var checkMails = function(){
       $('.wrong').removeClass('wrong');
       shareButton.removeClass('valid');
+      validMails = []
       mailList.find('.mail:not(.wz-prototype)').each( function(){
         if ( $(this).val() != '' ) {
           if( $(this).val().length && MAIL_REGEXP.test( $(this).val() ) ){
@@ -514,40 +517,6 @@
         }
 
     };
-
-    var invitationInfo = function(){
-
-        api.weekey.getList( function( error, list, left ){
-
-            $( '.preferences-invite-left', win ).text( lang.invitesLeft + ': ' + left );
-
-            if( list.length ){
-
-                $( '.preferences-invite-invited', win ).addClass( 'display' );
-                $( '.preferences-invite-friends', win ).children().not( '.wz-prototype' ).remove();
-
-                for( var i = 0; i < list.length; i++ ){
-
-                    var invitedFriend = $( '.preferences-invite-friends .wz-prototype', win ).clone().removeClass( 'wz-prototype' );
-
-                    if( list[ i ].user ){
-                        invitedFriend.find( 'img' ).attr( 'src', list[ i ].user.avatar.tiny );
-                        invitedFriend.find( 'span' ).text( list[ i ].user.fullName );
-                    }else{
-                        invitedFriend.find( 'img' ).attr( 'src', 'https://static.inevio.com/app/3/weekey.png' );
-                        invitedFriend.find( 'span' ).text( list[ i ].id );
-                    }
-
-                    invitedFriend.appendTo( $( '.preferences-invite-friends', win ) );
-
-                }
-
-            }
-
-        });
-
-    };
-
 
     var socialNetworks = function(){
 
@@ -1073,11 +1042,6 @@
             clock();
         }, 1000);
 
-    })
-
-    // Shows info when Invite tab clicked
-    .on( 'mouseup', 'li.invite', function(){
-        invitationInfo();
     })
 
     // Shows info when Account tab clicked
@@ -2614,6 +2578,7 @@
 
             });
         }else if( $( this ).hasClass( 'spanish' ) ){
+
             api.config.setLanguage( 'es-es' , function(){
 
               confirm('Do you want to reload Inevio now?', function(o){
@@ -2621,18 +2586,11 @@
                   var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
                   window.location.reload();
                 }
-        });
-      });
-    }
+              });
+            });
 
-              confirm('Do you want to reload Inevio now?', function(o){
-                if (o == true){
-                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
-                  window.location.reload();
-                }
-        });
-      });
-    }
+        }
+
     })
 
     // Launches browser window to add an account
@@ -2654,23 +2612,6 @@
 
         }, 'social' );
 
-    })
-
-    .on( 'click', '.preferences-button.invite', function(){
-
-        api.weekey.create( function( error, weekey ){
-
-            if( error === 'DEMO CAN NOT CREATE A WEEKEY' ){
-                alert( 'Demo accounts can\'t create weeKeys' );
-            }else if( error === 'CAN NOT CREATE MORE WEEKEYS' ){
-                alert( 'You can\'t create more weeKeys' );
-            }else{
-
-                $( '.preferences-bottom-input.invite span' ).text( weekey );
-                invitationInfo();
-
-            }
-        });
     })
 
     .on( 'click', '.preferences-bottom-content.backup button', function(){

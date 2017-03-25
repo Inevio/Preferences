@@ -3943,7 +3943,7 @@ span.preferences-card-subscribe-text{
 
 .invite .subtitle{
   float: left;
-  width: 100%;
+  width: 420px;
   font-size: 17px;
   color: #fff;
   margin-top: 40px;
@@ -4283,7 +4283,7 @@ span.preferences-card-subscribe-text{
 
 .invite .subtitle{
   float: left;
-  width: 100%;
+  width: 420px;
   font-size: 17px;
   color: #fff;
   margin-top: 40px;
@@ -4343,7 +4343,7 @@ span.preferences-card-subscribe-text{
   background-color: #60b25e;
   transition: all ease 0.19s;
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   right: 30px;
   opacity: 0.7;
 
