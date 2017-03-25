@@ -2964,8 +2964,12 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         inevioPlans.push(infoSubscriptions.availablePlans[i]);
       }
       //console.log(inevioPlans);
+      inevioPlans = inevioPlans.sort( function( a, b ){
+        return a.amount - b.amount
+      })
       listPlans = inevioPlans.map(function( item ){
-        return item.id});
+        return item.id
+      });
 
       //console.log(infoSubscriptions);
 
