@@ -10,6 +10,7 @@
     "custom"  : "Customize",
     "invite"  : "Invite",
     "backup"  : "Backup",
+    "payment" : "Payment",
     "about"   : "About",
     "wrongPass" : "Unable to save changes, incorrect password.",
 
@@ -168,7 +169,7 @@
     "forgetPassword"      : "Forgot your password?",
 
     "socialTitle"       : "SOCIAL NETWORKS",
-    "socialDescription" : "Here you can link all your social networks with your Inevio account",
+    "socialDescription" : "Here you can link all your social networks with your horbito account",
     "facebookAccount"   : "Your Facebook account",
     "twitterAccount"    : "Your Twitter account",
 
@@ -183,7 +184,7 @@
     "yymmdd"          : "YY MM DD",
 
     "languageTitle"       : "LANGUAGE",
-    "languageDescription" : "Please select the language of your Inevio",
+    "languageDescription" : "Please select the language of your horbito",
     "spanishLanguage"     : "Spanish",
     "englishLanguage"     : "English",
 
@@ -191,12 +192,12 @@
     "displayExtensions" : "Display the extension at the end of the filenames",
 
     "customTitle"       : "CUSTOMIZE",
-    "customDescription" : "Here you can change the look of your Inevio",
+    "customDescription" : "Here you can change the look of your horbito",
     "wallpaper"         : "Wallpaper",
     "upload"            : "Upload",
 
     "inviteTitle"       : "INVITE",
-    "inviteDescription" : "Here you can generate weeKeys to get your friends inside Inevio",
+    "inviteDescription" : "Here you can generate weeKeys to get your friends inside horbito",
     "generate"          : "Generate",
     "invitesLeft"       : "Invites left",
     "inviteBeware"      : "Beware who uses your weeKey because if your friend gets banned you will also be responsible",
@@ -289,11 +290,24 @@
 
     ],
 
-    "inviteYourFriends" : "Invite all your friends",
-    "feelAlone"         : "If you feel alone in horbito, start now inviting all your friends! Then you can share files, collaborate etc...",
+    "paymentTitle"      : "PAYMENT METHOD",
+    "peymentDesc"       : "Here you can save your bank account to pay horbito",
+    "paymentCardHolder" : "NAME ON CARD",
+    "paymentCardNumber" : "CARD NUMBER",
+    "paymentCardMonth"  : "MONTH",
+    "paymentCardYear"   : "YEAR",
+    "paymentCardCVV"    : "CVV",
+    "creditcardError"   : "This credit card is not valid",
+    "unlinkCard"        : "Unlink this credit card",
+    "stripeLoading"     : "Connecting with the payment supplier...",
+
+    "inviteYourFriends" : "Invite all your contacts",
+    "feelAlone"         : "If you feel alone in horbito, start inviting now all your contacts! Afterwards you'll be able to share files, collaborate or join worlds with them.",
     "emails"            : "Emails",
     "addMail"           : "+ Add more mails",
     "sendInvitations"   : "Send invitations",
-    "mailExample"       : "example@mail.com"
+    "mailExample"       : "example@mail.com",
+    "invitationSentTitle"    : "Invitations sent",
+    "invitationSentSubtitle" : "Your invitations are on their way!"
 
 }

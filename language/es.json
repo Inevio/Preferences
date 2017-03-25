@@ -10,6 +10,7 @@
     "custom"  : "Apariencia",
     "invite"  : "Invitar",
     "backup"  : "Backup",
+    "payment" : "Pago",
     "about"   : "Acerca",
     "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
 
@@ -167,7 +168,7 @@
     "forgetPassword"      : "¿Olvidaste la contraseña?",
 
     "socialTitle"       : "REDES SOCIALES",
-    "socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de Inevio",
+    "socialDescription" : "Aquí puedes asociar tus cuentas de redes sociales con tu cuenta de horbito",
     "facebookAccount"   : "Cuentas de Facebook",
     "twitterAccount"    : "Cuentas de Twitter",
 
@@ -182,7 +183,7 @@
     "yymmdd"          : "AA MM DD",
 
     "languageTitle"       : "IDIOMA",
-    "languageDescription" : "Por favor selecciona el idioma de tu Inevio",
+    "languageDescription" : "Por favor selecciona el idioma de tu horbito",
     "spanishLanguage"     : "Español",
     "englishLanguage"     : "Inglés",
 
@@ -190,12 +191,12 @@
     "displayExtensions" : "Mostrar la extensión al final de los nombres de ficheros",
 
     "customTitle"       : "PERSONALIZAR",
-    "customDescription" : "Aquí puedes cambiar el aspecto de tu Inevio",
+    "customDescription" : "Aquí puedes cambiar el aspecto de tu horbito",
     "wallpaper"         : "Fondo de escritorio",
     "upload"            : "Subir",
 
     "inviteTitle"       : "INVITAR",
-    "inviteDescription" : "Aquí puedes generar weekeys para que tus amigos entren en Inevio",
+    "inviteDescription" : "Aquí puedes generar weekeys para que tus amigos entren en horbito",
     "generate"          : "Generar",
     "invitesLeft"       : "Invitaciones restantes",
     "inviteBeware"      : "Ten cuidado de quién usa tu weeKey porque si tu amigo es baneado tu también serás responsable",
@@ -288,10 +289,24 @@
 
     ],
 
-    "inviteYourFriends" : "Invita a todos tus colegas",
-   "feelAlone"         : "Si te sientes muy solo en horbito date un poco de vida e invita a todos los que conozcas!! Así podrás compartir archivos y colaborar etc...",
-   "emails"            : "Emails",
-   "addMail"           : "+ Añadir más correos",
-   "sendInvitations"   : "Enviar invitaciones",
-   "mailExample"       : "ejemplo@mail.com"
+    "paymentTitle"      : "MÉTODO DE PAGO",
+    "peymentDesc"       : "Aquí puedes guardar tu tarjeta para realizar el pago a horbito",
+    "paymentCardHolder" : "NOMBRE EN LA TARJETA",
+    "paymentCardNumber" : "NÚMERO DE TARJETA",
+    "paymentCardMonth"  : "MES",
+    "paymentCardYear"   : "AÑO",
+    "paymentCardCVV"    : "CVV",
+    "creditcardError"   : "La tarjeta introducida no es válida",
+    "unlinkCard"        : "Desvincular esta tarjeta",
+    "stripeLoading"     : "Conectando con el proveedor de pagos...",
+
+    "inviteYourFriends" : "Invita a todos tus contactos",
+    "feelAlone"         : "Si te sientes muy solo en horbito, empieza ya a invitar a todos tus contactos! Cuando se unan podréis compartir archivos, colaborar, uniros a mundos...",
+    "emails"            : "Correos",
+    "addMail"           : "+ Añadir más correos",
+    "sendInvitations"   : "Enviar invitaciones",
+    "mailExample"       : "ejemplo@mail.com",
+    "invitationSentTitle"    : "Invitaciones enviadas",
+    "invitationSentSubtitle" : "Tus invitaciones están de camino!"
+
 }
