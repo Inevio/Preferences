@@ -574,7 +574,8 @@
           $('.modify-space button').addClass('block');
           //$('.modify-space .show-space-selected .big-text').text(parseInt(userLocal.extraStorage) + parseInt(userLocal.actualStorage));
       }
-      $('.modify-space .show-space-selected .big-text').text(espacioTotal);
+      $('.modify-space .show-space-selected span:last-child').text(api.tool.bytesToUnit(espacioTotal).split(" ", 2)[1]);
+      $('.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit(espacioTotal).split(" ", 2)[0]);
       $('.modify-space .quantity').text(userLocal.actualPrice);
     }
 
@@ -708,6 +709,7 @@
           $('.more .more-icon').removeClass('block');
         }
 
+        $('.more .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[1]);
         $('.more .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
         $('.more .quantity').text(inevioPlans[0].amount);
       }
@@ -853,7 +855,7 @@
     };
 
     var loadInfoUserSub = function (infoSubscriptions){
-      
+
       //infoSubscriptions.currentPlan = null;
       if(infoSubscriptions.currentPlan !=  null){
 
@@ -1673,15 +1675,18 @@
         var size = null;
         var total = null;
         var condition = true;
+        var unit = null;
 
         if(currentTab == spaceTabs[2]){
           //premium
+          unit = $('.modify-space .show-space-selected span:last-child');
           size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
+          unit = $('.more .show-space-selected span:last-child');
           size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
@@ -1694,6 +1699,7 @@
         if(condition){
 
           size.text(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base).split(" ", 2)[0]);
+          unit.text(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base).split(" ", 2)[1]);
           price.text(inevioPlans[plansCounter + 1 ].amount);
           total.text(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base).split(" ", 2)[1]);
           activePlan = inevioPlans[plansCounter + 1].id;
@@ -1755,12 +1761,14 @@
 
         if(currentTab == spaceTabs[2]){
           //premium
+          unit = $('.modify-space .show-space-selected span:last-child');
           size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
+          unit = $('.more .show-space-selected span:last-child');
           size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
@@ -1772,6 +1780,7 @@
         if(condition){
 
           size.text(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base).split(" ", 2)[0]);
+          unit.text(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base).split(" ", 2)[1]);
           price.text(inevioPlans[plansCounter - 1].amount);
           total.text( api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base).split(" ", 2)[1]);
           activePlan = inevioPlans[plansCounter - 1 ].id;
@@ -2959,8 +2968,10 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       var radio = 107;
       var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
       porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
+      if(porcentaje < 1){
         loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
         loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
+      }
       infoSubscriptions = api.app.storage('infoSubscriptions');
       console.log(infoSubscriptions);
       language = api.app.storage('language');
@@ -3130,7 +3141,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.more .quantity').find('span').text(inevioPlans[0].amount);
       $(  '.more .quantity-container .top').text("$");
       $(  '.more .quantity-container .bottom').text(lang.perMonth);
-      $(  '.more .show-space-selected').find('span').text(api.tool.bytesToUnit(userLocal.base + inevioPlans[0].addQuota).split(" ", 2)[2]);
+      $(  '.more .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.base + plan0.addQuota).split(" ", 2)[1]);
       $(  '.more .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
       $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
@@ -3260,7 +3271,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-space .quantity').find('span').text(1);
       $(  '.modify-space .quantity-container .top').text("$");
       $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
-      $(  '.modify-space .show-space-selected').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[1]);
+      $(  '.modify-space .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[1]);
       $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
       $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
