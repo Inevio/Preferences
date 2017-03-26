@@ -868,7 +868,7 @@
         }
         userLocal.totalStorage = quota.total;
         userLocal.base = quota.base;
-        userLocal.actualPrice = parseInt(infoSubscriptions.currentPlan.amount);
+        userLocal.actualPrice = infoSubscriptions.currentPlan.amount;
         userLocal.extraStorage = infoSubscriptions.currentPlan.addQuota;
         userLocal.payDay = infoSubscriptions.currentPlan.current_period_end;
         if (infoSubscriptions.listCards[0] == null){
@@ -1710,7 +1710,7 @@
             moreSpaceCondition = false;
           }
 
-          if(parseInt(size.text()) == (api.tool.bytesToUnit(inevioPlans[inevioPlans.length - 1].addQuota + userLocal.base).split(" ", 2)[0])){
+          if(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base) == (api.tool.bytesToUnit(inevioPlans[inevioPlans.length - 1].addQuota + userLocal.base))){
 
             $('.moreStorage').addClass('block');
             $('.'+currentTab+ ' .more-icon').removeClass('moreStorage');
@@ -1791,7 +1791,7 @@
             minusSpaceCondition = false;
           }
 
-          if(parseInt(size.text()) == (api.tool.bytesToUnit(inevioPlans[0].addQuota + userLocal.base).split(" ", 2)[0])){
+          if(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base) == (api.tool.bytesToUnit(inevioPlans[0].addQuota + userLocal.base))){
             $('.minusStorage').addClass('block');
             $('.'+currentTab+ ' .minus-icon').removeClass('minusStorage');
           }
