@@ -248,55 +248,6 @@
     };
 
 
-
-    addMailButton.on( 'click' , function(){
-      addMail();
-    });
-
-    shareButton.on( 'click' , function(){
-      share();
-    });
-
-    win.on( 'blur input' , '.mail' , function(){
-      checkMails();
-    });
-
-    var addMail = function(){
-      var mail = mailPrototype.clone();
-      mail.removeClass('wz-prototype');
-      mailList.append(mail);
-      mailList.stop().clearQueue().animate( { scrollTop : mailList[0].offsetTop }, 400  );
-    }
-
-    var share = function(){
-      if (shareButton.hasClass('valid')) {
-        api.user.inviteByMail(validMails);
-        api.banner()
-          .setTitle( lang.invitationSentTitle )
-          .setText( lang.invitationSentSubtitle )
-          .setIcon( 'https://static.inevio.com/app/3/icon.png' )
-          .render();
-        mailList.find('.mail:not(.wz-prototype)').each(function(){
-            $(this).removeClass('wrong').val('');
-        });
-      }
-    }
-
-    var checkMails = function(){
-      $('.wrong').removeClass('wrong');
-      shareButton.removeClass('valid');
-      mailList.find('.mail:not(.wz-prototype)').each( function(){
-        if ( $(this).val() != '' ) {
-          if( $(this).val().length && MAIL_REGEXP.test( $(this).val() ) ){
-            validMails.push( $(this).val() )
-            shareButton.addClass('valid');
-          }else{
-            $(this).addClass('wrong');
-          }
-        }
-      });
-    }
-
     // Quota circle functions
     var changeCake = function( space ){
 
