@@ -2665,7 +2665,7 @@
         - Posicion del centro (x e y).
         - Radio.
         - Porcentaje entre 0 y 1.
-        - Tiempo de la animación por defecto 250.
+        - Tiempo de la animación por defecto 200.
     */
 
     var loadCanvasCake = function(canvas,context, x, y, radius, porcentaje, tiempo){
@@ -2677,14 +2677,55 @@
       var circ = Math.PI * 2;
       var quart = Math.PI / 2;
 
+      var xCoordinates = {
+        x1 : 0,
+        x2 : 0,
+        xCenter : 0
+      }
+      var yCoordinates = {
+        y1 : 0,
+        y2 : 0,
+        yCenter : 0
+      }
+
+       context.beginPath();
       context.lineWidth = 25;
       context.strokeStyle = '#586069';
 
       function animate(current) {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.beginPath();
-          context.arc(x, y, radius, -(quart), ((circ) * current) - quart, true);
-          context.stroke();
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        context.arc(x, y, radius, -(quart), ((circ) * current) - quart, true);
+        context.stroke();
+        xCoordinates.xCenter = (x + radius * Math.cos(((circ) * current) - quart + 0.01));
+        yCoordinates.yCenter = (y + radius * Math.sin(((circ) * current) - quart + 0.01));
+
+        xCoordinates.x1 = (x + (radius-12) * Math.cos(((circ) * current) - quart));
+        xCoordinates.x2 = (x + (radius+12) * Math.cos(((circ) * current) - quart));
+
+        yCoordinates.y1 = (y + (radius-12) * Math.sin(((circ) * current) - quart));
+        yCoordinates.y2 = (y + (radius+12) * Math.sin(((circ) * current) - quart));
+        context.save();
+        context.beginPath();
+
+
+            var radius2 = Math.abs(Math.sqrt((xCoordinates.x1 - xCoordinates.xCenter)*(xCoordinates.x1 - xCoordinates.xCenter) + (yCoordinates.y1 - yCoordinates.yCenter)*(yCoordinates.y1 - yCoordinates.yCenter)));
+            var startAngle = Math.atan2(yCoordinates.y1 - yCoordinates.yCenter, xCoordinates.x1 - xCoordinates.xCenter);
+            var endAngle   = Math.atan2(yCoordinates.y2 - yCoordinates.yCenter, xCoordinates.x2 - xCoordinates.xCenter);
+
+
+
+        context.lineWidth = 0.01;
+        context.arc((xCoordinates.x1 + xCoordinates.x2)/2,(yCoordinates.y1 + yCoordinates.y2)/2,radius2, endAngle,startAngle);
+        context.globalCompositeOperation = 'destination-out';
+        context.globalAlpha=1;
+        context.fill();
+
+
+        context.stroke();
+        context.restore();
+
+
           curPerc++;
 
           if (curPerc < porcentaje*tiempo) {
@@ -2693,6 +2734,7 @@
               });
           }
       }
+      console.log(porcentaje);
       if (porcentaje == 0){
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.beginPath();
