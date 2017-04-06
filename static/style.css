@@ -247,33 +247,6 @@ button{
     border-bottom: 2px solid transparent;
 }
 
-
-.dark .ui-header-buttons .ui-maximize:hover{
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  box-shadow: none;
-}
-.dark .ui-header-buttons .ui-maximize:active{
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  box-shadow: none;
-}
-
-.dark .ui-header-buttons .ui-close:hover{
-  border-radius: 4px;
-  border: solid 1px #252b30;
-
-}
-
-.dark .ui-header-buttons .ui-minimize:hover{
-  border-radius: 4px;
-  border: solid 1px #252b30;
-
-}
-
-
 .preferences-top li.active:hover{
 
     color: #FFFFFF;
@@ -284,7 +257,7 @@ button{
 .preferences-bottom{
 
     width: 807px;
-    height: 471px;
+    height: 423px;
     float: left;
     border: 1px solid #2c3238;
     background: #3f4750;
