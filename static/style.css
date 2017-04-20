@@ -892,10 +892,34 @@ button{
 }
 
 .info-current-plan{
+
+  .one{
+    .li-circle{
+      figure{
+        background: url('@static/tu_decides.png') no-repeat;
+        width: 24px;
+        margin-top: 2px;
+        background-size: 24px 18px;
+        height: 18px;
+      }
+    }
+  }
+  .two{
+    .li-circle{
+      figure{
+        background: url('@static/flexible.png') no-repeat;
+        width: 24px;
+        margin-top: 4px;
+        background-size: 24px 16px;
+        height: 16px;
+      }
+    }
+  }
   .two{
     margin-top: 12px;
   }
 }
+
 
 .current-information{
   width: 329px;
@@ -903,13 +927,7 @@ button{
   margin-top: 40px;
   margin-left: 12px;
   padding: 20px;
-
-  .li-circle figure{
-    background: #4698e0;
-    width: 22px;
-    height: 22px;
-    border-radius: 22px;
-  }
+  
   .li-circle article{
     margin-left: 18px;
     font-weight: bold;
