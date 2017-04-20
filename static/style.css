@@ -405,7 +405,6 @@ button{
     text-align: left;
     display: inline-block;
     vertical-align: top;
-    margin-top: 9px;
     margin-bottom: 9px;
 
 }
@@ -3098,6 +3097,10 @@ span.preferences-card-subscribe-text{
 }
 .ui-input-search{
   width: 380px;
+}
+
+.ui-input-search.active{
+  border: 2px solid #60B25E;
 }
 
 .input-icon i{
