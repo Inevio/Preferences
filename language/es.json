@@ -134,6 +134,7 @@
       "codeCreditCard"      : "CVV"
     },
 
+
     "infoCurrentPayment"  : "Este texto es un texto de prueba.",
 
     "next"        : "Siguiente",
@@ -141,12 +142,14 @@
     "decrease"    :  "¡Hecho! Tu espacio ha bajado a",
     "finish"      : "Finalizar",
 
+    "change"             : "Cambiar",
     "accountTitle"       : "TU CUENTA",
     "accountDescription" : "Aquí puedes cambiar tu información personal",
-    "avatarEdit"         : "CAMBIAR",
-    "accountUser"        : "USUARIO",
-    "accountMailUser"    : "CORREO",
-    "changePassword"     : "Cambiar Contraseña",
+    "avatarEdit"         : "Cambiar",
+    "accountUser"        : "Usuario",
+    "accountMailUser"    : "Correo",
+    "changePassword"     : "Contraseña",
+    "deleteAccount"      : "Borrar cuenta", 
     "saveChanges"        : "Guardar Cambios",
     "usernameChanged"    : "Nombre de usuario cambiado",
     "usernameChanged2"   : "Tu nombre de usuario ha sido cambiado por",

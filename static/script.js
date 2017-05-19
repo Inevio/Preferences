@@ -3329,9 +3329,22 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
     $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
 
+
+
+    //Account texts
+
+    $( '.account .avatar-edit', win ).text( lang.avatarEdit );
+    $('.account .bottom-account-card .card-content .right').find('span').text(lang.change);
+    $( '.account .bottom-account-card .username .card-content .left span').text(lang.accountUser);
+    $( '.account .bottom-account-card .email .card-content .left span').text(lang.accountMailUser);
+    $( '.account .bottom-account-card .password .card-content .left span').text(lang.changePassword);
+    $( '.account .bottom-account-card .deleteAccount .card-content .left span').text(lang.deleteAccount);
+    $( '.account .bottom-account-card .deleteAccount .card-content .right span').text(lang.moreInfo);
+
+    /*
     $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
     $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
-    $( '.avatar-edit', win ).text( lang.avatarEdit );
+
     $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
     $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
     $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
@@ -3350,6 +3363,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
     $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
 
+
+*/
     $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
     $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
     $( '.preferences-social-name.facebook', win ).text( lang.facebookAccount );
