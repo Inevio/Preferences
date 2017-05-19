@@ -74,7 +74,7 @@
     "changePlanError"  :  "Error al cambiar el plan, por favor contacta con nosotros.",
     "inevioCredit"     :  "Crédito de Inevio",
     "delete"           :  "Eliminar",
-    "extra"            :  " GB Extra",
+    "extra"            :  "  Extra",
     "dolarMonth"        :  "$/MES",
     "dolarMonthMinus"   :  "$/mes",
     "perMonth"         :  "/mes",
@@ -87,7 +87,7 @@
 
     "limitStorageDowngrade" : [
       "Actualmente está gastando ",
-      "GB y que debe reducirlo para poder asignar el nuevo plan."
+      " y que debe reducirlo para poder asignar el nuevo plan."
     ],
 
 

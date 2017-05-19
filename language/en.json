@@ -76,7 +76,7 @@
     "changePlanError"  :  "Fail to change plans, please contact us.",
     "inevioCredit"     :  "Inevio credit",
     "delete"           :  "Delete",
-    "extra"            :  " GB Extra",
+    "extra"            :  "  Extra",
     "dolarMonth"        :  "$/MONTH",
     "dolarMonthMinus"   :  "$/month",
     "perMonth"         :  "/month",
@@ -87,7 +87,7 @@
     ],
     "limitStorageDowngrade" : [
       "You are currently spending ",
-      "GB and you should reduce it to be able to assign the new plan."
+      " and you should reduce it to be able to assign the new plan."
     ],
 
     "changeTo" : "Modify to ",

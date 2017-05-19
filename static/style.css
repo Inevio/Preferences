@@ -247,33 +247,6 @@ button{
     border-bottom: 2px solid transparent;
 }
 
-
-.dark .ui-header-buttons .ui-maximize:hover{
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  box-shadow: none;
-}
-.dark .ui-header-buttons .ui-maximize:active{
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  box-shadow: none;
-}
-
-.dark .ui-header-buttons .ui-close:hover{
-  border-radius: 4px;
-  border: solid 1px #252b30;
-
-}
-
-.dark .ui-header-buttons .ui-minimize:hover{
-  border-radius: 4px;
-  border: solid 1px #252b30;
-
-}
-
-
 .preferences-top li.active:hover{
 
     color: #FFFFFF;
@@ -284,7 +257,7 @@ button{
 .preferences-bottom{
 
     width: 807px;
-    height: 471px;
+    height: 423px;
     float: left;
     border: 1px solid #2c3238;
     background: #3f4750;
@@ -432,7 +405,6 @@ button{
     text-align: left;
     display: inline-block;
     vertical-align: top;
-    margin-top: 9px;
     margin-bottom: 9px;
 
 }
@@ -920,10 +892,34 @@ button{
 }
 
 .info-current-plan{
+
+  .one{
+    .li-circle{
+      figure{
+        background: url('@static/tu_decides.png') no-repeat;
+        width: 24px;
+        margin-top: 2px;
+        background-size: 24px 18px;
+        height: 18px;
+      }
+    }
+  }
+  .two{
+    .li-circle{
+      figure{
+        background: url('@static/flexible.png') no-repeat;
+        width: 24px;
+        margin-top: 4px;
+        background-size: 24px 16px;
+        height: 16px;
+      }
+    }
+  }
   .two{
     margin-top: 12px;
   }
 }
+
 
 .current-information{
   width: 329px;
@@ -931,13 +927,7 @@ button{
   margin-top: 40px;
   margin-left: 12px;
   padding: 20px;
-
-  .li-circle figure{
-    background: #4698e0;
-    width: 22px;
-    height: 22px;
-    border-radius: 22px;
-  }
+  
   .li-circle article{
     margin-left: 18px;
     font-weight: bold;
@@ -3125,6 +3115,10 @@ span.preferences-card-subscribe-text{
 }
 .ui-input-search{
   width: 380px;
+}
+
+.ui-input-search.active{
+  border: 2px solid #60B25E;
 }
 
 .input-icon i{
