@@ -139,15 +139,14 @@
     "finish"      : "Finish",
 
 
-
-
-
+    "change"             : "Change",
     "accountTitle"       : "YOUR PROFILE",
     "accountDescription" : "Here you can change your personal information",
-    "avatarEdit"         : "CHANGE",
-    "accountUser"        : "USERNAME",
-    "accountMailUser"    : "EMAIL",
-    "changePassword"     : "Change Password",
+    "avatarEdit"         : "Change",
+    "accountUser"        : "Username",
+    "accountMailUser"    : "Email",
+    "changePassword"     : "Password",
+    "deleteAccount"      : "Delete account",
     "saveChanges"        : "Save Changes",
     "usernameChanged"    : "Username changed",
     "usernameChanged2"   : "Your username has been changed to",
