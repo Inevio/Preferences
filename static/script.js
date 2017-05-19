@@ -1,4 +1,4 @@
-  Stripe.setPublishableKey('pk_test_silkqGKnXMcfkbFy2Tt3nEqU');
+  Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 
     // Variables
     var win = $( this );
@@ -127,11 +127,20 @@
        }
     }
 
-    /*
-    if( [ 512, 924, 5196 ].indexOf( wz.system.user().id ) !== -1 ){
-        $('.payment').css('display','inline-block');
-    }
-    */
+    var codeNumber = [48,49,50,51,52,53,54,55,56,57];
+
+    var plan0 = {
+      addQuota : 0,
+      amount  : 0,
+      currency :  "usd",
+      customPlan : false,
+      id  : "plan0",
+      name  : "Basic Plan"
+    };
+
+    inevioPlans.push(plan0);
+    activePlan= plan0.id;
+
 
     addMailButton.on( 'click' , function(){
       addMail();
@@ -238,66 +247,6 @@
 
     };
 
-    var codeNumber = [48,49,50,51,52,53,54,55,56,57];
-
-    var plan0 = {
-      addQuota : 0,
-      amount  : 0,
-      currency :  "usd",
-      customPlan : false,
-      id  : "plan0",
-      name  : "Basic Plan"
-    };
-
-    inevioPlans.push(plan0);
-
-    addMailButton.on( 'click' , function(){
-      addMail();
-    });
-
-    shareButton.on( 'click' , function(){
-      share();
-    });
-
-    win.on( 'blur input' , '.mail' , function(){
-      checkMails();
-    });
-
-    var addMail = function(){
-      var mail = mailPrototype.clone();
-      mail.removeClass('wz-prototype');
-      mailList.append(mail);
-      mailList.stop().clearQueue().animate( { scrollTop : mailList[0].offsetTop }, 400  );
-    }
-
-    var share = function(){
-      if (shareButton.hasClass('valid')) {
-        api.user.inviteByMail(validMails);
-        api.banner()
-          .setTitle( lang.invitationSentTitle )
-          .setText( lang.invitationSentSubtitle )
-          .setIcon( 'https://static.inevio.com/app/3/icon.png' )
-          .render();
-        mailList.find('.mail:not(.wz-prototype)').each(function(){
-            $(this).removeClass('wrong').val('');
-        });
-      }
-    }
-
-    var checkMails = function(){
-      $('.wrong').removeClass('wrong');
-      shareButton.removeClass('valid');
-      mailList.find('.mail:not(.wz-prototype)').each( function(){
-        if ( $(this).val() != '' ) {
-          if( $(this).val().length && MAIL_REGEXP.test( $(this).val() ) ){
-            validMails.push( $(this).val() )
-            shareButton.addClass('valid');
-          }else{
-            $(this).addClass('wrong');
-          }
-        }
-      });
-    }
 
     // Quota circle functions
     var changeCake = function( space ){
@@ -546,13 +495,12 @@
 
       $('.modify-space .quantity').find('span').text(userLocal.actualPrice);
       plansCounter = listPlans.indexOf(userLocal.activePlan);
-      var espacioTotal = api.tool.bytesToUnit(quota.base + inevioPlans[plansCounter].addQuota).split(" ", 1)[0];
+      var espacioTotal = quota.base + inevioPlans[plansCounter].addQuota;
       if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
         //espacioTotal = lang.unlimitedStorage;
         espacioTotal = 10000;
       }
       else{
-
         //espacioTotal = parseInt(userLocal.totalStorage);
 
         if(plansCounter == inevioPlans.length - 1){
@@ -577,7 +525,8 @@
           $('.modify-space button').addClass('block');
           //$('.modify-space .show-space-selected .big-text').text(parseInt(userLocal.extraStorage) + parseInt(userLocal.actualStorage));
       }
-      $('.modify-space .show-space-selected .big-text').text(espacioTotal);
+      $('.modify-space .show-space-selected span:last-child').text(api.tool.bytesToUnit(espacioTotal).split(" ", 2)[1]);
+      $('.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit(espacioTotal).split(" ", 2)[0]);
       $('.modify-space .quantity').text(userLocal.actualPrice);
     }
 
@@ -711,7 +660,8 @@
           $('.more .more-icon').removeClass('block');
         }
 
-        $('.more .show-space-selected .big-text').text(parseInt(api.tool.bytesToUnit(inevioPlans[0].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
+        $('.more .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[1]);
+        $('.more .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
         $('.more .quantity').text(inevioPlans[0].amount);
       }
 
@@ -727,7 +677,7 @@
       $('.space .pr-box').removeClass('hidden');
       $('.pr-box .box-current-plan-top').find('span').text(lang.activePlan);
       $('.pr-box .box-current-plan-bottom').find('span').text(lang.manage);
-      $('.pr-box .box-current-plan-middle .premium-info .left').find('span').text(userLocal.extraStorage + lang.extra );
+      $('.pr-box .box-current-plan-middle .premium-info .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra );
       $('.pr-box .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus );
       var fecha = new Date(userLocal.payDay);
       $(  '.pr-box .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
@@ -796,6 +746,16 @@
         for(var i = 0; i<infoSubscriptions.availablePlans.length; i++){
           inevioPlans.push(infoSubscriptions.availablePlans[i]);
         }
+
+        //console.log(inevioPlans);
+        inevioPlans = inevioPlans.sort( function( a, b ){
+          return a.amount - b.amount
+        })
+        listPlans = inevioPlans.map(function( item ){
+          return item.id
+        });
+
+
         if(activePlan == inevioPlans[0].id){
           minusSpaceCondition = false;
         }
@@ -857,10 +817,10 @@
         }else{
           $('.hdd .modify-premium .change-plan').removeClass('block').addClass('pointer');
         }
-        userLocal.totalStorage = parseInt(api.tool.bytesToUnit(quota.total).split(" ", 1)[0]);
-        userLocal.base = parseInt(api.tool.bytesToUnit(quota.base).split(" ", 1)[0]);
-        userLocal.actualPrice = parseInt(infoSubscriptions.currentPlan.amount);
-        userLocal.extraStorage = parseInt(api.tool.bytesToUnit(infoSubscriptions.currentPlan.addQuota).split(" ", 1)[0]);
+        userLocal.totalStorage = quota.total;
+        userLocal.base = quota.base;
+        userLocal.actualPrice = infoSubscriptions.currentPlan.amount;
+        userLocal.extraStorage = infoSubscriptions.currentPlan.addQuota;
         userLocal.payDay = infoSubscriptions.currentPlan.current_period_end;
         if (infoSubscriptions.listCards[0] == null){
           cardStatus = 0;
@@ -889,8 +849,8 @@
       }else{
         userLocal.info = false;
         userLocal.customPlan = false;
-        userLocal.totalStorage = parseInt(api.tool.bytesToUnit(quota.total).split(" ", 1)[0]);
-        userLocal.base = parseInt(api.tool.bytesToUnit(quota.base).split(" ", 1)[0]);
+        userLocal.totalStorage = quota.total;
+        userLocal.base = quota.base;
         userLocal.actualPrice = 0;
         userLocal.extraStorage = 0;
         userLocal.payDay = null;
@@ -1110,7 +1070,7 @@
     })
 
 
-    .on( 'click' , '.nextTab', function(){
+    .on( 'click' , '.hdd .nextTab', function(){
         resetInputStatus();
         if(!loading){
           if($(this).parents('.preferences-hdd-payment').hasClass(currentTab)){
@@ -1143,7 +1103,7 @@
     })
 
 
-    .on( 'click' , '.back', function(){
+    .on( 'click' , '.hdd .back', function(){
 
 
       if(!loading){
@@ -1195,7 +1155,7 @@
       //update userLocal and load Premium-mode
       updateUserLocal(true, 0);
       updateUserLocal(inevioPlans[listPlans.indexOf(activePlan)].amount, 2);
-      updateUserLocal(api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota).split(" ", 1)[0], 3);
+      updateUserLocal(inevioPlans[listPlans.indexOf(activePlan)].addQuota, 3);
       updateUserLocal(new Date(), 4);
       resetLocalVar();
     })
@@ -1466,7 +1426,7 @@
       moreSpaceCondition = true;
       $(  '.hdd .more .minus-icon').addClass('block');
       $('.hdd .more .quantity').text(0);
-      $('.hdd .more .container .big-text').text(userLocal.base);
+      $('.hdd .more .container .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
     })
 
     .on(  'click', '.order-premium .validate', function(){
@@ -1476,7 +1436,7 @@
 
       if(typePlan == "downgrade"){
         if(stUser >= stNewPlan){
-          alert(lang.limitStorageDowngrade[0] + (stUser / (1024*1024*1024)).toString().substring(0,4) + lang.limitStorageDowngrade[1]);
+          alert(lang.limitStorageDowngrade[0] + api.tool.bytesToUnit(stUser) + lang.limitStorageDowngrade[1]);
           return;
         }
       }
@@ -1666,15 +1626,18 @@
         var size = null;
         var total = null;
         var condition = true;
+        var unit = null;
 
         if(currentTab == spaceTabs[2]){
           //premium
+          unit = $('.modify-space .show-space-selected span:last-child');
           size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
+          unit = $('.more .show-space-selected span:last-child');
           size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
@@ -1686,9 +1649,10 @@
 
         if(condition){
 
-          size.text(parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
+          size.text(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base).split(" ", 2)[0]);
+          unit.text(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base).split(" ", 2)[1]);
           price.text(inevioPlans[plansCounter + 1 ].amount);
-          total.text(size.text() + " GB");
+          total.text(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base).split(" ", 2)[1]);
           activePlan = inevioPlans[plansCounter + 1].id;
           console.log("Plan: " + activePlan);
           if (plansCounter < inevioPlans.length - 1){
@@ -1697,7 +1661,7 @@
             moreSpaceCondition = false;
           }
 
-          if(parseInt(size.text()) == (parseInt(api.tool.bytesToUnit(inevioPlans[inevioPlans.length - 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base))){
+          if(api.tool.bytesToUnit(inevioPlans[plansCounter + 1].addQuota + userLocal.base) == (api.tool.bytesToUnit(inevioPlans[inevioPlans.length - 1].addQuota + userLocal.base))){
 
             $('.moreStorage').addClass('block');
             $('.'+currentTab+ ' .more-icon').removeClass('moreStorage');
@@ -1748,12 +1712,14 @@
 
         if(currentTab == spaceTabs[2]){
           //premium
+          unit = $('.modify-space .show-space-selected span:last-child');
           size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
+          unit = $('.more .show-space-selected span:last-child');
           size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
@@ -1764,9 +1730,10 @@
 
         if(condition){
 
-          size.text(parseInt(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
+          size.text(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base).split(" ", 2)[0]);
+          unit.text(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base).split(" ", 2)[1]);
           price.text(inevioPlans[plansCounter - 1].amount);
-          total.text( size.text() + " GB");
+          total.text( api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base).split(" ", 2)[1]);
           activePlan = inevioPlans[plansCounter - 1 ].id;
           console.log("Plan: " + activePlan);
           if (plansCounter > 0){
@@ -1775,7 +1742,7 @@
             minusSpaceCondition = false;
           }
 
-          if(parseInt(size.text()) == (parseInt(api.tool.bytesToUnit(inevioPlans[0].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base))){
+          if(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base) == (api.tool.bytesToUnit(inevioPlans[0].addQuota + userLocal.base))){
             $('.minusStorage').addClass('block');
             $('.'+currentTab+ ' .minus-icon').removeClass('minusStorage');
           }
@@ -1818,11 +1785,11 @@
       resetInputStatus();
       $('.order .secure-by-stripe').removeClass('hidden');
       $('.'+currentTab +' .preferences-hdd-payment-bottom').addClass('goUp');
-      var total = parseInt($('.more .show-space-selected .big-text').text());
-      var price = parseInt($('.more .quantity').text());
+      var total = userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota;
+      var price = inevioPlans[listPlans.indexOf(activePlan)].amount;
       $('.order .info-options .options-middle .options-middle-right').text(price + lang.dolarMonthMinus);
-      $('.order .info-options .options-middle .options-middle-left').text( lang.add + api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota).split(" ", 1)[0] + "GB" );
-      $('.order .info-options .options-bottom .bottom .left').text(total + "GB" );
+      $('.order .info-options .options-middle .options-middle-left').text( lang.add +  api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota));
+      $('.order .info-options .options-bottom .bottom .left').text(api.tool.bytesToUnit(total));
       $('.order .info-options .options-bottom .bottom .right').text(price + lang.dolarMonthMinus);
     })
 
@@ -1966,14 +1933,14 @@
       }
       orderPRTab();
 
-      $('.order-premium .options-top-body .body-bottom .left').find('span').text((parseInt(userLocal.base) + parseInt(userLocal.extraStorage )) + 'GB');
+      $('.order-premium .options-top-body .body-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base + userLocal.extraStorage));
       $('.order-premium .options-top-body .body-bottom .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus);
 
-      $('.order-premium .options-middle .options-middle-left').find('span').text(lang.changeTo + $('.modify-space .big-text').text() + 'GB');
+      $('.order-premium .options-middle .options-middle-left').find('span').text(lang.changeTo + api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
       $('.order-premium .options-middle .options-middle-right').find('span').text($('.modify-space .quantity').text() + lang.dolarMonthMinus);
 
-      $('.order-premium .options-bottom .left').find('span').text($('.modify-space .big-text').text() + 'GB');
-      $('.order-premium .options-bottom .right').find('span').text($('.modify-space .quantity').text() + lang.dolarMonthMinus);
+      $('.order-premium .options-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
+      $('.order-premium .options-bottom .right').find('span').text(inevioPlans[listPlans.indexOf(activePlan)].amount + lang.dolarMonthMinus);
 
 
       if(cardStatus == 1){
@@ -2011,7 +1978,7 @@
         $(  '.order-premium .preferences-hdd-payment-bottom button').find('span').text(lang.confirm);
       }
       else{
-        //console.log(cardStatus);
+        console.log(cardStatus);
         if(cardStatus == 0){
           $('.order-premium .new-card').removeClass('card-active');
           $('.order-premium .secure-by-stripe').addClass('hidden');
@@ -2019,7 +1986,7 @@
         }
         $(  '.order-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
       }
-      if ((parseInt(userLocal.base) + parseInt(userLocal.extraStorage )) > (parseInt($('.modify-space .big-text').text()))) {
+      if ((userLocal.base + userLocal.extraStorage) > (userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota)) {
         typePlan = "downgrade";
         $('.finish-premium .finish-top').addClass('sad');
         $('.finish-premium .finish-middle span:first-child').text(lang.decrease);
@@ -2698,7 +2665,7 @@
         - Posicion del centro (x e y).
         - Radio.
         - Porcentaje entre 0 y 1.
-        - Tiempo de la animación por defecto 250.
+        - Tiempo de la animación por defecto 200.
     */
 
     var loadCanvasCake = function(canvas,context, x, y, radius, porcentaje, tiempo){
@@ -2710,14 +2677,55 @@
       var circ = Math.PI * 2;
       var quart = Math.PI / 2;
 
+      var xCoordinates = {
+        x1 : 0,
+        x2 : 0,
+        xCenter : 0
+      }
+      var yCoordinates = {
+        y1 : 0,
+        y2 : 0,
+        yCenter : 0
+      }
+
+       context.beginPath();
       context.lineWidth = 25;
       context.strokeStyle = '#586069';
 
       function animate(current) {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.beginPath();
-          context.arc(x, y, radius, -(quart), ((circ) * current) - quart, true);
-          context.stroke();
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        context.arc(x, y, radius, -(quart), ((circ) * current) - quart, true);
+        context.stroke();
+        xCoordinates.xCenter = (x + radius * Math.cos(((circ) * current) - quart + 0.01));
+        yCoordinates.yCenter = (y + radius * Math.sin(((circ) * current) - quart + 0.01));
+
+        xCoordinates.x1 = (x + (radius-12) * Math.cos(((circ) * current) - quart));
+        xCoordinates.x2 = (x + (radius+12) * Math.cos(((circ) * current) - quart));
+
+        yCoordinates.y1 = (y + (radius-12) * Math.sin(((circ) * current) - quart));
+        yCoordinates.y2 = (y + (radius+12) * Math.sin(((circ) * current) - quart));
+        context.save();
+        context.beginPath();
+
+
+            var radius2 = Math.abs(Math.sqrt((xCoordinates.x1 - xCoordinates.xCenter)*(xCoordinates.x1 - xCoordinates.xCenter) + (yCoordinates.y1 - yCoordinates.yCenter)*(yCoordinates.y1 - yCoordinates.yCenter)));
+            var startAngle = Math.atan2(yCoordinates.y1 - yCoordinates.yCenter, xCoordinates.x1 - xCoordinates.xCenter);
+            var endAngle   = Math.atan2(yCoordinates.y2 - yCoordinates.yCenter, xCoordinates.x2 - xCoordinates.xCenter);
+
+
+
+        context.lineWidth = 0.01;
+        context.arc((xCoordinates.x1 + xCoordinates.x2)/2,(yCoordinates.y1 + yCoordinates.y2)/2,radius2, endAngle,startAngle);
+        context.globalCompositeOperation = 'destination-out';
+        context.globalAlpha=1;
+        context.fill();
+
+
+        context.stroke();
+        context.restore();
+
+
           curPerc++;
 
           if (curPerc < porcentaje*tiempo) {
@@ -2726,6 +2734,7 @@
               });
           }
       }
+      console.log(porcentaje);
       if (porcentaje == 0){
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.beginPath();
@@ -2952,10 +2961,12 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       var radio = 107;
       var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
       porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
+      if(porcentaje < 1){
         loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
         loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
+      }
       infoSubscriptions = api.app.storage('infoSubscriptions');
-      //console.log(infoSubscriptions);
+      console.log(infoSubscriptions);
       language = api.app.storage('language');
       quota = wz.system.quota();
       inevioPlans= [];
@@ -2964,8 +2975,12 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         inevioPlans.push(infoSubscriptions.availablePlans[i]);
       }
       //console.log(inevioPlans);
+      inevioPlans = inevioPlans.sort( function( a, b ){
+        return a.amount - b.amount
+      })
       listPlans = inevioPlans.map(function( item ){
-        return item.id});
+        return item.id
+      });
 
       //console.log(infoSubscriptions);
 
@@ -3119,9 +3134,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.more .quantity').find('span').text(inevioPlans[0].amount);
       $(  '.more .quantity-container .top').text("$");
       $(  '.more .quantity-container .bottom').text(lang.perMonth);
-      $(  '.more .show-space-selected').find('span').text('GB');
-
-      $(  '.more .show-space-selected .big-text').text(parseInt(api.tool.bytesToUnit(inevioPlans[0].addQuota).split(" ", 1)[0]) + parseInt(userLocal.base));
+      $(  '.more .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.base + plan0.addQuota).split(" ", 2)[1]);
+      $(  '.more .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
       $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
     };
@@ -3131,14 +3145,14 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.order .options-top-tittle').find('span').text(lang.summary);
       $(  '.order .options-top-body').find('span').text(lang.currentSpaceMayus);
       $(  '.order .options-top-body .body-bottom .right').find('span').text(lang.free);
-      $(  '.order .options-top-body .body-bottom .left').find('span').text(userLocal.totalStorage + "GB");
-      $(  '.order .options-middle .options-middle-left').find('span').text(lang.add + $('.more .show-space-selected .big-text').text()+"GB");
-      $(  '.order .options-middle .options-middle-right').find('span').text(($('.more .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
+      $(  '.order .options-top-body .body-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage));
+      $(  '.order .options-middle .options-middle-left').find('span').text(lang.add + api.tool.bytesToUnit(userLocal.base + inevioPlans[0].addQuota));
+      $(  '.order .options-middle .options-middle-right').find('span').text(0 +lang.dolarMonthMinus);
       $(  '.order .options-bottom .top .left').text(lang.totalStorageMayus);
       $(  '.order .options-bottom .top .right').text(lang.totalMayus);
-      $(  '.order .options-bottom .bottom .left').find('span').text((parseInt(userLocal.totalStorage) + parseInt($('.more .show-space-selected .big-text').text()))  + "GB");
+      $(  '.order .options-bottom .bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[2]);
       $(  '.order .options-bottom .bottom .right').find('span').text(lang.perMonth);
-      $(  '.order .options-bottom .bottom .right .big').text(($('.more .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
+      $(  '.order .options-bottom .bottom .right .big').text(0 + lang.dolarMonthMinus);
       $(  '.order .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
       $(  '.order .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
       $(  '.order .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
@@ -3157,7 +3171,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     var finishTab = function(){
       $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.finish .finish-middle').find('span').text(lang.congratulation);
-      $(  '.finish .finish-middle .info-space').text(parseInt(userLocal.totalStorage) + "GB");
+      $(  '.finish .finish-middle .info-space').text(api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota + userLocal.base));
       $(  '.finish .finish-bottom').find('span').text(lang.finish);
 
     };
@@ -3166,7 +3180,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
       $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
-      $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(userLocal.extraStorage + lang.extra );
+      $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra );
       $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus );
       var fecha = new Date(userLocal.payDay);
       $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
@@ -3219,13 +3233,13 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + new Date(userLocal.payDay).getDate() + lang.partPayDay[1]);
       }
       $(  '.modify-premium .info-current-plan .options-bottom .top').find('span').text(lang.totalStorageMayus);
-      $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(parseInt(userLocal.base) + parseInt(userLocal.extraStorage) + "GB");
+      $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
       $(  '.modify-premium .number-card').find('span').text("**** **** **** " + userLocal.card.number);
       $(  '.modify-premium .delete-card').find('span').text(lang.delete);
       $(  '.modify-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
       $(  '.modify-premium .info-options .options-top .bottom').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus);
-      $(  '.modify-premium .info-options .options-top .top .left').find('span').text(userLocal.extraStorage + lang.extra);
+      $(  '.modify-premium .info-options .options-top .top .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra);
       $(  '.modify-premium .info-options .options-top .top .right').find('span').text(lang.modify);
       $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.delete);
       $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.actualPrice + lang.payParagraph[1]+ new Date(userLocal.payDay).getDate() + lang.payParagraph[2]);
@@ -3250,8 +3264,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-space .quantity').find('span').text(1);
       $(  '.modify-space .quantity-container .top').text("$");
       $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
-      $(  '.modify-space .show-space-selected').find('span').text('GB');
-      $(  '.modify-space .show-space-selected .big-text').text(userLocal.extraStorage +  parseInt(userLocal.base));
+      $(  '.modify-space .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[1]);
+      $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
       $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
     };
@@ -3262,14 +3276,14 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.order-premium .options-top-tittle').find('span').text(lang.summary);
       $(  '.order-premium .options-top-body').find('span').text(lang.currentSpaceMayus);
       $(  '.order-premium .options-top-body .body-bottom .right').find('span').text(lang.free);
-      $(  '.order-premium .options-top-body .body-bottom .left').find('span').text(userLocal.totalStorage + "GB");
-      $(  '.order-premium .options-middle .options-middle-left').find('span').text(lang.add + $('.modify-space .show-space-selected .big-text').text()+"GB");
+      $(  '.order-premium .options-top-body .body-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage));
+      $(  '.order-premium .options-middle .options-middle-left').find('span').text(lang.add + api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
       $(  '.order-premium .options-middle .options-middle-right').find('span').text(($('.modify-space .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
       $(  '.order-premium .options-bottom .top .left').text(lang.totalStorageMayus);
       $(  '.order-premium .options-bottom .top .right').text(lang.totalMayus);
-      $(  '.order-premium .options-bottom .bottom .left').find('span').text((parseInt(userLocal.base) + parseInt($('.modify-space .show-space-selected .big-text').text()))  + "GB");
+      $(  '.order-premium .options-bottom .bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
       $(  '.order-premium .options-bottom .bottom .right').find('span').text(lang.perMonth);
-      $(  '.order-premium .options-bottom .bottom .right .big').text(($('.modify-space .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
+      $(  '.order-premium .options-bottom .bottom .right .big').text(inevioPlans[listPlans.indexOf(activePlan)].amount + lang.dolarMonthMinus);
       $(  '.order-premium .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
       $(  '.order-premium .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
       $(  '.order-premium .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
