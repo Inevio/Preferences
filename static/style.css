@@ -1,5 +1,4 @@
 /* COLORS */
-
 @colorMain: #7ebe30;
 @grayHorbito: #51575f;
 @grayHorbitoHover: #474d54;
@@ -23,7 +22,6 @@
 @lightGray: #f9f9fe;
 @whiteHorbito : #f7f7f7;
 
-
 *{
   font-family: 'Lato';
   letter-spacing: 0.02em;
@@ -41,10 +39,106 @@ button{
     cursor:default !important;
   }
 }
+
 .block {
-  opacity: .2 !important;
+  opacity: .2;
 }
 
+
+
+.new-input{
+  background: #FFF;
+  border: 2px solid #FFF;
+  color: @darkHorbito;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+    .delete-content{
+      i{
+        background: url('https://static.horbito.com/image/uikit/search-input-sprite.png') no-repeat;
+      }
+  }
+}
+
+.dark .new-input{
+  background: @darkHorbito;
+  border: 1px solid @darkHorbito;
+  color: @whiteHorbito;
+  box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+    .delete-content{
+      i{
+        background: url('https://static.horbito.com/image/uikit/search-input-sprite-dark.png') no-repeat;
+      }
+    }
+}
+
+.new-input.active, .dark .new-input.active{
+  border-color: @blueHorbito;
+}
+
+.new-input.error, .dark .new-input.error{
+  border-color: @redHorbitoActive;
+}
+
+.input-long, .input-normal, .input-short{
+  display: flex;
+  height: 36px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0px 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+
+  .icon{
+    width: 33px;
+  }
+
+  .delete-content{
+    display: none;
+    float: right;
+    width: 14px;
+    height: 14px;
+    padding: 11px 0px 11px 0px;
+
+    i{
+      display: block;
+      width: 14px;
+      height: 14px;
+      background-position: -21px 0px;
+      background-size: 52px 20px;
+    }
+  }
+}
+
+.input-long{
+  width: 324px;
+  input{
+    width: 273px;
+  }
+}
+
+.input-normal{
+  width: 120px;
+  input{
+    width: 73px;
+  }
+}
+
+.input-short{
+  width: 100px;
+  input{
+    width: 53px;
+  }
+}
+/*
+.input-long.active, .input-normal.active, .input-short.active, .dark .input-long.active, .dark .input-normal.active, .dark .input-short.active{
+
+  .delete-content{
+    display: block;
+  }
+}
+*/
 
 .pointer:hover{
     cursor: pointer;
@@ -53,17 +147,16 @@ button{
     }
 }
 .focuted:hover{
-  opacity: 1 !important;
-  color: white;
+  color: @darkHorbito;
 }
 
 .underline:hover{
-  color: white;
+  color: @blueHorbitoHover;
 }
 .underline{
   text-decoration: underline;
   margin-left: 3px;
-  color: #d2dce2;
+  color: @darkHorbito;
 }
 
 .summary-subtitle{
@@ -187,10 +280,10 @@ button{
 
 .preferences-top{
 
-    width: 867px;
+    width: 868px;
     height: 86px;
     float: left;
-	  border: solid 1px #fff;
+	  border-bottom: solid 1px #fff;
     border-bottom: none;
     font-size: 17px;
     font-weight: bold;
@@ -485,7 +578,6 @@ button{
     margin-bottom: 10px;
     padding-left: 10px;
     font-size: 15px;
-    color: #d2dce2;
     border-left: 1px solid #d2dce2;
     background: transparent;
 
@@ -660,7 +752,7 @@ button{
 	  border-radius: 20px;
     margin-top: 12px;
     margin-left: 25px;
-	  background-color: #2c3238;
+	  background-color: @darkHorbito;
 	  border: solid 2px #fff;
   }
   .preferences-hdd-payment-top{
@@ -683,6 +775,7 @@ button{
       border: none;
     }
     span{
+      color: @darkHorbito;
       font-size: 40px;
       font-weight: bold;
       margin-left: 11px;
@@ -810,9 +903,13 @@ button{
   width: 330px;
   text-align: center;
   padding: 20px 0px;
-  border-radius: 6px;
-  background: rgb(44, 50, 56);
   margin: 37px 0 0 26px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+  color: @darkHorbito;
 
   .usage-circle{
 
@@ -905,7 +1002,7 @@ button{
   span{
     font-size: 22px;
     margin-top: 17px;
-    color: white;
+    color: @darkHorbito;
     font-weight: bold;
   }
 
@@ -965,25 +1062,28 @@ button{
     margin-left: 17px;
     font-size: 21px;
     font-weight: bold;
-    color: white;
+    color: @darkHorbito;
   }
   .paragraph{
     margin-left: 40px;
     margin-top: 10px;
     line-height: 24px;
     font-size: 15px;
-    color: #b5bec5;
+    color: @gray1;
   }
 }
 
 .space-premium , .pr-box{
+
+  .box-current-plan{
+    height: 205px;
+  }
   .box-current-plan-middle{
     padding: 10px 0px;
     width: 297px !important;
     margin: 18px 0px 0px 0px !important;
 
     .premium-info{
-      color: white;
       font-weight: bold;
     }
     .premium-date{
@@ -1000,14 +1100,13 @@ button{
 }
 .secure-by-stripe{
 
-  color: #d2dce2;
+  color: @gray1;
   display: flex;
   font-size: 13px;
   width: 230px;
   margin-top: 14px;
 
   .info-secure{
-    color: #d2dce2;
     display: flex;
 
     .icon-secure{
@@ -1016,6 +1115,14 @@ button{
       width: 15px;
       margin: 0px auto;
       height: 26px;
+
+      .stripe:hover{
+        color: @blueHorbitoHover;
+      }
+
+      .stripe{
+        color: @darkHorbito;
+      }
     }
   }
 
@@ -1023,10 +1130,15 @@ button{
 }
 
 .change-plan{
+  color: @darkHorbito;
   span{
-    opacity: .7;
   }
-
+}
+.change-plan:hover{
+  color: @blueHorbito;
+  span:hover{
+    color: @blueHorbito;
+  }
 }
 
 
@@ -1161,11 +1273,10 @@ button{
       }
 
       .top{
-        color: white;
         display: flex;
         .right{
           font-weight: normal;
-          width: 109px;
+          padding: 4px 0px 0px 40px;
         }
         .left{
           font-weight: bold;
@@ -1223,9 +1334,13 @@ button{
         .number-credit-card{
           display: flex;
           padding: 10px 20px;
-          background: rgb(44, 50, 56);
+          -webkit-border-radius: 6px;
+          -moz-border-radius: 6px;
+          border-radius: 6px;
+          background-color: rgb(255, 255, 255);
+          box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+          color: @darkHorbito;
           border-radius: 16px;
-          color: #c7d1d7;
 
 
 
@@ -1236,7 +1351,7 @@ button{
             width: 160px;
           }
           .delete-card:hover{
-            color: white;
+            color: @redHorbito;
           }
           .delete-card{
             font-size: 12px;
@@ -1247,6 +1362,7 @@ button{
         .info-current-payment{
           padding: 20px 10px;
           font-size: 14px;
+          color: @gray1;
         }
 
       }
@@ -1256,10 +1372,8 @@ button{
 
         margin-top: 36px;
         margin-bottom: 86px;
-        color: #c7d1d7;
+        color: @gray1;
         .top{
-          opacity: 0.7;
-          color: white;
           font-weight: bold;
           width: 120px;
           height: 60px;
@@ -1291,6 +1405,7 @@ button{
         .info-current-payment{
           padding: 20px 10px;
           font-size: 14px;
+          color: @gray1;
         }
       }
 
@@ -1306,7 +1421,7 @@ button{
         margin-top: 14px;
 
         .info-current-card-button.middle{
-          border-left: 1px dashed #5e656b;
+          border-left: 1px dashed @blueHorbitoHover;
           padding: 10px 0px;
         }
 
@@ -1319,12 +1434,11 @@ button{
                 .show-space-selected{
                   width: 215px;
                   height: 115px;
-                  background: #061221;
                   margin-left: 20px;
                   padding-top: 20px;
-                  color: white;
+                  color: @darkHorbito;
                   border-radius: 10px;
-                  border: 1px solid #20ea20;
+                  border: 1px solid @blueHorbito;
 
                   .big-text{
                     font-size: 30px;
@@ -1363,9 +1477,14 @@ button{
           .number-credit-card{
             display: flex;
             padding: 10px 10px;
-            background: rgb(44, 50, 56);
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+            color: @darkHorbito;
             border-radius: 16px;
-            color: white;
+
 
             figure{
               width: 40px;
@@ -1380,6 +1499,7 @@ button{
           .info-current-payment{
             padding: 20px 10px;
             font-size: 14px;
+            color: @gray1;
           }
 
         }
@@ -1393,7 +1513,7 @@ button{
             display: flex;
             .quantity{
               width: 87px;
-              color: #60b25e;
+              color: @blueHorbitoActive;
               font-size: 71px;
               text-align: right;
             }
@@ -1403,7 +1523,7 @@ button{
               height: 45px;
               margin: 22px auto 0px auto;
               text-align: left;
-              color: white;
+              color: @darkHorbito;
               width: 60px;
             }
           }
@@ -1413,7 +1533,7 @@ button{
           margin-top: 14px;
 
           .info-current-card-button.middle{
-            border-left: 1px dashed #5e656b;
+            border-left: 1px dashed @blueHorbitoHover;
             padding: 10px 0px;
           }
 
@@ -1426,12 +1546,11 @@ button{
                   .show-space-selected{
                     width: 215px;
                     height: 115px;
-                    background-color: #2c3238;
-                    border: solid 2px #60b25e;
+                    border: solid 2px @blueHorbito;
                     border-radius: 12px;
                     margin-left: 20px;
                     font-size: 21px;
-                    color: white;
+                    color: @darkHorbito;
 
                     .container{
                       height: 85px;
@@ -1484,9 +1603,13 @@ button{
         .number-credit-card{
           display: flex;
           padding: 10px 10px;
-          background: rgb(44, 50, 56);
           border-radius: 16px;
-          color: white;
+          -webkit-border-radius: 6px;
+          -moz-border-radius: 6px;
+          border-radius: 6px;
+          background-color: rgb(255, 255, 255);
+          box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+          color: @darkHorbito;
 
           figure{
             width: 40px;
@@ -1501,6 +1624,7 @@ button{
         .info-current-payment{
           padding: 20px 10px;
           font-size: 14px;
+          color: @gray1;
         }
 
       }
@@ -1514,7 +1638,7 @@ button{
           display: flex;
           .quantity{
             width: 87px;
-            color: #60b25e;
+            color: @blueHorbitoActive;
             font-size: 71px;
             text-align: right;
           }
@@ -1524,7 +1648,7 @@ button{
             height: 45px;
             margin: 22px auto 0px auto;
             text-align: left;
-            color: white;
+            color: @darkHorbito;
             width: 60px;
           }
         }
@@ -1534,7 +1658,7 @@ button{
         margin-top: 14px;
 
         .info-current-card-button.middle{
-          border-left: 1px dashed #5e656b;
+          border-left: 1px dashed @blueHorbitoHover;
           padding: 10px 0px;
         }
 
@@ -1547,12 +1671,11 @@ button{
                 .show-space-selected{
                   width: 215px;
                   height: 115px;
-                  background-color: #2c3238;
-                  border: solid 2px #60b25e;
+                  border: solid 2px @blueHorbito;
                   border-radius: 12px;
                   margin-left: 20px;
                   font-size: 21px;
-                  color: white;
+                  color: @darkHorbito;
 
                   .container{
                     height: 85px;
@@ -1589,8 +1712,6 @@ button{
       */
 
       .current-top{
-        color:white;
-        background-color:#2B3A48;
         text-align:center;
         }
       .current-top:after {
@@ -1601,7 +1722,7 @@ button{
         left: 0px;
         width: inherit;
         height: 7px;
-    background: linear-gradient(#3f4750 0%, transparent 0%), -webkit-linear-gradient(135deg, #2c3238 33.33%, transparent 33.33%) 0 0%, #3f4750 -webkit-linear-gradient(45deg, #2c3238 33.33%, #3f4750 33.33%) 0 0%;
+    background: linear-gradient(@whiteHorbito 0%, transparent 0%), -webkit-linear-gradient(135deg, #fff 33.33%, transparent 33.33%) 0 0%, @whiteHorbito -webkit-linear-gradient(45deg, #fff 33.33%, @whiteHorbito 33.33%) 0 0%;
         background-repeat: repeat-x;
         background-size: 7px 7px, 7px 7px;
       }
@@ -1620,7 +1741,7 @@ button{
       left: 0px;
       width: inherit;
       height: 7px;
-    background: linear-gradient(#2c3238 0%, transparent 0%), -webkit-linear-gradient(135deg, #3f4750 33.33%, transparent 33.33%) 0 0%, #2c3238 -webkit-linear-gradient(45deg, #3f4750 33.33%, #2c3238 33.33%) 0 0%;
+    background: linear-gradient(#fff 0%, transparent 0%), -webkit-linear-gradient(135deg, @whiteHorbito 33.33%, transparent 33.33%) 0 0%, #fff -webkit-linear-gradient(45deg, @whiteHorbito 33.33%, #fff 33.33%) 0 0%;
     background-repeat: repeat-x;
     background-size: 7px 7px, 7px 7px;
     }
@@ -1630,7 +1751,6 @@ button{
       height: 264px;;
       text-align: center;
       padding: 20px 0px;
-      background: #2c3238;
       margin: 0px;
       border-radius: 0px;
     }
@@ -1646,7 +1766,6 @@ button{
       padding: 0px 30px;
 
       .options-top-tittle{
-        color: white;
         width: 240px;
         text-align: left;
       }
@@ -1658,7 +1777,6 @@ button{
         margin-bottom: 17px;
 
         .body-bottom{
-          color: white;
           display: flex;
           margin-top: 17px;
           .right{
@@ -1675,12 +1793,12 @@ button{
     }
 
     .options-middle{
-      border-bottom: 1px dashed #5e656b;
-      border-top: 1px dashed #5e656b;
+      border-bottom: 1px dashed @blueHorbitoHover;
+      border-top: 1px dashed @blueHorbitoHover;
       padding: 17px 10px;
       margin: 30px 20px;
       display: flex;
-      color: #60b25e;
+      color: @blueHorbito;
       font-size: 19px;
 
       .options-middle-left{
@@ -1719,7 +1837,6 @@ button{
       .bottom{
         margin-top: 15px;
         display: flex;
-        color: white;
         .right{
           width: 50%;
           text-align: right;
@@ -1880,7 +1997,7 @@ button{
         margin-left: 15px;
 
         .info-current-card-button.middle{
-          border-left: 1px dashed #5e656b;
+          border-left: 1px dashed @blueHorbitoHover;
         }
 
         .info-current-card-button{
@@ -1939,9 +2056,14 @@ button{
             .number-credit-card{
               display: flex;
               padding: 10px 20px;
-              background: rgb(44, 50, 56);
+
               border-radius: 16px;
-              color: #c7d1d7;
+              -webkit-border-radius: 6px;
+              -moz-border-radius: 6px;
+              border-radius: 6px;
+              background-color: rgb(255, 255, 255);
+              box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+              color: @darkHorbito;
 
 
 
@@ -1952,7 +2074,7 @@ button{
                 width: 160px;
               }
               .delete-card:hover{
-                color: white;
+                color: @redHorbito;
               }
               .delete-card{
                 font-size: 12px;
@@ -1963,6 +2085,7 @@ button{
             .info-current-payment{
               padding: 20px 10px;
               font-size: 14px;
+              color: @gray1;
             }
 
           }
@@ -1972,10 +2095,8 @@ button{
 
             margin-top: 36px;
             margin-bottom: 86px;
-            color: #c7d1d7;
+            color: @gray1;
             .top{
-              opacity: 0.7;
-              color: white;
               font-weight: bold;
               width: 120px;
               height: 60px;
@@ -2025,7 +2146,7 @@ button{
             margin-top: 14px;
 
             .info-current-card-button.middle{
-              border-left: 1px dashed #5e656b;
+              border-left: 1px dashed @blueHorbitoHover;
               padding: 10px 0px;
             }
 
@@ -2038,12 +2159,11 @@ button{
                     .show-space-selected{
                       width: 215px;
                       height: 115px;
-                      background: #061221;
                       margin-left: 20px;
                       padding-top: 20px;
-                      color: white;
+                      color: @darkHorbito;
                       border-radius: 10px;
-                      border: 1px solid #20ea20;
+                      border: 1px solid @blueHorbito;
 
                       .big-text{
                         font-size: 30px;
@@ -2085,8 +2205,6 @@ button{
       */
 
       .current-top{
-        color:white;
-        background-color:#2B3A48;
         text-align:center;
         }
       .current-top:after {
@@ -2097,7 +2215,7 @@ button{
         left: 0px;
         width: inherit;
         height: 7px;
-    background: linear-gradient(#3f4750 0%, transparent 0%), -webkit-linear-gradient(135deg, #2c3238 33.33%, transparent 33.33%) 0 0%, #3f4750 -webkit-linear-gradient(45deg, #2c3238 33.33%, #3f4750 33.33%) 0 0%;
+    background: linear-gradient(@whiteHorbito 0%, transparent 0%), -webkit-linear-gradient(135deg, #fff 33.33%, transparent 33.33%) 0 0%, @whiteHorbito -webkit-linear-gradient(45deg, #fff 33.33%, @whiteHorbito 33.33%) 0 0%;
         background-repeat: repeat-x;
         background-size: 7px 7px, 7px 7px;
       }
@@ -2116,7 +2234,7 @@ button{
       left: 0px;
       width: inherit;
       height: 7px;
-    background: linear-gradient(#2c3238 0%, transparent 0%), -webkit-linear-gradient(135deg, #3f4750 33.33%, transparent 33.33%) 0 0%, #2c3238 -webkit-linear-gradient(45deg, #3f4750 33.33%, #2c3238 33.33%) 0 0%;
+    background: linear-gradient(#fff 0%, transparent 0%), -webkit-linear-gradient(135deg, @whiteHorbito 33.33%, transparent 33.33%) 0 0%, #fff -webkit-linear-gradient(45deg, @whiteHorbito 33.33%, #fff 33.33%) 0 0%;
     background-repeat: repeat-x;
     background-size: 7px 7px, 7px 7px;
     }
@@ -2126,7 +2244,7 @@ button{
       height: 264px;
       text-align: center;
       padding: 20px 0px;
-      background: #2c3238;
+
       margin: 0px;
       border-radius: 0px;
     }
@@ -2142,7 +2260,6 @@ button{
       padding: 0px 30px;
 
       .options-top-tittle{
-        color: white;
         width: 240px;
         text-align: left;
       }
@@ -2154,7 +2271,6 @@ button{
         margin-bottom: 17px;
 
         .body-bottom{
-          color: white;
           display: flex;
           margin-top: 17px;
           .right{
@@ -2171,12 +2287,12 @@ button{
     }
 
     .options-middle{
-      border-bottom: 1px dashed #5e656b;
-      border-top: 1px dashed #5e656b;
+      border-bottom: 1px dashed @blueHorbitoHover;
+      border-top: 1px dashed @blueHorbitoHover;
       padding: 17px 10px;
       margin: 30px 20px;
       display: flex;
-      color: #60b25e;
+      color: @blueHorbito;
       font-size: 19px;
 
       .options-middle-left{
@@ -2215,7 +2331,6 @@ button{
       .bottom{
         margin-top: 15px;
         display: flex;
-        color: white;
         .right{
           width: 50%;
           text-align: right;
@@ -2362,7 +2477,7 @@ button{
           font-size: 24px;
 
           .quantity{
-            color: #60b25e;
+            color: @blueHorbitoActive;
             font-size: 71px;
           }
           .quantity-container{
@@ -2371,7 +2486,7 @@ button{
             height: 45px;
             margin: 22px auto 0px auto;
             text-align: left;
-            color: white;
+            color: @darkHorbito;
             width: 60px;
           }
         }
@@ -2380,7 +2495,7 @@ button{
         margin-left: 15px;
 
         .info-current-card-button.middle{
-          border-left: 1px dashed #5e656b;
+          border-left: 1px dashed @blueHorbitoHover;
         }
 
         .info-current-card-button{
@@ -2394,12 +2509,11 @@ button{
                 .show-space-selected{
                   width: 215px;
                   height: 115px;
-                  background: #061221;
                   margin-left: 20px;
                   padding-top: 20px;
-                  color: white;
+                  color: @darkHorbito;
                   border-radius: 10px;
-                  border: 1px solid #20ea20;
+                  border: 1px solid @blueHorbito;
 
                   .big-text{
                     font-size: 30px;
@@ -2434,7 +2548,6 @@ button{
     text-align: center;
     padding-left: 52px;
     padding-top: 22px;
-    color: white;
 
     .info-space{
       font-weight: bold;
@@ -2485,7 +2598,6 @@ button{
     text-align: center;
     padding-left: 52px;
     padding-top: 22px;
-    color: white;
 
     .info-space{
       font-weight: bold;
@@ -2526,8 +2638,8 @@ button{
   }
 
   .options-middle{
-    border-bottom: 1px dashed #5e656b;
-    border-top: 1px dashed #5e656b;
+    border-bottom: 1px dashed @blueHorbitoHover;
+    border-top: 1px dashed @blueHorbitoHover;
     padding: 17px 10px;
     margin: 30px 20px;
   }
@@ -2552,7 +2664,6 @@ button{
 
 .info-secure{
 
-  color: rgba(255, 255, 255, 0.7);
 
   .icon-secure{
     background: url('@static/owner-card.png') no-repeat;
@@ -2570,74 +2681,17 @@ button{
     margin-top: 17px;
   }
 
-  .error.new-input{
-    border-color: #F00 !important;
-  }
-  .active.new-input{
-    border-color: #60b25e !important;
-  }
-  .new-input{
-    border-color: transparent !important;
-  }
-
-  input{
-
-    background: transparent;
-    color: white;
-  }
-
   figure{
     height: 21px;
     width: 21px;
   }
 
   .input-long{
-    display: flex;
-    width: 324px;
-    padding: 0px 10px;
-    height: 40px;
-	  -webkit-border-radius: 6px;
-	  -moz-border-radius: 6px;
-	  border-radius: 6px;
-	  background-color: #2c3238;
-    border: 1px solid transparent;
     margin-top: 12px;
-
-    input{
-      width: 290px;
-    }
   }
 
   .input-short{
-    display: flex;
-    width: 77px;
-    padding: 0px 10px;
-    height: 40px;
-	  -webkit-border-radius: 6px;
-	  -moz-border-radius: 6px;
-	  border-radius: 6px;
-	  background-color: #2c3238;
-    border: 1px solid transparent;
     margin-left: 20px;
-
-    input{
-      width: 44px;
-    }
-  }
-  .input-normal{
-    display: flex;
-    width: 99px;
-    padding: 0px 10px;
-    height: 40px;
-	  -webkit-border-radius: 6px;
-	  -moz-border-radius: 6px;
-	  border-radius: 6px;
-	  background-color: #2c3238;
-    border: 1px solid transparent;
-
-    input{
-      width: 66px;
-    }
   }
 
   .icon-number-card{
@@ -2692,16 +2746,21 @@ button{
 
 
 .box-current-plan{
-  background: #2c3238;
-  height: 205px;
+  background: white;
+  height: 308px;
   padding: 10px 0px 0px 20px;
-  width: 314px;
+  width: 329px;
   text-align: left;
   float: right;
   margin-left: 65px;
-  margin-top: 55px;
-  border-radius: 6px;
+  margin-top: 37px;
   font-weight: bold;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+  color: @darkHorbito;
 
 
       .box-current-plan-top{
@@ -2731,11 +2790,12 @@ button{
               display: block;
               float: left;
               margin-top: 5px;
+              color: @gray1;
             }
         }
 
         .free-info{
-          height: 80px;
+          height: 194px;
           color: white;
           margin-top: 20px;
 
@@ -2796,25 +2856,12 @@ button{
   overflow: hidden;
 }
 
-.hdd{
-  ::-webkit-input-placeholder{
-    color:white;
-  }
-  :-moz-placeholder{
-    color:white;
-  }
-  ::-moz-placeholder{
-    color: white;
-  }
-}
-
 .preferences-hdd-usage{
 
     width: 100%;
     text-align: center;
     font-size: 19px;
     font-weight: bold;
-    color: #FFFFFF;
     display: inline-block;
     margin-bottom: 15px;
 
@@ -2828,6 +2875,9 @@ button{
     display: inline-block;
     background-size: 47px 63px;
     position: absolute;
+    border-radius: 3px;
+    border: 1px solid @gray1;
+
     left: 0px;
     top: 100px;
     bottom: 0px;
@@ -2839,7 +2889,7 @@ button{
     font-weight: bold;
     width: 66px;
     text-align: center;
-    color: #FFFFFF;
+    color: @darkHorbito;
     position: absolute;
     top: 83px;
     left: -10px;
@@ -2851,7 +2901,7 @@ button{
 .preferences-hdd-cake-free{
 
     font-size: 14px;
-    color: #FFF;
+    color: @gray1;
     width: 115px;
     text-align: center;
     position: absolute;
@@ -3063,7 +3113,7 @@ span.preferences-card-subscribe-text{
 .account{
 
   display: none;
-  
+
   .preferences-bottom-content-avatar{
     margin-top: 20px;
     height: 148px;
@@ -3862,7 +3912,7 @@ span.preferences-card-subscribe-text{
     width: 49px;
     height: 0;
     position: absolute;
-    background: #60B25E;
+    background: @blueHorbito;
     top: 35px;
     left: 39px;
 
@@ -4197,13 +4247,12 @@ span.preferences-card-subscribe-text{
 
   input{
     margin: 7px 0 10px;
-    color: #fff;
     width: ~'calc(100% - 18px)';
     height: 38px;
   }
 
   input:focus{
-    border-color: #60b25e;
+    border-color: @blueHorbito;
   }
 
   input.small{
@@ -4253,7 +4302,6 @@ span.preferences-card-subscribe-text{
     background-image: url( '@static/visa-completa.png' );
     background-size: 359px 250px;
     margin: 0 auto;
-
   }
 
   .credit-number{
@@ -4288,6 +4336,7 @@ span.preferences-card-subscribe-text{
   }
 
 }
+
 
 /* PAYMENT ZONE FINISH */
 

@@ -138,6 +138,32 @@
       name  : "Basic Plan"
     };
 
+    var COLORS = {
+
+      "colorMain": '#7ebe30',
+      "grayHorbito": '#51575f',
+      "grayHorbitoHover": '#474d54',
+      "grayHorbitoActive": '#42464d',
+      "grayHorbitoDisabled": '#c3c9cc',
+      "greenHorbito": '#60b25e',
+      "greenHorbitoHover": '#4ea34b',
+      "greenHorbitoActive": '#3d903b',
+      "greenHorbitoDisabled": '#c3c9cc',
+      "blueHorbito": '#0071f6',
+      "blueHorbitoHover": '#006ae6',
+      "blueHorbitoActive": '#0062d6',
+      "blueHorbitoDisabled": '#c3c9cc',
+      "redHorbito": '#ff2153',
+      "redHorbitoHover": '#f81d4e',
+      "redHorbitoActive": '#e51846',
+      "redHorbitoDisabled": '#c3c9cc',
+      "darkHorbito": '#252525',
+      "gray1": '#717171',
+      "gray2": '#9a9aa2',
+      "lightGray": '#f9f9fe',
+      "whiteHorbito ": '#f7f7f7'
+    }
+
     inevioPlans.push(plan0);
     activePlan= plan0.id;
 
@@ -221,7 +247,7 @@
         // cakeCanvas Style
         cakeCanvas.lineWidth   = 22;
         cakeCanvas.lineCap     = 'round';
-        cakeCanvas.strokeStyle = "#60B25E";
+        cakeCanvas.strokeStyle = COLORS.blueHorbito;
 
         // Start cakeCanvas
         cakeCanvas.beginPath();
@@ -283,7 +309,7 @@
 
         // avatarCanvas Style
         avatarCanvas.lineWidth   = 2;
-        avatarCanvas.strokeStyle = "#60B25E";
+        avatarCanvas.strokeStyle = COLORS.blueHorbito;
 
         clearInterval( avatarInterval );
         setTimeout( function(){
@@ -309,7 +335,7 @@
 
         // avatarCanvas Style
         avatarCanvas.lineWidth   = 2;
-        avatarCanvas.strokeStyle = "#60B25E";
+        avatarCanvas.strokeStyle = COLORS.blueHorbito;
 
         avatarCanvas.arc( 74, 74, 73, -Math.PI / 140, ( Math.PI / 180 ) * avatarGrads, false );
 
@@ -806,8 +832,9 @@
     };
 
     var loadInfoUserSub = function (infoSubscriptions){
-
-      //infoSubscriptions.currentPlan = null;
+      // only for dev infoSubscriptions.currentPlan == null --> loads app without premium
+      // console.log("QUITAR IMPORTANTE");
+      // infoSubscriptions.currentPlan = null;
       if(infoSubscriptions.currentPlan !=  null){
 
         userLocal.info = true;
@@ -888,6 +915,8 @@
 
     })
 
+
+
     // Capturing the avatar uploading end
     .on( 'avatarEnd', function(){
 
@@ -897,7 +926,7 @@
 
                 $( '.preferences-account-avatar', win ).transition({ opacity : 0 }, function(){
 
-                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #60B25E' }, function(){
+                    $( '.preferences-account-image', win ).transition({ 'box-shadow' : 'inset 0 0 24px 4px #0071f6' }, function(){
                         $( this ).transition({ 'box-shadow' : 'none' });
                     });
 
@@ -1130,7 +1159,6 @@
       }
     })
     .on(  'click' , '.change-plan' , function(){
-
       if(!userLocal.customPlan){
         plansCounter = listPlans.indexOf(userLocal.activePlan);
         if(userLocal.card.id == null && cardStatus == 2){
@@ -2581,6 +2609,11 @@
 
     })
 
+
+    .on('click', '.new-input .delete-content', function(){
+        $(this).siblings('input').val('');
+    })
+
     .on( 'click', '.preferences-bottom-content.backup button', function(){
         api.fs.downloadBackup();
     })
@@ -2690,7 +2723,7 @@
 
        context.beginPath();
       context.lineWidth = 25;
-      context.strokeStyle = '#586069';
+      context.strokeStyle = COLORS.gray1;
 
       function animate(current) {
         context.clearRect(0, 0, canvas.width, canvas.height);
