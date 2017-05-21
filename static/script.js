@@ -3109,28 +3109,50 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
       $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
 
-      $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
-      $('.preferences-extensions-display span').text( lang.displayExtensions );
+
+      $('.config .preferences-bottom-content-title .title span' , win).text(lang.config);
+
+      $('.config .selectLanguage .title span' , win).text( lang.languageTitle );
+      $('.config .en span' , win).text( lang.englishLanguage );
+      $('.config .es span' , win).text( lang.spanishLanguage );
+
+      $('.config .selectExtensions .title span' , win).text( lang.extensionsTitle );
+      $('.config .selectExtensions .content span' , win).text( lang.displayExtensions );
+
+      $('.config .desktopApp .title span' , win).text( lang.horbitoAppTitle );
+      $('.config .desktopApp .content-description span' , win).text( lang.horbitoAppDescription );
+
+      $('.config .backup .title span' , win).text( lang.backup );
+      $('.config .backup .content-description span' , win).text( lang.backupDescription );
+
+      $('.config .deleteAccount .title span' , win).text( lang.deleteAccount );
+      $('.config .deleteAccount .delete span' , win).text( lang.delete );
+
+      $('.config .ui-btn span').text(lang.download);
+
+
+
+
 
       $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
       $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
       $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
       $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
 
-      $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
-      $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
-      $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
 
       $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
       $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
       $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
-      $('.preferences-bottom-content.invite .title').text(lang.inviteYourFriends);
-      $('.preferences-bottom-content.invite .subtitle').text(lang.feelAlone);
-      $('.preferences-bottom-content.invite .emails').text(lang.emails);
-      $('.preferences-bottom-content.invite .add-mail-text').text(lang.addMail);
-      $('.preferences-bottom-content.invite .share-text').text(lang.sendInvitations);
-      $('.preferences-bottom-content.invite .mail').attr('placeholder' , lang.mailExample);
+
+      $('.invite .preferences-bottom-content-title .title span' , win).text(lang.inviteYourFriends);
+      $('.invite .preferences-bottom-content-body .head .alone').text(lang.inviteDescriptionAlone);
+      $('.invite .preferences-bottom-content-body .head .share').text(lang.inviteDescriptionShare);
+      $('.invite .preferences-bottom-content-body .mail-container .mail-title span').text(lang.emails);
+      $('.invite .preferences-bottom-content-body .mail-container .mail-footer span').text(lang.addMail);
+      $('.invite .preferences-bottom-content  .share-text').text(lang.sendInvitations);
+
+
 
       // Infinity storage??
 
@@ -3451,7 +3473,6 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
     $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
-    $('.preferences-bottom-content .title').text(lang.inviteYourFriends);
     $('.preferences-bottom-content .subtitle').text(lang.feelAlone);
     $('.preferences-bottom-content .emails').text(lang.emails);
     $('.preferences-bottom-content .add-mail-text').text(lang.addMail);

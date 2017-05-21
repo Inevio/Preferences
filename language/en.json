@@ -182,13 +182,16 @@
     "mmddyy"          : "MM DD YY",
     "yymmdd"          : "YY MM DD",
 
-    "languageTitle"       : "LANGUAGE",
+    "languageTitle"       : "Language",
     "languageDescription" : "Please select the language of your horbito",
     "spanishLanguage"     : "Spanish",
     "englishLanguage"     : "English",
 
     "extensionsTitle"   : "EXTENSIONS",
-    "displayExtensions" : "Display the extension at the end of the filenames",
+    "displayExtensions" : "If or not you want to display the extensions after the file name.",
+
+    "horbitoAppTitle" : "horbito desktop app",
+    "horbitoAppDescription" : "Download our app to be able to open all your files with the programs installed on your pc.",
 
     "customTitle"       : "CUSTOMIZE",
     "customDescription" : "Here you can change the look of your horbito",
@@ -200,10 +203,13 @@
     "generate"          : "Generate",
     "invitesLeft"       : "Invites left",
     "inviteBeware"      : "Beware who uses your weeKey because if your friend gets banned you will also be responsible",
+    "inviteDescriptionAlone" :  "If you feel alone in horbito, start inviting now all your contacts!",
+    "inviteDescriptionShare" :"Afterwards you`ll be able to share files, collaborate or join worlds with them.",
 
     "backupTitle"       : "BACKUP YOUR FILES",
-    "backupDescription" : "Here you can save a security copy of all your files in your computer",
+    "backupDescription" : "¿Tienes miedo de perder tus archivos o alguna movida paranoica rara? Descárgate una copia de seguridad de tus archivos.",
     "backupButton"      : "Download all your files",
+    "download"          : "Download",
 
     "version"           : "Version",
     "legalNotices"      : "Legal Notices",
@@ -308,5 +314,6 @@
     "mailExample"       : "example@mail.com",
     "invitationSentTitle"    : "Invitations sent",
     "invitationSentSubtitle" : "Your invitations are on their way!"
+
 
 }
