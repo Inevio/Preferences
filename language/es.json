@@ -149,7 +149,7 @@
     "accountUser"        : "Usuario",
     "accountMailUser"    : "Correo",
     "changePassword"     : "Contraseña",
-    "deleteAccount"      : "Borrar cuenta", 
+    "deleteAccount"      : "Borrar cuenta",
     "saveChanges"        : "Guardar Cambios",
     "usernameChanged"    : "Nombre de usuario cambiado",
     "usernameChanged2"   : "Tu nombre de usuario ha sido cambiado por",
@@ -185,13 +185,16 @@
     "mmddyy"          : "MM DD AA",
     "yymmdd"          : "AA MM DD",
 
-    "languageTitle"       : "IDIOMA",
+    "languageTitle"       : "Idioma",
     "languageDescription" : "Por favor selecciona el idioma de tu horbito",
     "spanishLanguage"     : "Español",
     "englishLanguage"     : "Inglés",
 
-    "extensionsTitle"   : "EXTENSIONES",
-    "displayExtensions" : "Mostrar la extensión al final de los nombres de ficheros",
+    "extensionsTitle"   : "Extensiones",
+    "displayExtensions" : "Si quieres o no mostrar las extensiones despues del nombre del archivo.",
+
+    "horbitoAppTitle" : "horbito app de escritorio",
+    "horbitoAppDescription" : "Descárgate nuestra app para poder abrir todos tus archivos con los programas instalados en tu pc.",
 
     "customTitle"       : "PERSONALIZAR",
     "customDescription" : "Aquí puedes cambiar el aspecto de tu horbito",
@@ -203,10 +206,13 @@
     "generate"          : "Generar",
     "invitesLeft"       : "Invitaciones restantes",
     "inviteBeware"      : "Ten cuidado de quién usa tu weeKey porque si tu amigo es baneado tu también serás responsable",
+    "inviteDescriptionAlone" :  "Si te sientes solo en horbito, ¡Empieza a invitar a todos tus contactos ahora!",
+    "inviteDescriptionShare" :"Después podrás compartir archivos, colaborar o unirte a mundos con ellos.",
 
     "backupTitle"       : "HACER UN BACKUP DE LOS FICHEROS",
-    "backupDescription" : "Aquí puedes salvar una copia de seguridad de todos tus ficheros en tu ordenador",
+    "backupDescription" : "¿Tienes miedo de perder tus archivos o alguna movida paranoica rara? Descárgate una copia de seguridad de tus archivos.",
     "backupButton"      : "Descargar todos tus archivos",
+    "download"          : "Descargar",
 
     "version"           : "Versión",
     "legalNotices"      : "Notas Legales",
