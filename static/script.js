@@ -2527,13 +2527,14 @@
 
     })
 
-    .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
+    .on( 'click', '.selectExtensions .switch', function(){
 
-        api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
+      var status = $('.selectExtensions .head input')[0].checked;
+
+        api.config.setDisplayExtensions( status, function( error ){
 
             if( error ){
-              $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
-              $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
+              $('.selectExtensions .head input')[0].checked = true;;
               alert(lang.wrongPass);
             }
 
@@ -2555,11 +2556,14 @@
 
     })
 
-    .on( 'click', '.preferences-language-element', function(){
+    .on( 'click', '.config .flag', function(){
 
-        $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
+        $('.config .flag').removeClass('active');
+        $(this).addClass('active');
 
-        if( $( this ).hasClass( 'english' ) ){
+
+        if( $( this ).hasClass( 'en' ) ){
+          language = 'en';
             api.config.setLanguage( 'en-en' , function(){
 
               confirm('¿Desea recargar Inevio ahora?', function( o ){
@@ -2572,8 +2576,8 @@
             });
 
             });
-        }else if( $( this ).hasClass( 'spanish' ) ){
-
+        }else if( $( this ).hasClass( 'es' ) ){
+          language = 'es';
             api.config.setLanguage( 'es-es' , function(){
 
               confirm('Do you want to reload Inevio now?', function(o){
@@ -2614,8 +2618,10 @@
         $(this).siblings('input').val('');
     })
 
-    .on( 'click', '.preferences-bottom-content.backup button', function(){
+    .on( 'click', '.config .backup .download', function(){
+
         api.fs.downloadBackup();
+        alert(lang.filesDownloading);
     })
 
 
@@ -2645,11 +2651,9 @@
     api.config.getConfiguration( function( error, config ){
 
         if( config.displayExtensions ){
-            $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
-            $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
+          $('.selectExtensions .head input')[0].checked = true;
         }else{
-            $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
-            $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
+          $('.selectExtensions .head input')[0].checked = false;
         }
 
     });
@@ -2659,10 +2663,10 @@
     api.config.getLanguages( function( error, languages, used ){
 
         if( used.code === "es" || used.code === "es-es" ){
-            $( '.preferences-language-element.spanish', win ).addClass( 'active' );
+            $('.config .flag.es').addClass('active');
             language = "es";
         }else if( used.code === "en" || used.code === "en-us" ){
-            $( '.preferences-language-element.english', win ).addClass( 'active' );
+            $('.config .flag.en').addClass('active');
             language = "en";
         }
 
@@ -3134,11 +3138,10 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
 
 
-      $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
-      $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
-      $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
-      $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
-
+      $( '.custom .preferences-bottom-content-title .title span' , win).text(lang.customTitle);
+      $( '.custom .theme-card.light span').text(lang.light);
+      $( '.custom .theme-card.dark span').text(lang.dark);
+      $( '.custom .selectWallpaper .title span').text(lang.wallpaper);
 
       $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
       $( '.preferences-about-link.legal', win ).text( lang.legalNotices );

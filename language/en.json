@@ -193,10 +193,12 @@
     "horbitoAppTitle" : "horbito desktop app",
     "horbitoAppDescription" : "Download our app to be able to open all your files with the programs installed on your pc.",
 
-    "customTitle"       : "CUSTOMIZE",
+    "customTitle"       : "Customize",
     "customDescription" : "Here you can change the look of your horbito",
     "wallpaper"         : "Wallpaper",
     "upload"            : "Upload",
+    "dark"              : "Dark",
+    "light"             : "Light",
 
     "inviteTitle"       : "INVITE",
     "inviteDescription" : "Here you can generate weeKeys to get your friends inside horbito",
@@ -210,6 +212,7 @@
     "backupDescription" : "¿Tienes miedo de perder tus archivos o alguna movida paranoica rara? Descárgate una copia de seguridad de tus archivos.",
     "backupButton"      : "Download all your files",
     "download"          : "Download",
+    "filesDownloading"  : "Your files are being downloaded.",
 
     "version"           : "Version",
     "legalNotices"      : "Legal Notices",

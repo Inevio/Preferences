@@ -141,6 +141,10 @@ button{
 }
 */
 
+.ui-btn *{
+  cursor: pointer;
+}
+
 .pointer:hover{
     cursor: pointer;
     *:hover{
@@ -3627,6 +3631,10 @@ span.preferences-card-subscribe-text{
             cursor:pointer;
           }
 
+          .flag.active{
+            border-color: @blueHorbitoActive;
+          }
+
           .flag{
             width: 140px;
             height: 120px;
@@ -3634,6 +3642,8 @@ span.preferences-card-subscribe-text{
             top: 50px;
             font-size: 15px;
             font-weight: bold;
+            border: 2px solid white;
+            border-radius: 6px;
 
               .tick{
                 display: none;
@@ -3672,7 +3682,6 @@ span.preferences-card-subscribe-text{
 
           .flag:hover{
             background: @lightGray;
-            border-radius: 6px;
           }
 
           .en{
@@ -3908,526 +3917,317 @@ span.preferences-card-subscribe-text{
 
 }
 
-
-/*
-.preferences-bottom-content.config{
-
-    display: none;
-    opacity: 0;
-
-}
-
-.preferences-config-auto{
-
-    display: inline-block;
-    float: none;
-    margin: 0;
-    text-align: center;
-    width: 100%;
-
-}
-
-.preferences-config-auto figure{
-
-    display: inline-block;
-    float: none;
-
-}
-
-.preferences-config-auto span{
-
-    display: inline-block;
-    float: none;
-    margin-top: 2px;
-    vertical-align: top;
-
-}
-
-.preferences-config-hour{
-
-    width: 100%;
-    text-align: center;
-    display: inline-block;
-    margin: 15px 0;
-    padding: 6px 0;
-    position: relative;
-
-}
-
-.preferences-config-hour span{
-
-    font-size: 15px;
-    color: #FFF;
-    display: inline-block;
-
-}
-
-.preferences-config-now{
-
-    width: 22px;
-    height: 18px;
-    padding: 2px 0;
-    border-radius: 3px;
-    background: #343434;
-    color: #EFEFEF;
-    display: inline-block;
-
-}
-
-.preferences-config-up{
-
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #EFEFEF;
-
-    position: absolute;
-    top: 0;
-    left: 313px;
-
-}
-
-.preferences-config-down{
-
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #EFEFEF;
-
-    position: absolute;
-    top: 28px;
-    left: 313px;
-
-}
-
-.preferences-config-clock{
-
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 25px;
-
-}
-
-.preferences-config-clock *{
-
-    background: url('@static/clock.png') no-repeat;
-    background-size: 138px 132px;
-
-}
-
-.preferences-config-clock figure{
-
-    width: 132px;
-    height: 132px;
-    display: inline-block;
-    position: relative;
-
-}
-
-.preferences-clock-hour{
-
-    width: 5px;
-    height: 33px;
-    position: absolute;
-    top: 38px;
-    left: 64px;
-    transform-origin: 50% 84% 0;
-    -moz-transform-origin: 50% 84% 0;
-    -webkit-transform-origin: 50% 84% 0;
-
-    background-position: -132px 0;
-
-}
-
-.preferences-clock-minute{
-
-    width: 5px;
-    height: 55px;
-    position: absolute;
-    top: 16px;
-    left: 64px;
-    transform-origin: 50% 90% 0;
-    -moz-transform-origin: 50% 90% 0;
-    -webkit-transform-origin: 50% 90% 0;
-
-    background-position: -132px -33px;
-
-}
-
-.preferences-clock-second{
-
-    width: 1px;
-    height: 52px;
-    position: absolute;
-    top: 22px;
-    left: 66px;
-    transform-origin: 50% 84% 0;
-    -moz-transform-origin: 50% 84% 0;
-    -webkit-transform-origin: 50% 84% 0;
-
-    background-position: -137px 0;
-
-}
-
-.preferences-clock-center{
-
-    width: 5px;
-    height: 5px;
-    position: absolute;
-    top: 63px;
-    left: 64px;
-
-    background-position: -132px -88px;
-
-}
-
-.preferences-bottom-selectable.time-format{
-    margin-top: 5px;
-}
-
-.preferences-bottom-title.language{
-}
-
-.preferences-language-element{
-
-    width: 130px;
-	  height: 130px;
-	  -webkit-border-radius: 6px;
-	  -moz-border-radius: 6px;
-	  border-radius: 6px;
-    text-align: center;
-    margin-top: 68px;
-    margin-right: 30px;
-    display: inline-block;
-    border: 1px solid transparent;
-
-}
-
-.preferences-language-element:last-child{
-    margin-right: 0;
-    margin-left: 30px;
-}
-
-.preferences-language-element:hover{
-    background: #485359;
-}
-
-.preferences-language-element.active{
-    background: #60B25E;
-
-}
-
-.preferences-language-element figure{
-
-    width: 98px;
-    height: 62px;
-    display: inline-block;
-    margin-top: 20px;
-
-}
-.spanishFlag{
-  background: url('@static/Spanish.png') no-repeat;
-  background-size: 292px 62px;
-}
-.englishFlag{
-  background: url('@static/english.png') no-repeat;
-  background-size: 98px 62px;
-}
-
-.preferences-language-element.english-uk figure{
-    background-position: -195px 0;
-}
-
-.preferences-language-element.spanish figure{
-    background-position: -97px 0;
-}
-
-.preferences-language-element span{
-
-    display: inline-block;
-    margin: 7px;
-    font-size: 17px;
-    color: #FFF;
-
-}
-
-.preferences-language-element:hover span{
-    color: #FFF;
-}
-
-.preferences-language-element.active span{
-    color: #FFF;
-}
-
-.preferences-bottom-title.extensions{
-    margin-top: 35px;
-}
-
-.preferences-extensions-display{
-
-    display: inline-block;
-    float: none;
-    margin: 0;
-    text-align: center;
-    width: 100%;
-
-}
-
-.preferences-extensions-display figure{
-
-    display: inline-block;
-    float: none;
-
-}
-
-.preferences-extensions-display span{
-
-    display: inline-block;
-    float: none;
-    margin-top: 2px;
-    vertical-align: top;
-
-}
-*/
 /* CONFIGURATION ZONE FINISH */
 
 /* CUSTOMIZE ZONE START */
+.custom{
+  display: none;
 
-.preferences-bottom-content.custom{
+  .preferences-bottom-content-title{
+    display: flex;
+    height: 40px;
 
-    display: none;
-    opacity: 0;
+    .title-icon{
+      width: 36px;
+      height: 36px;
+      background: url('@static/icono-hdd-titulo.png') no-repeat;
+      background-size: 36px 36px;
+      background-position: 0px 0px;
+      border: none;
 
-}
+      .title-icon-figure{
 
-/*.preferences-bottom-content.custom .preferences-bottom-zone{
+      }
+    }
+    .title{
+      font-weight: bold;
+      text-align: left;
+      font-size: 40px;
+      margin-left: 10px;
+    }
 
-    width: 467px;
-    height: 314px;
-    padding: 10px 18px 10px 10px;
-    text-align: justify;
-  	-webkit-border-radius: 6px;
-	  -moz-border-radius: 6px;
-	  border-radius: 6px;
-	  background-color: #545f65;
-	  border: solid 1px rgba(0,0,0,.2);
+  }
 
-}*/
-.preferences-bottom-zone-customize{
-  background: transparent;
-  width: 430px;
-  height: 279px;
-  padding-right: 20px;
-}
-
-.preferences-bottom-zone-scroll-container{
-    width: 445px;
-    padding: 12px 8px 12px 16px;
-    text-align: justify;
-  	-webkit-border-radius: 6px;
-	  -moz-border-radius: 6px;
-	  border-radius: 6px;
-	  background-color: #545f65;
-    display: inline-block;
+  .preferences-bottom-content-body{
+    height: 365px;
     margin-top: 20px;
-    position: relative;
+
+    .custom-content{
+      display: block;
+      height: 365px;
+      width: 825px;
+
+          .selectTheme{
+            height: 212px;
+            width: 750px;
+
+            .theme-card:hover{
+              border-color: @lightGray;
+            }
+            .theme-card.active{
+              border-color: @blueHorbitoActive;
+            }
+            .theme-card * {
+              cursor: pointer;
+            }
+
+            .theme-card{
+              height: 210px;
+              width: 340px;
+              border: 2px solid white;
+              background: white;
+              box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+              display: block;
+              position: absolute;
+              -webkit-border-radius: 6px;
+              -moz-border-radius: 6px;
+              border-radius: 6px;
+
+              .view{
+                height: 158px;
+
+                .view-img{
+                  width: 267px;
+                  height: 112px;
+                  position: absolute;
+                  left: 39px;
+                  top: 65px;
+                }
+              }
+            }
+            .light{
+              left: 30px;
+              top: 0px;
+              .view {
+
+                .view-img{
+                  background: red;
+                }
+              }
+            }
+            .dark{
+              right: 30px;
+              top: 0px;
+              .view {
+                .view-img{
+                  background: blue;
+                }
+              }
+            }
+          }
+
+          .selectWallpaper{
+            height: 290px;
+            width: 790px;
+            left: 10px;
+            top: 265px;
+            background: white;
+            box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+            display: block;
+            position: absolute;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+
+
+            .selectWallpaper-containter{
+              height: 230px;
+            }
+
+            .selectWallpaper-content{
+              height: 210px;
+
+              .preferences-wallpaper-upload{
+
+                  width: 126px;
+                  height: 80px;
+              	  border: solid 2px white;
+                  position: relative;
+                  display: inline-block;
+                  margin: 6px;
+                  background: @redHorbito;
+
+              }
+
+              .preferences-upload-background{
+
+                  width: 49px;
+                  height: 35px;
+                  position: absolute;
+                  background: #d2dce2;
+                  top: 10px;
+                  left: 39px;
+
+              }
+
+              .preferences-upload-uploading{
+
+                  width: 49px;
+                  height: 0;
+                  position: absolute;
+                  background: @blueHorbito;
+                  top: 35px;
+                  left: 39px;
+
+              }
+
+              .preferences-upload-icon{
+
+                width: 49px;
+                height: 35px;
+                background: url('@static/sprite-cloud.png') no-repeat;
+                background-size: 149px 35px;
+                background-position: 0px 0px;
+                position: absolute;
+                top: 10px;
+                left: 39px;
+
+              }
+
+              .preferences-wallpaper-upload span{
+
+                  width: 100%;
+                  text-align: center;
+                  font-size: 16px;
+                  color: #d2dce2;
+                  position: absolute;
+                  left: 13px;
+                  bottom: 8px;
+
+              }
+              .preferences-wallpaper-upload:active .preferences-upload-icon{
+                background: url('@static/sprite-cloud.png') no-repeat !important;
+                background-size: 149px 35px !important;
+                background-position: -100px 0px !important;
+              }
+
+              .preferences-wallpaper-upload:active{
+                background: #343b42 !important;
+                color: #d2dce2;
+              }
+
+
+              .preferences-wallpaper-upload:hover .preferences-upload-icon{
+                background: url('@static/sprite-cloud.png') no-repeat;
+                background-size: 149px 35px;
+                background-position: -50px 0px;
+              }
+              .preferences-wallpaper-upload:hover{
+                  background: #515d67;
+
+              }
+
+              .preferences-wallpaper-image{
+
+                  width: 128px;
+                  height: 80px;
+                  display: inline-block;
+                  background: url('@static/wallpapers.jpg') no-repeat;
+                  background-size: 672px 336px;
+                  margin: 6px;
+                  transition: all 0.2s ease;
+                  border: 2px solid white;
+                  border-radius: 6px;
+
+
+              }
+
+              .preferences-wallpaper-image.custom{
+                  background-size: cover;
+              }
+              .preferences-wallpaper-image:hover{
+                border-color: @lightGray;
+              }
+              .preferences-wallpaper-image.active{
+                  border-color: @blueHorbitoActive;
+              }
+
+              .wallpaper-1{
+                  background-position: -0px 0px;
+              }
+
+              .wallpaper-2{
+                  background-position: -135px 0;
+              }
+
+              .wallpaper-3{
+                  background-position: -270px 0;
+              }
+
+              .wallpaper-4{
+                  background-position: -405px 0;
+              }
+
+              .wallpaper-5{
+                  background-position: -540px 0;
+              }
+
+              .wallpaper-6{
+                  background-position: 0 -84px;
+              }
+
+              .wallpaper-7{
+                  background-position: -136px -84px;
+              }
+
+              .wallpaper-8{
+                  background-position: -270px -84px;
+              }
+
+              .wallpaper-9{
+                  background-position: -404px -84px;
+              }
+
+              .wallpaper-10{
+                  background-position: -540px -84px;
+              }
+
+              .wallpaper-11{
+                  background-position: 0 -168px;
+              }
+
+              .wallpaper-12{
+                  background-position: -136px -168px;
+              }
+
+              .wallpaper-13{
+                  background-position: -271px -168px;
+              }
+
+              .wallpaper-14{
+                  background-position: -404px -168px;
+              }
+
+              .wallpaper-15{
+                  background-position: -539px -168px;
+              }
+
+              .wallpaper-16{
+                  background-position: 0 -252px;
+              }
+
+              .wallpaper-17{
+                  background-position: -135px -252px;
+              }
+
+              .wallpaper-18{
+                  background-position: -269px -252px;
+              }
+            }
+          }
+    }
+
+    .theme-card .title , .selectWallpaper .title {
+      padding-left: 20px;
+      padding-top: 25px;
+      height: 25px;
+      text-align: left;
+      font-weight: bold;
+      color: @darkHorbito;
+    }
+  }
 }
 
-.preferences-wallpaper-title{
-
-    font-size: 15px;
-    color: #FFF;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    top: 9px;
-    left: 0;
-
-}
-
-.preferences-wallpaper-upload{
-
-    width: 126px;
-    height: 78px;
-    -webkit-box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
-	-moz-box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
-	box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
-	border: solid 1px #2c3238;
-    position: relative;
-    display: inline-block;
-    margin: 6px;
-    background-color: #4c4c4c;
-    background-image: -webkit-linear-gradient(bottom, #404951, #47525b);
-    background-image: -moz-linear-gradient(bottom, #404951, #47525b);
-    background-image: -o-linear-gradient(bottom, #404951, #47525b);
-    background-image: -ms-linear-gradient(bottom, #404951, #47525b);
-    background-image: linear-gradient(to top, #404951, #47525b);
-
-}
-
-.preferences-upload-background{
-
-    width: 49px;
-    height: 35px;
-    position: absolute;
-    background: #d2dce2;
-    top: 10px;
-    left: 39px;
-
-}
-
-.preferences-upload-uploading{
-
-    width: 49px;
-    height: 0;
-    position: absolute;
-    background: @blueHorbito;
-    top: 35px;
-    left: 39px;
-
-}
-
-.preferences-upload-icon{
-
-  width: 49px;
-  height: 35px;
-  background: url('@static/sprite-cloud.png') no-repeat;
-  background-size: 149px 35px;
-  background-position: 0px 0px;
-  position: absolute;
-  top: 10px;
-  left: 39px;
-
-}
-
-.preferences-wallpaper-upload span{
-
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
-    color: #d2dce2;
-    position: absolute;
-    left: 13px;
-    bottom: 8px;
-
-}
-.preferences-wallpaper-upload:active .preferences-upload-icon{
-  background: url('@static/sprite-cloud.png') no-repeat !important;
-  background-size: 149px 35px !important;
-  background-position: -100px 0px !important;
-}
-
-.preferences-wallpaper-upload:active{
-  background: #343b42 !important;
-  color: #d2dce2;
-}
-
-
-.preferences-wallpaper-upload:hover .preferences-upload-icon{
-  background: url('@static/sprite-cloud.png') no-repeat;
-  background-size: 149px 35px;
-  background-position: -50px 0px;
-}
-.preferences-wallpaper-upload:hover{
-    background: #515d67;
-
-}
-
-.preferences-wallpaper-image{
-
-    width: 128px;
-    height: 80px;
-    display: inline-block;
-    background: url('@static/wallpapers.jpg') no-repeat;
-    background-size: 672px 336px;
-    margin: 6px;
-    transition: all 0.2s ease;
-
-
-}
-
-.preferences-wallpaper-image.custom{
-    background-size: cover;
-}
-
-.preferences-wallpaper-image.active{
-    box-shadow: 0 0 0 4px #FFF inset;
-}
-
-.wallpaper-1{
-    background-position: -0px 0px;
-}
-
-.wallpaper-2{
-    background-position: -135px 0;
-}
-
-.wallpaper-3{
-    background-position: -270px 0;
-}
-
-.wallpaper-4{
-    background-position: -405px 0;
-}
-
-.wallpaper-5{
-    background-position: -540px 0;
-}
-
-.wallpaper-6{
-    background-position: 0 -84px;
-}
-
-.wallpaper-7{
-    background-position: -136px -84px;
-}
-
-.wallpaper-8{
-    background-position: -270px -84px;
-}
-
-.wallpaper-9{
-    background-position: -404px -84px;
-}
-
-.wallpaper-10{
-    background-position: -540px -84px;
-}
-
-.wallpaper-11{
-    background-position: 0 -168px;
-}
-
-.wallpaper-12{
-    background-position: -136px -168px;
-}
-
-.wallpaper-13{
-    background-position: -271px -168px;
-}
-
-.wallpaper-14{
-    background-position: -404px -168px;
-}
-
-.wallpaper-15{
-    background-position: -539px -168px;
-}
-
-.wallpaper-16{
-    background-position: 0 -252px;
-}
-
-.wallpaper-17{
-    background-position: -135px -252px;
-}
-
-.wallpaper-18{
-    background-position: -269px -252px;
-}
 
 /* CUSTOMIZE ZONE FINISH */
 
@@ -4518,6 +4318,10 @@ span.preferences-card-subscribe-text{
           margin-bottom: 15px;
           border: 2px solid white;
           transition: all .2s ease;
+        }
+
+        .mail:focus{
+          border-color: @blueHorbitoActive;
         }
 
         .mail.wrong{
