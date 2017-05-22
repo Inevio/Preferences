@@ -7,7 +7,7 @@
     "account" : "Cuenta",
     "social"  : "Redes Sociales",
     "config"  : "Configuración",
-    "custom"  : "Apariencia",
+    "custom"  : "Personalizar",
     "invite"  : "Invitar",
     "backup"  : "Backup",
     "payment" : "Pago",
@@ -196,10 +196,12 @@
     "horbitoAppTitle" : "horbito app de escritorio",
     "horbitoAppDescription" : "Descárgate nuestra app para poder abrir todos tus archivos con los programas instalados en tu pc.",
 
-    "customTitle"       : "PERSONALIZAR",
+    "customTitle"       : "Personalizar",
     "customDescription" : "Aquí puedes cambiar el aspecto de tu horbito",
-    "wallpaper"         : "Fondo de escritorio",
+    "wallpaper"         : "Fondo de pantalla",
     "upload"            : "Subir",
+    "dark"              : "Oscuro",
+    "light"             : "Claro",
 
     "inviteTitle"       : "INVITAR",
     "inviteDescription" : "Aquí puedes generar weekeys para que tus amigos entren en horbito",
@@ -213,6 +215,7 @@
     "backupDescription" : "¿Tienes miedo de perder tus archivos o alguna movida paranoica rara? Descárgate una copia de seguridad de tus archivos.",
     "backupButton"      : "Descargar todos tus archivos",
     "download"          : "Descargar",
+    "filesDownloading"  : "Se están descargando sus archivos.",
 
     "version"           : "Versión",
     "legalNotices"      : "Notas Legales",
