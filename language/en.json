@@ -101,7 +101,7 @@
     [
       "25",
       "GB",
-      "for just",
+      "for only",
       "Extra",
       "1$",
       "/month"
@@ -110,9 +110,9 @@
       "unlimitedStorage" :"Unlimited storage",
 
     "infoPaymentOneHead"  : "It´s up to you",
-    "infoPaymentOneBody"  : "Pay only for what you consume Extra 25 Gb per 1$/month on your account.",
+    "infoPaymentOneBody"  : "Pay only for what you consume! Add extra 25 GBs for 1$/mo each.",
     "infoPaymentTwoHead"  : "Flexible",
-    "infoPaymentTwoBody"  : "Change your plan whenever you need it to match your necessities.",
+    "infoPaymentTwoBody"  : "Change your plan whenever you want so it always fits your needs.",
 
     "summary"   : "Summary",
     "order"     : "Order",
@@ -134,8 +134,8 @@
     "infoCurrentPayment"  : "Este texto es un texto de prueba.",
 
     "next"        : "Next",
-    "congratulation"    :  "Congratulations! You have your space increased to ",
-    "decrease"    :  "Done! Your space has decreased to",
+    "congratulation"    :  "Congratulations! Your space has been increased to ",
+    "decrease"    :  "Done! Your space has been reduced to",
     "finish"      : "Finish",
 
 
