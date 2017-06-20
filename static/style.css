@@ -45,6 +45,18 @@ button{
   opacity: .2;
 }
 
+.dark .new-input{
+  background: @darkHorbito;
+  border-color: @darkHorbito;
+  color: @whiteHorbito;
+  box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+    .delete-content{
+      i{
+        background: url('https://static.horbito.com/image/uikit/search-input-sprite-dark.png') no-repeat;
+      }
+    }
+}
 
 
 .new-input{
@@ -60,18 +72,6 @@ button{
   }
 }
 
-.dark .new-input{
-  background: @darkHorbito;
-  border: 1px solid @darkHorbito;
-  color: @whiteHorbito;
-  box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.05);
-  transition: all 0.2s ease;
-    .delete-content{
-      i{
-        background: url('https://static.horbito.com/image/uikit/search-input-sprite-dark.png') no-repeat;
-      }
-    }
-}
 
 .new-input.active, .dark .new-input.active{
   border-color: @blueHorbito;
@@ -283,6 +283,8 @@ button{
   }
 }
 
+
+
 .preferences-top{
 
     width: 868px;
@@ -295,96 +297,95 @@ button{
     border-radius: 6px 6px 0 0;
     position: relative;
     z-index: 1;
-    background: #fff;
-}
-.preferences-top-header{
-    width: 867px;
-    height: 42px;
-    color: #bdc4c6;
-}
-.appName{
-  width: 731px;
-  display: block;
-  float: left;
-  padding-top: 11px;
-  height: 32px;
 
-  span{
+    .preferences-top-header{
+        width: 867px;
+        height: 42px;
+        color: #bdc4c6;
+    }
 
-    font-size: 21px;
-    font-weight: 900;
-    color: rgb(37, 37, 37);
-    line-height: 1.2;
-    text-align: left;
-  }
+    .appName{
+      width: 731px;
+      display: block;
+      float: left;
+      padding-top: 11px;
+      height: 32px;
+
+      span{
+
+        font-size: 21px;
+        font-weight: 900;
+        color: rgb(37, 37, 37);
+        line-height: 1.2;
+        text-align: left;
+      }
+    }
+    .iconApp{
+      display: block;
+      background: url('@static/icono-barra.png') no-repeat;
+      width: 18px;
+      height: 18px;
+      margin-left: 14px;
+      margin-right: 14px;
+      margin-top: 5px;
+      float: left;
+      background-size: 18px 18px;
+    }
+
+    nav{
+
+        float: left;
+        width: 725px;
+        height: inherit;
+        text-align: left;
+        margin-left: 14px;
+    }
+
+    li{
+
+        padding-bottom: 10px;
+        padding-top: 15px;
+        display: inline-block;
+        font-size: 17px;
+        color: @gray1;
+        font-weight: bold;
+        margin: 0px 11px 0px 11px;
+        border-bottom: 2px solid transparent;
+
+    }
+
+    li.active{
+
+        color: @darkHorbito;
+        border-bottom: 2px solid @blueHorbito;
+
+    }
+
+    li:hover{
+
+        border-color: @blueHorbitoHover;
+        color: @darkHorbito;
+
+    }
+
+    li.payment{
+      display: none;
+    }
+
+
+    li.active:hover{
+
+        color: @darkHorbito;
+        border-color: @blueHorbitoHover;
+
+    }
+
 }
-.iconApp{
-  display: block;
-  background: url('@static/gear.png') no-repeat;
-  width: 18px;
-  height: 18px;
-  margin-left: 14px;
-  margin-right: 14px;
-  margin-top: 5px;
-  float: left;
-  background-size: 18px 18px;
-}
+
+
 
 .wz-dragger li {
   transition: all 0.2s ease;
-}
-
-
-.preferences-top nav{
-
-    float: left;
-    width: 725px;
-    height: inherit;
-    text-align: left;
-    margin-left: 14px;
-}
-
-.preferences-top li{
-
-    padding-bottom: 10px;
-    padding-top: 15px;
-    display: inline-block;
-    font-size: 17px;
-    color: @gray1;
-    font-weight: bold;
-    margin: 0px 11px 0px 11px;
-    border-bottom: 2px solid transparent;
-
-}
-
-.preferences-top li.active{
-
-    color: @darkHorbito;
-    border-bottom: 2px solid @blueHorbito;
-
-}
-
-.preferences-top li:hover{
-
-    border-bottom: 2px solid @blueHorbitoHover;
-    color: @darkHorbito;
-
-}
-
-.preferences-top li.payment{
-  display: none;
-}
-
-.wz-view.wz-view-dragging .preferences-top li:hover{
-
-    border-bottom: 2px solid transparent;
-}
-
-.preferences-top li.active:hover{
-
-    color: @darkHorbito;
-    border-bottom: 2px solid @blueHorbitoHover;
-
 }
 
 .preferences-bottom{
@@ -751,31 +752,24 @@ button{
 }
 
 .hdd{
+
   .mini{
-    width: 32px;
-	  height: 32px;
-	  border-radius: 20px;
-    margin-top: 12px;
-    margin-left: 25px;
-	  background-color: @darkHorbito;
-	  border: solid 2px #fff;
+    width: 36px;
+	  height: 36px;
+	  background-color: none;
+	  border: solid 2px transparent;
   }
   .preferences-hdd-payment-top{
     .back figure{
-      width: 17px;
-      background: url('@static/sprite-iconos.png') no-repeat;
-      background-size: 72px 28px;
-      background-position: 0px 0px;
-      height: 28px;
-      margin: 1px auto;
+      width: 36px;
+      background: url('@static/iconosTitulo/icono-back.png') no-repeat;
+      background-size: contain;
+      height: 36px;
     }
     .mini-disco{
       width: 36px;
-      background: url('@static/icono-hdd-titulo.png') no-repeat;
-      background-size: 36px 36px;
-      background-position: 0px 0px;
-      margin-top: 12px;
-      margin-left: 25px;
+      background: url('@static/iconosTitulo/icono-espacio.png') no-repeat;
+      background-size: contain;
       height: 36px;
       border: none;
     }
@@ -783,8 +777,7 @@ button{
       color: @darkHorbito;
       font-size: 40px;
       font-weight: bold;
-      margin-left: 11px;
-      margin-top: 10px
+      margin-left: 10px;
     }
   }
 
@@ -797,20 +790,16 @@ button{
 	  border: solid 2px #fff;
   }
   .more-icon figure{
-    width: 28px;
-    background: url('@static/sprite-iconos.png') no-repeat;
-    background-size: 72px 27px;
-    background-position: -16px 0px;
-    height: 29px;
-    margin: 9px auto;
+    width: 44px;
+    background: url('@static/mas.png') no-repeat;
+    background-size: contain;
+    height: 44px;
   }
   .minus-icon figure{
-    width: 28px;
-    background: url('@static/sprite-iconos.png') no-repeat;
-    background-size: 72px 27px;
-    background-position: -44px 0px;
-    height: 29px;
-    margin: 9px auto;
+    width: 44px;
+    background: url('@static/menos.png') no-repeat;
+    background-size: contain;
+    height: 44px;
   }
   .ui-btn span{
     max-width: none;
@@ -1023,10 +1012,10 @@ button{
   .one{
     .li-circle{
       figure{
-        background: url('@static/tu_decides.png') no-repeat;
+        background: url('@static/tu-decides.png') no-repeat;
         width: 24px;
         margin-top: 2px;
-        background-size: 24px 18px;
+        background-size: contain;
         height: 18px;
       }
     }
@@ -1037,7 +1026,7 @@ button{
         background: url('@static/flexible.png') no-repeat;
         width: 24px;
         margin-top: 4px;
-        background-size: 24px 16px;
+        background-size: contain;
         height: 16px;
       }
     }
@@ -1345,22 +1334,22 @@ button{
           background-color: rgb(255, 255, 255);
           box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
           color: @darkHorbito;
-          border-radius: 16px;
+          border-radius: 6px;
 
 
 
           .number-card{
-            margin-top: 2px;
             margin-right: 20px;
             margin-left: 20px;
-            width: 160px;
           }
           .delete-card:hover{
-            color: @redHorbito;
+            color: @blueHorbito;
           }
           .delete-card{
             font-size: 12px;
             padding-top: 4px;
+            color: @gray1;
+            cursor: pointer;
           }
         }
 
@@ -1531,6 +1520,12 @@ button{
               color: @darkHorbito;
               width: 60px;
             }
+            .free{
+              color: @blueHorbito;
+              font-size: 30px;
+              margin-top: 20px;
+              margin-left: 30px;
+            }
           }
         }
         .info-current-card-right{
@@ -1560,12 +1555,20 @@ button{
                     .container{
                       height: 85px;
                       width: 215px;
-                      margin: 20px auto 0px auto;
+                      margin: 15px auto 0px auto;
                     }
 
                     .big-text{
                       font-size: 71px;
                       font-weight: bold; 
+                    }
+                    .youSpace{
+                      position: relative;
+                      font-size: 17px;
+                      color: @darkHorbito;
+                      top: 6px;
+                      height: 6px;
+                      font-weight: bold;
                     }
                   }
               }
@@ -1573,6 +1576,7 @@ button{
       }
 }
 
+ 
 .space{
   .es{
     background: url('@static/frase-es.png') no-repeat;
@@ -1656,6 +1660,12 @@ button{
             color: @darkHorbito;
             width: 60px;
           }
+          .free{
+            color: @blueHorbito;
+            font-size: 30px;
+            margin-top: 20px;
+            margin-left: 30px;
+          }
         }
       }
       .info-current-card-right{
@@ -1685,12 +1695,20 @@ button{
                   .container{
                     height: 85px;
                     width: 215px;
-                    margin: 20px auto 0px auto;
+                    margin: 15px auto 0px auto;
                   }
 
                   .big-text{
                     font-size: 71px;
                     font-weight: bold; 
+                  }
+                  .youSpace{
+                    position: relative;
+                    font-size: 17px;
+                    color: @darkHorbito;
+                    top: 6px;
+                    height: 6px;
+                    font-weight: bold;
                   }
                 }
             }
@@ -1798,8 +1816,8 @@ button{
     }
 
     .options-middle{
-      border-bottom: 1px dashed @blueHorbitoHover;
-      border-top: 1px dashed @blueHorbitoHover;
+      border-bottom: 1px dashed @darkHorbito;
+      border-top: 1px dashed @darkHorbito;
       padding: 17px 10px;
       margin: 30px 20px;
       display: flex;
@@ -2292,8 +2310,8 @@ button{
     }
 
     .options-middle{
-      border-bottom: 1px dashed @blueHorbitoHover;
-      border-top: 1px dashed @blueHorbitoHover;
+      border-bottom: 1px dashed @darkHorbito;
+      border-top: 1px dashed @darkHorbito;
       padding: 17px 10px;
       margin: 30px 20px;
       display: flex;
@@ -2494,6 +2512,12 @@ button{
             color: @darkHorbito;
             width: 60px;
           }
+          .free{
+            font-size: 30px;
+            margin-top: 20px;
+            margin-left: 30px;
+            color: @blueHorbito;
+          }
         }
       }
       .info-current-card-right{
@@ -2643,10 +2667,11 @@ button{
   }
 
   .options-middle{
-    border-bottom: 1px dashed @blueHorbitoHover;
-    border-top: 1px dashed @blueHorbitoHover;
+    border-bottom: 1px dashed @darkHorbito;
+    border-top: 1px dashed @darkHorbito;
     padding: 17px 10px;
     margin: 30px 20px;
+    color: @blueHorbito;
   }
 
   .options-bottom{
@@ -2846,6 +2871,47 @@ button{
 
         }
 
+      }
+
+      .title-card{
+        text-align: center;
+        color: @darkHorbito;
+        font-size: 25px;
+        font-weight: 900;
+        height: 30px;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .content-card{
+        height: 180px;
+        padding-top: 30px;
+        text-align: center;
+        display: block;
+        font-weight: 900;
+        font-size: 80px;
+        .info{
+          color: @blueHorbito;
+          .quantity{
+            font-size: 100px;
+            margin-right: -20px;
+          }
+        }
+        .price{
+          font-size: 23px;
+          margin-top: 10px;
+        }
+      }
+      .bottom-card{
+        text-align: center;
+        .ui-btn{
+          padding: 0px 6px;
+          width: 65px;
+          margin: 0px auto;
+          span{
+            margin-top: 7px;
+          }
+        }
       }
 
       .box-current-plan-bottom{
@@ -3114,19 +3180,33 @@ span.preferences-card-subscribe-text{
 
 /* ACCOUNT ZONE START */
 
-
 .account{
 
   display: none;
 
   .preferences-bottom-content-avatar{
-    margin-top: 20px;
-    height: 148px;
+    margin-top: -32px;
+    height: 200px;
+    background: url('@static/pattern.png') no-repeat;
+    background-size: 868px auto;
+    margin-left: -31px;
+    margin-top: -31px;
+    width: calc(100% + 61px);
   }
   .bottom-account-card{
     height: 270px;
     width: 808px;
     padding: 18px;
+    background: #f7f7f7;
+    padding: 18px 18px 18px 49px;
+    margin-left: -31px;
+
+    .header{
+      text-align: left;
+      font-size: 15px;
+      font-weight: bold;
+      margin-left: 50px;
+    }
 
 
     .account-card:hover{
@@ -3163,8 +3243,11 @@ span.preferences-card-subscribe-text{
           font-size: 17px;
 
         }
-        .right:hover *{
+        .right:hover{
           cursor: pointer;
+          *{
+            cursor: pointer;
+          }
         }
         .right{
           float: right;
@@ -3183,374 +3266,262 @@ span.preferences-card-subscribe-text{
     }
   }
 
-  .preferences-account-avatar{
-
-      position: absolute;
-      top: -1px;
-      left: -1px;
-
-  }
-
   .preferences-account-top{
 
       width: 100%;
-      display: inline-block;
+      display: flex;
+      text-align: center;
+
+      .avatar-photo{
+        height: 200px;
+        width: 200px;
+
+        .preferences-avatar-container{
+
+            width: 128px;
+            height: 128px;
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            top: 35px;
+            left: 5px;
+
+
+
+            .preferences-account-image{
+                width: 128px;
+            	  height: 128px;
+            	  -webkit-border-radius: 64px;
+            	  -moz-border-radius: 64px;
+            	  border-radius: 64px;
+                background-size: contain;
+            	  background-color: #bbbbc1;
+            	  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.2);
+            	  -moz-box-shadow: 0 2px 5px rgba(0,0,0,.2);
+            	  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+            }
+
+            .avatar-edit{
+                width: 500px;
+                height: 500px;
+                position: relative;
+                background: @blueHorbito;
+                border-radius: 50%;
+                top: -43px;
+                left: -185px;
+                padding-top: 10px;
+                span{
+                  color: white;
+                }
+
+            }
+        }
+
+        .preferences-account-avatar{
+
+            position: absolute;
+            top: -10px;
+            left: -10px;
+
+        }
+      }
+
+      .avatar-info{
+        text-align: left;
+        display: block;
+        height: 200px;
+        width: 615px;
+          .info-username{
+            color: @blueHorbito;
+            position: relative;
+            top: 50px;
+            font-size: 22px;
+          }
+          .info-name{
+            font-weight: bolder;
+            font-size: 25px;
+            color: @darkHorbito;
+            position: relative;
+            top: 80px;
+          }
+
+      }
+
+  }
+
+
+}
+
+/* ACCOUNT ZONE FINISH */
+
+/* SOCIAL NETWORKS ZONE START */
+
+
+
+
+.social{
+  *{
+    display: none !important;
+  }
+  .preferences-bottom-content.social{
+
+      display: none;
+      opacity: 0;
       text-align: center;
 
   }
 
-  .preferences-account-top span{
+  .preferences-social-zone{
 
-      width: 85px;
-      height: 17px;
       display: inline-block;
-      margin-top: 56px;
-      margin-left: -20px;
-      vertical-align: top;
+      width: 286px;
+      margin-top: 40px;
 
-      border-bottom: 2px solid @blueHorbito;
-      text-align: right;
+  }
+  .preferences-social-zone *{
+    transition: all 0.2s ease;
+  }
+
+  .preferences-social-card{
+
+      width: 286px;
+      display: inline-block;
+      margin-top: 20px;
+      -webkit-border-radius: 25px 25px 25px 25px;
+  	-moz-border-radius: 25px 25px 25px 25px;
+  	border-radius: 25px 25px 25px 25px;
+  	background-color: #2c3238;
+
+  }
+
+
+  .preferences-social-title{
+
+      width: 260px;
+      height: 34px;
+      padding: 8px 10px 8px 14px;
+      border-radius: 12px 12px 12px 12px;
+      border: 1px solid #2C3238;
+      float: left;
+      background-image: -moz-linear-gradient( bottom, #2C3238, #2C3238 );
+      background-image: -webkit-linear-gradient( bottom, #2C3238, #2C3238 );
+      background-image: -o-linear-gradient( bottom, #2C3238, #2C3238 );
+      background-image: linear-gradient( to top, #2C3238, #2C3238 );
+
+  }
+
+  .preferences-social-network{
+
+      float: left;
+      width: 27px;
+      height: 22px;
+      margin-top:7px;
+      background: url('@static/twitter.png') no-repeat;
+      background-size: 27px 22px;
+
+  }
+
+  .preferences-social-name{
+
+      max-width: 189px;
+      float: left;
+      text-align: left;
       font-size: 15px;
-      font-weight: bolder;
-      color: @blueHorbito;
-      cursor: pointer;
+      color: #FFF;
+      margin-left: 9px;
+      margin-top: 9px;
 
   }
-  .preferences-avatar-container{
 
-      width: 128px;
-      height: 128px;
-      display: inline-block;
-      margin-left: 83px;
-      padding: 9px;
-      border-radius: 75px;
-      position: relative;
+  .preferences-social-name.dark{
+
+      color: #545f65;
+      margin-left: 10px;
+
   }
 
-  .preferences-account-image{
-      width: 128px;
-  	  height: 128px;
-  	  -webkit-border-radius: 64px;
-  	  -moz-border-radius: 64px;
-  	  border-radius: 64px;
-      background-size: contain;
-  	  background-color: #bbbbc1;
-  	  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.2);
-  	  -moz-box-shadow: 0 2px 5px rgba(0,0,0,.2);
-  	  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  .preferences-social-icon{
+
+      float: right;
+      width: 18px;
+      height: 18px;
+      margin-top: 8px;
+      margin-right: 2px;
+      opacity: 0.7;
+
+  }
+  .preferences-social-icon:hover{
+    opacity: 1;
   }
 
-}
-
-/*
-.preferences-bottom-content.account{
-
-    display: none;
-    opacity: 0;
-
-}
-
-.preferences-account-button-container{
-  background-color: transparent;
-  margin: auto;
-  text-align: center;
-  margin-top: 14px;
-
-}
-
-.preferences-account-button *{
-  transition: all 0.2s ease;
-}
-*/
-
-/*
-
-.preferences-bottom-input-containter{
-  width: 382px;
-  display: inline-block;
-  text-align: center;
-
-}
-.ui-input-search{
-  width: 380px;
-}
-
-.ui-input-search.active{
-  border: 2px solid #60B25E;
-}
-
-.input-icon i{
-  float: left;
-  width: 0px;
-  padding-left: 13px;
-  padding-right: 8px;
-  padding-bottom: 2px;
-  padding-top: 2px;
-  height: 16px;
-  margin: 0px 10px 0px -2px;
-}
-.input-icon.user-icon i{
-  background: url('@static/sprite-account.png') no-repeat;
-  background-size: 181px 18px;
-  background-position: -75px 0px;
-  width: 0px;
-  padding-right: 6px;
-}
-.dark .ui-input-search.active .user-icon i {
-  background-position: -94px 0px;
-}
-
-.input-icon.mail-icon i{
-  background: url('@static/sprite-account.png') no-repeat;
-  background-size: 181px 18px;
-  background-position: -113px 0px;
-  width: 0px;
-  padding-right: 6px;
-}
-.dark .ui-input-search.active .mail-icon i {
-  background-position: -131px 0px;
-}
-
-
-.preferences-account-buttons{
-
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    margin-top: 15px;
-}
-.preferences-account-buttons *{
-  transition: all 0.2s ease;
-}
-
-.preferences-button.account{
-
-    display: inline-block;
-    margin: 7px;
-
-}
-
-.preferences-button.active.account{
-
-}
-
-.preferences-account-button{
-
-    color: #FFF;
-    font-size: 15px;
-
-}
-*/
-
-
-/* ACCOUNT ZONE FINISH */
-
-/* PASSWORD ZONE START */
-
-.preferences-bottom-content.password{
-
-    display: none;
-    opacity: 0;
-
-}
-.preferences-bottom-password-container{
-  width: 385px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 45px
-}
-
-.input-icon.pass-icon i{
-  background: url('@static/sprite-account.png') no-repeat;
-  background-size: 181px 18px;
-  background-position: 0px 0px;
-  width: 0px;
-  padding-right: 5px;
-}
-.dark .ui-input-search.active .pass-icon i {
-  background-position: -19px 0px;
-}
-
-.input-icon.repeatPass-icon i{
-  background: url('@static/sprite-account.png') no-repeat;
-  background-size: 181px 18px;
-  background-position: -38px 0px;
-  padding-right: 5px;
-}
-.dark .ui-input-search.active .repeatPass-icon i {
-  background-position: -57px 0px;
-}
-.input-icon.confirmPass-icon i{
-  background: url('@static/sprite-account.png') no-repeat;
-  background-size: 181px 18px;
-  background-position: -149px 0px;
-  width: 0px;
-  padding-right: 4px;
-}
-.dark .ui-input-search.active .confirmPass-icon i {
-  background-position: -165px 0px;
-}
-
-/* PASSWORD ZONE FINISH */
-
-/* SOCIAL NETWORKS ZONE START */
-
-.preferences-bottom-content.social{
-
-    display: none;
-    opacity: 0;
-    text-align: center;
-
-}
-
-.preferences-social-zone{
-
-    display: inline-block;
-    width: 286px;
-    margin-top: 40px;
-
-}
-.preferences-social-zone *{
-  transition: all 0.2s ease;
-}
-
-.preferences-social-card{
-
-    width: 286px;
-    display: inline-block;
-    margin-top: 20px;
-    -webkit-border-radius: 25px 25px 25px 25px;
-	-moz-border-radius: 25px 25px 25px 25px;
-	border-radius: 25px 25px 25px 25px;
-	background-color: #2c3238;
-
-}
-
-
-.preferences-social-title{
-
-    width: 260px;
-    height: 34px;
-    padding: 8px 10px 8px 14px;
-    border-radius: 12px 12px 12px 12px;
-    border: 1px solid #2C3238;
+  .preferences-social-icon-plus{
     float: left;
-    background-image: -moz-linear-gradient( bottom, #2C3238, #2C3238 );
-    background-image: -webkit-linear-gradient( bottom, #2C3238, #2C3238 );
-    background-image: -o-linear-gradient( bottom, #2C3238, #2C3238 );
-    background-image: linear-gradient( to top, #2C3238, #2C3238 );
-
-}
-
-.preferences-social-network{
-
+    width: 18px;
+    height: 18px;
+    background: url('@static/anadirCuenta.png') no-repeat;
+    background-size: 18px 18px;
+  }
+  .preferences-social-icon-gear{
     float: left;
-    width: 27px;
-    height: 22px;
-    margin-top:7px;
-    background: url('@static/twitter.png') no-repeat;
-    background-size: 27px 22px;
+    width: 18px;
+    height: 18px;
+    background: url('@static/gear.png') no-repeat;
+    background-size: 18px 18px;
+  }
 
-}
-
-.preferences-social-name{
-
-    max-width: 189px;
-    float: left;
-    text-align: left;
-    font-size: 15px;
-    color: #FFF;
-    margin-left: 9px;
-    margin-top: 9px;
-
-}
-
-.preferences-social-name.dark{
-
-    color: #545f65;
-    margin-left: 10px;
-
-}
-
-.preferences-social-icon{
-
-    float: right;
+  .preferences-social-icon.settings{
+    margin-top: 1px;
     width: 18px;
     height: 18px;
     margin-top: 8px;
-    margin-right: 2px;
-    opacity: 0.7;
+    margin-right: 3px;
+  }
 
-}
-.preferences-social-icon:hover{
-  opacity: 1;
-}
+  .preferences-social-account{
 
-.preferences-social-icon-plus{
-  float: left;
-  width: 18px;
-  height: 18px;
-  background: url('@static/anadirCuenta.png') no-repeat;
-  background-size: 18px 18px;
-}
-.preferences-social-icon-gear{
-  float: left;
-  width: 18px;
-  height: 18px;
-  background: url('@static/gear.png') no-repeat;
-  background-size: 18px 18px;
-}
+      float: left;
+      width: 261px;
+      height: 32px;
+      padding: 7px 10px 7px 15px;
+      border-bottom: 1px solid #DDD;
+      background: #EFEFEF;
 
-.preferences-social-icon.settings{
-  margin-top: 1px;
-  width: 18px;
-  height: 18px;
-  margin-top: 8px;
-  margin-right: 3px;
-}
+  }
 
-.preferences-social-account{
+  .preferences-social-account:last-child{
 
-    float: left;
-    width: 261px;
-    height: 32px;
-    padding: 7px 10px 7px 15px;
-    border-bottom: 1px solid #DDD;
-    background: #EFEFEF;
+      border-radius: 0 0 12px 12px;
 
+
+  }
+
+  .preferences-social-avatar{
+
+      float: left;
+      width: 32px;
+      height: 32px;
+      border-radius: 2px;
+      background: #F00;
+      display: none;
+
+  }
 }
 
-.preferences-social-account:last-child{
-
-    border-radius: 0 0 12px 12px;
-
-
-}
-
-.preferences-social-avatar{
-
-    float: left;
-    width: 32px;
-    height: 32px;
-    border-radius: 2px;
-    background: #F00;
-    display: none;
-
-}
 
 /* SOCIAL NETWORKS ZONE FINISH */
 
 /* CONFIGURATION ZONE START */
 
 .config{
+  display: none;
 
   .ui-btn{
     span{
       margin-top: 7px;
     }
   }
-  display: none;
+
 
   .preferences-bottom-content-title{
     display: flex;
@@ -3559,9 +3530,8 @@ span.preferences-card-subscribe-text{
     .title-icon{
       width: 36px;
       height: 36px;
-      background: url('@static/icono-hdd-titulo.png') no-repeat;
-      background-size: 36px 36px;
-      background-position: 0px 0px;
+      background: url('@static/iconosTitulo/icono-config.png') no-repeat;
+      background-size: contain;
       border: none;
 
       .title-icon-figure{
@@ -3581,6 +3551,7 @@ span.preferences-card-subscribe-text{
   .preferences-bottom-content-body{
     display: block;
     height: 360px;
+    width: 805px;
     margin: 20px 10px 20px 0px;
 
     .configuration-card{
@@ -3588,7 +3559,7 @@ span.preferences-card-subscribe-text{
       width: 370px;
       box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
       display: block;
-      position: absolute;
+      position: relative;
       -webkit-border-radius: 6px;
       -moz-border-radius: 6px;
       border-radius: 6px;
@@ -3649,12 +3620,13 @@ span.preferences-card-subscribe-text{
                 display: none;
                 z-index: 2;
                 position: absolute;
-                width: 25px;
-                height: 25px;
+                width: 34px;
+                height: 34px;
                 top: 11px;
                 right: 10px;
                 border-radius: 100%;
-                background: @redHorbito;
+                background: url('@static/checkFlag.png') no-repeat;
+                background-size: contain;
               }
 
               .flag-image{
@@ -3663,7 +3635,7 @@ span.preferences-card-subscribe-text{
                 left: 20px;
                 right: 0px;
                 width: 100px;
-                height: 65px;
+                height: 63px;
               }
 
               .flag-language{
@@ -3704,8 +3676,8 @@ span.preferences-card-subscribe-text{
 
 
     .selectExtensions{
-      top: 0px;
-      right: 20px;
+      top: 30px;
+      left: 0px;
       display: block;
 
       .head{
@@ -3791,9 +3763,10 @@ span.preferences-card-subscribe-text{
       }
     }
     .backup{
-      top: 170px;
+      top: 0px;
       right: 20px;
       display: block;
+      position: absolute;
 
       .head{
         height: 40px;
@@ -3829,6 +3802,7 @@ span.preferences-card-subscribe-text{
       }
     }
     .desktopApp{
+      display: none;
       top: 235px;
       left: 0px;
 
@@ -3879,6 +3853,7 @@ span.preferences-card-subscribe-text{
 
     }
     .deleteAccount{
+      display: none;
       top: 405px;
       right: 20px;
       bottom: 10px;
@@ -3930,9 +3905,8 @@ span.preferences-card-subscribe-text{
     .title-icon{
       width: 36px;
       height: 36px;
-      background: url('@static/icono-hdd-titulo.png') no-repeat;
-      background-size: 36px 36px;
-      background-position: 0px 0px;
+      background: url('@static/iconosTitulo/icono-custom.png') no-repeat;
+      background-size: contain;
       border: none;
 
       .title-icon-figure{
@@ -3958,6 +3932,7 @@ span.preferences-card-subscribe-text{
       width: 825px;
 
           .selectTheme{
+            display: none;
             height: 212px;
             width: 750px;
 
@@ -4017,10 +3992,11 @@ span.preferences-card-subscribe-text{
           }
 
           .selectWallpaper{
-            height: 290px;
             width: 790px;
             left: 10px;
-            top: 265px;
+            margin-top: 20px;
+            /*top: 265px;
+            height: 290px; */
             background: white;
             box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
             display: block;
@@ -4031,91 +4007,54 @@ span.preferences-card-subscribe-text{
 
 
             .selectWallpaper-containter{
-              height: 230px;
+              /*height: 230px;*/
             }
 
             .selectWallpaper-content{
-              height: 210px;
+              /*height: 210px;*/
+              text-align: left;
+              margin: 10px;
+
 
               .preferences-wallpaper-upload{
 
-                  width: 126px;
-                  height: 80px;
-              	  border: solid 2px white;
-                  position: relative;
-                  display: inline-block;
-                  margin: 6px;
-                  background: @redHorbito;
+                width: 128px;
+                height: 80px;
+                display: inline-block;
+                margin: 6px;
+                transition: all 0.2s ease;
+                border: 2px solid white;
+                border-radius: 6px;
+                cursor: pointer;
 
-              }
-
-              .preferences-upload-background{
-
-                  width: 49px;
-                  height: 35px;
-                  position: absolute;
-                  background: #d2dce2;
-                  top: 10px;
-                  left: 39px;
-
-              }
-
-              .preferences-upload-uploading{
-
-                  width: 49px;
-                  height: 0;
-                  position: absolute;
-                  background: @blueHorbito;
-                  top: 35px;
-                  left: 39px;
-
-              }
-
-              .preferences-upload-icon{
-
-                width: 49px;
-                height: 35px;
-                background: url('@static/sprite-cloud.png') no-repeat;
-                background-size: 149px 35px;
-                background-position: 0px 0px;
-                position: absolute;
-                top: 10px;
-                left: 39px;
-
-              }
-
-              .preferences-wallpaper-upload span{
-
+                .progress{
                   width: 100%;
-                  text-align: center;
-                  font-size: 16px;
-                  color: #d2dce2;
-                  position: absolute;
-                  left: 13px;
-                  bottom: 8px;
-
-              }
-              .preferences-wallpaper-upload:active .preferences-upload-icon{
-                background: url('@static/sprite-cloud.png') no-repeat !important;
-                background-size: 149px 35px !important;
-                background-position: -100px 0px !important;
-              }
-
-              .preferences-wallpaper-upload:active{
-                background: #343b42 !important;
-                color: #d2dce2;
-              }
+                  height: 0%;
+                  background: #60b25e;
+                  display: block;
+                  position: relative;
+                  bottom: 0;
+                  border-radius: 6px;
+                }
+                .upload-button{
+                  width: 128px;
+                  height: 80px;
+                  position: relative;
+                  bottom: 0px;
+                  cursor: pointer;
+                }
 
 
-              .preferences-wallpaper-upload:hover .preferences-upload-icon{
-                background: url('@static/sprite-cloud.png') no-repeat;
-                background-size: 149px 35px;
-                background-position: -50px 0px;
+                .es{
+                  background: url('@static/upload_es.png') no-repeat;
+                  background-size: 128px 80px;
+                }
+                .en{
+                  background: url('@static/upload_en.png') no-repeat;
+                  background-size: 128px 80px;
+                }
               }
-              .preferences-wallpaper-upload:hover{
-                  background: #515d67;
 
-              }
 
               .preferences-wallpaper-image{
 
@@ -4228,7 +4167,6 @@ span.preferences-card-subscribe-text{
   }
 }
 
-
 /* CUSTOMIZE ZONE FINISH */
 
 /* INVITE ZONE START */
@@ -4244,8 +4182,8 @@ span.preferences-card-subscribe-text{
     .title-icon{
       width: 36px;
       height: 36px;
-      background: url('@static/icono-hdd-titulo.png') no-repeat;
-      background-size: 36px 36px;
+      background: url('@static/iconosTitulo/icono-invite.png') no-repeat;
+      background-size: contain;
       background-position: 0px 0px;
       border: none;
 
@@ -4314,6 +4252,7 @@ span.preferences-card-subscribe-text{
           background-color: rgb(255, 255, 255);
           box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
           color: @darkHorbito;
+          font-weight: bold;
           margin-right: 15px;
           margin-bottom: 15px;
           border: 2px solid white;
@@ -4336,6 +4275,7 @@ span.preferences-card-subscribe-text{
         display: block;
         height: 30px;
         color: @gray1;
+        font-weight: bold;
         text-align: right;
         position: absolute;
         top: 215px;
@@ -4364,41 +4304,6 @@ span.preferences-card-subscribe-text{
 
 /* INVITE ZONE FINISH */
 
-/* BACKUP ZONE START */
-
-.preferences-bottom-content.backup{
-
-    display: none;
-    opacity: 0;
-    text-align: center;
-    position: relative;
-
-}
-
-.preferences-bottom-content-backup-img{
-    display: inline-block;
-    height: 106px;
-    width: 228px;
-    background: url('@static/backup.png') no-repeat;
-    background-size: 228px 106px;
-    margin: 65px 0 70px;
-}
-
-
-.preferences-bottom-content.backup button{
-  width: 278px;
-  height: 65px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-
-
-}
-
-.ui-btn.cancel span {
-    font-size: 17px;
-    line-height: 19px;
-}
-/* BACKUP ZONE FINISH */
 
 /* PAYMENT ZONE START */
 
@@ -4581,3 +4486,207 @@ span.preferences-card-subscribe-text{
 }
 
 /* ABOUT ZONE FINISH */
+/* POPUP START */
+
+.popup-container.active{
+  display: block;
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+
+.popup-container{
+  display: none;
+  opacity: 0;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  background: rgba(0,0,0,.25);
+
+  .popup{
+    display: block;
+    position: absolute;
+    width: 375px;
+    /*height: 380px*/
+    height: 300px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+    color: @darkHorbito;
+
+    .header{
+      height: 50px;
+      width: 375px;
+      display: flex;
+
+      .title{
+        font-weight: bold;
+        position: absolute;
+        left: 22px;
+        top: 20px;
+        font-size: 21px;
+      }
+      .close:hover{
+        background: @lightGray;
+      }
+      .close{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+
+        figure{
+          width: 10px;
+          height: 10px;
+          margin: 10px;
+          background: url('@static/close-popup.png') no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+    .content{
+      width: 345px;
+      margin: 15px;
+      display: block;
+        .type-input{
+          height: 70px;
+          margin: 10px;
+          width: 325px;
+
+          .title{
+            width: 325px;
+            font-weight: bold;
+            height: 30px;
+            display: flex;
+            font-size: 15px;
+          }
+          .input.active{
+            border-color: @blueHorbitoActive;
+          }
+          .input:focus{
+            border-color: @blueHorbitoActive;
+          }
+          .input.wrong{
+            border-color: @redHorbito;
+          }
+          .input{
+            height: 36px;
+            width: 280px;
+            border: 2px solid #f0f0f0;
+            padding: 0px 20px;
+            border-radius: 6px;
+            background: #f0f0f0;
+          }
+        }
+
+
+        .old{ 
+          .forgetPassword-txt:hover{
+            color:@blueHorbitoActive;
+          }
+          .forgetPassword-txt.active{
+            display: block;
+          }
+          .forgetPassword-txt{
+            display: none;
+            font-size: 13px;
+            color: @gray1;
+            position: absolute;
+            right: 30px;
+            margin-top: 2px;
+          }
+        }
+
+        /* Disable double check input*/
+        /*----------------------------------*/
+        .repeat-new{
+          display: none;
+        }
+        /*----------------------------------*/
+        .password-security.active{
+          display: flex;
+        }
+        .password-security{
+          display: none;
+          height: 3px;
+          width: 322px;
+          margin-left: 11px;
+          .security-block{
+            width: 80px;
+            border-radius: 3px;
+            background: #f0f0f0;
+          }
+          .password-security-two, .password-security-three , .password-security-four{
+            margin-left: 4px;
+          }
+
+        }
+        .password-security.one{
+          .password-security-one{
+            background: #fe1843;
+          }
+        }
+        .password-security.two{
+          .password-security-one{
+            background: #fe1843;
+          }
+          .password-security-two{
+            background: #ffcc00;
+          }
+        }
+        .password-security.three{
+          .password-security-one{
+            background: #fe1843;
+          }
+          .password-security-two{
+            background: #ffcc00;
+          }
+          .password-security-three{
+            background: #00b964;
+          }
+        }
+        .password-security.four{
+          .password-security-one{
+            background: #fe1843;
+          }
+          .password-security-two{
+            background: #ffcc00;
+          }
+          .password-security-three{
+            background: #00b964;
+          }
+          .password-security-four{
+            background: #00974e;
+          }
+        }
+
+
+    }
+    .footer{
+      height: 65px;
+      width: 375px;
+      .ui-btn{
+        position: absolute;
+        bottom: 20px;
+        right: 25px;
+        text-align: center;
+        span{
+          margin-top: 7px;
+        }
+      }
+    }
+  }
+
+  .deleteAccount{
+
+  }
+}
+/* POPUP FINISH*/
