@@ -3,6 +3,7 @@
     // Variables
     var win = $( this );
     var language = null;
+    var user = null;
 
     // Clock variable
     var date          = new Date(0);
@@ -34,7 +35,8 @@
     var newPasswordInput     = $( 'input', newPassword );
     var confirmPassword      = $( '.password-confirm', win );
     var confirmPasswordInput = $( 'input', confirmPassword );
-    var forgetPasswordHtml   ="https://www.inevio.com/";
+    var forgetPasswordHtml   = "https://www.inevio.com/";
+    var popup                = null;
 
     // HDD variables
     var cakeTitle            = $( '.preferences-hdd-usage', win );
@@ -84,9 +86,11 @@
       "finish",
     ];
 
+
     var currentTab = null;
     var loadTab = null;
     var makePremium = true;
+    var passwordTry = 0;
 
     // Info about user & plans
     var infoSubscriptions = null;
@@ -809,6 +813,89 @@
       finishTab();
     }
 
+
+    var validateEmail = function(mail){
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(mail);
+
+    }
+
+    var changePassword = function(){
+
+      api.config.setPassword( $('.popup .old-input').val(), $('.popup .new-input').val(), function( error ){
+
+          if( error ){
+
+              alert( error );
+
+          }else{
+
+              api.banner()
+                  .setTitle( lang.passwordChanged )
+                  .setText( lang.passwordChanged2 )
+                  .render();
+
+          }
+
+      });
+    };
+
+    var changeUsername = function(){
+      var value = ' '+$('.popup .new-input').val();
+      api.config.setUsername($('.popup .new-input').val(), function(error){
+        if(error){
+          alert( error);
+        }
+        else{
+
+          $('.info-username span').text(value);
+          api.banner()
+              .setTitle( lang.usernameChanged )
+              .setText( lang.usernameChanged2 +  value)
+              .render();
+
+
+        }
+      })
+    };
+
+    var changeName = function(){
+      var value = ' '+$('.popup .old-input').val() + ' ' + $('.popup .new-input').val();
+      api.config.setFullName($('.popup .old-input').val(),$('.popup .new-input').val(), function(error){
+        if(error){
+          alert( error );
+        }
+        else{
+
+          $('.info-name span').text(value);
+          api.banner()
+              .setTitle( lang.nameChanged )
+              .setText( lang.nameChanged2 +  value)
+              .render();
+        }
+      })
+
+    }
+
+    var changeMail = function(){
+
+      var value = ' '+$('.popup .new-input').val();
+
+      api.config.setMail($('.popup .new-input').val(), function(error){
+        if(error){
+          alert( error );
+        }
+        else{
+
+          api.banner()
+              .setTitle( lang.mailChanged )
+              .setText( lang.mailChanged2 +  value)
+              .render();
+        }
+      })
+    };
+
+
     var resetInputStatus = function(){
 
         $('.hdd input').val("");
@@ -833,8 +920,8 @@
 
     var loadInfoUserSub = function (infoSubscriptions){
       // only for dev infoSubscriptions.currentPlan == null --> loads app without premium
-      // console.log("QUITAR IMPORTANTE");
-      // infoSubscriptions.currentPlan = null;
+    //console.log("QUITAR IMPORTANTE");
+     //infoSubscriptions.currentPlan = null;
       if(infoSubscriptions.currentPlan !=  null){
 
         userLocal.info = true;
@@ -907,7 +994,7 @@
             avatarGrads = 0;
 
             avatarUploading = true;
-            $( '.avatar-edit', win ).text( '' ).transition({ width : '1px', 'margin-right' : '84px' }, 500, function(){ $( this ).css( 'opacity', 0 ); } );
+            $( '.avatar-edit span', win ).text( '' ).transition({ width : '1px', 'margin-right' : '84px' }, 500, function(){ $( this ).css( 'opacity', 0 ); } );
 
         }
 
@@ -934,7 +1021,7 @@
                         $( this ).transition({ 'box-shadow' : 'inset 0 1px 1px rgba(255, 255, 255, 0.3)' });
                     });
 
-                    $( '.avatar-edit', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
+                    $( '.avatar-edit span', win ).css( 'opacity', 1 ).transition({ width : '85px', 'margin-right' : 0 }, 500, function(){
                         $( this ).text( lang.avatarEdit );
                         avatarUploading = false;
                     });
@@ -947,20 +1034,18 @@
 
     })
 
+
     // Capturing the walppaper uploading progress
     .on( 'wallpaperProgress', function( percent ){
-        $( '.preferences-upload-uploading', win ).css({ height: 35 * percent + 'px', top: 35 * ( 1 - percent ) + 10 + 'px' });
+      $('.preferences-wallpaper-upload .progress').height( percent * 100 + '%' );
+      $('.upload-button').css('top',  (percent * (-100)) + '%' );
     })
 
     // Capturing the wallpaper uploading end
     .on( 'wallpaperEnd', function( wallpaper ){
-
-        $( '.preferences-upload-uploading', win ).css({ height: 0, top: '45px' });
-
-        $( '.preferences-wallpaper-image.active', win ).removeClass( 'active' );
-        $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + wallpaper[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
-
-    });
+      $('.preferences-wallpaper-upload .progress').height( 0 );
+      $('.upload-button').css('top',  '0px' );
+    })
 
     // DOM Events
     win
@@ -1129,6 +1214,12 @@
     .on('blur', '.hdd input',function(){
       $(this).parent('.new-input').removeClass('active');
       $(this).parent('.new-input').removeClass('error');
+    })
+    .on('blur', '.popup new-input, .popup .new-input',function(){
+      $(this).removeClass('active');
+      if(!popup == 'email'){
+        $(this).removeClass('wrong');
+      }
     })
 
 
@@ -1658,14 +1749,14 @@
 
         if(currentTab == spaceTabs[2]){
           //premium
-          unit = $('.modify-space .show-space-selected span:last-child');
+          unit = $('.modify-space .show-space-selected .container .unit');
           size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
-          unit = $('.more .show-space-selected span:last-child');
+          unit = $('.more .show-space-selected .container .unit');
           size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
@@ -1699,6 +1790,9 @@
           if($('.minus-icon').hasClass('block')){
             $('.minus-icon').removeClass('block');
             $('.minus-icon').addClass('minusStorage');
+            $('.'+currentTab+ ' .info-current-quantity .no-free').removeClass('hidden');
+            $('.'+currentTab+ ' .info-current-quantity .free').addClass('hidden');
+            $('.'+currentTab+ ' .youSpace span').addClass('hidden');
           }
 
           if(userLocal.activePlan == activePlan){
@@ -1714,7 +1808,7 @@
           }
         }
 
-        if(currentTab == 'more' && plansCounter == 1){
+        if(currentTab == 'more' && plansCounter != 0){
           $('.more button').removeClass('block');
           $('.more button').addClass('nextTab');
         }
@@ -1740,14 +1834,14 @@
 
         if(currentTab == spaceTabs[2]){
           //premium
-          unit = $('.modify-space .show-space-selected span:last-child');
+          unit = $('.modify-space .show-space-selected .container .unit');
           size = $('.modify-space .show-space-selected .big-text');
           price = $('.modify-space .quantity');
           total = $('.finish-premium .info-space');
         }
         else if (currentTab == spaceTabs[6]){
           //normal
-          unit = $('.more .show-space-selected span:last-child');
+          unit = $('.more .show-space-selected .container .unit');
           size = $('.more .show-space-selected .big-text');
           price = $('.more .quantity');
           total = $( '.order .options-bottom .bottom .left').find('span');
@@ -1768,17 +1862,33 @@
             plansCounter--;
           }else {
             minusSpaceCondition = false;
+            $('.minusStorage').addClass('block');
+            $('.'+currentTab+ ' .minus-icon').removeClass('minusStorage');
+            $('.'+currentTab+ ' .info-current-quantity .no-free').addClass('hidden');
+            $('.'+currentTab+ ' .info-current-quantity .free').removeClass('hidden');
           }
+          /*
 
-          if(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base) == (api.tool.bytesToUnit(inevioPlans[0].addQuota + userLocal.base))){
+          if(api.tool.bytesToUnit(inevioPlans[plansCounter - 1].addQuota + userLocal.base) == (api.tool.bytesToUnit(inevioPlans[0].addQuota + userLocal.base)) && userLocal.info){
             $('.minusStorage').addClass('block');
             $('.'+currentTab+ ' .minus-icon').removeClass('minusStorage');
           }
+          */
 
           moreSpaceCondition = true;
           if($('.more-icon').hasClass('block')){
             $('.more-icon').removeClass('block');
             $('.more-icon').addClass('moreStorage');
+          }
+
+          if(plansCounter == 0){
+            $('.more button').addClass('block');
+            minusSpaceCondition = false;
+            $('.minusStorage').addClass('block');
+            $('.'+currentTab+ ' .youSpace span').removeClass('hidden');
+            $('.'+currentTab+ ' .minus-icon').removeClass('minusStorage');
+            $('.'+currentTab+ ' .info-current-quantity .no-free').addClass('hidden');
+            $('.'+currentTab+ ' .info-current-quantity .free').removeClass('hidden');
           }
 
           if(userLocal.activePlan == activePlan){
@@ -1998,7 +2108,7 @@
           cardFigure.addClass('card-default');
         }
 
-        $(  '.order-premium .number-card').find('span').text("**** **** **** " + userLocal.card.number);
+        $(  '.order-premium .number-card').find('span').text("xxxx - xxxx - xxxx - " + userLocal.card.number);
         $(  '.order-premium .delete-card').find('span').text(lang.delete);
         $(  '.order-premium .info-current-card-bottom .delete-card').text(lang.delete);
         $(  '.order-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + $('.modify-space .quantity').text() + lang.payParagraph[1]+ new Date(userLocal.payDay).getDate() + lang.payParagraph[2]);
@@ -2196,35 +2306,36 @@
     })
 
     // Changes user's password
-    .on( 'click', '.save-password', function(){
+    .on( 'click', '.password .ui-btn', function(){
+      var currentPass = $('.password .old-input');
+      var newPass = $('.password .new-input');
+      var repeatNewPass = $('.password .repeat-input');
 
-        if( currentPasswordInput.val().length > 5 && newPasswordInput.val().length > 5 && newPasswordInput.val() === confirmPasswordInput.val() ){
+      if(newPass.val() != repeatNewPass.val()){
+        newPass.addClass('wrong');
+        repeatNewPass.addClass('wrong');
+        return;
+      }
+      if(!$(this).hasClass('block')){
+        api.config.setPassword( currentPass.val(), newPass.val(), function( error ){
 
-            api.config.setPassword( currentPasswordInput.val(), newPasswordInput.val(), function( error ){
+            if( error ){
 
-                if( error ){
+                alert( error );
 
-                    alert( error );
+            }else{
 
-                }else{
+                api.banner()
+                    .setTitle( lang.passwordChanged )
+                    .setText( lang.passwordChanged2 )
+                    .render();
 
-                    api.banner()
-                        .setTitle( lang.passwordChanged )
-                        .setText( lang.passwordChanged2 )
-                        .render();
+            }
 
-                }
+        });
+      }
 
-                currentPassword.removeClass( 'correct' );
-                currentPasswordInput.val( '' );
-                newPassword.removeClass( 'correct' );
-                newPasswordInput.val( '' );
-                confirmPassword.removeClass( 'correct' );
-                confirmPasswordInput.val( '' );
 
-            });
-
-        }
 
     })
 
@@ -2515,6 +2626,32 @@
 
     })
 
+    .on(  'click', '.popup .footer .ui-btn', function(){
+
+      console.log(user);
+
+      if(!$(this).hasClass('block')){
+        if(popup == 'password'){
+          changePassword();
+        }else{
+            if(popup == 'username'){
+              changeUsername();
+            }else if (popup == 'name'){
+              changeName();
+            }else if (popup == 'email'){
+              changeMail();
+            }
+          else{
+            alert(lang.incorrectPass);
+          }
+        }
+        deletePopup();
+
+      }
+
+
+    })
+
     .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
 
         api.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
@@ -2537,6 +2674,9 @@
               $('.selectExtensions .head input')[0].checked = true;;
               alert(lang.wrongPass);
             }
+            else{
+
+            }
 
         });
 
@@ -2558,15 +2698,11 @@
 
     .on( 'click', '.config .flag', function(){
 
-        $('.config .flag').removeClass('active');
-        $(this).addClass('active');
-
-
         if( $( this ).hasClass( 'en' ) ){
           language = 'en';
             api.config.setLanguage( 'en-en' , function(){
 
-              confirm('¿Desea recargar Inevio ahora?', function( o ){
+              confirm('¿Desea recargar horbito ahora?', function( o ){
 
                 if (o == true){
                   var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
@@ -2574,18 +2710,21 @@
                 }
 
             });
+
 
             });
         }else if( $( this ).hasClass( 'es' ) ){
           language = 'es';
             api.config.setLanguage( 'es-es' , function(){
 
-              confirm('Do you want to reload Inevio now?', function(o){
+
+              confirm('Do you want to reload horbito now?', function(o){
                 if (o == true){
                   var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
                   window.location.reload();
                 }
               });
+
             });
 
         }
@@ -2624,6 +2763,162 @@
         alert(lang.filesDownloading);
     })
 
+    .on('click', '.custom .theme-card', function(){
+
+      if(!$(this).hasClass('block')){
+        if(!$(this).hasClass('active')){
+          $('.custom .theme-card').removeClass('active');
+          $(this).addClass('active');
+        }
+
+        if($(this).hasClass('dark')){
+          $(  $('.preferences-top').parents()[0]).addClass('dark');
+          //$('.preferences-top').addClass('dark');
+          //$('.preferences-bottom').addClass('dark');
+        }else{
+          //$('.preferences-top').removeClass('dark');
+          //$('.preferences-bottom').removeClass('dark');
+          $(  $('.preferences-top').parents()[0]).removeClass('dark');
+        }
+      }
+    })
+
+    .on('click', '.account .card-content .right', function(){
+      if($(this).parents('.account-card').hasClass('username')){
+        throwPopup('username');
+      }
+      else if($(this).parents('.account-card').hasClass('password')){
+        throwPopup('password');
+      }
+      else if ($(this).parents('.account-card').hasClass('email')){
+        throwPopup('email');
+      }
+      else {
+        throwPopup('name');
+      }
+
+
+    })
+
+    .on('click', '.popup .close', function(){
+        deletePopup();
+    })
+
+
+
+    .on( 'keyup', '.password .popup .new-input', function(){
+
+
+          $(this).removeClass('active');
+          var currentTry = passwordTry++
+          var input      = $(this)[0];
+          var value      = $(this).val()
+          var strengthContainer = $('.password .password-security')[0];
+
+
+
+          if( !value.length){
+            input.classList = "new-input input";
+            strengthContainer.classList= "password-security active";
+          }
+
+
+
+
+          api.config.checkPasswordStrength( value, function( err, strength ){
+
+            if( currentTry !== passwordTry - 1 ){
+              return
+            }
+
+            switch (strength + 1) {
+              case 0:
+                strengthContainer.classList= "password-security active";
+                $(input).removeClass('wrong');
+                break;
+              case 1:
+                strengthContainer.classList= "password-security active one";
+                $(input).removeClass('wrong').addClass('active');
+                break;
+              case 2:
+                strengthContainer.classList= "password-security active two";
+                $(input).removeClass('wrong').addClass('active');
+                break;
+              case 3:
+                strengthContainer.classList= "password-security active three";
+                $(input).removeClass('wrong').addClass('active');
+                break;
+              default:
+              strengthContainer.classList= "password-security active four";
+              $(input).removeClass('wrong').addClass('active');
+
+            }
+
+            if( value.length < 6 ){
+              input.classList = "new-input input wrong";
+              strengthContainer.classList= "password-security active";
+
+            }
+
+
+      })
+
+  })
+
+  /*
+
+  .on('keyup', '.password .popup .repeat-input', function(){
+    var pass = $(this).val().length;
+
+    if(pass == $('.popup .new-input').val().length){
+      $(this).removeClass('wrong');
+    }else{
+      $(this).addClass('wrong');
+    }
+  })
+  */
+
+
+
+  .on('keyup', '.email .popup .new-input', function(){
+    var mail = $(this).val();
+
+    if(validateEmail(mail)){
+      $(this).removeClass('wrong');
+      $('.popup .ui-btn').removeClass('block');
+    }else{
+      $(this).addClass('wrong');
+      $('.popup .ui-btn').addClass('block');
+
+    }
+  })
+
+/*
+  .on('keyup', '.popup .repeat-input', function(){
+    if($('.popup-container').hasClass('password')){
+      if (($('.popup .new-input').val() == $('.popup .repeat-input').val() ) && ($('.popup input').val().length > 0)){
+        $('.popup .ui-btn').removeClass('block');
+      }
+    }else{
+      if($('.popup .repeat-input').val().length != 0  && (!$('.popup input').hasClass('wrong'))){
+        $('.popup .ui-btn').removeClass('block');
+      }
+    }
+  })
+
+  */
+  .on('keyup', '.popup input', function(){
+    if($('.popup-container').hasClass('password')){
+      if (!$('.popup .new-input').hasClass('wrong') && ($('.popup .new-input').val().length > 5)){
+        $('.popup .ui-btn').removeClass('block');
+      }
+    }else{
+      if($('.popup .new-input').val().length != 0  && (!$('.popup input').hasClass('wrong'))){
+        $('.popup .ui-btn').removeClass('block');
+      }
+    }
+  })
+
 
     // This function fills certain gaps with user's info
     api.system.updateQuota( function( error, quota ){
@@ -2634,10 +2929,10 @@
     });
 
 
-
-    avatarUrl = api.system.user().avatar.normal;
-    mail      = api.system.user().mail;
-    username  = api.system.user().user;
+    user = api.system.user();
+    avatarUrl = user.avatar.normal;
+    mail      = user.mail;
+    username  = user.user;
 
 
 
@@ -2972,6 +3267,90 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
           return;
     };
 
+    /* POPUP */
+
+    var setTextPopup = function(type){
+      if(type === 'username'){
+        $('.popup .header .title span').text(lang.accountUser);
+        $('.popup .old .title .title-txt').text(lang.currentUsername);
+        $('.popup .old .old-input').val(user.user);
+        $('.popup .new .title span').text(lang.newUsername);
+        $('.popup .repeat-new .title span').text(lang.changePassword);
+        $('.popup .footer span').text(lang.save);
+      }
+      else if (type === 'password'){
+        $('.popup input').val('');
+        $('.popup .header .title span').text(lang.changePassword);
+        $('.popup .old .title .title-txt').text(lang.currentPassword);
+        $('.popup .old .title .forgetPassword-txt').text(lang.forgetPassword);
+        $('.popup .new .title span').text(lang.newPassword);
+        $('.popup .repeat-new .title span').text(lang.repeatNewPassword);
+        $('.popup .footer span').text(lang.save);
+      }
+
+      else if (type === 'name'){
+        $('.popup .header .title span').text(lang.changeName);
+        $('.popup .old .title .title-txt').text(lang.name);
+        $('.popup .old .old-input').attr('placeholder',user.name);
+        $('.popup .new .title span').text(lang.surname);
+        $('.popup .new .new-input').attr('placeholder',user.surname);
+        $('.popup .repeat-new .title span').text(lang.changePassword);
+        $('.popup .footer span').text(lang.save);
+      }
+      else{
+        $('.popup .header .title span').text(lang.accountMailUser);
+        $('.popup .old .title .title-txt').text(lang.currentEmail);
+        $('.popup .old .old-input').val(user.mail);
+        $('.popup .new .title span').text(lang.newEmail);
+        $('.popup .repeat-new .title span').text(lang.changePassword);
+        $('.popup .footer span').text(lang.save);
+      }
+    };
+
+    var throwPopup = function(o){
+
+      popup = o;
+
+      $('.popup-container .popup .content .old .old-input')[0].readOnly = true;
+
+        if(o === 'password'){
+          $('.popup-container .popup .content .old .old-input')[0].readOnly = false;
+          $('.popup-container .popup .content .old .forgetPassword-txt').addClass('active');
+          $('.popup-container .popup .content .password-security').addClass('active');
+          $('.popup-container .popup .content input').attr('type', 'password');
+        }
+        if( o === 'name'){
+          $('.popup-container .popup .content .old .old-input')[0].readOnly = false;
+        }
+        $('.popup-container').addClass('active');
+        $('.popup-container').addClass(o);
+
+
+
+        setTextPopup(o);
+    };
+
+
+    var deletePopup = function(){
+      $('.popup-container').removeClass('active');
+      $('.popup-container')[0].classList.value = "popup-container wz-dragger";
+      $('.popup-container .popup .content .old .forgetPassword-txt').removeClass('active');
+      $('.popup-container .popup .content .password-security').removeClass('active');
+      $('.popup input').val('');
+      $('.popup input').removeClass('wrong');
+      $('.popup input').removeClass('active');
+      $('.popup-container .popup .content .old-input')[0].removeAttribute('type');
+      $('.popup-container .popup .content .new-input')[0].removeAttribute('type');
+      $('.popup-container .popup input').attr('placeholder', '');
+      $('.popup-container .popup .ui-btn').addClass('block');
+      $('.popup-container .password-security')[0].classList= "password-security";
+
+    };
+
+
+
+    /* POPUP END*/
+
     var updateCanvasCake = function(){
 
       var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
@@ -3073,7 +3452,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
       $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
       $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
-      $( '.avatar-edit', win ).text( lang.avatarEdit );
+      $( '.avatar-edit span', win ).text( lang.avatarEdit );
       $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
       $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
       $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
@@ -3143,6 +3522,12 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $( '.custom .theme-card.dark span').text(lang.dark);
       $( '.custom .selectWallpaper .title span').text(lang.wallpaper);
 
+      if(language == 'es'){
+        $('.preferences-wallpaper-upload .upload-button').addClass('es');
+      }else{
+        $('.preferences-wallpaper-upload .upload-button').addClass('en');
+      }
+
       $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
       $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
       $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
@@ -3154,6 +3539,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $('.invite .preferences-bottom-content-body .mail-container .mail-title span').text(lang.emails);
       $('.invite .preferences-bottom-content-body .mail-container .mail-footer span').text(lang.addMail);
       $('.invite .preferences-bottom-content  .share-text').text(lang.sendInvitations);
+
+
 
 
 
@@ -3175,11 +3562,14 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       }else if (language == 'en') {
         $('.space .info-plan-premium').addClass('en');
       }
+
       $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
-      $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
+      $(  '.space .bottom-card span').text(lang.moreInfo);
       $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
-      $(  '.space .box-current-plan-top').find('span').text(lang.increaseStorage);
+      $(  '.space .title-card span').text(lang.needMoreSpace);
+      $(  '.space .content-card .info span').text('GB');
+      $(  '.space .content-card .info .quantity').text('25');
+      $(  '.space .content-card .price span').text(lang.priceExtra);
     };
 
     var moreTab = function(){
@@ -3192,9 +3582,11 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.more .quantity').find('span').text(inevioPlans[0].amount);
       $(  '.more .quantity-container .top').text("$");
       $(  '.more .quantity-container .bottom').text(lang.perMonth);
+      $(  '.more .info-current-quantity .free span').text(lang.free);
       $(  '.more .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.base + plan0.addQuota).split(" ", 2)[1]);
       $(  '.more .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
       $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
+      $(  '.more .youSpace span').text(lang.currentSpace);
 
     };
     var orderTab = function(){
@@ -3292,7 +3684,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       }
       $(  '.modify-premium .info-current-plan .options-bottom .top').find('span').text(lang.totalStorageMayus);
       $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
-      $(  '.modify-premium .number-card').find('span').text("**** **** **** " + userLocal.card.number);
+      $(  '.modify-premium .number-card').find('span').text("xxxx - xxxx - xxxx - " + userLocal.card.number);
       $(  '.modify-premium .delete-card').find('span').text(lang.delete);
       $(  '.modify-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
@@ -3320,11 +3712,14 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.modify-space .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
       $(  '.modify-space .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
       $(  '.modify-space .quantity').find('span').text(1);
+      $(  '.modify-space .info-current-quantity .free span').text(lang.free);
+
       $(  '.modify-space .quantity-container .top').text("$");
       $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
       $(  '.modify-space .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[1]);
       $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
       $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
+      $(  '.modify-space .youSpace span').text(lang.currentSpace);
 
     };
 
@@ -3391,13 +3786,15 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     //Account texts
 
-    $( '.account .avatar-edit', win ).text( lang.avatarEdit );
-    $('.account .bottom-account-card .card-content .right').find('span').text(lang.change);
+    $( '.account .avatar-edit span', win ).text( lang.avatarEdit );
+    $( '.account .preferences-account-top .avatar-info .info-username span').text('@'+user.user);
+    $( '.account .preferences-account-top .avatar-info .info-name span').text(user.fullName);
+    $( '.account .bottom-account-card .header span').text(lang.accountSetting);
+    $( '.account .bottom-account-card .card-content .right span').text(lang.change);
     $( '.account .bottom-account-card .username .card-content .left span').text(lang.accountUser);
     $( '.account .bottom-account-card .email .card-content .left span').text(lang.accountMailUser);
     $( '.account .bottom-account-card .password .card-content .left span').text(lang.changePassword);
-    $( '.account .bottom-account-card .deleteAccount .card-content .left span').text(lang.deleteAccount);
-    $( '.account .bottom-account-card .deleteAccount .card-content .right span').text(lang.moreInfo);
+    $( '.account .bottom-account-card .name .card-content .left span').text(lang.changeName);
 
     /*
     $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );

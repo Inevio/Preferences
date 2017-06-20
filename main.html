@@ -10,13 +10,13 @@
       </article>
 
       <article class="ui-header-buttons right wz-dragger">
-          <figure class="ui-minimize">
+          <figure class="ui-minimize pointer">
               <i></i>
           </figure>
           <figure class="ui-maximize inactive">
               <i></i>
           </figure>
-          <figure class="ui-close">
+          <figure class="ui-close pointer">
               <i></i>
           </figure>
       </article>
@@ -24,7 +24,7 @@
     </section>
 
     <section class="preferences-top-nav">
-      <nav class="wz-dragger">
+      <nav class="wz-dragger pointer">
           <li class="account wz-dragger"></li>
           <li class="hdd active wz-dragger"></li>
           <!--<li class="social wz-dragger"></li>-->
@@ -361,12 +361,15 @@
                       <article class="info-current-card-left">
                         <article class="info-current-quantity">
 
-                          <article class="quantity">
+                          <article class="quantity no-free hidden">
                             <span></span>
                           </article>
-                          <article class="quantity-container">
+                          <article class="quantity-container no-free hidden">
                             <span class="top"></span>
                             <span class="bottom"></span>
+                          </article>
+                          <article class="free">
+                            <span></span>
                           </article>
 
                         </article>
@@ -385,10 +388,13 @@
                         <article class="info-current-card-button middle">
 
                           <article class="show-space-selected">
+                            <article class="youSpace">
+                              <span></span>
+                            </article>
 
                             <article class="container">
                               <span class="big-text"></span>
-                              <span></span>
+                              <span class="unit"></span>
 
                             </article>
 
@@ -711,48 +717,25 @@
 
                 <article class="box-current-plan fr-box">
 
-                  <article class="box-current-plan-top">
+                  <article class="title-card">
                     <span></span>
                   </article>
-
-                  <article class="box-current-plan-middle">
-
-
-                    <article class="free-info">
-                      <article class="info-plan-premium">
-                        <article class="left">
-                          <span></span>
-                        </article>
-                        <article class="middle">
-                          <article class="top">
-                            <span></span>
-                          </article>
-                          <article class="bottom">
-                            <span></span>
-                          </article>
-                        </article>
-                        <article class="right">
-                          <article class="top">
-                            <span></span>
-                          </article>
-                          <article class="bottom">
-                            <span class="big-text"></span>
-                            <span></span>
-                          </article>
-                        </article>
-
-                      </article>
-                    </article>
-
-
-                  </article>
-
-                  <article class="box-current-plan-bottom">
-                    <button class="ui-btn  nextTab accept moreInfo pointer">
+                  <article class="content-card">
+                    <article class="info">
+                      <span class="quantity"></span>
                       <span></span>
-                    </button>
+                    </article>
+                    <article class="price">
+                      <span></span>
+                    </article>
                   </article>
 
+
+                  <article class="bottom-card">
+                    <article class="ui-btn moreInfo nextTab">
+                      <span></span>
+                    </article>
+                  </article>
 
                 </article>
 
@@ -841,15 +824,18 @@
 
                     <article class="info-current-card">
 
-                      <article class="info-current-card-left">
+                      <<article class="info-current-card-left">
                         <article class="info-current-quantity">
 
-                          <article class="quantity">
+                          <article class="quantity no-free hidden">
                             <span></span>
                           </article>
-                          <article class="quantity-container">
+                          <article class="quantity-container no-free hidden">
                             <span class="top"></span>
                             <span class="bottom"></span>
+                          </article>
+                          <article class="free">
+                            <span></span>
                           </article>
 
                         </article>
@@ -868,11 +854,13 @@
                         <article class="info-current-card-button middle">
 
                           <article class="show-space-selected">
+                            <article class="youSpace">
+                              <span></span>
+                            </article>
 
                             <article class="container">
                               <span class="big-text"></span>
-                              <span></span>
-
+                              <span class="unit"></span>
                             </article>
 
                           </article>
@@ -1137,33 +1125,35 @@
 
     <section class="preferences-bottom-content account">
 
-      <!--
-
-      <article class="preferences-bottom-content-title">
-        <article class="title-icon">
-          <article class="title-icon-figure">
-          </article>
-        </article>
-        <article class="preferences-bottom-title">
-          <span></span>
-        </article>
-      </article>
-    -->
-
       <article class="preferences-bottom-content-avatar">
         <article class="preferences-account-top">
 
-            <figure class="preferences-avatar-container">
-                <canvas class="preferences-account-avatar" width="148px" height="148px"></canvas>
-                <figure class="preferences-account-image"></figure>
-            </figure>
+            <article class="avatar-photo">
+              <article class="preferences-avatar-container wz-avatar-uploader-start">
+                  <canvas class="preferences-account-avatar" width="148px" height="148px"></canvas>
+                  <figure class="preferences-account-image"></figure>
+                  <article class="avatar-edit">
+                      <span></span>
+                  </article>
+              </article>
+            </article>
 
-            <span class="avatar-edit wz-avatar-uploader-start"></span>
+            <article class="avatar-info">
+              <article class="info-username">
+                <span></span>
+              </article>
+              <article class="info-name">
+                <span></span>
+              </article>
+            </article>
 
         </article>
       </article>
 
       <article class="bottom-account-card">
+        <article class="header">
+          <span></span>
+        </article>
 
         <article class="account-card username">
           <article class="card-content">
@@ -1199,7 +1189,8 @@
         </article>
 
 
-        <article class="account-card deleteAccount">
+
+        <article class="account-card name">
           <article class="card-content">
             <article class="left">
               <span></span>
@@ -1212,190 +1203,9 @@
 
       </article>
 
-        <!--
-        <span class="preferences-bottom-title account"></span>
-        <span class="preferences-bottom-description account"></span>
-
-        <article class="preferences-account-top">
-
-            <figure class="preferences-avatar-container">
-                <canvas class="preferences-account-avatar" width="148px" height="148px"></canvas>
-                <figure class="preferences-account-image"></figure>
-            </figure>
-
-            <span class="avatar-edit wz-avatar-uploader-start"></span>
-
-        </article>
-
-        <section class="preferences-bottom-input-containter">
-        <article class="preferences-bottom-container ">
-          <article class="preferences-bottom-label">
-            <span class="preferences-bottom-labelUsername"></span>
-          </article>
-        -->
-
-          <!--article class="preferences-bottom-input top account-username ui-input-search">
-              <article class="preferences-bottom-input-container">
-                <i></i>
-                <input type="text" />
-                <i class="preferences-input-status"></i>
-              </article>
-          </article -->
-          <!--
-          <section class="ui-input-search account-username">
-            <figure class="input-icon user-icon search-icon">
-              <i></i>
-            </figure>
-            <input>
-            <figure class="delete-content">
-              <i></i>
-            </figure>
-          </section>
-
-        </article>
-
-        <article class="preferences-bottom-container ">
-          <article class="preferences-bottom-label">
-            <span class="preferences-bottom-labelMail"></span>
-          </article>
-        -->
-
-          <!--article class="preferences-bottom-input bottom account-mail ui-input-search">
-              <article class="preferences-bottom-input-container">
-                <i></i>
-                <input type="text" />
-                <i class="preferences-input-status"></i>
-              </article>
-          </article>
-        </article -->
-
-        <!--
-        <section class="ui-input-search account-mail">
-          <figure class="input-icon mail-icon search-icon">
-            <i></i>
-          </figure>
-          <input>
-          <figure class="delete-content">
-            <i></i>
-          </figure>
-        </section>
-      </section>
-
-        <section class="preferences-account-buttons">
-
-            <article class="preferences-button account change-password ui-btn">
-                <article class="preferences-account-button-container">
-                  <span class="preferences-account-button"></span>
-                </article>
-            </article>
-
-            <article class="preferences-button account unactive save-info">
-              <article class="preferences-account-button-container">
-                <span class="preferences-account-button"></span>
-              </article>
-            </article>
-        </section>
-
-      -->
     </section>
 
     <!-- ACCOUNT ZONE FINISH -->
-
-    <!-- PASSWORD ZONE START -->
-
-    <section class="preferences-bottom-content password">
-
-        <span class="preferences-bottom-title password"></span>
-        <span class="preferences-bottom-description password"></span>
-
-        <article class="preferences-bottom-password-container ">
-
-          <article class="preferences-bottom-labelPassword">
-            <span class="preferences-bottom-labelCurrentPassword labelPassword"></span>
-            <a class="preferences-bottom-forgetPassword forgetPassword" href="https://www.inevio.com/forgot" target="_blank"></a>
-          </article>
-
-
-          <!-- article class="preferences-bottom-input top password-current ui-input-search">
-              <i></i>
-              <input type="password" />
-              <i class="preferences-input-status"></i>
-          </article -->
-          <section class="ui-input-search password-current">
-            <figure class="input-icon pass-icon search-icon">
-              <i></i>
-            </figure>
-            <input type="password">
-            <figure class="delete-content">
-              <i></i>
-            </figure>
-          </section>
-
-
-          <article class="preferences-bottom-labelPassword">
-            <span class="preferences-bottom-labelNewPassword labelPassword"></span>
-          </article>
-
-
-          <!-- article class="preferences-bottom-input middle password-new ui-input-search">
-              <i></i>
-              <input type="password" />
-              <i class="preferences-input-status"></i>
-          </article -->
-
-          <section class="ui-input-search password-new">
-            <figure class="input-icon repeatPass-icon search-icon">
-              <i></i>
-            </figure>
-            <input type="password">
-            <figure class="delete-content">
-              <i></i>
-            </figure>
-          </section>
-
-          <article class="preferences-bottom-labelPassword">
-            <span class="preferences-bottom-labelConfirmPassword labelPassword"></span>
-          </article>
-
-          <!-- article class="preferences-bottom-input bottom password-confirm ui-input-search">
-              <i></i>
-              <input type="password" />
-              <i class="preferences-input-status"></i>
-          </article -->
-
-          <section class="ui-input-search password-confirm">
-            <figure class="input-icon confirmPass-icon search-icon">
-              <i></i>
-            </figure>
-            <input type="password">
-            <figure class="delete-content">
-              <i></i>
-            </figure>
-          </section>
-
-
-
-        </article>
-
-        <section class="preferences-account-buttons">
-
-            <article class="preferences-button account cancel-password ui-btn">
-                <article class="preferences-account-button-container">
-                  <span class="preferences-account-button"></span>
-                </article>
-            </article>
-
-            <article class="preferences-button account unactive save-password ui-btn accept">
-              <article class="preferences-account-button-container">
-                <span class="preferences-account-button"></span>
-              </article>
-            </article>
-
-        </section>
-
-    </section>
-
-    <!-- PASSWORD ZONE FINISH -->
 
     <!-- SOCIAL NETWORKS ZONE START -->
 
@@ -1753,7 +1563,7 @@
                 </article>
               </article>
 
-              <article class="theme-card dark">
+              <article class="theme-card dark block">
                 <article class="title">
                   <span></span>
                 </article>
@@ -1772,14 +1582,12 @@
             <article class="selectWallpaper-containter">
 
 
-              <article class="selectWallpaper-content wz-scroll">
-                <article class="preferences-wallpaper-upload wz-wallpaper-uploader-start ui-btn">
+              <article class="selectWallpaper-content">
+                <article class="preferences-wallpaper-upload wz-wallpaper-uploader-start">
+                  <i class="progress"></i>
+                  <article class="upload-button">
 
-                    <figure class="preferences-upload-background"></figure>
-                    <figure class="preferences-upload-uploading"></figure>
-                    <figure class="preferences-upload-icon"></figure>
-
-                    <span></span>
+                  </article>
 
                 </article>
 
@@ -1865,11 +1673,11 @@
 
     </section>
 
+
     <!-- INVITE ZONE FINISH -->
 
     <!-- ABOUT ZONE START -->
   <!--
-
     <section class="preferences-bottom-content about">
 
         <img src="https://static.inevio.com/app/374/logo.png" />
@@ -1884,5 +1692,78 @@
     </section>
 -->
     <!-- ABOUT ZONE FINISH -->
+
+</section>
+
+<section class="popup-container wz-dragger">
+
+  <article class="popup">
+
+      <article class="header wz-dragger">
+          <article class="title">
+            <span></span>
+          </article>
+          <article class="close pointer">
+            <figure>
+            </figure>
+          </article>
+      </article>
+
+
+      <article class="content">
+        <article class="old type-input">
+          <article class="title">
+            <span class="title-txt"></span>
+            <a class="forgetPassword-txt pointer" href="https://www.horbito.com/forgot" target="_blank"></a>
+          </article>
+
+          <input class="old-input input"></input>
+
+        </article>
+        <article class="new type-input">
+
+          <article class="title">
+            <span></span>
+          </article>
+
+          <input class="new-input input"></input>
+
+        </article>
+
+        <article class="repeat-new type-input">
+
+          <article class="title">
+            <span></span>
+          </article>
+
+          <input class="repeat-input input" type="password"></input>
+
+        </article>
+
+        <!-- Add class to password-security one, two, three or four -->
+        <article class="password-security">
+
+          <article class="password-security-one security-block">
+          </article>
+
+          <article class="password-security-two security-block">
+          </article>
+
+          <article class="password-security-three security-block">
+          </article>
+
+          <article class="password-security-four security-block">
+          </article>
+
+        </article>
+      </article>
+
+      <article class="footer">
+        <article class="right ui-btn save block">
+            <span></span>
+        </article>
+      </article>
+
+  </article>
 
 </section>
