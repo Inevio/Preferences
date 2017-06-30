@@ -81,6 +81,7 @@
     "dolarMonthMinus"   :  "$/mes",
     "perMonth"         :  "/mes",
     "payDay"           :  "Siguiente pago el ",
+    "premiumPlan"     :"Plan premium ",
 
     "partPayDay"      : [
       "Se cobra el ",
@@ -153,6 +154,7 @@
     "changePassword"     : "Contraseña",
     "incorrectPass"      : "Contraseña incorrecta",
     "deleteAccount"      : "Borrar cuenta",
+    "deleteAccountDescription"  : "Si ya no quieres usar tu cuenta de horbito, puedes desactivarla. Todos sus archivos se perderán.",
     "saveChanges"        : "Guardar Cambios",
     "usernameChanged"    : "Nombre de usuario cambiado",
     "usernameChanged2"   : "Tu nombre de usuario ha sido cambiado por",
