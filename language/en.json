@@ -83,6 +83,7 @@
     "dolarMonthMinus"   :  "$/month",
     "perMonth"         :  "/month",
     "payDay"           :  "The next payment ",
+    "premiumPlan"     :"Premium plan ",
     "partPayDay"      : [
       "Is charged at ",
       " of the next month."
@@ -150,6 +151,7 @@
     "changePassword"     : "Password",
     "incorrectPass"      : "Incorrect password",
     "deleteAccount"      : "Delete account",
+    "deleteAccountDescription" : "If you no longer want to use your horbito account, you can deactivate it. All your files will be lost.",
     "saveChanges"        : "Save Changes",
     "usernameChanged"    : "Username changed",
     "usernameChanged2"   : "Your username has been changed to",

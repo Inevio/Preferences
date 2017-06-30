@@ -164,8 +164,10 @@
       "darkHorbito": '#252525',
       "gray1": '#717171',
       "gray2": '#9a9aa2',
+      "gray3":  '#f3f3f3',
       "lightGray": '#f9f9fe',
       "whiteHorbito ": '#f7f7f7'
+
     }
 
     inevioPlans.push(plan0);
@@ -707,8 +709,7 @@
       $('.space .pr-box').removeClass('hidden');
       $('.pr-box .box-current-plan-top').find('span').text(lang.activePlan);
       $('.pr-box .box-current-plan-bottom').find('span').text(lang.manage);
-      $('.pr-box .box-current-plan-middle .premium-info .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra );
-      $('.pr-box .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus );
+      $('.pr-box .box-current-plan-middle .premium-info span').text(lang.premiumPlan + api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra +  userLocal.actualPrice + lang.dolarMonthMinus);
       var fecha = new Date(userLocal.payDay);
       $(  '.pr-box .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
     };
@@ -1792,7 +1793,7 @@
             $('.minus-icon').addClass('minusStorage');
             $('.'+currentTab+ ' .info-current-quantity .no-free').removeClass('hidden');
             $('.'+currentTab+ ' .info-current-quantity .free').addClass('hidden');
-            $('.'+currentTab+ ' .youSpace span').addClass('hidden');
+            //$('.'+currentTab+ ' .youSpace span').addClass('hidden');
           }
 
           if(userLocal.activePlan == activePlan){
@@ -1885,7 +1886,7 @@
             $('.more button').addClass('block');
             minusSpaceCondition = false;
             $('.minusStorage').addClass('block');
-            $('.'+currentTab+ ' .youSpace span').removeClass('hidden');
+            //$('.'+currentTab+ ' .youSpace span').removeClass('hidden');
             $('.'+currentTab+ ' .minus-icon').removeClass('minusStorage');
             $('.'+currentTab+ ' .info-current-quantity .no-free').addClass('hidden');
             $('.'+currentTab+ ' .info-current-quantity .free').removeClass('hidden');
@@ -3002,12 +3003,28 @@
 
     var loadCanvasCake = function(canvas,context, x, y, radius, porcentaje, tiempo){
 
+      porcentaje = porcentaje- .025;
+
+      if(porcentaje < 0.041111 && porcentaje != 0 ){
+        porcentaje = 0.042;
+      }else if (porcentaje <= 0){
+        porcentaje = 0;
+      }else if (porcentaje > 1 - 0.025){
+        porcentaje = 1 - 0.025
+      }
+
+
+
       if(tiempo == null){
         tiempo = 200;
       }
       var curPerc = 0;
       var circ = Math.PI * 2;
       var quart = Math.PI / 2;
+      var circle1 = {
+             xCenter : (x + radius * Math.cos(((circ) * 0) - quart + 0.12)),
+             yCenter : (y + radius * Math.sin(((circ) * 0) - quart + 0.12)),
+         }
 
       var xCoordinates = {
         x1 : 0,
@@ -3022,52 +3039,59 @@
 
        context.beginPath();
       context.lineWidth = 25;
-      context.strokeStyle = COLORS.gray1;
+      context.strokeStyle = COLORS.gray3;
 
       function animate(current) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.beginPath();
-        context.arc(x, y, radius, -(quart), ((circ) * current) - quart, true);
-        context.stroke();
-        xCoordinates.xCenter = (x + radius * Math.cos(((circ) * current) - quart + 0.01));
-        yCoordinates.yCenter = (y + radius * Math.sin(((circ) * current) - quart + 0.01));
-
-        xCoordinates.x1 = (x + (radius-12) * Math.cos(((circ) * current) - quart));
-        xCoordinates.x2 = (x + (radius+12) * Math.cos(((circ) * current) - quart));
-
-        yCoordinates.y1 = (y + (radius-12) * Math.sin(((circ) * current) - quart));
-        yCoordinates.y2 = (y + (radius+12) * Math.sin(((circ) * current) - quart));
-        context.save();
-        context.beginPath();
+         context.clearRect(0, 0, canvas.width, canvas.height);
 
 
-            var radius2 = Math.abs(Math.sqrt((xCoordinates.x1 - xCoordinates.xCenter)*(xCoordinates.x1 - xCoordinates.xCenter) + (yCoordinates.y1 - yCoordinates.yCenter)*(yCoordinates.y1 - yCoordinates.yCenter)));
-            var startAngle = Math.atan2(yCoordinates.y1 - yCoordinates.yCenter, xCoordinates.x1 - xCoordinates.xCenter);
-            var endAngle   = Math.atan2(yCoordinates.y2 - yCoordinates.yCenter, xCoordinates.x2 - xCoordinates.xCenter);
+         context.beginPath();
+         context.arc(x, y, radius, -(quart - .1), ((circ) * current) - quart, true);
+         context.stroke();
+         context.save();
+
+         xCoordinates.xCenter = (x + radius * Math.cos(((circ) * current) - quart + 0.01));
+         yCoordinates.yCenter = (y + radius * Math.sin(((circ) * current) - quart + 0.01));
+
+         xCoordinates.x1 = (x + (radius-12) * Math.cos(((circ) * current) - quart));
+         xCoordinates.x2 = (x + (radius+12) * Math.cos(((circ) * current) - quart));
+
+         yCoordinates.y1 = (y + (radius-12) * Math.sin(((circ) * current) - quart));
+         yCoordinates.y2 = (y + (radius+12) * Math.sin(((circ) * current) - quart));
+
+          var radius2 = Math.abs(Math.sqrt((xCoordinates.x1 - xCoordinates.xCenter)*(xCoordinates.x1 - xCoordinates.xCenter) + (yCoordinates.y1 - yCoordinates.yCenter)*(yCoordinates.y1 - yCoordinates.yCenter)));
+          var startAngle = Math.atan2(yCoordinates.y1 - yCoordinates.yCenter, xCoordinates.x1 - xCoordinates.xCenter);
+          var endAngle   = Math.atan2(yCoordinates.y2 - yCoordinates.yCenter, xCoordinates.x2 - xCoordinates.xCenter);
+
+         context.beginPath();
+         context.lineWidth = 0.01;
+         context.arc((xCoordinates.x1 + xCoordinates.x2)/2,(yCoordinates.y1 + yCoordinates.y2)/2,radius2, endAngle,startAngle);
+         context.globalCompositeOperation = 'destination-out';
+         context.globalAlpha=1;
+         context.fill();
+         context.stroke();
+
+         context.beginPath();
+         context.lineWidth = 0.01;
+         context.arc(circle1.xCenter,circle1.yCenter,radius2, 0.53*Math.PI, 1.53*Math.PI);
+         context.globalCompositeOperation = 'destination-out';
+         context.globalAlpha=1;
+         context.fill();
+         context.stroke();
+
+         context.restore();
 
 
+           curPerc++;
 
-        context.lineWidth = 0.01;
-        context.arc((xCoordinates.x1 + xCoordinates.x2)/2,(yCoordinates.y1 + yCoordinates.y2)/2,radius2, endAngle,startAngle);
-        context.globalCompositeOperation = 'destination-out';
-        context.globalAlpha=1;
-        context.fill();
-
-
-        context.stroke();
-        context.restore();
-
-
-          curPerc++;
-
-          if (curPerc < porcentaje*tiempo) {
-              requestAnimationFrame(function () {
-                  animate(curPerc / tiempo)
-              });
-          }
-      }
+           if (curPerc < porcentaje*tiempo) {
+               requestAnimationFrame(function () {
+                   animate(curPerc / tiempo)
+               });
+           }
+       }
       console.log(porcentaje);
-      if (porcentaje == 0){
+      if (porcentaje < 0.01){
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.beginPath();
         context.arc(x, y, radius, 0*Math.PI, 2*Math.PI, true);
@@ -3509,6 +3533,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $('.config .backup .content-description span' , win).text( lang.backupDescription );
 
       $('.config .deleteAccount .title span' , win).text( lang.deleteAccount );
+      $('.config .deleteAccount .body span' , win).text( lang.deleteAccountDescription );
       $('.config .deleteAccount .delete span' , win).text( lang.delete );
 
       $('.config .ui-btn span').text(lang.download);
@@ -3548,7 +3573,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
       if(infoSubscriptions.currentPlan != null){
         if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
-          $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(lang.unlimitedStorage);
+          $(  '.space-premium .box-current-plan-middle .premium-info span').text(lang.premiumPlan + lang.unlimitedStorage);
           $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
           $(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
         }
@@ -3630,8 +3655,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
       $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
-      $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra );
-      $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus );
+      $(  '.space-premium .box-current-plan-middle .premium-info span').text(lang.premiumPlan + api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra +  userLocal.actualPrice + lang.dolarMonthMinus);
       var fecha = new Date(userLocal.payDay);
       $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
     };
