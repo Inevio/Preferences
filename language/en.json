@@ -53,6 +53,7 @@
     "needMoreSpace"    :  "Need more space?",
     "priceExtra"       :  "extra for just $1/mo",
     "manage"           :  "Manage",
+    "price"           : "Price",
     "increaseStorage"  :  "Increase your storage",
     "currentPlan"      :  "Actual plan",
     "totalSpace"       :  "TOTAL SPACE",

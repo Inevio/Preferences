@@ -168,13 +168,13 @@ button {
 }
 
 .summary-subtitle {
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 900;
 }
 
 .summary-subtitle-big {
   font-size: 21px;
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .wz-view-menu-group {
@@ -873,6 +873,7 @@ button {
       position: relative;
       top: 21px;
       left: -12px;
+      margin: 0px;
     }
     .content-card {
       height: 180px;
@@ -1210,11 +1211,18 @@ button {
     height: 244px;
 
   }
+  .small-box-hdd{
+    span{
+      margin-left: 11px;
+    }
+  }
   .info-options {
     .options-top {
       display: block;
       text-align: left;
-      margin-bottom: 20px;
+      position: relative;
+      top: 4px;
+      padding: 0px;
       .right {
         text-align: right;
       }
@@ -1222,32 +1230,77 @@ button {
         text-align: left;
       }
       .top {
-        display: flex;
         .right {
-          font-weight: normal;
-          padding: 4px 0px 0px 40px;
+          font-weight: bold;
+          position: relative;
+          top: -16px;
+          right: 24px;
+          font-size: 17px;
         }
         .left {
           font-weight: bold;
-          font-size: 18px;
-          width: 160px;
+          font-size: 20px;
+          position: relative;
+          left: 23px;
         }
       }
       .bottom {
-        font-size: 14px;
-        margin-top: 10px;
+        font-size: 17px;
+        position: relative;
+        top: 21px;
+        left: 22px;
+        font-weight: bold;
       }
     }
     .options-middle {
       text-align: left;
+      border-bottom: 1px dashed #252525;
+      border-top: 1px dashed #252525;
+      color: #0071f6;
+      position: relative;
+      left: 18px;
+      width: 291px;
+      top: 48px;
+      height: 64px;
+      margin: 0px;
+      padding: 0px;
+      span{
+        font-size: 17px;
+        font-weight: 900;
+        position: relative;
+        top: 25px;
+        left: 5px;
+      }
     }
     .options-bottom {
       font-weight: bold;
       text-align: left;
-      margin-top: 20px;
+      position: relative;
+      top: 70px;
+      width: 333px;
+      padding: 0px;
+
+      .top{
+        position: relative;
+        left: 25px;
+      }
       .bottom {
+        position: relative;
+        left: 25px;
+        top: 12px;
+        font-weight: 900;
         font-size: 18px;
-        margin-top: 10px;
+
+        .summary-subtitle{
+          position: relative;
+        }
+        .summary-subtitle-amount{
+          position: relative;
+          right: -67px;
+
+        }
+
+
       }
     }
   }
@@ -1283,6 +1336,9 @@ button {
         box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
         color: @darkHorbito;
         border-radius: 6px;
+        position: relative;
+        top: 17px;
+        right: 7px;
         .number-card {
           margin-right: 20px;
           margin-left: 20px;
@@ -1291,16 +1347,19 @@ button {
           color: @blueHorbito;
         }
         .delete-card {
-          font-size: 12px;
-          padding-top: 4px;
+          font-size: 13px;
+          padding-top: 3px;
           color: @gray1;
           cursor: pointer;
+          font-weight: bold;
         }
       }
       .info-current-payment {
-        padding: 20px 10px;
+        padding: 0px 1px;
         font-size: 14px;
         color: @gray1;
+        position: relative;
+        top: 55px;
       }
     }
     .info-current-without-card-bottom {
@@ -2577,6 +2636,7 @@ button {
           padding: 3px;
           top: 35px;
           left: 23px;
+          text-align: center;
         }
         .premium-info {
           font-weight: bolder;

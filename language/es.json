@@ -53,6 +53,7 @@
     "needMoreSpace"    :  "¿Necesitas mas espacio?",
     "priceExtra"       :  "extra por solo 1$/mes",
     "manage"           :  "Gestionar",
+    "price"           : "Precio",
     "increaseStorage"  :  "Aumenta tu espacio",
     "currentPlan"      :  "Plan actual",
     "totalSpace"       :  "ESPACIO TOTAL",
