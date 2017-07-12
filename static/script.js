@@ -3574,8 +3574,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       if(infoSubscriptions.currentPlan != null){
         if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
           $(  '.space-premium .box-current-plan-middle .premium-info span').text(lang.premiumPlan + lang.unlimitedStorage);
-          $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
-          $(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
+          //$(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
+          //$(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
         }
       }
 
@@ -3706,16 +3706,29 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       }else{
         $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + new Date(userLocal.payDay).getDate() + lang.partPayDay[1]);
       }
-      $(  '.modify-premium .info-current-plan .options-bottom .top').find('span').text(lang.totalStorageMayus);
-      $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
+      $(  '.modify-premium .info-current-plan .options-top .top .left span').text(lang.currentPlan);
+      $(  '.modify-premium .info-current-plan .options-top .top .right span').text(lang.modify);
+      if(userLocal.customPlan == true){
+        $(  '.modify-premium .info-current-plan .options-top .bottom span').text(lang.premiumPlan +  lang.unlimitedStorage);
+        $(  '.modify-premium .info-options .options-bottom .bottom .summary-subtitle-space').text(lang.unlimitedStorage);
+
+
+      }else{
+        $(  '.modify-premium .info-current-plan .options-top .bottom span').text(lang.premiumPlan +  inevioPlans[listPlans.indexOf(userLocal.activePlan)].name + lang.extra);
+        $(  '.modify-premium .info-options .options-bottom .bottom .summary-subtitle-space').text(api.tool.bytesToUnit(userLocal.totalStorage));
+      }
       $(  '.modify-premium .number-card').find('span').text("xxxx - xxxx - xxxx - " + userLocal.card.number);
-      $(  '.modify-premium .delete-card').find('span').text(lang.delete);
+      $(  '.modify-premium .delete-card').find('span').text(lang.change);
       $(  '.modify-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
       $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
-      $(  '.modify-premium .info-options .options-top .bottom').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus);
-      $(  '.modify-premium .info-options .options-top .top .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra);
-      $(  '.modify-premium .info-options .options-top .top .right').find('span').text(lang.modify);
-      $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.delete);
+
+      $(  '.modify-premium .info-options .options-bottom .top .subtitle-space').text(lang.space);
+      $(  '.modify-premium .info-options .options-bottom .top .subtitle-price').text(lang.price);
+      $(  '.modify-premium .info-options .options-bottom .bottom .summary-subtitle-amount').text(userLocal.actualPrice + lang.dolarMonthMinus);
+
+
+
+      $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.change);
       $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.actualPrice + lang.payParagraph[1]+ new Date(userLocal.payDay).getDate() + lang.payParagraph[2]);
       $(  '.modify-premium .info-current-card-top').find('span').text(lang.creditCard);
       $(  '.modify-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
