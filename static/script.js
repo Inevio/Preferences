@@ -1388,7 +1388,7 @@
 
             }
 
-            request( 'POST', 'https://restbeta.horbito.com/payment/addCard', {
+            request( 'POST', 'https://rest.horbito.com/payment/addCard', {
 
               token : response.id
 
@@ -1450,7 +1450,7 @@
             console.log("Confirm clicked");
 
 
-            request( 'POST', 'https://restbeta.horbito.com/payment/unsubscribe' )
+            request( 'POST', 'https://rest.horbito.com/payment/unsubscribe' )
 
             .done( function(){
               loadLoading();
@@ -1571,7 +1571,7 @@
                 }
 
                 userLocal.card.id = response.id;
-                request( 'POST', 'https://restbeta.horbito.com/payment/addCard', {
+                request( 'POST', 'https://rest.horbito.com/payment/addCard', {
 
                   token : response.id
 
@@ -1887,7 +1887,7 @@
               return;
 
             }
-            request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
+            request( 'POST', 'https://rest.horbito.com/payment/subscribe', {
 
               token : response.id,
               plan  : activePlan,
@@ -2755,7 +2755,7 @@ var resetInputVal = function(){
 
 var unsubscribe = function(){
 
-  request( 'POST', 'https://restbeta.horbito.com/payment/unsubscribe' ).done( function(){
+  request( 'POST', 'https://rest.horbito.com/payment/unsubscribe' ).done( function(){
 
     console.log("unsubscribe OK");
 
@@ -2770,7 +2770,7 @@ var removeCard = function(){
 
 
 
-  request( 'POST', 'https://restbeta.horbito.com/payment/removeCard', {
+  request( 'POST', 'https://rest.horbito.com/payment/removeCard', {
 
     card  : userLocal.card.id
 
@@ -2878,7 +2878,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
         }
 
-        request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
+        request( 'POST', 'https://rest.horbito.com/payment/subscribe', {
 
           token : response.id,
           plan  : activePlan,
@@ -2903,7 +2903,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
 
     var changePlan = function(newPlan, context){
 
-          request( 'POST', 'https://restbeta.horbito.com/payment/subscribe', {
+          request( 'POST', 'https://rest.horbito.com/payment/subscribe', {
 
             plan  : newPlan
 
