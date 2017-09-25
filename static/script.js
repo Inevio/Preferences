@@ -188,10 +188,6 @@ shareButton.on( 'click' , function(){
   share();
 });
 
-win.on( 'blur input' , '.mail' , function(){
-  checkMails();
-});
-
 var addMail = function(){
 
   var mail = mailPrototype.clone();
@@ -906,18 +902,18 @@ var changePassword = function(){
 
 var changeUsername = function(){
 
-  var value = ' '+$('.popup .new-input').val();
+  var value = $('.popup .new-input').val();
 
-  api.config.setUsername($('.popup .new-input').val(), function(error){
+  api.config.setUsername( value , function(error){
 
     if(error){
       alert( error);
     }else{
 
-      $('.info-username span').text(value);
+      $('.info-username span').text( '@' + value );
       api.banner()
         .setTitle( lang.usernameChanged )
-        .setText( lang.usernameChanged2 +  value)
+        .setText( lang.usernameChanged2 + value)
         .setIcon( 'https://static.horbito.com/app/3/icon.png' )
         .render();
 
@@ -1149,6 +1145,19 @@ api.upload
 // DOM Events
 win
 
+.on( 'keypress', function(e){
+
+  console.log('key', e);
+  if( e.which == 13 && $( '.popup-container' ).hasClass('active') ) {
+    $('.ui-btn.save').click();
+  }
+
+})
+
+.on( 'blur input' , '.mail' , function(){
+  checkMails();
+})
+
 // This function changes the content when a tab is clicked
 .on( 'mouseup', 'li', function(){
 
@@ -1308,19 +1317,19 @@ win
 
 })
 
-.on('focus', '.hdd input',function(){
+.on( 'focus', '.hdd input',function(){
 
   $(this).parent('.new-input').removeClass('error');
   $(this).parent('.new-input').addClass('active');
 
 })
 
-.on('blur', '.hdd input',function(){
+.on( 'blur', '.hdd input',function(){
   $(this).parent('.new-input').removeClass('active');
   $(this).parent('.new-input').removeClass('error');
 })
 
-.on('blur', '.popup new-input, .popup .new-input',function(){
+.on( 'blur', '.popup new-input, .popup .new-input',function(){
 
   $(this).removeClass('active');
   if(!popup == 'email'){
@@ -1391,7 +1400,7 @@ win
 })
 
 
-.on(  'click', '.finish .loadPremium', function(){
+.on( 'click', '.finish .loadPremium', function(){
 
   //update userLocal and load Premium-mode
   updateUserLocal(true, 0);
@@ -1402,7 +1411,7 @@ win
 
 })
 
-.on(  'click', '.finish-premium .updatePremium', function(){
+.on( 'click', '.finish-premium .updatePremium', function(){
   //
 })
 
@@ -1565,7 +1574,7 @@ win
 
 })
 
-.on(  'click', '.modify-premium .save', function(){
+.on( 'click', '.modify-premium .save', function(){
 
   if(cardStatus == 1){
     return;
@@ -1702,7 +1711,7 @@ win
 
 })
 
-.on(  'click', '.space .nextTab' , function(){
+.on( 'click', '.space .nextTab' , function(){
 
   $('.hdd .more button').addClass('block');
   moreSpaceCondition = true;
@@ -1712,7 +1721,7 @@ win
 
 })
 
-.on(  'click', '.order-premium .validate', function(){
+.on( 'click', '.order-premium .validate', function(){
 
   //console.log(quota.used);
   var stUser = quota.used;
@@ -1915,7 +1924,7 @@ win
 })
 
 
-.on(  'click', '.delete-card', function(){
+.on( 'click', '.delete-card', function(){
 
   //Delete actual card
   resetInputVal();
@@ -1938,7 +1947,7 @@ win
 })
 
 // Increases or reduces the required storage
-.on('click', '.moreStorage', function() {
+.on( 'click', '.moreStorage', function() {
 
   if(moreSpaceCondition && inevioPlans[plansCounter + 1] != null ){
 
@@ -2036,7 +2045,7 @@ win
 
 })
 
-.on(  'click', '.minusStorage' , function(){
+.on( 'click', '.minusStorage' , function(){
 
   if(minusSpaceCondition && inevioPlans[plansCounter - 1] != null ){
 
@@ -2148,7 +2157,7 @@ win
 })
 
 
-.on(  'click',  '.more .nextTab', function(){
+.on( 'click',  '.more .nextTab', function(){
 
   resetInputStatus();
   $('.order .secure-by-stripe').removeClass('hidden');
@@ -2162,7 +2171,7 @@ win
 
 })
 
-.on(  'click', '.addCard' , function(){
+.on( 'click', '.addCard' , function(){
 
   resetInputStatus();
   if( currentTab == 'modify-premium' ){
@@ -2295,7 +2304,7 @@ win
 
 })
 
-.on('click', '.modify-space .validate', function(){
+.on( 'click', '.modify-space .validate', function(){
 
   if (userLocal.card.id != null) {
     cardStatus = 1;
@@ -2393,7 +2402,7 @@ win
 
 })
 
-.on('click', '.order-premium .back', function(){
+.on( 'click', '.order-premium .back', function(){
 
   resetInputStatus();
   $('.order-premium .secure-by-stripe').addClass('hidden');
@@ -2869,7 +2878,7 @@ win
 
 })
 
-.on(  'click', '.popup .footer .ui-btn', function(){
+.on( 'click', '.popup .footer .ui-btn', function(){
 
   console.log(user);
 
@@ -3006,7 +3015,7 @@ win
 
 })
 
-.on('click', '.new-input .delete-content', function(){
+.on( 'click', '.new-input .delete-content', function(){
   $(this).siblings('input').val('');
 })
 
@@ -3046,7 +3055,7 @@ win
 
 })
 
-.on('click', '.account .card-content .right', function(){
+.on( 'click', '.account .card-content .right', function(){
 
   if($(this).parents('.account-card').hasClass('username')){
     throwPopup('username');
@@ -3063,7 +3072,7 @@ win
 
 })
 
-.on('click', '.popup .close', function(){
+.on( 'click', '.popup .close', function(){
   deletePopup();
 })
 
@@ -3145,7 +3154,7 @@ win
 })
 */
 
-.on('keyup', '.email .popup .new-input', function(){
+.on( 'keyup', '.email .popup .new-input', function(){
 
   var mail = $(this).val();
 
@@ -3178,7 +3187,20 @@ win
 
 */
 
-.on('keyup', '.popup input', function(){
+.on( 'click' , '.preferences-payment-button' , function(){
+
+  processCardForm()
+  // Prevent the form from submitting with the default action
+  return false
+
+})
+
+.on( 'click' , '.cancel-credit' , function(){
+  removeCard()
+})
+
+
+.on( 'keyup', '.popup input', function(){
 
   if( $('.popup-container').hasClass('password') ){
 
@@ -3195,6 +3217,8 @@ win
   }
 
 })
+
+
 
 // This function fills certain gaps with user's info
 api.system.updateQuota( function( error, quota ){
@@ -3447,18 +3471,6 @@ var request = function( verb, url, data ){
   return promise
 
 }
-
-win
-.on( 'click' , '.preferences-payment-button' , function(){
-
-  processCardForm()
-  // Prevent the form from submitting with the default action
-  return false
-
-})
-.on( 'click' , '.cancel-credit' , function(){
-  removeCard()
-})
 
 /*
 $.when( availablePlans(), listCards() ).done( function( plans, cards ){
