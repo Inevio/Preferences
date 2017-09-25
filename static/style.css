@@ -3295,6 +3295,7 @@ button {
             font-weight: bold;
             border: 2px solid white;
             border-radius: 6px;
+            cursor: pointer;
             .tick {
               display: none;
               z-index: 2;
