@@ -3,7 +3,7 @@
 
     "appName" : "Preferences",
     "hdd"     : "Disk",
-    "space"   : "Space",
+    "space"   : "Storage",
     "account" : "Account",
     "social"  : "Social Networks",
     "config"  : "Configuration",
@@ -14,7 +14,7 @@
     "about"   : "About",
     "wrongPass" : "Unable to save changes, incorrect password.",
 
-    "hddTitle"         : "Space",
+    "hddTitle"         : "Storage",
     "hddDescription"   : "Here you view how much free space you have left",
     "currentUsage"     : "Current usage",
     "moreFeatures"     : "Need More Features?",
