@@ -2582,18 +2582,18 @@ win
 // Shows account content and hides password content when clicked ( Account Tab )
 .on( 'click', '.cancel-password', function(){
 
-    $( 'input', win ).val( '' );
+  $( 'input', win ).val( '' );
 
-    $( '.preferences-bottom-content.password', win )
-      .css( 'display', 'none' )
-      .transition( { opacity : 0 }, 250 );
+  $( '.preferences-bottom-content.password', win )
+    .css( 'display', 'none' )
+    .transition( { opacity : 0 }, 250 );
 
-    $( '.preferences-bottom-content.account', win )
-      .css( 'display', 'block' )
-      .transition( { opacity : 1 }, 250 );
+  $( '.preferences-bottom-content.account', win )
+    .css( 'display', 'block' )
+    .transition( { opacity : 1 }, 250 );
 
-    $( '.account-username input', win ).val( username );
-    $( '.account-mail input', win ).val( mail );
+  $( '.account-username input', win ).val( username );
+  $( '.account-mail input', win ).val( mail );
 
 })
 
