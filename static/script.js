@@ -209,7 +209,7 @@ var share = function(){
     api.banner()
       .setTitle( lang.invitationSentTitle )
       .setText( lang.invitationSentSubtitle )
-      .setIcon( 'https://static.inevio.com/app/3/icon.png' )
+      .setIcon( 'https://static.horbito.com/app/3/icon.png' )
       .render();
     mailList.find('.mail:not(.wz-prototype)').each(function(){
         $(this).removeClass('wrong').val('');
@@ -895,6 +895,7 @@ var changePassword = function(){
       api.banner()
         .setTitle( lang.passwordChanged )
         .setText( lang.passwordChanged2 )
+        .setIcon( 'https://static.horbito.com/app/3/icon.png' )
         .render();
 
     }
@@ -917,6 +918,7 @@ var changeUsername = function(){
       api.banner()
         .setTitle( lang.usernameChanged )
         .setText( lang.usernameChanged2 +  value)
+        .setIcon( 'https://static.horbito.com/app/3/icon.png' )
         .render();
 
     }
@@ -939,6 +941,7 @@ var changeName = function(){
       api.banner()
         .setTitle( lang.nameChanged )
         .setText( lang.nameChanged2 +  value)
+        .setIcon( 'https://static.horbito.com/app/3/icon.png' )
         .render();
     }
 
@@ -959,6 +962,7 @@ var changeMail = function(){
       api.banner()
         .setTitle( lang.mailChanged )
         .setText( lang.mailChanged2 +  value)
+        .setIcon( 'https://static.horbito.com/app/3/icon.png' )
         .render();
 
     }
@@ -2416,6 +2420,7 @@ win
         api.banner()
           .setTitle( lang.usernameChanged )
           .setText( lang.usernameChanged2 + ' ' + username )
+          .setIcon( 'https://static.horbito.com/app/3/icon.png' )
           .render();
 
       }
@@ -2442,6 +2447,7 @@ win
         api.banner()
           .setTitle( lang.mailChanged )
           .setText( lang.mailChanged2 + ' ' + mail )
+          .setIcon( 'https://static.horbito.com/app/3/icon.png' )
           .render();
 
       }
@@ -2569,6 +2575,7 @@ win
         api.banner()
           .setTitle( lang.passwordChanged )
           .setText( lang.passwordChanged2 )
+          .setIcon( 'https://static.horbito.com/app/3/icon.png' )
           .render();
 
       }
