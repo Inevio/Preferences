@@ -4276,3 +4276,4 @@ api.social
 //StartApp
 translateUI();
 loadAppUser();
+$('li.account').trigger('mouseup');
