@@ -708,24 +708,21 @@ button {
     }
   }
   .maxi {
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
     margin: auto;
-    border-radius: 30px;
-    background-color: #2c3238;
-    border: solid 2px #fff;
   }
   .more-icon figure {
-    width: 44px;
+    width: 50px;
     background: url('@static/mas.png') no-repeat;
-    background-size: contain;
-    height: 44px;
+    background-size: 50px 50px;
+    height: 50px;
   }
   .minus-icon figure {
-    width: 44px;
+    width: 50px;
     background: url('@static/menos.png') no-repeat;
-    background-size: contain;
-    height: 44px;
+    background-size: 50px 50px;
+    height: 50px;
   }
   .ui-btn span {
     max-width: none;
@@ -1496,8 +1493,8 @@ button {
           color: @blueHorbito;
           font-size: 42px;
           margin-top: 13px;
-          margin-left: 4px;
-          font-weight: bold;
+          margin-left: 9px;
+          font-weight: 900;
         }
       }
     }
@@ -1543,7 +1540,7 @@ button {
     }
     .big-text {
       font-size: 71px;
-      font-weight: bold;
+      font-weight: 900;
     }
     .youSpace {
       position: relative;
@@ -1555,6 +1552,10 @@ button {
       font-size: 19px;
     }
   }
+}
+
+.unit{
+  font-weight: bold;
 }
 
 .space {
@@ -1656,7 +1657,7 @@ button {
     top: 23px;
     .maxi{
       position: relative;
-      top: 5px;
+      top: 0px;
       left: 11px;
 
     }
@@ -1665,7 +1666,9 @@ button {
       margin-top: 2px;
     }
     .show-space-selected{
+      background-color: white;
       margin-top: 14px;
+      margin-bottom: 14px
     }
   }
 }
