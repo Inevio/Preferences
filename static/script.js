@@ -1147,7 +1147,7 @@ win
 
 .on( 'keypress', function(e){
 
-  console.log('key', e);
+  //console.log('key', e);
   if( e.which == 13 && $( '.popup-container' ).hasClass('active') ) {
     $('.ui-btn.save').click();
   }
