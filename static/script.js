@@ -3228,15 +3228,7 @@ api.system.updateQuota( function( error, quota ){
 
 });
 
-user      = api.system.user();
-avatarUrl = user.avatar.normal;
-mail      = user.mail;
-username  = user.user;
-console.log( api.system.user() );
 
-$( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
-
-socialNetworks();
 
 api.config.getConfiguration( function( error, config ){
 
@@ -3620,8 +3612,10 @@ var setTextPopup = function(type){
     $('.popup .header .title span').text(lang.changeName);
     $('.popup .old .title .title-txt').text(lang.name);
     $('.popup .old .old-input').attr('placeholder',user.name);
+    $('.popup .old .old-input').val(user.name);
     $('.popup .new .title span').text(lang.surname);
     $('.popup .new .new-input').attr('placeholder',user.surname);
+    $('.popup .new .new-input').val(user.surname);
     $('.popup .repeat-new .title span').text(lang.changePassword);
     $('.popup .footer span').text(lang.save);
 
@@ -4043,6 +4037,7 @@ var modifyPRTab = function(){
 
   }else{
 
+    console.log( inevioPlans,userLocal.activePlan, listPlans.indexOf(userLocal.activePlan) );
     $(  '.modify-premium .info-current-plan .options-top .bottom span').text(lang.premiumPlan +  inevioPlans[listPlans.indexOf(userLocal.activePlan)].name + lang.extra);
     $(  '.modify-premium .info-options .options-bottom .bottom .summary-subtitle-space').text(api.tool.bytesToUnit(userLocal.totalStorage));
 
@@ -4286,6 +4281,13 @@ api.social
 });
 
 //StartApp
+user      = api.system.user();
+avatarUrl = user.avatar.normal;
+mail      = user.mail;
+username  = user.user;
+console.log( api.system.user() );
+$( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
+socialNetworks();
 translateUI();
 loadAppUser();
 $('li.account').trigger('mouseup');
