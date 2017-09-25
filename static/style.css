@@ -765,7 +765,7 @@ button {
 }
 
 .preferences-bottom-content.hdd {
-  display: flex;
+  display: none;
   width: auto;
 }
 
