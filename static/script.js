@@ -2618,6 +2618,7 @@ win
 
   e.preventDefault();
   e.stopPropagation();
+  console.log( e );
 
   if( $( this ).hasClass( 'checked' ) ){
 
@@ -2918,15 +2919,21 @@ win
 
 })
 
-.on( 'click', '.selectExtensions .switch', function(){
+.on( 'click', '.selectExtensions .switch', function( e ){
+
+  if( !$( e.target ).is('input') ){
+    return
+  }
 
   var status = $('.selectExtensions .head input')[0].checked;
+
+  console.log( 'entro en switch', e );
 
   api.config.setDisplayExtensions( status, function( error ){
 
     if( error ){
 
-      $('.selectExtensions .head input')[0].checked = true;;
+      $('.selectExtensions .head input')[0].checked = true;
       alert(lang.wrongPass);
 
     }
@@ -3218,8 +3225,6 @@ win
 
 })
 
-
-
 // This function fills certain gaps with user's info
 api.system.updateQuota( function( error, quota ){
 
@@ -3227,8 +3232,6 @@ api.system.updateQuota( function( error, quota ){
   cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
 
 });
-
-
 
 api.config.getConfiguration( function( error, config ){
 
