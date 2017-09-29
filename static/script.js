@@ -884,7 +884,7 @@ var changePassword = function(){
 
     if( error ){
 
-      alert( error );
+      alert( lang.errors.usedUsername.wrongPass );
 
     }else{
 
@@ -907,7 +907,7 @@ var changeUsername = function(){
   api.config.setUsername( value , function(error){
 
     if(error){
-      alert( error);
+      alert( lang.errors.usedUsername );
     }else{
 
       $('.info-username span').text( '@' + value );
@@ -952,7 +952,7 @@ var changeMail = function(){
   api.config.setMail( $('.popup .new-input').val(), function(error){
 
     if(error){
-      alert( error );
+      alert( lang.errors.usedMail );
     }else{
 
       api.banner()
