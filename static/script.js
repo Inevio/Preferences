@@ -884,7 +884,7 @@ var changePassword = function(){
 
     if( error ){
 
-      alert( lang.errors.usedUsername.wrongPass );
+      alert( lang.errors.wrongPassword );
 
     }else{
 
