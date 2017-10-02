@@ -2576,7 +2576,7 @@ button {
       margin: auto 6px;
     }
     .icon-owner-card {
-      background: url('@static/owner-card.png') no-repeat;
+      background: url('@static/user.png') no-repeat;
       background-size: 21px 20px;
       width: 33px;
       height: 20px;
@@ -2590,7 +2590,7 @@ button {
       margin: auto 6px;
     }
     .icon-code-card {
-      background: url('@static/code-card.png') no-repeat;
+      background: url('@static/lock.png') no-repeat;
       background-size: 16px 20px;
       width: 33px;
       height: 20px;
