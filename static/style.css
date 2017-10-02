@@ -2214,7 +2214,7 @@ button {
         .options-middle-left {
           margin-left: 0px;
           text-align: left;
-          width: 135px;
+          width: 145px;
           font-size: 23px;
           font-weight: bold;
           top: 3px;
@@ -2223,7 +2223,7 @@ button {
         .options-middle-right {
           margin-right: 0px;
           text-align: right;
-          width: 135px;
+          width: 125px;
           position: relative;
           top: 7px;
           right: -20px;
