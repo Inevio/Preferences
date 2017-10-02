@@ -2165,7 +2165,7 @@ win
   var total = userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota;
   var price = inevioPlans[listPlans.indexOf(activePlan)].amount;
   $('.order .info-options .options-middle .options-middle-right').text(price + lang.dolarMonthMinus);
-  $('.order .info-options .options-middle .options-middle-left').text( lang.add +  api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota));
+  $('.order .info-options .options-middle .options-middle-left').text( lang.add + ' ' +  api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota));
   $('.order .info-options .options-bottom .bottom .left').text(api.tool.bytesToUnit(total));
   $('.order .info-options .options-bottom .bottom .right').text(price + lang.dolarMonthMinus);
 
@@ -2962,7 +2962,11 @@ win
 
     language = 'en';
 
-    api.config.setLanguage( 'en-en' , function(){
+    api.config.setLanguage( 'en-en' , function( err ){
+
+      if( err ){
+        return
+      }
 
       confirm('¿Desea recargar horbito ahora?', function( o ){
 
@@ -2980,7 +2984,11 @@ win
   }else if( $( this ).hasClass( 'es' ) ){
 
     language = 'es';
-    api.config.setLanguage( 'es-es' , function(){
+    api.config.setLanguage( 'es-es' , function( err ){
+
+      if( err ){
+        return
+      }
 
       confirm('Do you want to reload horbito now?', function(o){
 
