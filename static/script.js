@@ -4245,6 +4245,9 @@ var translateUI = function(){
   $('.preferences-bottom-content .share-text').text(lang.sendInvitations);
   $('.preferences-bottom-content .mail').attr('placeholder' , lang.mailExample);
 
+  $( '.number-card' ).attr( 'placeholder', lang.creditCardOptions.numberCreditCard );
+  $( '.owner-card' ).attr( 'placeholder', lang.creditCardOptions.nameCreditCard );
+
 }
 
 // SOCIAL NETWORKS CODE
