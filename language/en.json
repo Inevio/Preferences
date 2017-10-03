@@ -345,6 +345,11 @@
         "usedMail"      : "The new email address you've introduced is already being used. If you forgot your password just click on 'Forgot?' in the login page.",
         "usedUsername"  : "The new username you've introduced is already being used. Please try with a different username.",
         "wrongPassword" : "The current password you've introduced is incorrect. Please try again."
+    },
+
+    "social" : {
+        "fb"        : "Invite by Facebook",
+        "google"    : "Invite by Google"
     }
 
 
