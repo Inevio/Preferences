@@ -348,6 +348,11 @@
         "usedMail"      : "El nuevo correo que has introducido ya está en uso. Si no recuerdas la contraseña, simplemente haz click en 'Recuperar' en la pantalla de login.",
         "usedUsername"  : "El nuevo nombre de usuario que has introducido ya está en uso. Por favor prueba con otro usuario diferente.",
         "wrongPassword" : "La contraseña actual que has introducido es incorrecta. Por favor vuelve a intentarlo."
+    },
+
+    "social" : {
+        "fb"        : "Invitar con Facebook",
+        "google"    : "Invitar con Google"
     }
 
 }

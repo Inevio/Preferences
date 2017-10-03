@@ -4,6 +4,7 @@ Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 var win = $( this );
 var language = null;
 var user = null;
+var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView
 
 // Clock variable
 var date          = new Date(0);
@@ -74,6 +75,7 @@ var shareButton   = $('.share-button');
 var validMails    = [];
 var MAIL_REGEXP = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/
 
+var myUserID = api.system.user().id;
 var spaceTabs = [
   "space-premium",
   "modify-premium",
@@ -114,6 +116,7 @@ var minusSpaceCondition = true;
 var moreSpaceCondition = true;
 var tabCondition = true;
 var loading = false;
+var url;
 
 var userLocal = {
 
@@ -187,6 +190,36 @@ addMailButton.on( 'click' , function(){
 shareButton.on( 'click' , function(){
   share();
 });
+
+var generateGmailUrl = function(){
+
+  var title;
+  var description;
+
+  api.config.getLanguages( function( error, languages, used ){
+
+    if( used.code === "es" || used.code === "es-es" ){
+
+      title = 'Ven%20a%20la%20nueva%20nube%20conmigo';
+      description = 'He%20estado%20jugando%20un%20rato%20con%20horbito%20y%20tiene%20muy%20buena%20pinta,%20échale%20un%20ojo:%20';
+
+
+    }else if( used.code === "en" || used.code === "en-us" ){
+      
+      title = "Come%20to%20the%20new%20Cloud%20with%20me";
+      description = "I've%20been%20playing%20with%20horbito%20for%20a%20while%20and%20it%20seems%20pretty%20cool,%20check%20it%20out:%20";
+
+    }
+
+    url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&su=' + title + '&body=' + description + 'https://www.horbito.com/register?sender=' + myUserID;
+    return url;
+
+  });
+  
+
+}
+
+var url = generateGmailUrl();
 
 var addMail = function(){
 
@@ -3233,6 +3266,36 @@ win
 
 })
 
+.on( 'click' , '.social-networks .google-button' , function(){
+  
+  var w = 700;
+  var h = 600;
+  var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+  var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+  var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+  var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+  var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+  var top = ((height / 2) - (h / 2)) + dualScreenTop;
+  console.log('abro', url);
+  window.open( url , '', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+
+})
+
+.on( 'click' , '.social-networks .fb-button' , function(){
+
+  if( typeof FB != 'undefined' ){
+
+    FB.ui({
+      method: 'send',
+      link: 'http://www.horbito.com/register?sender=' + myUserID,
+    });
+
+  }
+
+})
+
 // This function fills certain gaps with user's info
 api.system.updateQuota( function( error, quota ){
 
@@ -4256,7 +4319,39 @@ var translateUI = function(){
   $( '.number-card' ).attr( 'placeholder', lang.creditCardOptions.numberCreditCard );
   $( '.owner-card' ).attr( 'placeholder', lang.creditCardOptions.nameCreditCard );
 
+  $( '.social-networks .fb-button span' ).text( lang.social.fb );  
+  $( '.social-networks .google-button span' ).text( lang.social.google );
+
 }
+
+var loadFBApi = function(){
+
+  if( typeof FB == 'undefined' ){
+
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(window.document, 'script', 'facebook-jssdk'));
+
+  }
+
+}
+
+window.fbAsyncInit = function() {
+
+  FB.init({
+    appId      : '425462067838557',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.9' // use graph api version 2.8
+  });
+
+};
 
 // SOCIAL NETWORKS CODE
 api.social
@@ -4304,4 +4399,5 @@ $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarU
 socialNetworks();
 translateUI();
 loadAppUser();
+loadFBApi();
 $('li.account').trigger('mouseup');
