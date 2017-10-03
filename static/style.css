@@ -63,10 +63,8 @@ button {
 }
 
 .new-input {
-  background: #FFF;
-  border: 2px solid #FFF;
+  background: rgba(0,0,0,0.1);
   color: @darkHorbito;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
   .delete-content {
     i {
@@ -115,6 +113,7 @@ button {
   width: 305px;
   input {
     width: 273px;
+    background: none;
   }
 }
 
@@ -122,6 +121,7 @@ button {
   width: 120px;
   input {
     width: 73px;
+    background: none;
   }
 }
 
@@ -129,6 +129,7 @@ button {
   width: 70px;
   input {
     width: 44px;
+    background: none;
   }
 }
 
