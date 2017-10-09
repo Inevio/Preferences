@@ -25,6 +25,7 @@
         "desktop" : {
 
             "primary" : "main",
+            "unique"  : true,
             "service" : [ "networks.js" ],
             "common"  : {
 
