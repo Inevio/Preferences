@@ -13,6 +13,7 @@
     "payment" : "Payment",
     "about"   : "About",
     "wrongPass" : "Unable to save changes, incorrect password.",
+    "reload"    : "Do you want to reload horbito now?",
 
     "hddTitle"         : "Space",
     "hddDescription"   : "Here you view how much free space you have left",

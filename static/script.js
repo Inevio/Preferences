@@ -2534,7 +2534,7 @@
         if( $( this ).hasClass( 'english' ) ){
             api.config.setLanguage( 'en-en' , function(){
 
-              confirm('¿Desea recargar Inevio ahora?', function( o ){
+              confirm(lang.reload, function( o ){
 
                 if (o == true){
                   var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
@@ -2548,7 +2548,7 @@
 
             api.config.setLanguage( 'es-es' , function(){
 
-              confirm('Do you want to reload Inevio now?', function(o){
+              confirm(lang.reload, function(o){
                 if (o == true){
                   var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
                   window.location.reload();

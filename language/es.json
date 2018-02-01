@@ -13,6 +13,7 @@
     "payment" : "Pago",
     "about"   : "Acerca",
     "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
+    "reload"    : "¿Quieres recargar horbito ahora?",
 
     "hddTitle"         : "Espacio",
     "hddDescription"   : "Aquí puedes ver cuanto espacio te queda libre",
