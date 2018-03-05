@@ -163,7 +163,9 @@
 
     var share = function(){
       if (shareButton.hasClass('valid')) {
-        api.user.inviteByMail(validMails);
+        api.user.inviteByMail(validMails, function(){
+          console.log(arguments)
+        });
         api.banner()
           .setTitle( lang.invitationSentTitle )
           .setText( lang.invitationSentSubtitle )
