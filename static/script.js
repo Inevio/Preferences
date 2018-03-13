@@ -169,7 +169,7 @@
         api.banner()
           .setTitle( lang.invitationSentTitle )
           .setText( lang.invitationSentSubtitle )
-          .setIcon( 'https://static.inevio.com/app/3/icon.png' )
+          .setIcon( 'https://static.horbito.com/app/3/icon.png' )
           .render();
         mailList.find('.mail:not(.wz-prototype)').each(function(){
             $(this).removeClass('wrong').val('');
@@ -2043,6 +2043,7 @@
                     api.banner()
                         .setTitle( lang.usernameChanged )
                         .setText( lang.usernameChanged2 + ' ' + username )
+                        .setIcon( api.system.user().avatar.normal )
                         .render();
 
                 }
@@ -2069,6 +2070,7 @@
                     api.banner()
                         .setTitle( lang.mailChanged )
                         .setText( lang.mailChanged2 + ' ' + mail )
+                        .setIcon( api.system.user().avatar.normal )
                         .render();
 
                 }
@@ -2185,6 +2187,7 @@
                     api.banner()
                         .setTitle( lang.passwordChanged )
                         .setText( lang.passwordChanged2 )
+                        .setIcon( api.system.user().avatar.normal )
                         .render();
 
                 }
