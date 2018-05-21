@@ -308,6 +308,13 @@
     "sendInvitations"   : "Enviar invitaciones",
     "mailExample"       : "ejemplo@mail.com",
     "invitationSentTitle"    : "Invitaciones enviadas",
-    "invitationSentSubtitle" : "Tus invitaciones están de camino!"
+    "invitationSentSubtitle" : "Tus invitaciones están de camino!",
+
+    "deleteAccount" : {
+        "title" : "Borrar cuenta",
+        "files" : "Entiendo que perderé todos mis archivos y documentos.",
+        "worlds" : "Entiendo que perderé todos mis mundos de Cosmos.",
+        "chats" : "Entiendo que perderé todas mis conversaciones de Chat."
+    }
 
 }
