@@ -4043,7 +4043,7 @@ span.preferences-card-subscribe-text{
     width: 228px;
     background: url('@static/backup.png') no-repeat;
     background-size: 228px 106px;
-    margin: 65px 0 70px;
+    margin: 65px 0 40px;
 }
 
 
@@ -4052,8 +4052,10 @@ span.preferences-card-subscribe-text{
   height: 65px;
   border-radius: 6px;
   transition: all 0.2s ease;
+}
 
-
+.preferences-bottom-content.backup .delete-account{
+  margin-top: 20px;
 }
 
 .ui-btn.cancel span {
@@ -4364,3 +4366,115 @@ span.preferences-card-subscribe-text{
   background-color: #60b25e;
 }
 /* INVITE ZONE END */
+
+.delete-account-popup{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 297px;
+  height: 306px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,.3);
+  -moz-box-shadow: 0 10px 20px rgba(0,0,0,.3);
+  box-shadow: 0 10px 20px rgba(0,0,0,.3);
+  display: none;
+  text-align: center;
+}
+
+.delete-account-popup.active{
+  display: block;
+}
+
+.delete-account-popup .popup-title{
+  margin: 32px auto 20px auto;
+  font-size: 21px;
+  font-weight: bold;
+  color: #252525;  
+}
+
+.delete-account-popup .options-list{
+  width: ~'calc(100% - 48px)';
+  height: 145px;
+  position: absolute;
+  margin: 10px 24px 0;
+}
+
+.delete-account-popup .option{
+  display: inline-block;
+  margin-bottom : 12px;
+}
+
+.delete-account-popup .option .option-text{
+  float: left;
+  text-align: left;
+  width: ~'calc(100% - 27px)';
+  font-size: 13px;
+  line-height: 1.3em;
+}
+
+.delete-account-popup .delete-button{
+  width: 244px;
+  height: 42px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-color: rgba(254,24,67,0.1);
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.delete-account-popup .delete-button:hover{
+  background-color: rgba(254,24,67,0.2);
+}
+
+.delete-account-popup .delete-button .button-text{
+  color: #fe1843
+}
+
+.delete-account-popup .delete-button.disabled{
+  background-color: #f5f5f6 !important;
+}
+
+.delete-account-popup .delete-button.disabled .button-text{
+  color: #717171 !important;
+}
+
+.delete-account-popup .ui-checkbox{
+  float: left;
+  margin-right: 12px;
+}
+
+.delete-account-popup .ui-checkbox i{
+  left: 0;
+}
+
+.delete-account-popup .close-button{
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 7px;
+  border-radius: 50%;
+}
+
+.delete-account-popup .close-button:hover{
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.delete-account-popup .close-button i{
+  width: 14px;
+  height: 14px;
+  background-image: url('@static/close_popup.png');
+  background-size: 14px 14px;
+  display: inline-block;
+}

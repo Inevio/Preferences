@@ -1,5 +1,7 @@
   Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 
+console.log(lang)
+
     // Variables
     var win = $( this );
     var language = null;
@@ -2584,8 +2586,40 @@
 
     })
 
-    .on( 'click', '.preferences-bottom-content.backup button', function(){
-        api.fs.downloadBackup();
+    .on( 'click', '.preferences-bottom-content.backup .download-backup', function(){
+      api.fs.downloadBackup();
+    })
+
+    .on( 'click', '.preferences-bottom-content.backup .delete-account', function(){
+      $('.delete-account-popup').addClass('active')
+    })
+
+    .on( 'click', '.delete-account-popup .delete-button', function(){
+
+      if($('.options-list .files .ui-checkbox').hasClass('active')
+        && $('.options-list .worlds .ui-checkbox').hasClass('active')
+        && $('.options-list .chats .ui-checkbox').hasClass('active')){
+        //BORRAR CUENTA
+      }
+
+    })
+
+    .on( 'click', '.delete-account-popup .options-list .ui-checkbox', function(e){
+      e.stopPropagation()
+      e.preventDefault()
+      $(this).toggleClass('active')
+      if($('.options-list .files .ui-checkbox').hasClass('active')
+        && $('.options-list .worlds .ui-checkbox').hasClass('active')
+        && $('.options-list .chats .ui-checkbox').hasClass('active')){
+        $('.delete-account-popup .delete-button').removeClass('disabled')
+      }else{
+        $('.delete-account-popup .delete-button').addClass('disabled')
+      }
+    })
+
+    .on( 'click', '.delete-account-popup .close-button', function(){
+      $('.delete-account-popup').removeClass('active')
+      $('.delete-account-popup .ui-checkbox').removeClass('active')
     })
 
 
@@ -2988,7 +3022,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         loadInfoUserSub(infoSubscriptions);
 
         // Translate app
-        $( '.appName').find('span').text(lang.appName);
+        /*$( '.appName').find('span').text(lang.appName);
 
         $( 'li.hdd', win ).text( lang.space ).data( 'type', 'hdd' );
         $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
@@ -3012,21 +3046,6 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         $( '.hdd-plan-space.ultimate', win ).text( lang.ultimate );
         $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
         $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
-
-        //translate hdd zone
-        if (userLocal.info){
-          spacePRTab();
-          modifyPRTab();
-          modifySPTab();
-          orderPRTab();
-          finishPRTab();
-        }
-        else{
-          spaceTab();
-          moreTab();
-          orderTab();
-          finishTab();
-        }
 
         $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
         $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
@@ -3081,6 +3100,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
         $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
         $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
+        $( '.preferences-bottom-delete-account-button.ellipsis', win ).text( lang.deleteAccount.title );
 
         $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
         $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
@@ -3091,9 +3111,22 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         $('.preferences-bottom-content.invite .emails').text(lang.emails);
         $('.preferences-bottom-content.invite .add-mail-text').text(lang.addMail);
         $('.preferences-bottom-content.invite .share-text').text(lang.sendInvitations);
-        $('.preferences-bottom-content.invite .mail').attr('placeholder' , lang.mailExample);
+        $('.preferences-bottom-content.invite .mail').attr('placeholder' , lang.mailExample);*/
 
         // Infinity storage??
+        if (userLocal.info){
+          spacePRTab();
+          modifyPRTab();
+          modifySPTab();
+          orderPRTab();
+          finishPRTab();
+        }
+        else{
+          spaceTab();
+          moreTab();
+          orderTab();
+          finishTab();
+        }
 
         if(infoSubscriptions.currentPlan != null){
           if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
@@ -3106,6 +3139,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       })
 
     };
+
     var spaceTab = function(){
       //console.log(language);
       if (language == 'es'){
@@ -3383,6 +3417,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
     $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
     $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
+    $( '.preferences-bottom-delete-account-button.ellipsis', win ).text( lang.deleteAccount.title );
 
     $('.preferences-bottom-title.payment').text( lang.paymentTitle );
     $('.preferences-bottom-description.payment').text( lang.peymentDesc );
@@ -3405,6 +3440,12 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $('.preferences-bottom-content .add-mail-text').text(lang.addMail);
     $('.preferences-bottom-content .share-text').text(lang.sendInvitations);
     $('.preferences-bottom-content .mail').attr('placeholder' , lang.mailExample);
+
+    $('.delete-account-popup .popup-title').text(lang.deleteAccount.title)
+    $('.delete-account-popup .option.files .option-text').text(lang.deleteAccount.files)
+    $('.delete-account-popup .option.worlds .option-text').text(lang.deleteAccount.worlds)
+    $('.delete-account-popup .option.chats .option-text').text(lang.deleteAccount.chats)
+    $('.delete-account-popup .delete-button .button-text').text(lang.deleteAccount.title)
 
     // SOCIAL NETWORKS CODE
     api.social
