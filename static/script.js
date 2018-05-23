@@ -6,6 +6,8 @@ console.log(lang)
     var win = $( this );
     var language = null;
 
+    var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView
+
     // Clock variable
     var date          = new Date(0);
     var clockInterval = null;
@@ -2599,7 +2601,15 @@ console.log(lang)
       if($('.options-list .files .ui-checkbox').hasClass('active')
         && $('.options-list .worlds .ui-checkbox').hasClass('active')
         && $('.options-list .chats .ui-checkbox').hasClass('active')){
-        //BORRAR CUENTA
+
+        api.config.setAccountDisabled( 'disable', function( err ){
+          if(err) return
+          alert(lang.deleteAccount.alertInfo, function(){
+            window.location = window.location.protocol + '//' + window.location.host + '/logout';
+          })
+          
+        })
+
       }
 
     })
