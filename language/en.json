@@ -312,9 +312,10 @@
     "invitationSentSubtitle" : "Your invitations are on their way!",
 
     "deleteAccount" : {
-        "title" : "Delete account",
-        "files" : "I understand that I'll be loosing all my files and documents.",
-        "worlds" : "I understand that I'll be loosing all my worlds from Cosmos.",
-        "chats" : "I understand that I'll be loosing all my conversations in Chat."
+        "title"     : "Delete account",
+        "files"     : "I understand that I'll be loosing all my files and documents.",
+        "worlds"    : "I understand that I'll be loosing all my worlds from Cosmos.",
+        "chats"     : "I understand that I'll be loosing all my conversations in Chat.",
+        "alertInfo" : "Your account has been disabled and will be deleted within 15 days. To avoid deletion, please login to your account before the above mentioned period of time."
     }
 }
