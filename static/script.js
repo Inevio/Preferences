@@ -2045,7 +2045,7 @@ console.log(lang)
                     api.banner()
                         .setTitle( lang.usernameChanged )
                         .setText( lang.usernameChanged2 + ' ' + username )
-                        .setIcon( api.system.user().avatar.normal )
+                        .setIcon( api.system.workspace().avatar.normal )
                         .render();
 
                 }
@@ -2072,7 +2072,7 @@ console.log(lang)
                     api.banner()
                         .setTitle( lang.mailChanged )
                         .setText( lang.mailChanged2 + ' ' + mail )
-                        .setIcon( api.system.user().avatar.normal )
+                        .setIcon( api.system.workspace().avatar.normal )
                         .render();
 
                 }
@@ -2189,7 +2189,7 @@ console.log(lang)
                     api.banner()
                         .setTitle( lang.passwordChanged )
                         .setText( lang.passwordChanged2 )
-                        .setIcon( api.system.user().avatar.normal )
+                        .setIcon( api.system.workspace().avatar.normal )
                         .render();
 
                 }
@@ -2506,19 +2506,19 @@ console.log(lang)
 
     })
 
-    .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
-
-        api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
-
-            if( error ){
-              $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
-              $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
-              alert(lang.wrongPass);
-            }
-
-        });
-
-    })
+    // .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
+    //
+    //     api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
+    //
+    //         if( error ){
+    //           $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
+    //           $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
+    //           alert(lang.wrongPass);
+    //         }
+    //
+    //     });
+    //
+    // })
 
     .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
 
@@ -2607,7 +2607,7 @@ console.log(lang)
           alert(lang.deleteAccount.alertInfo, function(){
             window.location = window.location.protocol + '//' + window.location.host + '/logout';
           })
-          
+
         })
 
       }
@@ -2643,30 +2643,26 @@ console.log(lang)
 
 
 
-    avatarUrl = api.system.user().avatar.normal;
-    mail      = api.system.user().mail;
-    username  = api.system.user().user;
-
-
-
-
-    console.log( api.system.user() );
+    avatarUrl = api.system.workspace().avatar.normal;
+    mail      = api.system.workspace().email;
+    username  = api.system.workspace().username;
 
     $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
 
     socialNetworks();
 
-    api.config.getConfiguration( function( error, config ){
-
-        if( config.displayExtensions ){
-            $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
-            $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
-        }else{
-            $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
-            $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
-        }
-
-    });
+    // FIXME: file extensions does not work
+    // api.config.getConfiguration( function( error, config ){
+    //
+    //     if( config.displayExtensions ){
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
+    //     }else{
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
+    //     }
+    //
+    // });
 
 
 
@@ -3145,7 +3141,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
             $(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
           }
         }
-        
+
       })
 
     };
@@ -3411,8 +3407,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
     $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
 
-    $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
-    $('.preferences-extensions-display span').text( lang.displayExtensions );
+    // $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
+    // $('.preferences-extensions-display span').text( lang.displayExtensions );
 
     $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
     $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
