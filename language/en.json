@@ -317,5 +317,10 @@
         "worlds"    : "I understand that I'll be loosing all my worlds from Cosmos.",
         "chats"     : "I understand that I'll be loosing all my conversations in Chat.",
         "alertInfo" : "Your account has been disabled and will be deleted within 15 days. To avoid deletion, please login to your account before the above mentioned period of time."
+    },
+
+    "createAccount" : {
+        "title": "Demo accounts can't modify this information",
+        "body": "Make this account yours just by typing your email address inside the popup shown at the bottom right corner of your screen.",
     }
 }

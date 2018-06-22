@@ -871,6 +871,22 @@ console.log(lang)
       }
     };
 
+    var createAccountDialog = function () {
+      let dialog = api.dialog();
+
+      dialog.setTitle(lang.createAccount.title);
+      dialog.setText(lang.createAccount.body);
+      dialog.setButton(0,  wzLang.core.dialogCancel, 'black');
+      dialog.setButton(1, wzLang.core.dialogAccept);
+
+      dialog.render(function(action){
+        if (action) {
+          // FIXME
+          $('input').focus()
+        }
+      });
+    };
+
     // WZ Events
     api.upload
 
@@ -2593,7 +2609,11 @@ console.log(lang)
     })
 
     .on( 'click', '.preferences-bottom-content.backup .delete-account', function(){
-      $('.delete-account-popup').addClass('active')
+      if (api.system.workspace().isDemo) {
+        createAccountDialog();
+      } else {
+        $('.delete-account-popup').addClass('active')
+      }
     })
 
     .on( 'click', '.delete-account-popup .delete-button', function(){
