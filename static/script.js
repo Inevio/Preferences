@@ -2607,7 +2607,7 @@ console.log(lang)
           alert(lang.deleteAccount.alertInfo, function(){
             window.location = window.location.protocol + '//' + window.location.host + '/logout';
           })
-          
+
         })
 
       }
@@ -3145,7 +3145,7 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
             $(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
           }
         }
-        
+
       })
 
     };
@@ -3162,6 +3162,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
       $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
       $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
       $(  '.space .box-current-plan-top').find('span').text(lang.increaseStorage);
+
+      if( !api.system.fullMode() ) $('.space').addClass('fullmode-disabled')
     };
 
     var moreTab = function(){
@@ -3350,7 +3352,11 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
     $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
     $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
-    $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+    if( api.system.fullMode() ){
+        $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+    }else{
+        $( 'li.invite', win ).remove()
+    }
     $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
     $( 'li.payment', win ).text( lang.payment ).data( 'type', 'payment' );
     $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
