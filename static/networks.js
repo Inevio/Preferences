@@ -2,22 +2,23 @@
     // To Do -> No se pueden cachear los permisos?
     var userLocal = null;
     var loadAppUser = function() {
-          wz.config.getSubscriptionStatus(function( err, info ){
-            api.app.storage('infoSubscriptions', info);
-          });
+      let deferred = $.Deferred()
+      api.app.storage('infoSubscriptions', deferred)
+      wz.config.getSubscriptionStatus(function( err, info ){
+        deferred.resolve(info)
+      })
     }
-    loadAppUser();
 
     var getLanguage = function(){
+      let deferred = $.Deferred()
+      api.app.storage('language', deferred)
       api.config.getLanguages( function( error, languages, used ){
-          api.app.storage('language', used.code);
-
-      });
+        deferred.resolve(used.code)
+      })
     };
 
-    getLanguage();
-
-
+    loadAppUser()
+    getLanguage()
 
     api.social
     .on( 'twitterTweet', function( account, tweet ){
