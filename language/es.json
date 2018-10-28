@@ -316,6 +316,11 @@
         "worlds"    : "Entiendo que perderé todos mis mundos de Cosmos.",
         "chats"     : "Entiendo que perderé todas mis conversaciones de Chat.",
         "alertInfo" : "Su cuenta se ha deshabilitado y se borrará en 15 días. Si quiere cancelar el borrado, vuelva a iniciar sesión antes de esos 15 días."
+    },
+
+    "createAccount" : {
+        "title": "Las cuentas demo no pueden modificar esta información",
+        "body": "Haz tuya esta cuenta simplemente introduciendo tu correo en la ventana que aparece en la esquina inferior derecha de tu pantalla."
     }
 
 }
