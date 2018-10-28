@@ -1,7 +1,5 @@
   Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 
-console.log(lang)
-
     // Variables
     var win = $( this );
     var language = null;
@@ -477,7 +475,7 @@ console.log(lang)
 
         $( '.preferences-social-card', win ).children().not( '.preferences-social-title' ).remove();
 
-        api.social.getAccounts( function( error, list ){
+        /*api.social.getAccounts( function( error, list ){
 
             for( var i = 0; i < list.accounts.length; i++ ){
 
@@ -493,7 +491,7 @@ console.log(lang)
 
             }
 
-        });
+        });*/
 
     };
 
@@ -869,6 +867,22 @@ console.log(lang)
           $('.hdd-container').addClass('free-user');
         }
       }
+    };
+
+    var createAccountDialog = function () {
+      let dialog = api.dialog();
+
+      dialog.setTitle(lang.createAccount.title);
+      dialog.setText(lang.createAccount.body);
+      dialog.setButton(0,  wzLang.core.dialogCancel, 'black');
+      dialog.setButton(1, wzLang.core.dialogAccept);
+
+      dialog.render(function(action){
+        if (action) {
+          // FIXME
+          $('input').focus()
+        }
+      });
     };
 
     // WZ Events
@@ -1535,7 +1549,270 @@ console.log(lang)
               $('.order-premium .month-year-credit-card').addClass('error');
             }
             if(card.code ==  ""){
-              $('.order-premium .info-current-new-card-bottom .code-credit-card').addClass('error');
+              $('.order-premium .info-current-new-ang.freeSpace );
+
+            changeCake( 0 );
+
+        });
+
+    })
+
+
+    // Adds +1 hour to the clock
+    .on( 'click', '.preferences-config-up', function(){
+
+        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) + 1, date.getMinutes() ) + 'deg)' );
+        configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
+        $( '.preferences-config-auto', win ).removeClass( 'checked' );
+
+        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+        api.config.setTimeZone( timeZone, function( error ){
+
+            if( error ){
+                alert( error );
+            }
+
+        });
+
+    })
+
+    // Substracts -1 hour to the clock
+    .on( 'click', '.preferences-config-down', function(){
+
+        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) - 1, date.getMinutes() ) + 'deg)' );
+        configNow.text( coolHour( parseInt( configNow.text(), 10 ) - 1 ) );
+        $( '.preferences-config-auto', win ).removeClass( 'checked' );
+
+        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+        api.config.setTimeZone( timeZone, function( error ){
+
+            if( error ){
+                alert( error );
+            }
+
+        });
+
+    })
+
+    .on( 'click', '.preferences-config-auto', function(){
+
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+
+        if( hour < 10 ){ hour = '0' + hour; }
+        if( minutes < 10 ){ minutes = '0' + minutes; }
+
+        configNow.text( hour );
+        clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
+
+        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+        api.config.setTimeZone( timeZone, function( error ){
+
+            if( error ){
+
+                alert( error );
+
+            }
+
+        });
+
+    })
+
+    .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
+
+        api.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
+
+            if( error ){
+                alert( error );
+            }
+
+        });
+
+    })
+
+    // .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
+    //
+    //     api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
+    //
+    //         if( error ){
+    //           $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
+    //           $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
+    //           alert(lang.wrongPass);
+    //         }
+    //
+    //     });
+    //
+    // })
+
+    .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
+
+        var button = $( this );
+
+        api.config.setDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+
+            if( error ){
+                alert( error );
+            }
+
+        });
+
+    })
+
+    .on( 'click', '.preferences-language-element', function(){
+
+        $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
+
+        if( $( this ).hasClass( 'english' ) ){
+            api.config.setLanguage( 'en-en' , function(){
+
+              confirm(lang.reload, function( o ){
+
+                if (o == true){
+                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                  window.location.reload();
+                }
+
+            });
+
+            });
+        }else if( $( this ).hasClass( 'spanish' ) ){
+
+            api.config.setLanguage( 'es-es' , function(){
+
+              confirm(lang.reload, function(o){
+                if (o == true){
+                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                  window.location.reload();
+                }
+              });
+            });
+
+        }
+
+    })
+
+    // Launches browser window to add an account
+    .on( 'click', '.preferences-social-icon.plus', function(){
+        //alert( 'Demo accounts can\'t add social networks' );
+        api.social.addAccount( $( this ).attr( 'data-social-network' ) );
+    })
+
+    // Launches settings window of social networks ( Social Networks Tab )
+    .on( 'click', '.preferences-social-icon.settings', function(){
+
+        var socialNetwork = $( this ).parent( '.preferences-social-account' )
+
+        api.app.createView( {
+
+            type: socialNetwork.data( 'social-network' ),
+            id: socialNetwork.data( 'id' ),
+            name: socialNetwork.data( 'name' )
+
+        }, 'social' );
+
+    })
+
+    .on( 'click', '.preferences-bottom-content.backup .download-backup', function(){
+      api.fs.downloadBackup();
+    })
+
+    .on( 'click', '.preferences-bottom-content.backup .delete-account', function(){
+      if (api.system.workspace().isDemo) {
+        createAccountDialog();
+      } else {
+        $('.delete-account-popup').addClass('active')
+      }
+    })
+
+    .on( 'click', '.delete-account-popup .delete-button', function(){
+
+      if($('.options-list .files .ui-checkbox').hasClass('active')
+        && $('.options-list .worlds .ui-checkbox').hasClass('active')
+        && $('.options-list .chats .ui-checkbox').hasClass('active')){
+
+        api.config.setAccountDisabled( 'disable', function( err ){
+          if(err) return
+          alert(lang.deleteAccount.alertInfo, function(){
+            window.location = window.location.protocol + '//' + window.location.host + '/logout';
+          })
+
+        })
+
+      }
+
+    })
+
+    .on( 'click', '.delete-account-popup .options-list .ui-checkbox', function(e){
+      e.stopPropagation()
+      e.preventDefault()
+      $(this).toggleClass('active')
+      if($('.options-list .files .ui-checkbox').hasClass('active')
+        && $('.options-list .worlds .ui-checkbox').hasClass('active')
+        && $('.options-list .chats .ui-checkbox').hasClass('active')){
+        $('.delete-account-popup .delete-button').removeClass('disabled')
+      }else{
+        $('.delete-account-popup .delete-button').addClass('disabled')
+      }
+    })
+
+    .on( 'click', '.delete-account-popup .close-button', function(){
+      $('.delete-account-popup').removeClass('active')
+      $('.delete-account-popup .ui-checkbox').removeClass('active')
+    })
+
+
+    // This function fills certain gaps with user's info
+    api.system.updateQuota( function( error, quota ){
+
+        cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
+        cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
+
+    });
+
+
+
+    avatarUrl = api.system.workspace().avatar.normal;
+    mail      = api.system.workspace().email;
+    username  = api.system.workspace().username;
+
+    $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
+
+    socialNetworks();
+
+    // FIXME: file extensions does not work
+    // api.config.getConfiguration( function( error, config ){
+    //
+    //     if( config.displayExtensions ){
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
+    //     }else{
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
+    //         $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
+    //     }
+    //
+    // });
+
+
+
+    api.config.getLanguages( function( error, languages, used ){
+
+        if( used.code === "es" || used.code === "es-es" ){
+            $( '.preferences-language-element.spanish', win ).addClass( 'active' );
+            language = "es";
+        }else if( used.code === "en" || used.code === "en-us" ){
+            $( '.preferences-language-element.english', win ).addClass( 'active' );
+            language = "en";
+        }
+
+    });
+
+    api.config.getWallpapers( function( error, wallpapers, used ){
+
+        if( used.custom ){
+            $( '.preferences-wallpaper-image.custom', win ).css( 'background-image'card-bottom .code-credit-card').addClass('error');
             }
             return;
           }
@@ -2045,7 +2322,7 @@ console.log(lang)
                     api.banner()
                         .setTitle( lang.usernameChanged )
                         .setText( lang.usernameChanged2 + ' ' + username )
-                        .setIcon( api.system.user().avatar.normal )
+                        .setIcon( api.system.workspace().avatar.normal )
                         .render();
 
                 }
@@ -2072,7 +2349,7 @@ console.log(lang)
                     api.banner()
                         .setTitle( lang.mailChanged )
                         .setText( lang.mailChanged2 + ' ' + mail )
-                        .setIcon( api.system.user().avatar.normal )
+                        .setIcon( api.system.workspace().avatar.normal )
                         .render();
 
                 }
@@ -2189,7 +2466,7 @@ console.log(lang)
                     api.banner()
                         .setTitle( lang.passwordChanged )
                         .setText( lang.passwordChanged2 )
-                        .setIcon( api.system.user().avatar.normal )
+                        .setIcon( api.system.workspace().avatar.normal )
                         .render();
 
                 }
@@ -2422,270 +2699,7 @@ console.log(lang)
 
             cakeTitle.text( lang.currentUsage );
             cakeTotal.text( api.tool.bytesToUnit( configObject.quotaMax ) );
-            cakeFree.text( api.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
-
-            changeCake( 0 );
-
-        });
-
-    })
-
-
-    // Adds +1 hour to the clock
-    .on( 'click', '.preferences-config-up', function(){
-
-        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) + 1, date.getMinutes() ) + 'deg)' );
-        configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
-        $( '.preferences-config-auto', win ).removeClass( 'checked' );
-
-        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
-
-        api.config.setTimeZone( timeZone, function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    // Substracts -1 hour to the clock
-    .on( 'click', '.preferences-config-down', function(){
-
-        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) - 1, date.getMinutes() ) + 'deg)' );
-        configNow.text( coolHour( parseInt( configNow.text(), 10 ) - 1 ) );
-        $( '.preferences-config-auto', win ).removeClass( 'checked' );
-
-        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
-
-        api.config.setTimeZone( timeZone, function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.preferences-config-auto', function(){
-
-        var hour = date.getHours();
-        var minutes = date.getMinutes();
-
-        if( hour < 10 ){ hour = '0' + hour; }
-        if( minutes < 10 ){ minutes = '0' + minutes; }
-
-        configNow.text( hour );
-        clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
-
-        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
-
-        api.config.setTimeZone( timeZone, function( error ){
-
-            if( error ){
-
-                alert( error );
-
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
-
-        api.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
-
-        api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
-
-            if( error ){
-              $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
-              $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
-              alert(lang.wrongPass);
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
-
-        var button = $( this );
-
-        api.config.setDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.preferences-language-element', function(){
-
-        $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
-
-        if( $( this ).hasClass( 'english' ) ){
-            api.config.setLanguage( 'en-en' , function(){
-
-              confirm(lang.reload, function( o ){
-
-                if (o == true){
-                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
-                  window.location.reload();
-                }
-
-            });
-
-            });
-        }else if( $( this ).hasClass( 'spanish' ) ){
-
-            api.config.setLanguage( 'es-es' , function(){
-
-              confirm(lang.reload, function(o){
-                if (o == true){
-                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
-                  window.location.reload();
-                }
-              });
-            });
-
-        }
-
-    })
-
-    // Launches browser window to add an account
-    .on( 'click', '.preferences-social-icon.plus', function(){
-        //alert( 'Demo accounts can\'t add social networks' );
-        api.social.addAccount( $( this ).attr( 'data-social-network' ) );
-    })
-
-    // Launches settings window of social networks ( Social Networks Tab )
-    .on( 'click', '.preferences-social-icon.settings', function(){
-
-        var socialNetwork = $( this ).parent( '.preferences-social-account' )
-
-        api.app.createView( {
-
-            type: socialNetwork.data( 'social-network' ),
-            id: socialNetwork.data( 'id' ),
-            name: socialNetwork.data( 'name' )
-
-        }, 'social' );
-
-    })
-
-    .on( 'click', '.preferences-bottom-content.backup .download-backup', function(){
-      api.fs.downloadBackup();
-    })
-
-    .on( 'click', '.preferences-bottom-content.backup .delete-account', function(){
-      $('.delete-account-popup').addClass('active')
-    })
-
-    .on( 'click', '.delete-account-popup .delete-button', function(){
-
-      if($('.options-list .files .ui-checkbox').hasClass('active')
-        && $('.options-list .worlds .ui-checkbox').hasClass('active')
-        && $('.options-list .chats .ui-checkbox').hasClass('active')){
-
-        api.config.setAccountDisabled( 'disable', function( err ){
-          if(err) return
-          alert(lang.deleteAccount.alertInfo, function(){
-            window.location = window.location.protocol + '//' + window.location.host + '/logout';
-          })
-
-        })
-
-      }
-
-    })
-
-    .on( 'click', '.delete-account-popup .options-list .ui-checkbox', function(e){
-      e.stopPropagation()
-      e.preventDefault()
-      $(this).toggleClass('active')
-      if($('.options-list .files .ui-checkbox').hasClass('active')
-        && $('.options-list .worlds .ui-checkbox').hasClass('active')
-        && $('.options-list .chats .ui-checkbox').hasClass('active')){
-        $('.delete-account-popup .delete-button').removeClass('disabled')
-      }else{
-        $('.delete-account-popup .delete-button').addClass('disabled')
-      }
-    })
-
-    .on( 'click', '.delete-account-popup .close-button', function(){
-      $('.delete-account-popup').removeClass('active')
-      $('.delete-account-popup .ui-checkbox').removeClass('active')
-    })
-
-
-    // This function fills certain gaps with user's info
-    api.system.updateQuota( function( error, quota ){
-
-        cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
-        cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
-
-    });
-
-
-
-    avatarUrl = api.system.user().avatar.normal;
-    mail      = api.system.user().mail;
-    username  = api.system.user().user;
-
-
-
-
-    console.log( api.system.user() );
-
-    $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
-
-    socialNetworks();
-
-    api.config.getConfiguration( function( error, config ){
-
-        if( config.displayExtensions ){
-            $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
-            $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
-        }else{
-            $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
-            $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
-        }
-
-    });
-
-
-
-    api.config.getLanguages( function( error, languages, used ){
-
-        if( used.code === "es" || used.code === "es-es" ){
-            $( '.preferences-language-element.spanish', win ).addClass( 'active' );
-            language = "es";
-        }else if( used.code === "en" || used.code === "en-us" ){
-            $( '.preferences-language-element.english', win ).addClass( 'active' );
-            language = "en";
-        }
-
-    });
-
-    api.config.getWallpapers( function( error, wallpapers, used ){
-
-        if( used.custom ){
-            $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
+            cakeFree.text( api.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + l, 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
         }else{
             $( '.wallpaper-' + used.id, win ).addClass( 'active' );
         }
@@ -3417,8 +3431,8 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
     $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
     $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
 
-    $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
-    $('.preferences-extensions-display span').text( lang.displayExtensions );
+    // $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
+    // $('.preferences-extensions-display span').text( lang.displayExtensions );
 
     $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
     $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
