@@ -1433,6 +1433,12 @@ button{
     background: url('@static/frase-en.png') no-repeat;
     background-size: 210px auto;
   }
+  &.fullmode-disabled .left{
+    margin: 0 auto;
+  }
+  &.fullmode-disabled .right{
+    display: none;
+  }
 }
 
 .more{

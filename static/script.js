@@ -1,4 +1,4 @@
-  Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
+  //Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 
     // Variables
     var win = $( this );
@@ -1554,7 +1554,6 @@
             return;
           }
 
-
             if(parseInt(card.month) < 10){
               card.month = '0' + card.month;
             }
@@ -2436,625 +2435,918 @@
 
             cakeTitle.text( lang.currentUsage );
             cakeTotal.text( api.tool.bytesToUnit( configObject.quotaMax ) );
-            cakeFree.text( api.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + lang.freeSpace );
+            cakeFree.text( api.tool.bytesToUnit( configObject.quotaFree, 2 ) + ' ' + l, 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
 
-            changeCake( 0 );
-
-        });
-
-    })
-
-
-    // Adds +1 hour to the clock
-    .on( 'click', '.preferences-config-up', function(){
-
-        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) + 1, date.getMinutes() ) + 'deg)' );
-        configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
-        $( '.preferences-config-auto', win ).removeClass( 'checked' );
-
-        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
-
-        api.config.setTimeZone( timeZone, function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    // Substracts -1 hour to the clock
-    .on( 'click', '.preferences-config-down', function(){
-
-        clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) - 1, date.getMinutes() ) + 'deg)' );
-        configNow.text( coolHour( parseInt( configNow.text(), 10 ) - 1 ) );
-        $( '.preferences-config-auto', win ).removeClass( 'checked' );
-
-        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
-
-        api.config.setTimeZone( timeZone, function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.preferences-config-auto', function(){
-
-        var hour = date.getHours();
-        var minutes = date.getMinutes();
-
-        if( hour < 10 ){ hour = '0' + hour; }
-        if( minutes < 10 ){ minutes = '0' + minutes; }
-
-        configNow.text( hour );
-        clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
-
-        timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
-
-        api.config.setTimeZone( timeZone, function( error ){
-
-            if( error ){
-
-                alert( error );
-
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
-
-        api.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    // .on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
-    //
-    //     api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
-    //
-    //         if( error ){
-    //           $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
-    //           $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
-    //           alert(lang.wrongPass);
-    //         }
-    //
-    //     });
-    //
-    // })
-
-    .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
-
-        var button = $( this );
-
-        api.config.setDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
-
-            if( error ){
-                alert( error );
-            }
-
-        });
-
-    })
-
-    .on( 'click', '.preferences-language-element', function(){
-
-        $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
-
-        if( $( this ).hasClass( 'english' ) ){
-            api.config.setLanguage( 'en-en' , function(){
-
-              confirm(lang.reload, function( o ){
-
-                if (o == true){
-                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
-                  window.location.reload();
-                }
+                changeCake( 0 );
 
             });
-
-            });
-        }else if( $( this ).hasClass( 'spanish' ) ){
-
-            api.config.setLanguage( 'es-es' , function(){
-
-              confirm(lang.reload, function(o){
-                if (o == true){
-                  var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
-                  window.location.reload();
-                }
-              });
-            });
-
-        }
-
-    })
-
-    // Launches browser window to add an account
-    .on( 'click', '.preferences-social-icon.plus', function(){
-        //alert( 'Demo accounts can\'t add social networks' );
-        api.social.addAccount( $( this ).attr( 'data-social-network' ) );
-    })
-
-    // Launches settings window of social networks ( Social Networks Tab )
-    .on( 'click', '.preferences-social-icon.settings', function(){
-
-        var socialNetwork = $( this ).parent( '.preferences-social-account' )
-
-        api.app.createView( {
-
-            type: socialNetwork.data( 'social-network' ),
-            id: socialNetwork.data( 'id' ),
-            name: socialNetwork.data( 'name' )
-
-        }, 'social' );
-
-    })
-
-    .on( 'click', '.preferences-bottom-content.backup .download-backup', function(){
-      api.fs.downloadBackup();
-    })
-
-    .on( 'click', '.preferences-bottom-content.backup .delete-account', function(){
-      if (api.system.workspace().isDemo) {
-        createAccountDialog();
-      } else {
-        $('.delete-account-popup').addClass('active')
-      }
-    })
-
-    .on( 'click', '.delete-account-popup .delete-button', function(){
-
-      if($('.options-list .files .ui-checkbox').hasClass('active')
-        && $('.options-list .worlds .ui-checkbox').hasClass('active')
-        && $('.options-list .chats .ui-checkbox').hasClass('active')){
-
-        api.config.setAccountDisabled( 'disable', function( err ){
-          if(err) return
-          alert(lang.deleteAccount.alertInfo, function(){
-            window.location = window.location.protocol + '//' + window.location.host + '/logout';
-          })
 
         })
 
-      }
+
+        // Adds +1 hour to the clock
+        .on( 'click', '.preferences-config-up', function(){
+
+            clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) + 1, date.getMinutes() ) + 'deg)' );
+            configNow.text( coolHour( parseInt( configNow.text(), 10 ) + 1 ) );
+            $( '.preferences-config-auto', win ).removeClass( 'checked' );
+
+            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+            api.config.setTimeZone( timeZone, function( error ){
+
+                if( error ){
+                    alert( error );
+                }
+
+            });
+
+        })
+
+        // Substracts -1 hour to the clock
+        .on( 'click', '.preferences-config-down', function(){
+
+            clockHour.css( 'transform', 'rotate(' + hourDegree( parseInt( configNow.text(), 10 ) - 1, date.getMinutes() ) + 'deg)' );
+            configNow.text( coolHour( parseInt( configNow.text(), 10 ) - 1 ) );
+            $( '.preferences-config-auto', win ).removeClass( 'checked' );
+
+            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+            api.config.setTimeZone( timeZone, function( error ){
+
+                if( error ){
+                    alert( error );
+                }
+
+            });
+
+        })
+
+        .on( 'click', '.preferences-config-auto', function(){
+
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+
+            if( hour < 10 ){ hour = '0' + hour; }
+            if( minutes < 10 ){ minutes = '0' + minutes; }
+
+            configNow.text( hour );
+            clockHour.css( 'transform', 'rotate(' + hourDegree( hour, minutes ) + 'deg)' );
+
+            timeZone = parseInt( configNow.text(), 10 ) - date.getUTCHours();
+
+            api.config.setTimeZone( timeZone, function( error ){
+
+                if( error ){
+
+                    alert( error );
+
+                }
+
+            });
+
+        })
+
+        .on( 'click', '.time-format .preferences-bottom-checkbox', function(){
+
+            api.config.setTimeFormat( $(this).children('span').hasClass('time-format-24'), function( error ){
+
+                if( error ){
+                    alert( error );
+                }
+
+            });
+
+        })
+
+        /*.on( 'click', '.preferences-extensions-display.preferences-bottom-checkbox', function(){
+
+            api.config.setDisplayExtensions( $(this).hasClass('checked'), function( error ){
+
+                if( error ){
+                  $('.preferences-extensions-display.preferences-bottom-checkbox').toggleClass('checked');
+                  $('.preferences-extensions-display.preferences-bottom-checkbox figure').toggleClass('active');
+                  alert(lang.wrongPass);
+                }
+
+            });
+
+        })*/
+
+        .on( 'click', '.date-format .preferences-bottom-checkbox', function(){
+
+            var button = $( this );
+
+            api.config.setDateFormat( button.attr( 'data-date-format-short' ), button.attr( 'data-date-format-long' ), function( error ){
+
+                if( error ){
+                    alert( error );
+                }
+
+            });
+
+        })
+
+        .on( 'click', '.preferences-language-element', function(){
+
+            $( this ).addClass( 'active' ).siblings().removeClass( 'active' );
+
+            if( $( this ).hasClass( 'english' ) ){
+                api.config.setLanguage( 'en-en' , function(){
+
+                  confirm(lang.reload, function( o ){
+
+                    if (o == true){
+                      var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                      window.location.reload();
+                    }
+
+                });
+
+                });
+            }else if( $( this ).hasClass( 'spanish' ) ){
+
+                api.config.setLanguage( 'es-es' , function(){
+
+                  confirm(lang.reload, function(o){
+                    if (o == true){
+                      var window = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
+                      window.location.reload();
+                    }
+                  });
+                });
+
+            }
+
+        })
+
+        // Launches browser window to add an account
+        .on( 'click', '.preferences-social-icon.plus', function(){
+            //alert( 'Demo accounts can\'t add social networks' );
+            api.social.addAccount( $( this ).attr( 'data-social-network' ) );
+        })
+
+        // Launches settings window of social networks ( Social Networks Tab )
+        .on( 'click', '.preferences-social-icon.settings', function(){
+
+            var socialNetwork = $( this ).parent( '.preferences-social-account' )
+
+            api.app.createView( {
+
+                type: socialNetwork.data( 'social-network' ),
+                id: socialNetwork.data( 'id' ),
+                name: socialNetwork.data( 'name' )
+
+            }, 'social' );
+
+        })
+
+        .on( 'click', '.preferences-bottom-content.backup .download-backup', function(){
+          api.fs.downloadBackup();
+        })
+
+        .on( 'click', '.preferences-bottom-content.backup .delete-account', function(){
+          if (api.system.workspace().isDemo) {
+            createAccountDialog();
+          } else {
+            $('.delete-account-popup').addClass('active')
+          }
+        })
+
+        .on( 'click', '.delete-account-popup .delete-button', function(){
+
+          if($('.options-list .files .ui-checkbox').hasClass('active')
+            && $('.options-list .worlds .ui-checkbox').hasClass('active')
+            && $('.options-list .chats .ui-checkbox').hasClass('active')){
+
+            api.config.setAccountDisabled( 'disable', function( err ){
+              if(err) return
+              alert(lang.deleteAccount.alertInfo, function(){
+                window.location = window.location.protocol + '//' + window.location.host + '/logout';
+              })
+
+            })
+
+          }
+
+        })
+
+        .on( 'click', '.delete-account-popup .options-list .ui-checkbox', function(e){
+          e.stopPropagation()
+          e.preventDefault()
+          $(this).toggleClass('active')
+          if($('.options-list .files .ui-checkbox').hasClass('active')
+            && $('.options-list .worlds .ui-checkbox').hasClass('active')
+            && $('.options-list .chats .ui-checkbox').hasClass('active')){
+            $('.delete-account-popup .delete-button').removeClass('disabled')
+          }else{
+            $('.delete-account-popup .delete-button').addClass('disabled')
+          }
+        })
+
+        .on( 'click', '.delete-account-popup .close-button', function(){
+          $('.delete-account-popup').removeClass('active')
+          $('.delete-account-popup .ui-checkbox').removeClass('active')
+        })
+
+
+        // This function fills certain gaps with user's info
+        api.system.updateQuota( function( error, quota ){
+
+            cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
+            cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
+
+        });
+
+        avatarUrl = api.system.workspace().avatar.normal;
+        mail      = api.system.workspace().email;
+        username  = api.system.workspace().username;
+
+        $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
+
+        /*
+        socialNetworks();
+
+        api.config.getConfiguration( function( error, config ){
+
+            if( config.displayExtensions ){
+                $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
+                $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
+            }else{
+                $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
+                $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
+            }
+
+        });
+        */
+
+        api.config.getLanguages( function( error, languages, used ){
+
+            if( used.code === "es" || used.code === "es-es" ){
+                $( '.preferences-language-element.spanish', win ).addClass( 'active' );
+                language = "es";
+            }else if( used.code === "en" || used.code === "en-us" ){
+                $( '.preferences-language-element.english', win ).addClass( 'active' );
+                language = "en";
+            }
+
+        });
+
+        api.config.getWallpapers( function( error, wallpapers, used ){
+
+            if( used.custom ){
+                $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
+            }else{
+                $( '.wallpaper-' + used.id, win ).addClass( 'active' );
+            }
+
+        });
+
+        var loadLoading = function(){
+
+          var button = "."+ currentTab + " button";
+          if($(button).hasClass('loading')){
+            $(button).removeClass('loading');
+            loading = false;
+          }else{
+            loading = true;
+            $(button).addClass('loading');
+          }
+
+        };
+
+        /*
+          Función para crear un circulo que muestre lo que esta debajo, se le pasa:
+            - El canvas.
+            - El context del objeto canvas.
+            - Posicion del centro (x e y).
+            - Radio.
+            - Porcentaje entre 0 y 1.
+            - Tiempo de la animación por defecto 200.
+        */
+
+        var loadCanvasCake = function(canvas,context, x, y, radius, porcentaje, tiempo){
+
+          if(tiempo == null){
+            tiempo = 200;
+          }
+          var curPerc = 0;
+          var circ = Math.PI * 2;
+          var quart = Math.PI / 2;
+
+          var xCoordinates = {
+            x1 : 0,
+            x2 : 0,
+            xCenter : 0
+          }
+          var yCoordinates = {
+            y1 : 0,
+            y2 : 0,
+            yCenter : 0
+          }
+
+           context.beginPath();
+          context.lineWidth = 25;
+          context.strokeStyle = '#586069';
+
+          function animate(current) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.arc(x, y, radius, -(quart), ((circ) * current) - quart, true);
+            context.stroke();
+            xCoordinates.xCenter = (x + radius * Math.cos(((circ) * current) - quart + 0.01));
+            yCoordinates.yCenter = (y + radius * Math.sin(((circ) * current) - quart + 0.01));
+
+            xCoordinates.x1 = (x + (radius-12) * Math.cos(((circ) * current) - quart));
+            xCoordinates.x2 = (x + (radius+12) * Math.cos(((circ) * current) - quart));
+
+            yCoordinates.y1 = (y + (radius-12) * Math.sin(((circ) * current) - quart));
+            yCoordinates.y2 = (y + (radius+12) * Math.sin(((circ) * current) - quart));
+            context.save();
+            context.beginPath();
+
+
+                var radius2 = Math.abs(Math.sqrt((xCoordinates.x1 - xCoordinates.xCenter)*(xCoordinates.x1 - xCoordinates.xCenter) + (yCoordinates.y1 - yCoordinates.yCenter)*(yCoordinates.y1 - yCoordinates.yCenter)));
+                var startAngle = Math.atan2(yCoordinates.y1 - yCoordinates.yCenter, xCoordinates.x1 - xCoordinates.xCenter);
+                var endAngle   = Math.atan2(yCoordinates.y2 - yCoordinates.yCenter, xCoordinates.x2 - xCoordinates.xCenter);
+
+
+
+            context.lineWidth = 0.01;
+            context.arc((xCoordinates.x1 + xCoordinates.x2)/2,(yCoordinates.y1 + yCoordinates.y2)/2,radius2, endAngle,startAngle);
+            context.globalCompositeOperation = 'destination-out';
+            context.globalAlpha=1;
+            context.fill();
+
+
+            context.stroke();
+            context.restore();
+
+
+              curPerc++;
+
+              if (curPerc < porcentaje*tiempo) {
+                  requestAnimationFrame(function () {
+                      animate(curPerc / tiempo)
+                  });
+              }
+          }
+          console.log(porcentaje);
+          if (porcentaje == 0){
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.arc(x, y, radius, 0*Math.PI, 2*Math.PI, true);
+            context.stroke();
+          }else{
+            animate();
+          }
+
+        };
+
+        // payments.js start
+
+    var resetInputVal = function(){
+      $('.hdd input').val("");
+    }
+
+
+    var unsubscribe = function(){
+
+      request( 'POST', 'https://rest.horbito.com/payment/unsubscribe' ).done( function(){
+
+        console.log("unsubscribe OK");
+
+      }).fail( function(){
+        console.log("Fail unsubscribe");
+      })
+
+    }
+
+
+    var removeCard = function(){
+
+
+
+      request( 'POST', 'https://rest.horbito.com/payment/removeCard', {
+
+        card  : userLocal.card.id
+
+      }).done(function(res){
+        console.log("Done, removeCard", res);
+        resetLocalVar();
+        cardStatus = 0;
+      })
+      .fail( function(res){
+        console.log("Fail removeCard", res);
+        aler(lang.errorRemoveCard);
+      })
+
+
+
+    }
+
+    var request = function( verb, url, data ){
+
+      var promise = $.Deferred()
+
+      $.ajax({
+
+        type : verb,
+        url : url,
+        crossDomain : true,
+        xhrFields: {
+          withCredentials: true
+        },
+        data : data
+
+      }).done( function( res ){
+        promise.resolve( res )
+      }).fail( function( res ){
+        promise.reject( res )
+      })
+
+      return promise
+
+    }
+
+    win
+    .on( 'click' , '.preferences-payment-button' , function(){
+
+      processCardForm()
+      // Prevent the form from submitting with the default action
+      return false
 
     })
-
-    .on( 'click', '.delete-account-popup .options-list .ui-checkbox', function(e){
-      e.stopPropagation()
-      e.preventDefault()
-      $(this).toggleClass('active')
-      if($('.options-list .files .ui-checkbox').hasClass('active')
-        && $('.options-list .worlds .ui-checkbox').hasClass('active')
-        && $('.options-list .chats .ui-checkbox').hasClass('active')){
-        $('.delete-account-popup .delete-button').removeClass('disabled')
-      }else{
-        $('.delete-account-popup .delete-button').addClass('disabled')
-      }
+    .on( 'click' , '.cancel-credit' , function(){
+      removeCard()
     })
-
-    .on( 'click', '.delete-account-popup .close-button', function(){
-      $('.delete-account-popup').removeClass('active')
-      $('.delete-account-popup .ui-checkbox').removeClass('active')
-    })
-
-
-    // This function fills certain gaps with user's info
-    api.system.updateQuota( function( error, quota ){
-
-        cakeTotal.text( api.tool.bytesToUnit( api.system.quota().total ) );
-        cakeFree.text( api.tool.bytesToUnit( api.system.quota().free, 2 ) + ' ' + lang.freeSpace );
-
-    });
-
-
-
-    avatarUrl = api.system.workspace().avatar.normal;
-    mail      = api.system.workspace().email;
-    username  = api.system.workspace().username;
-
-    $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
-
-    socialNetworks();
-
-    // FIXME: file extensions does not work
-    // api.config.getConfiguration( function( error, config ){
-    //
-    //     if( config.displayExtensions ){
-    //         $('.preferences-extensions-display.preferences-bottom-checkbox').addClass('checked');
-    //         $('.preferences-extensions-display.preferences-bottom-checkbox figure').addClass('active');
-    //     }else{
-    //         $('.preferences-extensions-display.preferences-bottom-checkbox').removeClass('checked');
-    //         $('.preferences-extensions-display.preferences-bottom-checkbox figure').removeClass('active');
-    //     }
-    //
-    // });
-
-
-
-    api.config.getLanguages( function( error, languages, used ){
-
-        if( used.code === "es" || used.code === "es-es" ){
-            $( '.preferences-language-element.spanish', win ).addClass( 'active' );
-            language = "es";
-        }else if( used.code === "en" || used.code === "en-us" ){
-            $( '.preferences-language-element.english', win ).addClass( 'active' );
-            language = "en";
-        }
-
-    });
-
-    api.config.getWallpapers( function( error, wallpapers, used ){
-
-        if( used.custom ){
-            $( '.preferences-wallpaper-image.custom', win ).css( 'background-image', 'url(' + used.url[ '1280' ] + ')' ).removeClass( 'wz-prototype' ).addClass( 'active' );
-        }else{
-            $( '.wallpaper-' + used.id, win ).addClass( 'active' );
-        }
-
-    });
-
-    var loadLoading = function(){
-
-      var button = "."+ currentTab + " button";
-      if($(button).hasClass('loading')){
-        $(button).removeClass('loading');
-        loading = false;
-      }else{
-        loading = true;
-        $(button).addClass('loading');
-      }
-
-    };
 
     /*
-      Función para crear un circulo que muestre lo que esta debajo, se le pasa:
-        - El canvas.
-        - El context del objeto canvas.
-        - Posicion del centro (x e y).
-        - Radio.
-        - Porcentaje entre 0 y 1.
-        - Tiempo de la animación por defecto 200.
+    $.when( availablePlans(), listCards() ).done( function( plans, cards ){
+      if( plans.plans.length ){
+        $('.payment').css( 'display', 'inline-block' )
+        availablePlan = plans.plans[ 0 ].id
+      }
+      if( cards.cards.length ){
+        $( '.save-credit-mode' ).show()
+        $( '.intro-credit-mode' ).hide()
+        $( '.credit-number' ).text( '**** **** **** ' + cards.cards[ 0 ].last4 )
+        $( '.credit-name' ).text( cards.cards[ 0 ].name )
+        $( '.credit-exp' ).text( cards.cards[ 0 ].exp_month + '/' + cards.cards[ 0 ].exp_year )
+      }else{
+        $( '.save-credit-mode' ).hide()
+        $( '.intro-credit-mode' ).show()
+      }
+    })
     */
 
-    var loadCanvasCake = function(canvas,context, x, y, radius, porcentaje, tiempo){
+    // payments.js end
 
-      if(tiempo == null){
-        tiempo = 200;
-      }
-      var curPerc = 0;
-      var circ = Math.PI * 2;
-      var quart = Math.PI / 2;
+        // To DO
+        var validateCard = function(card){
 
-      var xCoordinates = {
-        x1 : 0,
-        x2 : 0,
-        xCenter : 0
-      }
-      var yCoordinates = {
-        y1 : 0,
-        y2 : 0,
-        yCenter : 0
-      }
+          Stripe.card.createToken({
 
-       context.beginPath();
-      context.lineWidth = 25;
-      context.strokeStyle = '#586069';
+            number    : card.number,
+            cvc       : card.code,
+            exp_month : card.month,
+            exp_year  : card.year,
+            name      : card.name
 
-      function animate(current) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.beginPath();
-        context.arc(x, y, radius, -(quart), ((circ) * current) - quart, true);
-        context.stroke();
-        xCoordinates.xCenter = (x + radius * Math.cos(((circ) * current) - quart + 0.01));
-        yCoordinates.yCenter = (y + radius * Math.sin(((circ) * current) - quart + 0.01));
+          }, function( status, response ) {
 
-        xCoordinates.x1 = (x + (radius-12) * Math.cos(((circ) * current) - quart));
-        xCoordinates.x2 = (x + (radius+12) * Math.cos(((circ) * current) - quart));
+            if( response.error ){
+              //console.log(card);
+              //console.log(response);
+              alert( lang[response.error.code] );
+              $('.load-only').hide();
+              $('.preferences-payment-button').show();
+              return
 
-        yCoordinates.y1 = (y + (radius-12) * Math.sin(((circ) * current) - quart));
-        yCoordinates.y2 = (y + (radius+12) * Math.sin(((circ) * current) - quart));
-        context.save();
-        context.beginPath();
+            }
 
+            request( 'POST', 'https://rest.horbito.com/payment/subscribe', {
 
-            var radius2 = Math.abs(Math.sqrt((xCoordinates.x1 - xCoordinates.xCenter)*(xCoordinates.x1 - xCoordinates.xCenter) + (yCoordinates.y1 - yCoordinates.yCenter)*(yCoordinates.y1 - yCoordinates.yCenter)));
-            var startAngle = Math.atan2(yCoordinates.y1 - yCoordinates.yCenter, xCoordinates.x1 - xCoordinates.xCenter);
-            var endAngle   = Math.atan2(yCoordinates.y2 - yCoordinates.yCenter, xCoordinates.x2 - xCoordinates.xCenter);
+              token : response.id,
+              plan  : activePlan,
 
+            }).done( function( res ){
+              console.log("OK, subscribe");
+              resetLocalVar();
 
 
-        context.lineWidth = 0.01;
-        context.arc((xCoordinates.x1 + xCoordinates.x2)/2,(yCoordinates.y1 + yCoordinates.y2)/2,radius2, endAngle,startAngle);
-        context.globalCompositeOperation = 'destination-out';
-        context.globalAlpha=1;
-        context.fill();
+            }).fail( function( res ){
 
+              console.log("Fail, subscribe",res);
 
-        context.stroke();
-        context.restore();
+              alert( lang.paymentError );
 
+            })
 
-          curPerc++;
+          });
+            return true;
 
-          if (curPerc < porcentaje*tiempo) {
-              requestAnimationFrame(function () {
-                  animate(curPerc / tiempo)
-              });
-          }
-      }
-      console.log(porcentaje);
-      if (porcentaje == 0){
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.beginPath();
-        context.arc(x, y, radius, 0*Math.PI, 2*Math.PI, true);
-        context.stroke();
-      }else{
-        animate();
-      }
+        };
 
-    };
+        var changePlan = function(newPlan, context){
 
-    // payments.js start
+              request( 'POST', 'https://rest.horbito.com/payment/subscribe', {
 
-var resetInputVal = function(){
-  $('.hdd input').val("");
-}
+                plan  : newPlan
 
-
-var unsubscribe = function(){
-
-  request( 'POST', 'https://rest.horbito.com/payment/unsubscribe' ).done( function(){
-
-    console.log("unsubscribe OK");
-
-  }).fail( function(){
-    console.log("Fail unsubscribe");
-  })
-
-}
-
-
-var removeCard = function(){
-
-
-
-  request( 'POST', 'https://rest.horbito.com/payment/removeCard', {
-
-    card  : userLocal.card.id
-
-  }).done(function(res){
-    console.log("Done, removeCard", res);
-    resetLocalVar();
-    cardStatus = 0;
-  })
-  .fail( function(res){
-    console.log("Fail removeCard", res);
-    aler(lang.errorRemoveCard);
-  })
-
-
-
-}
-
-var request = function( verb, url, data ){
-
-  var promise = $.Deferred()
-
-  $.ajax({
-
-    type : verb,
-    url : url,
-    crossDomain : true,
-    xhrFields: {
-      withCredentials: true
-    },
-    data : data
-
-  }).done( function( res ){
-    promise.resolve( res )
-  }).fail( function( res ){
-    promise.reject( res )
-  })
-
-  return promise
-
-}
-
-win
-.on( 'click' , '.preferences-payment-button' , function(){
-
-  processCardForm()
-  // Prevent the form from submitting with the default action
-  return false
-
-})
-.on( 'click' , '.cancel-credit' , function(){
-  removeCard()
-})
-
-/*
-$.when( availablePlans(), listCards() ).done( function( plans, cards ){
-
-  if( plans.plans.length ){
-
-    $('.payment').css( 'display', 'inline-block' )
-
-    availablePlan = plans.plans[ 0 ].id
-
-  }
-
-  if( cards.cards.length ){
-
-    $( '.save-credit-mode' ).show()
-    $( '.intro-credit-mode' ).hide()
-    $( '.credit-number' ).text( '**** **** **** ' + cards.cards[ 0 ].last4 )
-    $( '.credit-name' ).text( cards.cards[ 0 ].name )
-    $( '.credit-exp' ).text( cards.cards[ 0 ].exp_month + '/' + cards.cards[ 0 ].exp_year )
-
-  }else{
-
-    $( '.save-credit-mode' ).hide()
-    $( '.intro-credit-mode' ).show()
-
-  }
-
-})
-*/
-
-// payments.js end
-
-    // To DO
-    var validateCard = function(card){
-
-      Stripe.card.createToken({
-
-        number    : card.number,
-        cvc       : card.code,
-        exp_month : card.month,
-        exp_year  : card.year,
-        name      : card.name
-
-      }, function( status, response ) {
-
-        if( response.error ){
-          //console.log(card);
-          //console.log(response);
-          alert( lang[response.error.code] );
-          $('.load-only').hide();
-          $('.preferences-payment-button').show();
-          return
-
-        }
-
-        request( 'POST', 'https://rest.horbito.com/payment/subscribe', {
-
-          token : response.id,
-          plan  : activePlan,
-
-        }).done( function( res ){
-          console.log("OK, subscribe");
-          resetLocalVar();
-
-
-        }).fail( function( res ){
-
-          console.log("Fail, subscribe",res);
-
-          alert( lang.paymentError );
-
-        })
-
-      });
-        return true;
-
-    };
-
-    var changePlan = function(newPlan, context){
-
-          request( 'POST', 'https://rest.horbito.com/payment/subscribe', {
-
-            plan  : newPlan
-
-          }).done(function(res){
-            console.log("Plan changed", res);
-            resetLocalVar();
-            if($(context).parents('.preferences-hdd-payment').hasClass(currentTab)){
-              userLocal.activePlan = newPlan;
-              loadLoading();
-              nextPage(currentTab, 1);
-              var currentObject = $('.hdd-container');
-              $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
-              });
-              $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
-              $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota - quota.used) + ' ' + lang.freeSpace );
-              updateCanvasCake();
+              }).done(function(res){
+                console.log("Plan changed", res);
+                resetLocalVar();
+                if($(context).parents('.preferences-hdd-payment').hasClass(currentTab)){
+                  userLocal.activePlan = newPlan;
+                  loadLoading();
+                  nextPage(currentTab, 1);
+                  var currentObject = $('.hdd-container');
+                  $('.hdd-container').animate({scrollLeft: currentObject.scrollLeft() + 838}, 800, function(){
+                  });
+                  $(  '.preferences-hdd-cake-total').text(api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota));
+                  $(  '.preferences-hdd-cake-free').text( api.tool.bytesToUnit(quota.base + inevioPlans[listPlans.indexOf(userLocal.activePlan)].addQuota - quota.used) + ' ' + lang.freeSpace );
+                  updateCanvasCake();
+                  return;
+                }
+                else{
+                  console.log("ERROR, no currentTab");
+                  return;
+                }
+              })
+              .fail( function(res){
+                console.log("ERROR", res);
+                alert(lang.changePlanError);
+                loadLoading();
+              })
               return;
+        };
+
+        var updateCanvasCake = function(){
+
+          var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
+          var canvasObject2 = $( '.preferences-hdd-canvas-cake')[1];
+          var context1 = canvasObject1.getContext('2d');
+          var context2 = canvasObject2.getContext('2d');
+          var centroX = canvasObject1.width / 2;
+          var centroY = canvasObject1.height / 2;
+          var radio = 107;
+          var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
+          porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
+            loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
+            loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
+
+        };
+
+        var loadAppUser = function(){
+          var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
+          var canvasObject2 = $( '.preferences-hdd-canvas-cake')[1];
+          var context1 = canvasObject1.getContext('2d');
+          var context2 = canvasObject2.getContext('2d');
+          var centroX = canvasObject1.width / 2;
+          var centroY = canvasObject1.height / 2;
+          var radio = 107;
+          var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
+          porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
+          if(porcentaje < 1){
+            loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
+            loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
+          }
+
+          $.when( api.app.storage('infoSubscriptions'), api.app.storage('language') ).done( function( info, lang ){
+
+            infoSubscriptions = info;
+            language = lang;
+            quota = wz.system.quota();
+            inevioPlans= [];
+            inevioPlans.push(plan0);
+
+            for(var i = 0; i<infoSubscriptions.availablePlans.length; i++){
+              inevioPlans.push(infoSubscriptions.availablePlans[i]);
+            }
+
+            inevioPlans = inevioPlans.sort( function( a, b ){ return a.amount - b.amount })
+            listPlans = inevioPlans.map(function( item ){ return item.id })
+
+            // Load info user subscription
+            loadInfoUserSub(infoSubscriptions);
+
+            // Translate app
+            /*$( '.appName').find('span').text(lang.appName);
+            $( 'li.hdd', win ).text( lang.space ).data( 'type', 'hdd' );
+            $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
+            $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
+            $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
+            $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
+            $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+            $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
+            $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
+            $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
+            $( '.preferences-bottom-description.hdd', win ).text( lang.hddDescription );
+            $( '.preferences-hdd-usage', win ).text( lang.currentUsage );
+            $( '.preferences-plans-title', win ).text( lang.moreFeatures );
+            $( '.hdd-plan-space.starter', win ).text( lang.starter );
+            $( '.hdd-plan-price.starter', win ).text( lang.free );
+            $( '.hdd-plan-space.pro', win ).text( lang.pro );
+            $( '.hdd-plan-price.pro', win ).text( lang.proPrice );
+            $( '.hdd-plan-space.advance', win ).text( lang.advance );
+            $( '.hdd-plan-price.advance', win ).text( lang.advancePrice );
+            $( '.hdd-plan-space.ultimate', win ).text( lang.ultimate );
+            $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
+            $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
+            $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
+            $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
+            $( '.avatar-edit', win ).text( lang.avatarEdit );
+            $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
+            $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
+            $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
+            $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
+            $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
+            $( '.preferences-bottom-description.password', win ).text( lang.passwordDescription );
+            $( '.cancel-password .preferences-account-button', win ).text( lang.cancel );
+            $( '.preferences-bottom-labelCurrentPassword', win ).text( lang.currentPassword );
+            $( '.save-password .preferences-account-button', win ).text( lang.saveChanges );
+            $( '.password-current input', win ).attr( 'placeholder', lang.currentPassword );
+            $( '.password-new input', win ).attr( 'placeholder', lang.newPassword );
+            $( '.password-confirm input', win ).attr( 'placeholder', lang.confirmPassword );
+            $( '.preferences-bottom-labelNewPassword', win ).text( lang.newPassword );
+            $( '.preferences-bottom-labelConfirmPassword', win ).text( lang.confirmPassword );
+            $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
+            $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
+            $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
+            $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
+            $( '.preferences-social-name.facebook', win ).text( lang.facebookAccount );
+            $( '.preferences-social-name.twitter', win ).text( lang.twitterAccount );
+            $( '.preferences-bottom-title.date', win ).text( lang.dateTitle );
+            $( '.preferences-bottom-description.date', win ).text( lang.dateDescription );
+            $( '.preferences-config-auto span', win ).text( lang.autoTime );
+            $( '.time-format-title', win ).text( lang.timeFormat + ':' );
+            $( '.time-format-24', win ).text( '24' + ' ' + lang.hoursClock );
+            $( '.time-format-12', win ).text( '12' + ' ' + lang.hoursClock );
+            $( '.date-format-title', win ).text( lang.dateFormat + ':' );
+            $( '.date-format-ddmmyy', win ).text( lang.ddmmyy );
+            $( '.date-format-mmddyy', win ).text( lang.mmddyy );
+            $( '.date-format-yymmdd', win ).text( lang.yymmdd );
+            $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
+            $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
+            $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
+            $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
+            $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
+            $('.preferences-extensions-display span').text( lang.displayExtensions );
+            $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
+            $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
+            $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
+            $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
+            $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
+            $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
+            $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
+            $( '.preferences-bottom-delete-account-button.ellipsis', win ).text( lang.deleteAccount.title );
+            $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
+            $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
+            $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
+            $('.preferences-bottom-content.invite .title').text(lang.inviteYourFriends);
+            $('.preferences-bottom-content.invite .subtitle').text(lang.feelAlone);
+            $('.preferences-bottom-content.invite .emails').text(lang.emails);
+            $('.preferences-bottom-content.invite .add-mail-text').text(lang.addMail);
+            $('.preferences-bottom-content.invite .share-text').text(lang.sendInvitations);
+            $('.preferences-bottom-content.invite .mail').attr('placeholder' , lang.mailExample);*/
+
+            // Infinity storage??
+            if (userLocal.info){
+              spacePRTab();
+              modifyPRTab();
+              modifySPTab();
+              orderPRTab();
+              finishPRTab();
             }
             else{
-              console.log("ERROR, no currentTab");
-              return;
+              spaceTab();
+              moreTab();
+              orderTab();
+              finishTab();
             }
+
+            if(infoSubscriptions.currentPlan != null){
+              if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
+                $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(lang.unlimitedStorage);
+                $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
+                $(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
+              }
+            }
+
           })
-          .fail( function(res){
-            console.log("ERROR", res);
-            alert(lang.changePlanError);
-            loadLoading();
-          })
-          return;
-    };
 
-    var updateCanvasCake = function(){
+        };
 
-      var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
-      var canvasObject2 = $( '.preferences-hdd-canvas-cake')[1];
-      var context1 = canvasObject1.getContext('2d');
-      var context2 = canvasObject2.getContext('2d');
-      var centroX = canvasObject1.width / 2;
-      var centroY = canvasObject1.height / 2;
-      var radio = 107;
-      var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
-      porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
-        loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
-        loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
+        var spaceTab = function(){
+          //console.log(language);
+          if (language == 'es'){
+            $('.space .info-plan-premium').addClass('es');
+          }else if (language == 'en') {
+            $('.space .info-plan-premium').addClass('en');
+          }
+          $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
+          $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
+          $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+          $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
+          $(  '.space .box-current-plan-top').find('span').text(lang.increaseStorage);
 
-    };
+          if( !api.system.fullMode() || true ) $('.space').addClass('fullmode-disabled')
+        };
 
-    var loadAppUser = function(){
-      var canvasObject1 = $( '.preferences-hdd-canvas-cake')[0];
-      var canvasObject2 = $( '.preferences-hdd-canvas-cake')[1];
-      var context1 = canvasObject1.getContext('2d');
-      var context2 = canvasObject2.getContext('2d');
-      var centroX = canvasObject1.width / 2;
-      var centroY = canvasObject1.height / 2;
-      var radio = 107;
-      var porcentaje = (1 - ( api.system.quota().free / api.system.quota().total ).toFixed(3)).toFixed(2);
-      porcentaje = porcentaje <= 0.01 ? 0.01 : porcentaje;
-      if(porcentaje < 1){
-        loadCanvasCake(canvasObject1,context1, centroX, centroY, radio, porcentaje);
-        loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
-      }
+        var moreTab = function(){
+          $(  '.more .preferences-hdd-payment-top').find('span').text(lang.increaseStorage);
+          $(  '.more .box-current-plan-top').find('span').text(lang.increaseStorage);
+          $(  '.more .current-information.one .li-circle').find('span').text(lang.infoPaymentOneHead);
+          $(  '.more .current-information.one .paragraph').find('span').text(lang.infoPaymentOneBody);
+          $(  '.more .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
+          $(  '.more .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
+          $(  '.more .quantity').find('span').text(inevioPlans[0].amount);
+          $(  '.more .quantity-container .top').text("$");
+          $(  '.more .quantity-container .bottom').text(lang.perMonth);
+          $(  '.more .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.base + plan0.addQuota).split(" ", 2)[1]);
+          $(  '.more .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
+          $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
 
-      $.when( api.app.storage('infoSubscriptions'), api.app.storage('language') ).done( function( info, lang ){
+        };
+        var orderTab = function(){
+          $(  '.order .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+          $(  '.order .preferences-hdd-payment-top').find('span').text(lang.order);
+          $(  '.order .options-top-tittle').find('span').text(lang.summary);
+          $(  '.order .options-top-body').find('span').text(lang.currentSpaceMayus);
+          $(  '.order .options-top-body .body-bottom .right').find('span').text(lang.free);
+          $(  '.order .options-top-body .body-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage));
+          $(  '.order .options-middle .options-middle-left').find('span').text(lang.add + api.tool.bytesToUnit(userLocal.base + inevioPlans[0].addQuota));
+          $(  '.order .options-middle .options-middle-right').find('span').text(0 +lang.dolarMonthMinus);
+          $(  '.order .options-bottom .top .left').text(lang.totalStorageMayus);
+          $(  '.order .options-bottom .top .right').text(lang.totalMayus);
+          $(  '.order .options-bottom .bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[2]);
+          $(  '.order .options-bottom .bottom .right').find('span').text(lang.perMonth);
+          $(  '.order .options-bottom .bottom .right .big').text(0 + lang.dolarMonthMinus);
+          $(  '.order .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
+          $(  '.order .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
+          $(  '.order .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
+          $(  '.order .info-current-card-bottom.options-credit-card.year-credit-card').find('input').attr('placeholder', lang.creditCardOptions.yearCreditCard);
+          $(  '.order .info-current-card-bottom.options-credit-card.code-credit-card').find('input').attr('placeholder', lang.creditCardOptions.codeCreditCard);
+          $(  '.order .info-current-card-bottom .info-current-payment').find('p').text(lang.infoCurrentPayment);
+          $(  '.order .preferences-hdd-payment-bottom button').find('span').text(lang.next);
+          $(  '.order .info-current-card-top').find('span').text(lang.creditCard);
+          $(  '.order .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
+          $(  '.order .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
+          $(  '.order .info-secure span').text(lang.secureByStripe);
+          $(  '.order .info-secure .underline').text(lang.stripe);
 
-        infoSubscriptions = info;
-        language = lang;
-        quota = wz.system.quota();
-        inevioPlans= [];
-        inevioPlans.push(plan0);
 
-        for(var i = 0; i<infoSubscriptions.availablePlans.length; i++){
-          inevioPlans.push(infoSubscriptions.availablePlans[i]);
-        }
+        };
+        var finishTab = function(){
+          $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+          $(  '.finish .finish-middle').find('span').text(lang.congratulation);
+          $(  '.finish .finish-middle .info-space').text(api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota + userLocal.base));
+          $(  '.finish .finish-bottom').find('span').text(lang.finish);
 
-        inevioPlans = inevioPlans.sort( function( a, b ){ return a.amount - b.amount })
-        listPlans = inevioPlans.map(function( item ){ return item.id })
+        };
+        var spacePRTab = function(){
+          $(  '.space-premium .preferences-hdd-usage').text(lang.usedSpace);
+          $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+          $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
+          $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
+          $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra );
+          $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus );
+          var fecha = new Date(userLocal.payDay);
+          $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
+        };
 
-        // Load info user subscription
-        loadInfoUserSub(infoSubscriptions);
+        var modifyPRTab = function(){
 
-        // Translate app
-        /*$( '.appName').find('span').text(lang.appName);
+          if(cardStatus == 1){
+            var cardFigure = $('.modify-premium .card-active .number-credit-card');
+            if(userLocal.card.brand == "Visa"){
+              cardFigure.addClass('card-visa');
+            }
+            else if (userLocal.card.brand == "American Express"){
+              cardFigure.addClass('card-americanExp');
+            }
+            else if (userLocal.card.brand == "MasterCard"){
+              cardFigure.addClass('card-master');
+            }
+            else if (userLocal.card.brand == "Discover"){
+              cardFigure.addClass('card-discover');
+            }
+            else if (userLocal.card.brand == "JCB"){
+              cardFigure.addClass('card-JCB');
+            }
+            else if (userLocal.card.brand == "Diners Club") {
+              cardFigure.addClass('card-diners');
+            }
+            else{
+              cardFigure.addClass('card-default');
+            }
+          }
 
-        $( 'li.hdd', win ).text( lang.space ).data( 'type', 'hdd' );
+          $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+          if(language == "en"){
+            var text= "st";
+            var day = new Date(userLocal.payDay).getDate();
+            if(day == 1){
+              text = "st";
+            }else if(day == 2){
+              text = "nd";
+            }else if (day == 3){
+              text = "rd";
+            }
+            else{
+              text = "th";
+            }
+            $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + day + text +lang.partPayDay[1]);
+
+          }else{
+            $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + new Date(userLocal.payDay).getDate() + lang.partPayDay[1]);
+          }
+          $(  '.modify-premium .info-current-plan .options-bottom .top').find('span').text(lang.totalStorageMayus);
+          $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
+          $(  '.modify-premium .number-card').find('span').text("**** **** **** " + userLocal.card.number);
+          $(  '.modify-premium .delete-card').find('span').text(lang.delete);
+          $(  '.modify-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
+          $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
+          $(  '.modify-premium .info-options .options-top .bottom').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus);
+          $(  '.modify-premium .info-options .options-top .top .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra);
+          $(  '.modify-premium .info-options .options-top .top .right').find('span').text(lang.modify);
+          $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.delete);
+          $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.actualPrice + lang.payParagraph[1]+ new Date(userLocal.payDay).getDate() + lang.payParagraph[2]);
+          $(  '.modify-premium .info-current-card-top').find('span').text(lang.creditCard);
+          $(  '.modify-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
+          $(  '.modify-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
+          $(  '.modify-premium .info-secure span').text(lang.secureByStripe);
+          $(  '.modify-premium .info-secure .underline').text(lang.stripe);
+
+
+
+        };
+        var modifySPTab = function(){
+          if(cardStatus == 0){
+            $('.modify-premium .info-current-card').removeClass('card-active');
+          }
+          $(  '.modify-space .preferences-hdd-payment-top').find('span').text(lang.increaseStorage);
+          $(  '.modify-space .current-information.one .li-circle').find('span').text(lang.infoPaymentOneHead);
+          $(  '.modify-space .current-information.one .paragraph').find('span').text(lang.infoPaymentOneBody);
+          $(  '.modify-space .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
+          $(  '.modify-space .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
+          $(  '.modify-space .quantity').find('span').text(1);
+          $(  '.modify-space .quantity-container .top').text("$");
+          $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
+          $(  '.modify-space .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[1]);
+          $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
+          $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
+
+        };
+
+        var orderPRTab = function (){
+          $(  '.order-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
+          $(  '.order-premium .preferences-hdd-payment-top').find('span').text(lang.order);
+          $(  '.order-premium .options-top-tittle').find('span').text(lang.summary);
+          $(  '.order-premium .options-top-body').find('span').text(lang.currentSpaceMayus);
+          $(  '.order-premium .options-top-body .body-bottom .right').find('span').text(lang.free);
+          $(  '.order-premium .options-top-body .body-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage));
+          $(  '.order-premium .options-middle .options-middle-left').find('span').text(lang.add + api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
+          $(  '.order-premium .options-middle .options-middle-right').find('span').text(($('.modify-space .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
+          $(  '.order-premium .options-bottom .top .left').text(lang.totalStorageMayus);
+          $(  '.order-premium .options-bottom .top .right').text(lang.totalMayus);
+          $(  '.order-premium .options-bottom .bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
+          $(  '.order-premium .options-bottom .bottom .right').find('span').text(lang.perMonth);
+          $(  '.order-premium .options-bottom .bottom .right .big').text(inevioPlans[listPlans.indexOf(activePlan)].amount + lang.dolarMonthMinus);
+          $(  '.order-premium .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
+          $(  '.order-premium .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
+          $(  '.order-premium .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
+          $(  '.order-premium .info-current-card-bottom.options-credit-card.year-credit-card').find('input').attr('placeholder', lang.creditCardOptions.yearCreditCard);
+          $(  '.order-premium .info-current-card-bottom.options-credit-card.code-credit-card').find('input').attr('placeholder', lang.creditCardOptions.codeCreditCard);
+          $(  '.order-premium .info-current-card-bottom .info-current-payment').find('p').text(lang.infoCurrentPayment);
+          $(  '.order-premium .preferences-hdd-payment-bottom button').find('span').text(lang.next);
+          $(  '.order-premium .info-current-card-top').find('span').text(lang.creditCard);
+          $(  '.order-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
+          $(  '.order-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
+          $(  '.order-premium .info-secure span').text(lang.secureByStripe);
+          $(  '.order-premium .info-secure .underline').text(lang.stripe);
+
+        };
+        var finishPRTab = function(){
+          $(  '.finish-premium .finish-middle').find('span').text(lang.congratulation);
+          $(  '.finish-premium .finish-middle .info-space').text(null);
+          $(  '.finish-premium .finish-bottom').find('span').text(lang.finish);
+
+        };
+
+        $( 'li.hdd', win ).text( lang.hdd ).data( 'type', 'hdd' );
         $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
         $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
         $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
         $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
-        $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+        if( api.system.fullMode() ){
+            $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
+        }else{
+            $( 'li.invite', win ).remove()
+        }
         $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
+        $( 'li.payment', win ).text( lang.payment ).data( 'type', 'payment' );
         $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
 
         $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
@@ -3113,399 +3405,87 @@ $.when( availablePlans(), listCards() ).done( function( plans, cards ){
         $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
         $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
 
-        $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
-        $('.preferences-extensions-display span').text( lang.displayExtensions );
+        //$('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
+        //$('.preferences-extensions-display span').text( lang.displayExtensions );
 
         $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
         $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
         $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
         $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
 
+        $( '.preferences-bottom-title.invite', win ).text( lang.inviteTitle );
+        $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
+        $( '.preferences-account-button.invite', win ).text( lang.generate );
+        $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
+
         $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
         $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
         $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
         $( '.preferences-bottom-delete-account-button.ellipsis', win ).text( lang.deleteAccount.title );
 
+        $('.preferences-bottom-title.payment').text( lang.paymentTitle );
+        $('.preferences-bottom-description.payment').text( lang.peymentDesc );
+        $('.preferences-bottom-label.name').text( lang.paymentCardHolder );
+        $('.preferences-bottom-label.number').text( lang.paymentCardNumber );
+        $('.preferences-bottom-label.month').text( lang.paymentCardMonth );
+        $('.preferences-bottom-label.year').text( lang.paymentCardYear );
+        $('.preferences-bottom-label.cvv').text( lang.paymentCardCVV );
+        $('.preferences-payment-button span').text( lang.save );
+        $('.cancel-credit span').text( lang.unlinkCard );
+        $('.stripe-loading').text( lang.stripeLoading );
+
         $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
         $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
         $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
 
-        $('.preferences-bottom-content.invite .title').text(lang.inviteYourFriends);
-        $('.preferences-bottom-content.invite .subtitle').text(lang.feelAlone);
-        $('.preferences-bottom-content.invite .emails').text(lang.emails);
-        $('.preferences-bottom-content.invite .add-mail-text').text(lang.addMail);
-        $('.preferences-bottom-content.invite .share-text').text(lang.sendInvitations);
-        $('.preferences-bottom-content.invite .mail').attr('placeholder' , lang.mailExample);*/
+        $('.preferences-bottom-content .title').text(lang.inviteYourFriends);
+        $('.preferences-bottom-content .subtitle').text(lang.feelAlone);
+        $('.preferences-bottom-content .emails').text(lang.emails);
+        $('.preferences-bottom-content .add-mail-text').text(lang.addMail);
+        $('.preferences-bottom-content .share-text').text(lang.sendInvitations);
+        $('.preferences-bottom-content .mail').attr('placeholder' , lang.mailExample);
 
-        // Infinity storage??
-        if (userLocal.info){
-          spacePRTab();
-          modifyPRTab();
-          modifySPTab();
-          orderPRTab();
-          finishPRTab();
-        }
-        else{
-          spaceTab();
-          moreTab();
-          orderTab();
-          finishTab();
-        }
+        $('.delete-account-popup .popup-title').text(lang.deleteAccount.title)
+        $('.delete-account-popup .option.files .option-text').text(lang.deleteAccount.files)
+        $('.delete-account-popup .option.worlds .option-text').text(lang.deleteAccount.worlds)
+        $('.delete-account-popup .option.chats .option-text').text(lang.deleteAccount.chats)
+        $('.delete-account-popup .delete-button .button-text').text(lang.deleteAccount.title)
 
-        if(infoSubscriptions.currentPlan != null){
-          if(infoSubscriptions.currentPlan.addQuota == "Infinity"){
-            $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(lang.unlimitedStorage);
-            $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
-            $(  '.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
-          }
-        }
+        // SOCIAL NETWORKS CODE
+        api.social
+        .on( 'facebookAccountAdded', function( account ){
 
-      })
+            for( var i = 0; i < 8; i++ ){
+                wql.insertType( [ account.id, i ] );
+            }
 
-    };
+            socialNetworks();
 
-    var spaceTab = function(){
-      //console.log(language);
-      if (language == 'es'){
-        $('.space .info-plan-premium').addClass('es');
-      }else if (language == 'en') {
-        $('.space .info-plan-premium').addClass('en');
-      }
-      $(  '.space .preferences-hdd-usage').text(lang.usedSpace);
-      $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
-      $(  '.space .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.space .box-current-plan-bottom').find('span').text(lang.moreInfo);
-      $(  '.space .box-current-plan-top').find('span').text(lang.increaseStorage);
-    };
+        })
 
-    var moreTab = function(){
-      $(  '.more .preferences-hdd-payment-top').find('span').text(lang.increaseStorage);
-      $(  '.more .box-current-plan-top').find('span').text(lang.increaseStorage);
-      $(  '.more .current-information.one .li-circle').find('span').text(lang.infoPaymentOneHead);
-      $(  '.more .current-information.one .paragraph').find('span').text(lang.infoPaymentOneBody);
-      $(  '.more .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
-      $(  '.more .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
-      $(  '.more .quantity').find('span').text(inevioPlans[0].amount);
-      $(  '.more .quantity-container .top').text("$");
-      $(  '.more .quantity-container .bottom').text(lang.perMonth);
-      $(  '.more .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.base + plan0.addQuota).split(" ", 2)[1]);
-      $(  '.more .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[0]);
-      $(  '.more .preferences-hdd-payment-bottom').find('span').text(lang.next);
+        .on( 'facebookAccountRemoved', function( accountId ){
 
-    };
-    var orderTab = function(){
-      $(  '.order .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.order .preferences-hdd-payment-top').find('span').text(lang.order);
-      $(  '.order .options-top-tittle').find('span').text(lang.summary);
-      $(  '.order .options-top-body').find('span').text(lang.currentSpaceMayus);
-      $(  '.order .options-top-body .body-bottom .right').find('span').text(lang.free);
-      $(  '.order .options-top-body .body-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage));
-      $(  '.order .options-middle .options-middle-left').find('span').text(lang.add + api.tool.bytesToUnit(userLocal.base + inevioPlans[0].addQuota));
-      $(  '.order .options-middle .options-middle-right').find('span').text(0 +lang.dolarMonthMinus);
-      $(  '.order .options-bottom .top .left').text(lang.totalStorageMayus);
-      $(  '.order .options-bottom .top .right').text(lang.totalMayus);
-      $(  '.order .options-bottom .bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base).split(" ", 2)[2]);
-      $(  '.order .options-bottom .bottom .right').find('span').text(lang.perMonth);
-      $(  '.order .options-bottom .bottom .right .big').text(0 + lang.dolarMonthMinus);
-      $(  '.order .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
-      $(  '.order .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
-      $(  '.order .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
-      $(  '.order .info-current-card-bottom.options-credit-card.year-credit-card').find('input').attr('placeholder', lang.creditCardOptions.yearCreditCard);
-      $(  '.order .info-current-card-bottom.options-credit-card.code-credit-card').find('input').attr('placeholder', lang.creditCardOptions.codeCreditCard);
-      $(  '.order .info-current-card-bottom .info-current-payment').find('p').text(lang.infoCurrentPayment);
-      $(  '.order .preferences-hdd-payment-bottom button').find('span').text(lang.next);
-      $(  '.order .info-current-card-top').find('span').text(lang.creditCard);
-      $(  '.order .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
-      $(  '.order .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
-      $(  '.order .info-secure span').text(lang.secureByStripe);
-      $(  '.order .info-secure .underline').text(lang.stripe);
+            wql.removeAccount( accountId );
+            socialNetworks();
 
+        })
 
-    };
-    var finishTab = function(){
-      $(  '.finish .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.finish .finish-middle').find('span').text(lang.congratulation);
-      $(  '.finish .finish-middle .info-space').text(api.tool.bytesToUnit(inevioPlans[listPlans.indexOf(activePlan)].addQuota + userLocal.base));
-      $(  '.finish .finish-bottom').find('span').text(lang.finish);
+        .on( 'twitterAccountAdded', function( account ){
 
-    };
-    var spacePRTab = function(){
-      $(  '.space-premium .preferences-hdd-usage').text(lang.usedSpace);
-      $(  '.space-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.space-premium .box-current-plan-top').find('span').text(lang.activePlan);
-      $(  '.space-premium .box-current-plan-bottom').find('span').text(lang.manage);
-      $(  '.space-premium .box-current-plan-middle .premium-info .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra );
-      $(  '.space-premium .box-current-plan-middle .premium-info .right').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus );
-      var fecha = new Date(userLocal.payDay);
-      $(  '.space-premium .box-current-plan-middle .premium-date').find('span').text(lang.payDay + fecha.getDate() + '/'+ (fecha.getMonth()+1) + '/' + (fecha.getFullYear()));
-    };
+            for( var i = 0; i < 8; i++ ){
+                wql.insertType( [ account.id, i ] );
+            }
 
-    var modifyPRTab = function(){
+            socialNetworks();
 
-      if(cardStatus == 1){
-        var cardFigure = $('.modify-premium .card-active .number-credit-card');
-        if(userLocal.card.brand == "Visa"){
-          cardFigure.addClass('card-visa');
-        }
-        else if (userLocal.card.brand == "American Express"){
-          cardFigure.addClass('card-americanExp');
-        }
-        else if (userLocal.card.brand == "MasterCard"){
-          cardFigure.addClass('card-master');
-        }
-        else if (userLocal.card.brand == "Discover"){
-          cardFigure.addClass('card-discover');
-        }
-        else if (userLocal.card.brand == "JCB"){
-          cardFigure.addClass('card-JCB');
-        }
-        else if (userLocal.card.brand == "Diners Club") {
-          cardFigure.addClass('card-diners');
-        }
-        else{
-          cardFigure.addClass('card-default');
-        }
-      }
+        })
 
-      $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      if(language == "en"){
-        var text= "st";
-        var day = new Date(userLocal.payDay).getDate();
-        if(day == 1){
-          text = "st";
-        }else if(day == 2){
-          text = "nd";
-        }else if (day == 3){
-          text = "rd";
-        }
-        else{
-          text = "th";
-        }
-        $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + day + text +lang.partPayDay[1]);
+        .on( 'twitterAccountRemoved', function( accountId ){
 
-      }else{
-        $(  '.modify-premium .info-current-plan .options-middle').find('span').text(lang.partPayDay[0] + new Date(userLocal.payDay).getDate() + lang.partPayDay[1]);
-      }
-      $(  '.modify-premium .info-current-plan .options-bottom .top').find('span').text(lang.totalStorageMayus);
-      $(  '.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
-      $(  '.modify-premium .number-card').find('span').text("**** **** **** " + userLocal.card.number);
-      $(  '.modify-premium .delete-card').find('span').text(lang.delete);
-      $(  '.modify-premium .preferences-hdd-payment-bottom button').find('span').text(lang.save);
-      $(  '.modify-premium .preferences-hdd-payment-top').find('span').text(lang.currentPlan);
-      $(  '.modify-premium .info-options .options-top .bottom').find('span').text(userLocal.actualPrice + lang.dolarMonthMinus);
-      $(  '.modify-premium .info-options .options-top .top .left').find('span').text(api.tool.bytesToUnit(userLocal.extraStorage) + lang.extra);
-      $(  '.modify-premium .info-options .options-top .top .right').find('span').text(lang.modify);
-      $(  '.modify-premium .info-current-card-bottom .delete-card').text(lang.delete);
-      $(  '.modify-premium .info-current-card-bottom .info-current-payment').text(lang.payParagraph[0] + userLocal.actualPrice + lang.payParagraph[1]+ new Date(userLocal.payDay).getDate() + lang.payParagraph[2]);
-      $(  '.modify-premium .info-current-card-top').find('span').text(lang.creditCard);
-      $(  '.modify-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
-      $(  '.modify-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
-      $(  '.modify-premium .info-secure span').text(lang.secureByStripe);
-      $(  '.modify-premium .info-secure .underline').text(lang.stripe);
+            wql.removeAccount( accountId );
+            socialNetworks();
 
+        });
 
-
-    };
-    var modifySPTab = function(){
-      if(cardStatus == 0){
-        $('.modify-premium .info-current-card').removeClass('card-active');
-      }
-      $(  '.modify-space .preferences-hdd-payment-top').find('span').text(lang.increaseStorage);
-      $(  '.modify-space .current-information.one .li-circle').find('span').text(lang.infoPaymentOneHead);
-      $(  '.modify-space .current-information.one .paragraph').find('span').text(lang.infoPaymentOneBody);
-      $(  '.modify-space .current-information.two .li-circle').find('span').text(lang.infoPaymentTwoHead);
-      $(  '.modify-space .current-information.two .paragraph').find('span').text(lang.infoPaymentTwoBody);
-      $(  '.modify-space .quantity').find('span').text(1);
-      $(  '.modify-space .quantity-container .top').text("$");
-      $(  '.modify-space .quantity-container .bottom').text(lang.perMonth);
-      $(  '.modify-space .show-space-selected span:last-child').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[1]);
-      $(  '.modify-space .show-space-selected .big-text').text(api.tool.bytesToUnit(userLocal.totalStorage).split(" ", 2)[0]);
-      $(  '.modify-space .preferences-hdd-payment-bottom').find('span').text(lang.next);
-
-    };
-
-    var orderPRTab = function (){
-      $(  '.order-premium .preferences-hdd-payment-top').find('span').text(lang.hddTitle);
-      $(  '.order-premium .preferences-hdd-payment-top').find('span').text(lang.order);
-      $(  '.order-premium .options-top-tittle').find('span').text(lang.summary);
-      $(  '.order-premium .options-top-body').find('span').text(lang.currentSpaceMayus);
-      $(  '.order-premium .options-top-body .body-bottom .right').find('span').text(lang.free);
-      $(  '.order-premium .options-top-body .body-bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.totalStorage));
-      $(  '.order-premium .options-middle .options-middle-left').find('span').text(lang.add + api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
-      $(  '.order-premium .options-middle .options-middle-right').find('span').text(($('.modify-space .quantity').text()).toString().substring(29,30)+lang.dolarMonthMinus);
-      $(  '.order-premium .options-bottom .top .left').text(lang.totalStorageMayus);
-      $(  '.order-premium .options-bottom .top .right').text(lang.totalMayus);
-      $(  '.order-premium .options-bottom .bottom .left').find('span').text(api.tool.bytesToUnit(userLocal.base + inevioPlans[listPlans.indexOf(activePlan)].addQuota));
-      $(  '.order-premium .options-bottom .bottom .right').find('span').text(lang.perMonth);
-      $(  '.order-premium .options-bottom .bottom .right .big').text(inevioPlans[listPlans.indexOf(activePlan)].amount + lang.dolarMonthMinus);
-      $(  '.order-premium .info-current-card-bottom.owner-credit-card').find('input').attr('placeholder', lang.creditCardOptions.nameCreditCard);
-      $(  '.order-premium .info-current-card-bottom.number-credit-card').find('input').attr('placeholder', lang.creditCardOptions.numberCreditCard);
-      $(  '.order-premium .info-current-card-bottom.options-credit-card.month-credit-card').find('input').attr('placeholder', lang.creditCardOptions.monthCreditCard);
-      $(  '.order-premium .info-current-card-bottom.options-credit-card.year-credit-card').find('input').attr('placeholder', lang.creditCardOptions.yearCreditCard);
-      $(  '.order-premium .info-current-card-bottom.options-credit-card.code-credit-card').find('input').attr('placeholder', lang.creditCardOptions.codeCreditCard);
-      $(  '.order-premium .info-current-card-bottom .info-current-payment').find('p').text(lang.infoCurrentPayment);
-      $(  '.order-premium .preferences-hdd-payment-bottom button').find('span').text(lang.next);
-      $(  '.order-premium .info-current-card-top').find('span').text(lang.creditCard);
-      $(  '.order-premium .info-current-without-card-bottom .top .top-bottom').find('span').text(lang.addCard);
-      $(  '.order-premium .info-current-without-card-bottom .bottom').find('span').text(lang.noCardInfo);
-      $(  '.order-premium .info-secure span').text(lang.secureByStripe);
-      $(  '.order-premium .info-secure .underline').text(lang.stripe);
-
-    };
-    var finishPRTab = function(){
-      $(  '.finish-premium .finish-middle').find('span').text(lang.congratulation);
-      $(  '.finish-premium .finish-middle .info-space').text(null);
-      $(  '.finish-premium .finish-bottom').find('span').text(lang.finish);
-
-    };
-
-    $( 'li.hdd', win ).text( lang.hdd ).data( 'type', 'hdd' );
-    $( 'li.account', win ).text( lang.account ).data( 'type', 'account' );
-    $( 'li.social', win ).text( lang.social ).data( 'type', 'social' );
-    $( 'li.config', win ).text( lang.config ).data( 'type', 'config' );
-    $( 'li.custom', win ).text( lang.custom ).data( 'type', 'custom' );
-    $( 'li.invite', win ).text( lang.invite ).data( 'type', 'invite' );
-    $( 'li.backup', win ).text( lang.backup ).data( 'type', 'backup' );
-    $( 'li.payment', win ).text( lang.payment ).data( 'type', 'payment' );
-    $( 'li.about', win ).text( lang.about ).data( 'type', 'about' );
-
-    $( '.preferences-bottom-title.hdd', win ).text( lang.hddTitle );
-    $( '.preferences-bottom-description.hdd', win ).text( lang.hddDescription );
-    $( '.preferences-hdd-usage', win ).text( lang.currentUsage );
-    $( '.preferences-plans-title', win ).text( lang.moreFeatures );
-    $( '.hdd-plan-space.starter', win ).text( lang.starter );
-    $( '.hdd-plan-price.starter', win ).text( lang.free );
-    $( '.hdd-plan-space.pro', win ).text( lang.pro );
-    $( '.hdd-plan-price.pro', win ).text( lang.proPrice );
-    $( '.hdd-plan-space.advance', win ).text( lang.advance );
-    $( '.hdd-plan-price.advance', win ).text( lang.advancePrice );
-    $( '.hdd-plan-space.ultimate', win ).text( lang.ultimate );
-    $( '.hdd-plan-price.ultimate', win ).text( lang.ultimatePrice );
-    $( '.preferences-card-subscribe-text', win ).text( lang.subscribe );
-
-    $( '.preferences-bottom-title.account', win ).text( lang.accountTitle );
-    $( '.preferences-bottom-description.account', win ).text( lang.accountDescription );
-    $( '.avatar-edit', win ).text( lang.avatarEdit );
-    $( '.preferences-bottom-labelUsername', win ).text( lang.accountUser );
-    $( '.preferences-bottom-labelMail', win ).text( lang.accountMailUser );
-    $( '.change-password .preferences-account-button', win ).text( lang.changePassword );
-    $( '.save-info .preferences-account-button', win ).text( lang.saveChanges );
-
-    $( '.preferences-bottom-title.password', win ).text( lang.passwordTitle );
-    $( '.preferences-bottom-description.password', win ).text( lang.passwordDescription );
-    $( '.cancel-password .preferences-account-button', win ).text( lang.cancel );
-    $( '.preferences-bottom-labelCurrentPassword', win ).text( lang.currentPassword );
-    $( '.save-password .preferences-account-button', win ).text( lang.saveChanges );
-    $( '.password-current input', win ).attr( 'placeholder', lang.currentPassword );
-    $( '.password-new input', win ).attr( 'placeholder', lang.newPassword );
-    $( '.password-confirm input', win ).attr( 'placeholder', lang.confirmPassword );
-    $( '.preferences-bottom-labelNewPassword', win ).text( lang.newPassword );
-    $( '.preferences-bottom-labelConfirmPassword', win ).text( lang.confirmPassword );
-    $( '.preferences-bottom-forgetPassword', win ).text( lang.forgetPassword );
-    $( '.preferences-bottom-forgetPassword', win ).attr( 'href', lang.forgetPasswordHtml );
-
-    $( '.preferences-bottom-title.social', win ).text( lang.socialTitle );
-    $( '.preferences-bottom-description.social', win ).text( lang.socialDescription );
-    $( '.preferences-social-name.facebook', win ).text( lang.facebookAccount );
-    $( '.preferences-social-name.twitter', win ).text( lang.twitterAccount );
-
-    $( '.preferences-bottom-title.date', win ).text( lang.dateTitle );
-    $( '.preferences-bottom-description.date', win ).text( lang.dateDescription );
-    $( '.preferences-config-auto span', win ).text( lang.autoTime );
-    $( '.time-format-title', win ).text( lang.timeFormat + ':' );
-    $( '.time-format-24', win ).text( '24' + ' ' + lang.hoursClock );
-    $( '.time-format-12', win ).text( '12' + ' ' + lang.hoursClock );
-    $( '.date-format-title', win ).text( lang.dateFormat + ':' );
-    $( '.date-format-ddmmyy', win ).text( lang.ddmmyy );
-    $( '.date-format-mmddyy', win ).text( lang.mmddyy );
-    $( '.date-format-yymmdd', win ).text( lang.yymmdd );
-
-    $( '.preferences-bottom-title.language', win ).text( lang.languageTitle );
-    $( '.preferences-bottom-description.language', win ).text( lang.languageDescription );
-    $( '.preferences-language-element-spanish', win ).text( lang.spanishLanguage );
-    $( '.preferences-language-element-english', win ).text( lang.englishLanguage );
-
-    // $('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
-    // $('.preferences-extensions-display span').text( lang.displayExtensions );
-
-    $( '.preferences-bottom-title.custom', win ).text( lang.customTitle );
-    $( '.preferences-bottom-description.custom', win ).text( lang.customDescription );
-    $( '.preferences-wallpaper-title', win ).text( lang.wallpaper );
-    $( '.preferences-wallpaper-upload span', win ).text( lang.upload );
-
-    $( '.preferences-bottom-title.invite', win ).text( lang.inviteTitle );
-    $( '.preferences-bottom-description.invite', win ).text( lang.inviteDescription );
-    $( '.preferences-account-button.invite', win ).text( lang.generate );
-    $( '.preferences-invite-beware', win ).text( lang.inviteBeware );
-
-    $( '.preferences-bottom-title.backup', win ).text( lang.backupTitle );
-    $( '.preferences-bottom-description.backup', win ).text( lang.backupDescription );
-    $( '.preferences-bottom-backup-button.ellipsis', win ).text( lang.backupButton );
-    $( '.preferences-bottom-delete-account-button.ellipsis', win ).text( lang.deleteAccount.title );
-
-    $('.preferences-bottom-title.payment').text( lang.paymentTitle );
-    $('.preferences-bottom-description.payment').text( lang.peymentDesc );
-    $('.preferences-bottom-label.name').text( lang.paymentCardHolder );
-    $('.preferences-bottom-label.number').text( lang.paymentCardNumber );
-    $('.preferences-bottom-label.month').text( lang.paymentCardMonth );
-    $('.preferences-bottom-label.year').text( lang.paymentCardYear );
-    $('.preferences-bottom-label.cvv').text( lang.paymentCardCVV );
-    $('.preferences-payment-button span').text( lang.save );
-    $('.cancel-credit span').text( lang.unlinkCard );
-    $('.stripe-loading').text( lang.stripeLoading );
-
-    $( '.preferences-about-version', win ).text( lang.version + ':' + ' ' + api.system.version().replace( 'beta', 'Beta' ) );
-    $( '.preferences-about-link.legal', win ).text( lang.legalNotices );
-    $( '.preferences-about-link.privacy', win ).text( lang.privacyPolicies );
-
-    $('.preferences-bottom-content .title').text(lang.inviteYourFriends);
-    $('.preferences-bottom-content .subtitle').text(lang.feelAlone);
-    $('.preferences-bottom-content .emails').text(lang.emails);
-    $('.preferences-bottom-content .add-mail-text').text(lang.addMail);
-    $('.preferences-bottom-content .share-text').text(lang.sendInvitations);
-    $('.preferences-bottom-content .mail').attr('placeholder' , lang.mailExample);
-
-    $('.delete-account-popup .popup-title').text(lang.deleteAccount.title)
-    $('.delete-account-popup .option.files .option-text').text(lang.deleteAccount.files)
-    $('.delete-account-popup .option.worlds .option-text').text(lang.deleteAccount.worlds)
-    $('.delete-account-popup .option.chats .option-text').text(lang.deleteAccount.chats)
-    $('.delete-account-popup .delete-button .button-text').text(lang.deleteAccount.title)
-
-    // SOCIAL NETWORKS CODE
-    api.social
-    .on( 'facebookAccountAdded', function( account ){
-
-        for( var i = 0; i < 8; i++ ){
-            wql.insertType( [ account.id, i ] );
-        }
-
-        socialNetworks();
-
-    })
-
-    .on( 'facebookAccountRemoved', function( accountId ){
-
-        wql.removeAccount( accountId );
-        socialNetworks();
-
-    })
-
-    .on( 'twitterAccountAdded', function( account ){
-
-        for( var i = 0; i < 8; i++ ){
-            wql.insertType( [ account.id, i ] );
-        }
-
-        socialNetworks();
-
-    })
-
-    .on( 'twitterAccountRemoved', function( accountId ){
-
-        wql.removeAccount( accountId );
-        socialNetworks();
-
-    });
-
-//StartApp
-loadAppUser();
+    //StartApp
+    loadAppUser();
