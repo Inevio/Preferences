@@ -1,7 +1,5 @@
   Stripe.setPublishableKey('pk_live_ufl5Tdl4iL0ylmu3k3N1hmWd');
 
-console.log(lang)
-
     // Variables
     var win = $( this );
     var language = null;
@@ -477,7 +475,7 @@ console.log(lang)
 
         $( '.preferences-social-card', win ).children().not( '.preferences-social-title' ).remove();
 
-        api.social.getAccounts( function( error, list ){
+        /*api.social.getAccounts( function( error, list ){
 
             for( var i = 0; i < list.accounts.length; i++ ){
 
@@ -493,7 +491,7 @@ console.log(lang)
 
             }
 
-        });
+        });*/
 
     };
 

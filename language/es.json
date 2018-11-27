@@ -320,7 +320,7 @@
 
     "createAccount" : {
         "title": "Las cuentas demo no pueden modificar esta información",
-        "body": "Haz tuya esta cuenta simplemente introduciendo tu correo en la ventana que aparece en la esquina inferior derecha de tu pantalla.",
+        "body": "Haz tuya esta cuenta simplemente introduciendo tu correo en la ventana que aparece en la esquina inferior derecha de tu pantalla."
     }
 
 }
