@@ -15,7 +15,7 @@
     "wrongPass" : "Unable to save changes, incorrect password.",
     "reload"    : "Do you want to reload horbito now?",
 
-    "hddTitle"         : "Space",
+    "hddTitle"         : "Available Space",
     "hddDescription"   : "Here you view how much free space you have left",
     "currentUsage"     : "Current usage",
     "moreFeatures"     : "Need More Features?",

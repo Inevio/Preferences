@@ -25,8 +25,8 @@
 
     <section class="preferences-top-nav">
       <nav class="wz-dragger">
-          <li class="account wz-dragger"></li>
-          <li class="hdd active wz-dragger"></li>
+          <li class="account active wz-dragger"></li>
+          <li class="hdd wz-dragger"></li>
           <!--<li class="social wz-dragger"></li>-->
           <li class="config wz-dragger"></li>
           <li class="custom wz-dragger"></li>
@@ -40,10 +40,134 @@
 
 <section class="preferences-bottom dark wz-scroll-y">
 
+	<!-- ACCOUNT ZONE START -->
+
+    <section class="preferences-bottom-content account">
+
+        <span class="preferences-bottom-title account"></span>
+        <span class="preferences-bottom-description account"></span>
+
+        <article class="preferences-account-top">
+
+            <figure class="preferences-avatar-container">
+                <canvas class="preferences-account-avatar" width="148px" height="148px"></canvas>
+                <figure class="preferences-account-image"></figure>
+            </figure>
+
+            <span class="avatar-edit wz-avatar-uploader-start"></span>
+
+        </article>
+
+        <section class="preferences-bottom-input-containter">
+        <article class="preferences-bottom-container dark">
+          <article class="preferences-bottom-label">
+            <span class="preferences-bottom-labelUsername"></span>
+          </article>
+
+          <!--article class="preferences-bottom-input top account-username ui-input-search">
+              <article class="preferences-bottom-input-container">
+                <i></i>
+                <input type="text" />
+                <i class="preferences-input-status"></i>
+              </article>
+          </article -->
+
+          <section class="ui-input-search account-username">
+            <figure class="input-icon user-icon search-icon">
+              <i></i>
+            </figure>
+            <input>
+            <figure class="delete-content">
+              <i></i>
+            </figure>
+          </section>
+
+        </article>
+
+        <article class="preferences-bottom-container dark">
+          <article class="preferences-bottom-label">
+            <span class="preferences-bottom-labelMail"></span>
+          </article>
+
+          <!--article class="preferences-bottom-input bottom account-mail ui-input-search">
+              <article class="preferences-bottom-input-container">
+                <i></i>
+                <input type="text" />
+                <i class="preferences-input-status"></i>
+              </article>
+          </article>
+        </article -->
+        <section class="ui-input-search account-mail">
+          <figure class="input-icon mail-icon search-icon">
+            <i></i>
+          </figure>
+          <input>
+          <figure class="delete-content">
+            <i></i>
+          </figure>
+        </section>
+      </section>
+
+        <section class="preferences-account-buttons">
+
+            <article class="preferences-button account change-password ui-btn">
+                <article class="preferences-account-button-container">
+                  <span class="preferences-account-button"></span>
+                </article>
+            </article>
+
+            <article class="preferences-button account unactive save-info">
+              <article class="preferences-account-button-container">
+                <span class="preferences-account-button"></span>
+              </article>
+            </article>
+        </section>
+    </section>
+
+    <!-- ACCOUNT ZONE FINISH -->
+
     <!-- HDD ZONE START -->
 
     <section class="preferences-bottom-content hdd">
-      <section class="hdd-container premium-user">
+      <section class="hdd-container">
+
+      	<section class="preferences-hdd-payment">
+
+      		<article class="preferences-hdd-payment-top">
+
+            <article class="black-circle mini mini-disco">
+              <figure></figure>
+            </article>
+            <span></span>
+
+          </article>
+
+          <article class="preferences-hdd-payment-middle">
+            <article class="box-hdd-usage">
+              <article class="hdd-info preferences-hdd-quota big-box-hdd">
+                <article class="top">
+                  <span class="preferences-hdd-usage"></span>
+                </article>
+                <article class="bottom usage-circle">
+                  <canvas class="preferences-hdd-canvas-cake" width="242" height="242"></canvas>
+                  <figure class="preferences-hdd-cake">
+                    <article class="preferences-hdd-cake-circle">
+                      <span class="preferences-hdd-cake-total"></span>
+                      <span class="preferences-hdd-cake-free"></span>
+                    </article>
+                      <!--
+                      <canvas class="preferences-hdd-canvas" width="220" height="221"></canvas>
+                      -->
+                  </figure>
+
+                </article>
+              </article>
+            </article>
+          </article>
+
+      	</section>
+
+      	<!--
 
         <section class="preferences-hdd-payment space-premium premium">
 
@@ -72,15 +196,14 @@
                           <span class="preferences-hdd-cake-total"></span>
                           <span class="preferences-hdd-cake-free"></span>
                         </article>
-                          <!--
                           <canvas class="preferences-hdd-canvas" width="220" height="221"></canvas>
-                          -->
                       </figure>
 
                     </article>
                   </article>
                 </article>
               </article>
+
               <article class="right">
                 <article class="box-current-plan">
 
@@ -117,8 +240,6 @@
 
                 </article>
               </article>
-
-
 
             </article>
 
@@ -655,9 +776,7 @@
                         <span class="preferences-hdd-cake-total"></span>
                         <span class="preferences-hdd-cake-free"></span>
                       </article>
-                        <!--
                         <canvas class="preferences-hdd-canvas" width="220" height="221"></canvas>
-                        -->
                     </figure>
 
                   </article>
@@ -715,9 +834,7 @@
 
                 </article>
 
-                <!--
                 Option premium
-              -->
               <article class="box-current-plan hidden pr-box">
 
 
@@ -755,9 +872,7 @@
 
               </article>
               <article class="bottom">
-                  <!--
                   INEVIO CREDIT
-                -->
               </article>
             </article>
 
@@ -945,7 +1060,6 @@
 
                             </article>
 
-                            <!--
 
                             <article class="inevio-credit small-box-hdd">
 
@@ -956,7 +1070,6 @@
 
                             </article>
 
-                            -->
 
 
                           </article>
@@ -1069,7 +1182,6 @@
       </section>
 
 
-      <!--
         <span class="preferences-bottom-title hdd"></span>
         <span class="preferences-bottom-description hdd"></span>
 
@@ -1099,7 +1211,6 @@
 
         <span class="preferences-about-version"></span>
 
-        <!--
         <section class="preferences-hdd-account">
 
             <section class="preferences-hdd-plans">
@@ -1155,97 +1266,12 @@
             <i class="preferences-card-next"></i>
 
         </section>
-        -->
+			-->
+			</section>
 
     </section>
 
     <!-- HDD ZONE FINISH -->
-
-    <!-- ACCOUNT ZONE START -->
-
-    <section class="preferences-bottom-content account">
-
-        <span class="preferences-bottom-title account"></span>
-        <span class="preferences-bottom-description account"></span>
-
-        <article class="preferences-account-top">
-
-            <figure class="preferences-avatar-container">
-                <canvas class="preferences-account-avatar" width="148px" height="148px"></canvas>
-                <figure class="preferences-account-image"></figure>
-            </figure>
-
-            <span class="avatar-edit wz-avatar-uploader-start"></span>
-
-        </article>
-
-        <section class="preferences-bottom-input-containter">
-        <article class="preferences-bottom-container dark">
-          <article class="preferences-bottom-label">
-            <span class="preferences-bottom-labelUsername"></span>
-          </article>
-
-          <!--article class="preferences-bottom-input top account-username ui-input-search">
-              <article class="preferences-bottom-input-container">
-                <i></i>
-                <input type="text" />
-                <i class="preferences-input-status"></i>
-              </article>
-          </article -->
-
-          <section class="ui-input-search account-username">
-            <figure class="input-icon user-icon search-icon">
-              <i></i>
-            </figure>
-            <input>
-            <figure class="delete-content">
-              <i></i>
-            </figure>
-          </section>
-
-        </article>
-
-        <article class="preferences-bottom-container dark">
-          <article class="preferences-bottom-label">
-            <span class="preferences-bottom-labelMail"></span>
-          </article>
-
-          <!--article class="preferences-bottom-input bottom account-mail ui-input-search">
-              <article class="preferences-bottom-input-container">
-                <i></i>
-                <input type="text" />
-                <i class="preferences-input-status"></i>
-              </article>
-          </article>
-        </article -->
-        <section class="ui-input-search account-mail">
-          <figure class="input-icon mail-icon search-icon">
-            <i></i>
-          </figure>
-          <input>
-          <figure class="delete-content">
-            <i></i>
-          </figure>
-        </section>
-      </section>
-
-        <section class="preferences-account-buttons">
-
-            <article class="preferences-button account change-password ui-btn">
-                <article class="preferences-account-button-container">
-                  <span class="preferences-account-button"></span>
-                </article>
-            </article>
-
-            <article class="preferences-button account unactive save-info">
-              <article class="preferences-account-button-container">
-                <span class="preferences-account-button"></span>
-              </article>
-            </article>
-        </section>
-    </section>
-
-    <!-- ACCOUNT ZONE FINISH -->
 
     <!-- PASSWORD ZONE START -->
 

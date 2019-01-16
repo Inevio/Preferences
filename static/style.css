@@ -210,6 +210,9 @@ button{
     height: inherit;
     text-align: left;
     margin-left: 14px;
+    display: flex;
+    justify-content: space-evenly;
+
 }
 
 .preferences-top li{
@@ -652,16 +655,16 @@ button{
       background: url('@static/icono-hdd-titulo.png') no-repeat;
       background-size: 36px 36px;
       background-position: 0px 0px;
-      margin-top: 12px;
-      margin-left: 25px;
       height: 36px;
       border: none;
+      float: left;
     }
     span{
       font-size: 40px;
       font-weight: bold;
       margin-left: 11px;
-      margin-top: 10px
+      margin-top: 10px;
+      float: left;
     }
   }
 
@@ -732,8 +735,10 @@ button{
 
 .preferences-bottom-content.hdd{
 
-    display: flex;
-    width: auto;
+  display: none;
+  opacity: 0;
+  width: auto;
+
 }
 .hdd-container{
   display: flex;
@@ -758,20 +763,25 @@ button{
   height: 439px;
   float: left;
   width: 807px;
+  text-align: center;
 }
 
 .preferences-hdd-payment-top{
-  float: left;
-  display: flex;
+  display: inline-block;
   font-size: 21px;
   color: white;
-
+  text-align: left;
 }
 
 .preferences-hdd-payment-middle{
-  display: flex;
   width: inherit;
   color: #c7d1d7;
+  text-align: center;
+}
+
+.box-hdd-usage{
+  display: inline-block;
+  margin-top: 22px;
 }
 
 .space-premium, .pr-box{
@@ -787,7 +797,6 @@ button{
   padding: 20px 0px;
   border-radius: 6px;
   background: rgb(44, 50, 56);
-  margin: 37px 0 0 26px;
 
   .usage-circle{
 
@@ -3042,8 +3051,7 @@ span.preferences-card-subscribe-text{
 
 .preferences-bottom-content.account{
 
-    display: none;
-    opacity: 0;
+    display: block;
 
 }
 
@@ -3125,6 +3133,14 @@ span.preferences-card-subscribe-text{
 
 .ui-input-search.active{
   border: 2px solid #60B25E;
+}
+
+.ui-input-search .search-icon i{
+  transition: none;
+}
+
+.ui-input-search input{
+  width: ~'calc( 100% - 75px )';
 }
 
 .input-icon i{
