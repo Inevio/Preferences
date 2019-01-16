@@ -15,7 +15,7 @@
     "wrongPass" : "No se han podido guardar los cambios, contraseña incorrecta.",
     "reload"    : "¿Quieres recargar horbito ahora?",
 
-    "hddTitle"         : "Espacio",
+    "hddTitle"         : "Espacio Disponible",
     "hddDescription"   : "Aquí puedes ver cuanto espacio te queda libre",
     "currentUsage"     : "Uso actual",
     "moreFeatures"     : "¿Más funciones?",
