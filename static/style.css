@@ -3748,9 +3748,9 @@ span.preferences-card-subscribe-text{
     width: 126px;
     height: 78px;
     -webkit-box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
-	-moz-box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
-	box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
-	border: solid 1px #2c3238;
+  	-moz-box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
+  	box-shadow: 0 2px 1px rgba(0,0,0,.05), inset 0 2px rgba(255,255,255,.03);
+  	border: solid 1px #2c3238;
     position: relative;
     display: inline-block;
     margin: 6px;
@@ -3826,6 +3826,7 @@ span.preferences-card-subscribe-text{
   background-size: 149px 35px;
   background-position: -50px 0px;
 }
+
 .preferences-wallpaper-upload:hover{
     background: #515d67;
 
@@ -3833,14 +3834,13 @@ span.preferences-card-subscribe-text{
 
 .preferences-wallpaper-image{
 
-    width: 128px;
-    height: 80px;
-    display: inline-block;
-    background: url('@static/wallpapers.jpg') no-repeat;
-    background-size: 672px 336px;
-    margin: 6px;
-    transition: all 0.2s ease;
-
+  width: 128px;
+  height: 86px;
+  display: inline-block;
+  background: url('@static/wallpapers.png') no-repeat;
+  background-size: 640px 258px;
+  margin: 6px;
+  transition: all 0.2s ease;
 
 }
 
@@ -3852,76 +3852,56 @@ span.preferences-card-subscribe-text{
     box-shadow: 0 0 0 4px #FFF inset;
 }
 
-.wallpaper-1{
-    background-position: -0px 0px;
+.wallpaper-20{
+    background-position: -128px 0px;
 }
 
-.wallpaper-2{
-    background-position: -135px 0;
+.wallpaper-21{
+    background-position: -256px 0px;
 }
 
-.wallpaper-3{
-    background-position: -270px 0;
+.wallpaper-22{
+    background-position: -384px 0px;
 }
 
-.wallpaper-4{
-    background-position: -405px 0;
+.wallpaper-23{
+    background-position: -512px 0px;
 }
 
-.wallpaper-5{
-    background-position: -540px 0;
+.wallpaper-24{
+    background-position: 0px -86px;
 }
 
-.wallpaper-6{
-    background-position: 0 -84px;
+.wallpaper-25{
+    background-position: -128px -86px;
 }
 
-.wallpaper-7{
-    background-position: -136px -84px;
+.wallpaper-26{
+    background-position: -256px -86px;
 }
 
-.wallpaper-8{
-    background-position: -270px -84px;
+.wallpaper-27{
+    background-position: -384px -86px;
 }
 
-.wallpaper-9{
-    background-position: -404px -84px;
+.wallpaper-28{
+    background-position: -512px -86px;
 }
 
-.wallpaper-10{
-    background-position: -540px -84px;
+.wallpaper-29{
+    background-position: 0px -172px;
 }
 
-.wallpaper-11{
-    background-position: 0 -168px;
+.wallpaper-30{
+    background-position: -128px -172px;
 }
 
-.wallpaper-12{
-    background-position: -136px -168px;
+.wallpaper-31{
+    background-position: -256px -172px;
 }
 
-.wallpaper-13{
-    background-position: -271px -168px;
-}
-
-.wallpaper-14{
-    background-position: -404px -168px;
-}
-
-.wallpaper-15{
-    background-position: -539px -168px;
-}
-
-.wallpaper-16{
-    background-position: 0 -252px;
-}
-
-.wallpaper-17{
-    background-position: -135px -252px;
-}
-
-.wallpaper-18{
-    background-position: -269px -252px;
+.wallpaper-32{
+    background-position: -384px -172px;
 }
 
 /* CUSTOMIZE ZONE FINISH */
