@@ -3013,6 +3013,10 @@
             //loadCanvasCake(canvasObject2,context2, centroX, centroY, radio, porcentaje);
           }
 
+          if( api.system.workplace().type == 'personal' ){
+          	win.addClass( 'personal' )
+          }
+
           $.when( api.app.storage('infoSubscriptions'), api.app.storage('language') ).done( function( info, lang ){
 
             infoSubscriptions = info;
