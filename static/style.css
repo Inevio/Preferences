@@ -257,6 +257,14 @@ button{
 
 }
 
+.preferences-top li.invite{
+  display: none;
+}
+
+.personal .preferences-top li.invite{
+  display: block;
+}
+
 .preferences-bottom{
 
     width: 807px;
