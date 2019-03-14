@@ -2659,7 +2659,7 @@
         });
 
         avatarUrl = api.system.workspace().avatar.normal;
-        mail      = api.system.workspace().email;
+        mail      = api.system.user().email;
         username  = api.system.workspace().username;
 
         $( '.preferences-account-image', win ).css( 'background-image', 'url(' + avatarUrl + '?' + Math.random() + ')' );
