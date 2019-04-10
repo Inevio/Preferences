@@ -257,12 +257,8 @@ button{
 
 }
 
-.preferences-top li.invite{
-  display: none;
-}
-
 .personal .preferences-top li.invite{
-  display: block;
+  display: none;
 }
 
 .preferences-bottom{
@@ -4405,7 +4401,7 @@ span.preferences-card-subscribe-text{
   margin: 32px auto 20px auto;
   font-size: 21px;
   font-weight: bold;
-  color: #252525;  
+  color: #252525;
 }
 
 .delete-account-popup .options-list{
