@@ -611,16 +611,20 @@ button{
 }
 
 .preferences-bottom-zone{
-  width: 463px;
-	height: 255px;
+  width: 690px;
+	height: 285px;
   border-radius: 3px;
   -webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
 	background-color: #545f65;
-  display: inline-block;
-  margin-top: 5px;
+  margin: 10px auto 0;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
 }
 
 .preferences-bottom-zone *{
@@ -3591,23 +3595,16 @@ span.preferences-card-subscribe-text{
 }
 
 .preferences-language-element{
-
     width: 130px;
-	  height: 130px;
+	  height: 84px;
 	  -webkit-border-radius: 6px;
 	  -moz-border-radius: 6px;
 	  border-radius: 6px;
     text-align: center;
-    margin-top: 68px;
-    margin-right: 30px;
+    margin: 10px 8px;
     display: inline-block;
     border: 1px solid transparent;
-
-}
-
-.preferences-language-element:last-child{
-    margin-right: 0;
-    margin-left: 30px;
+    padding: 18px 10px;
 }
 
 .preferences-language-element:hover{
@@ -3616,26 +3613,62 @@ span.preferences-card-subscribe-text{
 
 .preferences-language-element.active{
     background: #60B25E;
-
 }
 
 .preferences-language-element figure{
-
-    width: 98px;
-    height: 62px;
-    display: inline-block;
-    margin-top: 20px;
-
-}
-.spanishFlag{
-  background: url('@static/Spanish.png') no-repeat;
-  background-size: 292px 62px;
-}
-.englishFlag{
-  background: url('@static/english.png') no-repeat;
+  width: 98px;
+  height: 62px;
+  display: inline-block;
   background-size: 98px 62px;
 }
 
+.preferences-language-element.beta figure::after{
+  content: 'BETA';
+  background: #eaeaea;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 12px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.6), -1px -1px 1px rgba(0,0,0,0.3);
+  font-weight: bold;
+  color: #323232;
+  position: relative;
+  top: 46px;
+  left: 38px;
+}
+
+.spanishFlag{
+  background: url('@static/spanish.png') no-repeat;
+}
+
+.englishFlag{
+  background: url('@static/english.png') no-repeat;
+}
+
+.frenchFlag{
+  background: url('@static/french.png') no-repeat;
+}
+
+.portugueseFlag{
+  background: url('@static/portuguese.png') no-repeat;
+}
+
+.italianFlag{
+  background: url('@static/italian.png') no-repeat;
+}
+
+.russianFlag{
+  background: url('@static/russian.png') no-repeat;
+}
+
+.germanFlag{
+  background: url('@static/german.png') no-repeat;
+}
+
+.chineseFlag{
+  background: url('@static/chinese.png') no-repeat;
+}
+
+/*
 .preferences-language-element.english-uk figure{
     background-position: -195px 0;
 }
@@ -3643,6 +3676,7 @@ span.preferences-card-subscribe-text{
 .preferences-language-element.spanish figure{
     background-position: -97px 0;
 }
+*/
 
 .preferences-language-element span{
 

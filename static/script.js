@@ -810,7 +810,7 @@ var resetInputStatus = function () {
 var loadInfoUserSub = function (infoSubscriptions) {
 
   //infoSubscriptions.currentPlan = null;
-  if (infoSubscriptions.currentPlan != null) {
+  if (infoSubscriptions && infoSubscriptions.currentPlan != null) {
 
     userLocal.info = true;
     userLocal.customPlan = infoSubscriptions.currentPlan.customPlan;
@@ -2692,7 +2692,9 @@ api.config.getLanguages(function (error, languages, used) {
 
 });
 
-api.config.getWallpapers(function (error, wallpapers, used) {
+api.config.getWallpapers(function (err, wallpapers, used) {
+
+  if (err) return console.error(err)
 
   if (used.custom) {
     $('.preferences-wallpaper-image.custom', win).css('background-image', 'url(' + used.url['1280'] + ')').removeClass('wz-prototype').addClass('active');
@@ -3025,9 +3027,11 @@ var loadAppUser = function () {
     inevioPlans = [];
     inevioPlans.push(plan0);
 
+    /*
     for (var i = 0; i < infoSubscriptions.availablePlans.length; i++) {
       inevioPlans.push(infoSubscriptions.availablePlans[i]);
     }
+    */
 
     inevioPlans = inevioPlans.sort(function (a, b) { return a.amount - b.amount })
     listPlans = inevioPlans.map(function (item) { return item.id })
@@ -3130,12 +3134,10 @@ var loadAppUser = function () {
       finishTab();
     }
 
-    if (infoSubscriptions.currentPlan != null) {
-      if (infoSubscriptions.currentPlan.addQuota == "Infinity") {
-        $('.space-premium .box-current-plan-middle .premium-info .left').find('span').text(lang.unlimitedStorage);
-        $('.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
-        $('.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
-      }
+    if (infoSubscriptions && infoSubscriptions.currentPlan != null && infpSubscriptions.currentPlan.addQuota == "Infinity") {
+      $('.space-premium .box-current-plan-middle .premium-info .left').find('span').text(lang.unlimitedStorage);
+      $('.modify-premium .info-current-plan .options-bottom .bottom').find('span').text(lang.unlimitedStorage);
+      $('.modify-premium .info-options .options-top .top .left').find('span').text(lang.unlimitedStorage);
     }
 
   })
@@ -3406,8 +3408,14 @@ $('.date-format-yymmdd', win).text(lang.yymmdd);
 
 $('.preferences-bottom-title.language', win).text(lang.languageTitle);
 $('.preferences-bottom-description.language', win).text(lang.languageDescription);
-$('.preferences-language-element-spanish', win).text(lang.spanishLanguage);
 $('.preferences-language-element-english', win).text(lang.englishLanguage);
+$('.preferences-language-element-spanish', win).text(lang.spanishLanguage);
+$('.preferences-language-element-french', win).text(lang.frenchLanguage);
+$('.preferences-language-element-portuguese', win).text(lang.portugueseLanguage);
+$('.preferences-language-element-italian', win).text(lang.italianLanguage);
+$('.preferences-language-element-russian', win).text(lang.russianLanguage);
+$('.preferences-language-element-german', win).text(lang.germanLanguage);
+$('.preferences-language-element-chinese', win).text(lang.chineseLanguage);
 
 //$('.preferences-bottom-title.extensions').text( lang.extensionsTitle );
 //$('.preferences-extensions-display span').text( lang.displayExtensions );
